@@ -35,6 +35,6 @@ $headers .= 'From: Machiavel Fantasy <mdpservice@machiavel.fr>' . "\r\n";
 $res = mail($to, $subject, $message, $headers);
 if($res == false)
 {
-    die('Erreur lors de l\'envoi du mail');
+    die('Erreur lors de l\'envoi du mail :(');
 }
 ?>
