@@ -1,0 +1,19 @@
+DirectoryIndex index.php index.html
+ErrorDocument 401 /erreur.php?id=401
+ErrorDocument 403 /erreur.php?id=403
+ErrorDocument 404 /erreur.php?id=404
+ErrorDocument 406 /erreur.php?id=406
+ErrorDocument 500 /erreur.php?id=500
+ErrorDocument 503 /erreur.php?id=503
+
+#pour chez Free
+<IfDefine Free>
+php 1
+</IfDefine>
+Options -Indexes
+
+#interdire les html
+<Files "*.html" >
+deny from all
+</Files>
+#AddType application/x-httpd-php .html

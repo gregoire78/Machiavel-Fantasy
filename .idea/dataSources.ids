@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - machiavel_fantasy@localhost" uuid="4d2564de-9001-4367-be27-a7bc9b4bdee7">
+    <database-info product="MySQL" version="5.6.20-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.34 ( Revision: jess.balint@oracle.com-20141014163213-wqbwpf1ok2kvo1om )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="machiavel_fantasy"/>
+    <table name="club" schema="" catalog="machiavel_fantasy" type="TABLE">
+      <column name="text_club" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="date_update" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+    </table>
+    <table name="event" schema="" catalog="machiavel_fantasy" type="TABLE">
+      <column name="id_event" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="title_event" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="text_event" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="image_event" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="date_event" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="date_update" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="id_user" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="id_jeu" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="statut_event" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MQ=="/>
+      <primary-key name="PRIMARY" columns="id_event"/>
+    </table>
+    <table name="jeu" schema="" catalog="machiavel_fantasy" type="TABLE">
+      <column name="id_jeu" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="title_jeu" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="text_jeu" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="image_jeu" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="id_type_jeu" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="date_update" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="id_user" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="statut_jeu" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MQ=="/>
+      <primary-key name="PRIMARY" columns="id_jeu"/>
+    </table>
+    <table name="type_jeu" schema="" catalog="machiavel_fantasy" type="TABLE">
+      <column name="id_type_jeu" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="libelle_type_jeu" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="description_type_jeu" sqlType="VARCHAR" precision="300" scale="0" nullable="false" jdbcType="12"/>
+      <column name="image_type_jeu" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id_type_jeu"/>
+    </table>
+    <table name="users" schema="" catalog="machiavel_fantasy" type="TABLE">
+      <column name="id_user" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="pseudo" sqlType="VARCHAR" precision="35" scale="0" nullable="false" jdbcType="12"/>
+      <column name="civility" sqlType="VARCHAR" precision="4" scale="0" nullable="false" jdbcType="12"/>
+      <column name="lastname" sqlType="VARCHAR" precision="35" scale="0" nullable="false" jdbcType="12"/>
+      <column name="firstname" sqlType="VARCHAR" precision="35" scale="0" nullable="false" jdbcType="12"/>
+      <column name="password" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="320" scale="0" nullable="false" jdbcType="12"/>
+      <column name="date_register" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="date_lastco" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="ip_user" sqlType="VARCHAR" precision="15" scale="0" nullable="false" jdbcType="12"/>
+      <column name="key_user" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="avatars" sqlType="VARCHAR" precision="500" scale="0" nullable="false" jdbcType="12" def="J2RlZmF1dC5wbmcn"/>
+      <column name="activation" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="droits" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA==" remarks="MCA9IGF1Y3VuIGRyb2l0IDsgMSA9IHV0aWxpc2F0ZXVyIDsgMiA9IG1vZMOpcmF0ZXVyIDsgMyA9IGFkbWluaXN0cmF0ZXVy"/>
+      <primary-key name="PRIMARY" columns="id_user"/>
+    </table>
+  </data-source>
+</component>

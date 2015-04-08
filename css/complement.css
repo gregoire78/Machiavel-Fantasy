@@ -1,0 +1,353 @@
+/*barre de navigation*/
+nav.navbar.navbar-inverse{
+margin-bottom: 0px;
+border-radius: 0px;
+border-left:0px;
+border-right:0px;
+}
+.footer{
+background-color: rgba(255, 255, 255, 0.3);
+padding:0px;
+}
+/*bloc du bouton pour creer un évènement*/
+.creer_evenement{
+margin:20px;
+}
+.creer_evenement a{
+text-decoration: none;
+text-align:center;
+}
+
+/*-----------------------------bloc contenu de la page----------------------------------*/
+.contenu{
+margin-top:15px;
+}
+
+/*-------------------------------------Classe pour afficher un message d'erreur----------------------*/
+.message_erreur{
+text-align:center;
+width:100%;
+padding:10px 0;
+border-radius:4px;
+font-size:20px;
+background:white;
+}
+
+/*-----------------------------------Style de la page d'accueil----------------------------------------*/
+.lien_accueil{/*image de font pour chaque bloc d'article*/
+width:100%;
+float:left;
+/*min-height:250px;*/
+background-color:rgb(168, 168, 168);
+}
+
+.lien_accueil img {
+/*height:248px;*/
+max-width:100%;
+}
+article.tbl1{
+    display: inline-block;
+}
+div.image { /*Position est style de l'image et la zone de text*/
+	position: relative;
+	overflow: hidden;
+	max-width: 100%;
+	/*max-height: 256px;*/
+	display: inline-block;
+	border: 1px solid #ddd;
+	margin:0px;
+}
+
+a.desc { /*Parametre de la zone de texte flotante*/
+	width: 100%;
+	height: 50px;
+	position: absolute;
+	color:rgba(255, 255, 255, 0.5);
+	background-color:rgba(0, 0, 0, 0.5);
+	font-size: 14px;
+	-webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	-ms-transition: all .3s ease;
+	-o-transition: all .3s ease;
+	transition: all .3s ease;
+	padding:5px 15px;
+}
+a.desc:hover{
+background-color:rgba(0, 0, 0, 0.9);
+color:rgba(255, 255, 255, 0.9);
+}
+div.image.boxFULL a { /*1) Dimension zone de txt et 2) Afficher ou pas la zone text */
+    height: 110px;
+	bottom: -80px;
+}
+div.image.boxFULL:hover a { /*Mouvement de la zone de txt*/
+	bottom: 0px;
+    
+}
+.image_accueil {
+text-align:center;
+margin:0px;
+}
+.bloc_accueil{ /*largeur de chaque bloc*/
+width:25%;
+float:left;
+}
+.espace_accueil { /*espace entre les blocs d'article*/
+padding:7.5px;
+}
+/*---------------------------------------------------------------*/
+
+/*police de Machiavel Fantasy*/
+@font-face {
+  font-family: 'machiavel';
+  src: url('deutsch-webfont.eot');
+  src: url('deutsch-webfont.eot?#iefix') format('embedded-opentype'),
+  url('deutsch-webfont.woff2') format('woff2'),
+  url('deutsch-webfont.woff') format('woff'),
+  url('deutsch-webfont.ttf') format('truetype'),
+  url('deutsch-webfont.svg#deutsch_gothicnormal') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body{
+background-image:url(machiavelFantasy_6.jpg);
+background-attachment: fixed;
+}
+
+/*header Machiavel Fantasy*/
+.page-header{
+padding:20px 0px 29px 0;
+margin:0px;
+border:0px;
+background-color: rgba(255, 255, 255, 0.2);
+}
+
+/*police et style du header Machiavel Fantasy*/
+.machiavel{
+font-family:machiavel;
+font-size:60px;
+color: #333;
+text-decoration: none;
+margin-left:40px;
+}
+
+/*carousel*/
+.carousel-inner{
+border-bottom:1px solid #080808;
+}
+
+/*actualite*/
+.actualite{
+margin-bottom:15px;
+}
+
+/*-----------------------Page description.html-----------------------*/
+.text_description /*Suppression de la marge et justification du text*/
+{
+	text-align:justify;
+	margin:0;
+}
+
+.espace_description/* Espace entre chaque bloc*/
+{
+	padding:15px;
+}
+
+.espace_description a{
+margin:0px;
+text-decoration:none;
+color: #333;
+}
+.membre{
+padding:20px;
+}
+.inscrire{
+padding:0px;
+}
+h3.underline{
+margin-top:0px;
+}
+/*barre de recherche*/
+#barre_search
+{
+  background-color: rgb(47, 47, 47);
+  color: rgb(157, 157, 157);
+}
+#bouton_search
+{
+  background-color: #9D9D9D;
+  background-image: none;
+}
+
+/*calendrier*/
+/* Feuille de style pour Calendrier */
+table.cal { cursor:default;font-size:17px; background:#868400; border: 2px solid #2A2A2A;margin-top:15px; }
+/* la case contenant le nom du mois */
+.cal td.cal_titre { font-weight:bold; }
+/* les cases des jours de la semaine */
+.cal th { text-align:center; background: #2D2D2D; color:#DAE2FF; }
+/* les autres cases */
+.cal td { text-align:center; background: #E5E5E5; border: 1px solid rgb(187, 187, 187); margin:0px; padding:0px; }
+/* la case correspondant à aujourd'hui */
+.cal td.today { border:2px solid rgb(126, 126, 126); margin:0; padding:-2px; }
+
+/* les cases avec un lien */
+.cal td a {
+  color: #cacaca;
+  background: #353535;
+  display:block;
+  text-decoration:none;
+  font-weight:bold;
+  -webkit-transition: all .3s ease-in;
+  -moz-transition: all .3s ease-in;
+  -o-transition: all .3s ease-in;
+  transition: all .3s ease-in;
+}
+.cal td a:hover {
+  background: rgb(115, 115, 115);
+}
+/* un premier style */
+.cal .st1 { /*font-weight:bold;*/ background: rgb(53, 53, 53); }
+/* un second style */
+.cal .st2 { font-weight:bold; color:Purple; }
+/*fleches*/
+#fleche_gauche {
+  left: 1px;
+}
+#fleche_droite {
+  right: 1px;
+}
+#fleche_gauche:hover {
+  color: #9d9d9d;
+}
+#fleche_droite:hover{
+  color: #9d9d9d;
+}
+#fleche_droite,#fleche_gauche{
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
+  -webkit-transition: all .2s ease-in;
+  -moz-transition: all .2s ease-in;
+  -o-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+}
+#panel_cal {
+  min-width: 175px;
+}
+
+#de
+{
+  border-radius: 5px;
+}
+.underline{
+border-bottom: 1px solid #eee;/*soulignage des titres*/
+}
+#jeux{
+height:700px;/*hauteur des blocs jeu de role et jeu de plateau dans jeux.html*/
+}
+
+/*select bootstrap*/
+.bootstrap-select{
+  min-width:75px;
+}
+.selectpicker
+{
+    border-radius: 4px 0 0 4px;
+  border-right: 0;
+}
+
+#captcha
+{
+  height:44px;
+  text-align: center;
+}
+#captcha_image
+{
+  cursor: pointer;
+}
+.star_form
+{
+  color: red;
+}
+
+/*modif css pages de jeux*/
+.media-left-mod{
+  padding-bottom: 15px;
+  padding-left: 10px;
+}
+.media-mod{
+  padding:0;
+}
+.media-img-left{
+  padding-right: 10px;
+}
+.media-img-right{
+  padding-left: 10px;
+}
+.img-responsive
+{
+  margin: auto;
+}
+
+/*datepicker*/
+div.ui-datepicker{
+  font-size:12px;
+}
+
+/*select date*/
+.time{
+display:inline-block;
+width:10%;
+}
+
+/*Style de la page actualité*/
+.info_event{
+text-align:center;
+}
+.update_event{
+font-size:10px;
+display:inline-block;
+float:right;
+margin:5px 10px 0 0;
+}
+.date_event{
+margin-left:2%;
+font-style: italic; 
+font-size:12px;
+display:inline-block;
+}
+.limite{
+border-right:1px solid #E5E5E5;
+}
+
+/*empecher ecrire dans input*/
+#inputdate {
+  cursor: pointer;
+  background-color: #ffffff;
+  transition: all .2s ease-in;
+}
+#inputdate:focus {
+  background-color: #f2f2f2;
+  color: #000000;
+}
+/******menu profil*****/
+#drop_compte{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+#avatarMenu{
+    margin-right: 15px;
+    display: inline-block;
+    vertical-align: top;
+    background-color: #ffffff;
+}
+#compteMenu{
+    display: inline-block;
+    margin-bottom: 0;
+}
+#caretCompte{
+    display: inline;
+}
+/********************/

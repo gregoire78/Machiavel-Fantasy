@@ -1,0 +1,49 @@
+<?php
+	$page=$_SERVER['REQUEST_URI'];
+	$p=substr($page,-6); /*$p est le numéro de la page inclu dans le nom du fichier*/
+	$start=0;
+	$end=1;
+	$i=1;
+	if($page!="/".$type.".php"){
+		while($p!=$i){
+			$start=$start+2;
+			$end=$end+2;
+			$i++;
+		}
+	}else{
+		$p=1;
+	}
+	$class2[$start]='class="active"';
+	$class2[$end]='<span class="sr-only">(curent)</span>';
+	$start=0;
+	$end=1;
+	$i=1;
+?>
+<nav style="text-align:center;">
+  <ul class="pagination">
+	<?php if(file_exists($type.'/'.$type.'_p'.($p-1).'.html')){?><!--Si la page précédente existe-->
+		<li>
+			<a href="<?php echo $type;?>.php?page=<?php echo $type;?>_p<?php echo($p-1);?>.html" aria-label="Previous">
+			<span aria-hidden="true">&laquo;</span>
+		  </a>
+		</li>
+	<?php }
+	while (file_exists($type.'/'.$type.'_p'.($i).'.html')){?> <!--Tant que la page existe-->
+		<li <?php if (!empty($class2[$start])){echo $class2[$start];}?> >
+			<a href="<?php echo $type; ?>.php?page=<?php echo $type;?>_p<?php echo $i;?>.html"><?php echo $i; if (!empty($class2[$end])){echo $class2[$end];}?></a>
+		</li>
+		<?php
+		$i++;
+		$start=$start+2;
+		$end=$end+2;
+	}?>
+	<?php if(file_exists($type.'/'.$type.'_p'.($p+1).'.html')){ ?><!--Si la page suivant existe-->
+		<li>
+			<a href="<?php echo $type;?>.php?page=<?php echo $type ;?>_p<?php echo($p+1);?>.html" aria-label="Next">
+			<span aria-hidden="true">&raquo;</span>
+		  </a>
+		</li>
+	<?php }
+	?>	
+  </ul>
+</nav>
