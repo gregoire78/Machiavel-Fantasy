@@ -32,5 +32,9 @@ $headers .='Content-Transfer-Encoding: 8bit' . "\r\n";
 $headers .= 'From: Machiavel Fantasy <mdpservice@machiavel.fr>' . "\r\n";
 
 // Mail it
-mail($to, $subject, $message, $headers);
+$res = mail($to, $subject, $message, $headers);
+if($res == false)
+{
+    die('Erreur lors de l\'envoi du mail');
+}
 ?>
