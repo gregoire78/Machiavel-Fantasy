@@ -32,32 +32,28 @@
 				  include_once("accessoires/actualite_mini.php");
 			?>
 		</div>
-		<div class="col-md-8">
-			<div class="panel panel-default contenu">
-			  <div class="panel-body espace_description">
-				<div style="float:left;">
-					<h3 class="media-heading underline">Les jeux du club... <small></small></h3>
-					<p class="text_description">
-						<em>
-							Post hanc adclinis Libano monti Phoenice, regio plena gratiarum et venustatis, urbibus
-							decorata magnis et pulchris; in quibus amoenitate celebritateque nominum Tyros excellit, 
-							Sidon et Berytus isdemque pares Emissa et Damascus saeculis condita.
-						</em>
-					</p>
-				</div>
-				<?php $i=0;
-					while(isset($id_type_jeu[$i]))
-					{ ?>
-						<div class="col-xs-6 col-md-6 espace_description">
-							<a href="liste_jeu.php?jeu=<?php echo $id_type_jeu[$i]; ?>" class="thumbnail" style="">
-								<p style="text-align:center;color: #333;" ><img class="img-responsive" src="<?php echo $image_type_jeu[$i]; ?>" alt="<?php echo $libelle_type_jeu[$i]; ?>"></p>
-								<h4 class="media-heading text-center underline" style="margin-top:10px;"><?php echo $libelle_type_jeu[$i]; ?></h4>
-								<p class="text_description" ><?php echo $description_type_jeu[$i]; ?></p>
-							</a>
-						</div>
-					<?php $i++; } ?>
-			  </div>	
+		<div class="col-md-8 contenu espace_description">
+			<div style="float:left;">
+				<h3 class="media-heading underline">Les jeux du club... <small></small></h3>
+				<p class="text_description">
+					<em>
+						Post hanc adclinis Libano monti Phoenice, regio plena gratiarum et venustatis, urbibus
+						decorata magnis et pulchris; in quibus amoenitate celebritateque nominum Tyros excellit, 
+						Sidon et Berytus isdemque pares Emissa et Damascus saeculis condita.
+					</em>
+				</p>
 			</div>
+			<?php $i=0;
+				while(isset($id_type_jeu[$i]))
+				{ ?>
+					<div class="col-xs-6 col-md-6 espace_description">
+						<a href="liste_jeu.php?jeu=<?php echo $id_type_jeu[$i]; ?>" class="thumbnail" style="">
+							<p style="text-align:center;color: #333;" ><img class="img-responsive" src="<?php echo $image_type_jeu[$i]; ?>" alt="<?php echo $libelle_type_jeu[$i]; ?>"></p>
+							<h4 class="media-heading text-center underline" style="margin-top:10px;"><?php echo $libelle_type_jeu[$i]; ?></h4>
+							<p class="text_description" ><?php echo $description_type_jeu[$i]; ?></p>
+						</a>
+					</div>
+			<?php $i++; } ?>
 		</div>
 		<?php 
 			include_once("accessoires/chat.php");

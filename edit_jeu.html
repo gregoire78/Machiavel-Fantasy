@@ -13,9 +13,6 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
-        <!--jasny-->
-        <script src="js/jasny-bootstrap.min.js"></script>
-        <link href="css/jasny-bootstrap.min.css" rel="stylesheet"/>
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -35,132 +32,122 @@
             <?php   include_once("accessoires/calendrier_aside.php");
                     include_once("accessoires/actualite_mini.php");var_dump($_SESSION);?>
         </div>
-        <div class="col-md-8">
-            <div class="panel panel-default contenu">
-                <div class="panel-body">
-                    <h3 class="underline">
-                        <?php if(isset ($_GET['jeu'])){?>
-                        Modifier un jeu
-                        <?php } else{ ?>
-                        Ajouter un jeu
-                        <?php }?>
-                    </h3>
-                    <form method="POST" enctype="multipart/form-data">
-                        <div class="row">
-                            <div class="col-md-7">
-                                <div class="form-group">
-                                    <label for="inputArticleTitle" class="ccontrol-label">Titre du jeu</label>
-                                    <div>
-                                        <input type="text" class="form-control" id="inputArticleTitle"  name="title_jeu" value="<?php if(isset($title_jeu))echo $title_jeu; ?>" required="required">
-                                        <?php if(isset($errors_jeu[1])) { ?>
-                                        <div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom: 0">
-                                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                            <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?= $errors_article[1];?>
-                                        </div>
-                                        <?php } ?>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputtype" class="control-label">Type de jeu</label>
-                                    <select id="inputtype" class="form-control" name="libelle">
-                                        <?php $i=0; while (isset($id_jeu_menu[$i])){ ?>
-                                        <option <?php if(isset($_GET['jeu'])){ if ($libelle_jeu_menu[$i]==$id_type_jeu[$i]){ echo 'selected="selected"';} }?> >
-                                        <?= $libelle_jeu_menu[$i]; ?>
-                                        </option>
-                                        <?php $i++; } ?>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputArticleFile" class="control-label">Image du jeu</label>
-
-                                    <div class="fileinput fileinput-new input-group" data-provides="fileinput">
-                                        <div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
-                                        <span class="input-group-addon btn btn-default btn-file">
-                                            <span class="fileinput-new"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Parcourir</span>
-                                            <span class="fileinput-exists">Changer</span>
-                                            <input accept="image/*" id="inputArticleFile" type="file" name="inputArticleFile">
-                                        </span>
-                                        <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Effacer</a>
-                                    </div>
-
-                                    <?php if(isset($errors_jeu[4])) { ?>
-                                    <div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom: 0">
-                                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?= $errors_jeu[4];?>
-                                    </div>
-                                    <?php } ?>
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <img id="blah" class="fileinput-preview thumbnail img-responsive" style="width: 200px; height: 200px;" src="images/jeux/<?= $image_jeu; ?>"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="editor1" class="control-label">Contenu</label>
-                            <div>
-                                <?php if(isset($errors_jeu[2])) { ?>
-                                <div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom: 0">
-                                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                    <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?= $errors_jeu[2];?>
-                                </div>
-                                <?php } ?>
-                                <textarea id="editor1" name="text_jeu" required="required"><?php if(isset($text_jeu)) echo $text_jeu; ?></textarea>
-                                <script type="text/javascript">
-                                    CKEDITOR.replace( 'editor1',{
-                                        height: '200px',
-                                        toolbar: [
-                                            { name: 'document', items: [ 'Source']},
-                                            { name: 'view', items: ['Preview','-','Maximize','ShowBlocks','CreateDiv']},
-                                            { name: 'basicstyles', items: [ 'Bold', 'Italic','Strike','Underline', '-', 'RemoveFormat'  ] },
-                                            { name: 'styles', items: [ 'Font', 'FontSize' ] },
-                                            { name: 'insert', items: [ 'Smiley', 'SpecialChar' ,'CodeSnippet', 'EqnEditor'] },
-                                            { name: 'editing', groups: [ 'find', 'selection', 'spellchecker' ], items: [ 'SelectAll', '-', 'Scayt' ] },
-                                            { name: 'colors', items: [ 'TextColor', 'BGColor'] },
-                                            { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
-                                            { name: 'insert', items: [ 'Image', 'Flash', 'Table', 'HorizontalRule', 'SpecialChar', 'PageBreak', 'Iframe' ] },
-                                            { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl' ] },
-                                        ]
-                                    } );
-                                </script>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div >
-                                <?php if(isset($errors_jeu[3])) { ?>
-                                <div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom: 0">
-                                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                    <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?= $errors_article[3];?>
-                                </div>
-                                <?php } ?>
-                                <!--<p>Activer les commentaires : </p>
-                                <div class='input'>
-                                    <input type='radio' value='1' id='input5' name='com_allowed' <?php //if(isset ($_GET['article'])){ if($com_allowed==1){echo 'checked';}}else{echo 'checked';} ?> required>
-                                    <label for="input5">Oui</label>
-                                    <input type='radio' value='0' id='input6' name='com_allowed' <?php //if(isset ($_GET['article'])){ if($com_allowed==0){echo 'checked';}} ?> required>
-                                    <label for="input6">Non</label>
-                                </div>-->
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <p>
-                                <?php 	if(isset($_GET['jeu']))
-                                        { ?>
-                                    <input class="btn btn-default" type="submit" value=" Modifier " name="modifier"/>
-                                <?php 	}else	{ ?>
-                                    <input class="btn btn-default" type="submit" value=" Poster " name="ajouter"/>
-                                <?php 	} ?>
-                            </p>
-                        </div>
-                        <div style="clear: both;"></div>
-                    </form>
-                </div>
-            </div>
+        <div class="col-md-8 contenu">
+			<h3 class="underline">
+				<?php if(isset ($_GET['jeu'])){?>
+				Modifier un jeu
+				<?php } else{ ?>
+				Ajouter un jeu
+				<?php }?>
+			</h3>
+			<form method="POST" enctype="multipart/form-data">
+				<div class="row">
+					<div class="col-md-7">
+						<div class="form-group">
+							<label for="inputArticleTitle" class="ccontrol-label">Titre du jeu</label>
+							<div>
+								<input type="text" class="form-control" id="inputArticleTitle"  name="title_jeu" value="<?php if(isset($title_jeu))echo $title_jeu; ?>" required="required">
+								<?php if(isset($errors_jeu[1])) { ?>
+								<div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom: 0">
+									<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+									<strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?= $errors_article[1];?>
+								</div>
+								<?php } ?>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputtype" class="control-label">Type de jeu</label>
+							<select id="inputtype" class="form-control" name="libelle">
+								<?php $i=0; while (isset($id_jeu_menu[$i])){ ?>
+								<option <?php if(isset($_GET['jeu'])){ if ($libelle_jeu_menu[$i]==$id_type_jeu[$i]){ echo 'selected="selected"';} }?> >
+								<?= $libelle_jeu_menu[$i]; ?>
+								</option>
+								<?php $i++; } ?>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="inputArticleFile" class="control-label">Image du jeu</label>
+							<input onchange="readURL(this);" type="file" name="inputArticleFile" class="form-control filestyle" id="inputArticleFile" accept="image/*" data-input="true" data-buttonText="&nbsp;Parcourir" /> <small>(500 Ko Max)</small>
+							<?php if(isset($errors_jeu[4])) { ?>
+							<div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom: 0">
+								<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+								<strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?= $errors_jeu[4];?>
+							</div>
+							<?php } ?>
+						</div>
+					</div>
+					<div class="col-md-5">
+						<img id="blah" class="img-responsive img-rounded" src="images/jeux/<?= $image_jeu; ?>"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="editor1" class="control-label">Contenu</label>
+					<div>
+						<?php if(isset($errors_jeu[2])) { ?>
+						<div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom: 0">
+							<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+							<strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?= $errors_jeu[2];?>
+						</div>
+						<?php } ?>
+						<textarea id="editor1" name="text_jeu" required="required"><?php if(isset($text_jeu)) echo $text_jeu; ?></textarea>
+						<script type="text/javascript">
+							CKEDITOR.replace( 'editor1',{
+								height: '200px',
+								toolbar: [
+									{ name: 'document', items: [ 'Source']},
+									{ name: 'view', items: ['Preview','-','Maximize','ShowBlocks','CreateDiv']},
+									{ name: 'basicstyles', items: [ 'Bold', 'Italic','Strike','Underline', '-', 'RemoveFormat'  ] },
+									{ name: 'styles', items: [ 'Font', 'FontSize' ] },
+									{ name: 'insert', items: [ 'Smiley', 'SpecialChar' ,'CodeSnippet', 'EqnEditor'] },
+									{ name: 'editing', groups: [ 'find', 'selection', 'spellchecker' ], items: [ 'SelectAll', '-', 'Scayt' ] },
+									{ name: 'colors', items: [ 'TextColor', 'BGColor'] },
+									{ name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
+									{ name: 'insert', items: [ 'Image', 'Flash', 'Table', 'HorizontalRule', 'SpecialChar', 'PageBreak', 'Iframe' ] },
+									{ name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl' ] },
+								]
+							} );
+						</script>
+					</div>
+				</div>
+				<div class="form-group">
+					<div >
+						<?php if(isset($errors_jeu[3])) { ?>
+						<div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom: 0">
+							<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+							<strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?= $errors_article[3];?>
+						</div>
+						<?php } ?>
+						<!--<p>Activer les commentaires : </p>
+						<div class='input'>
+							<input type='radio' value='1' id='input5' name='com_allowed' <?php //if(isset ($_GET['article'])){ if($com_allowed==1){echo 'checked';}}else{echo 'checked';} ?> required>
+							<label for="input5">Oui</label>
+							<input type='radio' value='0' id='input6' name='com_allowed' <?php //if(isset ($_GET['article'])){ if($com_allowed==0){echo 'checked';}} ?> required>
+							<label for="input6">Non</label>
+						</div>-->
+					</div>
+				</div>
+				<div class="form-group">
+					<p>
+						<?php 	if(isset($_GET['jeu']))
+								{ ?>
+							<input class="btn btn-default" type="submit" value=" Modifier " name="modifier"/>
+						<?php 	}else	{ ?>
+							<input class="btn btn-default" type="submit" value=" Poster " name="ajouter"/>
+						<?php 	} ?>
+					</p>
+				</div>
+				<div style="clear: both;"></div>
+			</form>
         </div>
 
         <?php
             include_once("accessoires/footer.html");
         ?>
+        <!--read url pour l'image-->
+        <script type="text/javascript" src="js/readURL.js"></script>
         <!-- compteur -->
         <script type="text/javascript" src="js/compteur.js"></script>
+        <!--Filestyle-->
+        <script src="js/bootstrap-filestyle.min.js"></script>
     </body>
 </html>

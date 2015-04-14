@@ -1,26 +1,104 @@
-/*barre de navigation*/
-nav.navbar.navbar-inverse{
-margin-bottom: 0px;
-border-radius: 0px;
-border-left:0px;
-border-right:0px;
+body{
+background-color: #80848B;
 }
-.footer{
-background-color: rgba(255, 255, 255, 0.3);
-padding:0px;
+/*--------------------------- Bouton barre_page ----------------------*/
+.button_pagination a
+{
+	padding: 6px 12px;
+	width:20%;
+	background-color: #fff;
+	border: 1px solid #ddd;
 }
-/*bloc du bouton pour creer un évènement*/
+.button_pagination
+{
+	float:left;margin:20px 0;
+}
+
+/*-----------------------------bloc contenu de la page----------------------------------*/
+.contenu
+{
+	padding:20px;
+	margin:15px 0;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	background-color: #F5F7FA;
+}
+
+/*header Machiavel Fantasy*/
+.page-header
+{
+	padding:20px 0px 29px 0;
+	margin:0px;
+	border:0px;
+	background-color: rgba(255, 255, 255, 0.2);
+}
+
+/*police et style du header Machiavel Fantasy*/
+.machiavel
+{
+	font-family:machiavel;
+	font-size:60px;
+	color: #333;
+	text-decoration: none;
+	margin-left:40px;
+}
+
+/*carousel*/
+.carousel-inner
+{
+	border-bottom:1px solid #080808;
+}
+
+/*barre de menu*/
+nav.navbar.navbar-inverse
+{
+	margin-bottom: 0px;
+	border-radius: 0px;
+	border-left:0px;
+	border-right:0px;
+}
+.footer
+{
+	background-color: rgba(255, 255, 255, 0.3);
+	padding:0px;
+}
+
+/*--------------------------------- liste_jeu.html -------------------------------------*/
+.liste_jeu
+{
+	border:1px solid #717479;
+	border-radius:4px;
+	background-color: #E8EAEC;
+}
+.liste_jeu div
+{
+	padding:0px;
+}
+.liste_jeu img
+{
+	border-right: 1px solid #717479;
+	width: 100%;
+}
+.liste_jeu h4
+{
+	border-bottom:1px solid #717479;
+	padding:10px ;
+	margin:0;
+}
+.liste_jeu p
+{
+	padding:10px 15px;
+	margin:0;
+}
+/*--------------------------------------------------------------------------------------------*/
+
+/*----------------------------- bloc du bouton pour creer un évènement -------------------------------*/
 .creer_evenement{
 margin:20px;
 }
 .creer_evenement a{
 text-decoration: none;
 text-align:center;
-}
-
-/*-----------------------------bloc contenu de la page----------------------------------*/
-.contenu{
-margin-top:15px;
 }
 
 /*-------------------------------------Classe pour afficher un message d'erreur----------------------*/
@@ -110,33 +188,6 @@ padding:7.5px;
   font-style: normal;
 }
 
-body{
-background-image:url(machiavelFantasy_6.jpg);
-background-attachment: fixed;
-}
-
-/*header Machiavel Fantasy*/
-.page-header{
-padding:20px 0px 29px 0;
-margin:0px;
-border:0px;
-background-color: rgba(255, 255, 255, 0.2);
-}
-
-/*police et style du header Machiavel Fantasy*/
-.machiavel{
-font-family:machiavel;
-font-size:60px;
-color: #333;
-text-decoration: none;
-margin-left:40px;
-}
-
-/*carousel*/
-.carousel-inner{
-border-bottom:1px solid #080808;
-}
-
 /*actualite*/
 .actualite{
 margin-bottom:15px;
@@ -164,7 +215,13 @@ padding:20px;
 }
 .inscrire{
 padding:0px;
+margin-top:15px;
 }
+.espace_connexion
+{
+padding:0px 7.5px;
+}
+
 h3.underline{
 margin-top:0px;
 }
@@ -180,7 +237,7 @@ margin-top:0px;
   background-image: none;
 }
 
-/*calendrier*/
+/*------------------------------ calendrier --------------------------*/
 /* Feuille de style pour Calendrier */
 table.cal { cursor:default;font-size:17px; background:#868400; border: 2px solid #2A2A2A;margin-top:15px; }
 /* la case contenant le nom du mois */
@@ -242,7 +299,7 @@ table.cal { cursor:default;font-size:17px; background:#868400; border: 2px solid
   border-radius: 5px;
 }
 .underline{
-border-bottom: 1px solid #eee;/*soulignage des titres*/
+border-bottom: 1px solid #4D4949;/*soulignage des titres*/
 }
 #jeux{
 height:700px;/*hauteur des blocs jeu de role et jeu de plateau dans jeux.html*/

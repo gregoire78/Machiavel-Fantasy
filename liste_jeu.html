@@ -45,7 +45,7 @@
 						{ ?>
 							<article class="media liste_jeu">
 								<div class="media-mod media-img-left col-md-2 col-sm-2 col-xs-2">											
-									<img class="img-responsive" src="images/jeux/<?= $image_jeu[$i];?>" alt="..."/>
+									<img class="img-responsive" src="<?= $image_jeu[$i];?>" alt="..."/>
 								</div>
 								<div class="media-mod col-md-10 col-sm-10 col-xs-10">
 									<h4 class="media-heading" style="background-color: <?= $color_type_jeu; ?>;">
@@ -55,7 +55,7 @@
 										<?= $text_jeu[$i]; ?>
 									</p> 
 								</div>
-								<a style="float:right;margin-right:10px;" class="btn btn-primary" href="complete_jeu.php?jeu=<?= $id_jeu[$i];?>" role="button">Lire plus</a>
+								<a style="float:right;margin:10px;" class="btn btn-primary" href="complete_jeu.php?jeu=<?= $id_jeu[$i];?>" role="button">Lire plus</a>
 							</article>
 				<?php 		$i++;
 						}
