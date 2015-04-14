@@ -1,6 +1,73 @@
 body{
 background-color: #80848B;
 }
+
+/*----------------------------Style pour le footer----------------------------------*/
+
+.footer{
+	margin-top:20px;
+	background-color: #222;
+	padding:0px;
+	position: relative;
+	border-top: 1px solid #020101;
+	color:#9d9d9d;
+	width:100%;
+	float:left;
+}
+.col_footer{/*bloc du footer*/
+	width:31.3333%;
+	float:left;
+	padding:10px 10px 0 10px;
+	margin:1%;
+	border-left:1px solid #767676;
+}
+.titre{
+	margin-bottom:5px;
+	border-bottom:1px solid #767676;
+	margin:0 10px;
+	font-size:13px;
+	color:#767676;
+}
+.titre a
+{
+	color:#767676;
+}
+.sous_titre{
+	font-size:11px;
+	margin:0 10px 0 13px;
+	text-align:justify;
+	color:#9d9d9d;
+}
+.liste_footer{
+	list-style:none;
+	padding:0;
+}
+.content_footer{
+	margin-top:3px;
+	margin-bottom:3px;
+	margin-left:8.33333333%;
+	width:83.33333333%;
+	float:left;
+	padding-right:15px;
+	padding-left:15px;
+}
+.copyright{/*Bloc du copyright*/
+	width:100%;
+	float:left;
+}
+.copyright h4{ /*Texte du bloc copyright*/
+	margin:0 0 0 12px;
+	font-size:13px;
+}
+.sous_titre a{
+	color:#9d9d9d;
+}
+.sous_titre a:hover{
+	color:#6C6C6C;
+	border-bottom:1px solid #6C6C6C;
+}
+/*-------------------------------------------------------------------*/
+
 /*--------------------------- Bouton barre_page ----------------------*/
 .button_pagination a
 {
@@ -56,11 +123,6 @@ nav.navbar.navbar-inverse
 	border-radius: 0px;
 	border-left:0px;
 	border-right:0px;
-}
-.footer
-{
-	background-color: rgba(255, 255, 255, 0.3);
-	padding:0px;
 }
 
 /*--------------------------------- liste_jeu.html -------------------------------------*/

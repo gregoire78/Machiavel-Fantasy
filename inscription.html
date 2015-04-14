@@ -52,163 +52,159 @@
             <?php   include_once("accessoires/calendrier_aside.php");
                     include_once("accessoires/actualite_mini.php");var_dump($_SESSION);?>
         </div>
-        <div class="col-md-8">
-            <div class="panel panel-default contenu">
-                <div class="panel-body">
-                    <div class="col-md-offset-3 col-md-6">
-                        <h1 class="underline">Inscription</h1>
-                        <?php if(!isset($success)) { ?>
-                        <!--Formulaire d'inscription-->
-                        <form action="inscription.php" method="POST" role="form">
-                            <div class="form-group has-feedback" id="form_pseudo_user">
-                                <label class="control-label" for="pseudo_user"><b>Nom d'utilisateur</b> <span class="star_form">*</span></label>
-                                <input type="text" class="form-control" name="pseudo_user" id="pseudo_user" value="<?php echo $value_pseudo; ?>" placeholder="Nom d'utilisateur" autocomplete="off" data-placement="top" data-toggle="popover" title="Entrez un nom d'utilisateur" data-content="Le nom d'utilisateur ne doit pas dépasser 35 caractères !" />
-                                <!--message erreur--><span id="error_pseudo_user"></span>
-                                <!--icon--><span id="input0Status" class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                                <?php
-                                    if(!empty($errors[1]))//si la variable erreur n'est pas vide ca qui veut dire qu'il y a une erreur | si exist
-                                    {
-                                        ?><div class="alert alert-danger alert-dismissible" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?= $errors[1];?>
-                                        </div><?php
-                                    }
-                                ?>
-                            </div>
+        <div class="col-md-8 contenu">
+			<div class="col-md-offset-3 col-md-6">
+				<h1 class="underline">Inscription</h1>
+				<?php if(!isset($success)) { ?>
+				<!--Formulaire d'inscription-->
+				<form action="inscription.php" method="POST" role="form">
+					<div class="form-group has-feedback" id="form_pseudo_user">
+						<label class="control-label" for="pseudo_user"><b>Nom d'utilisateur</b> <span class="star_form">*</span></label>
+						<input type="text" class="form-control" name="pseudo_user" id="pseudo_user" value="<?php echo $value_pseudo; ?>" placeholder="Nom d'utilisateur" autocomplete="off" data-placement="top" data-toggle="popover" title="Entrez un nom d'utilisateur" data-content="Le nom d'utilisateur ne doit pas dépasser 35 caractères !" />
+						<!--message erreur--><span id="error_pseudo_user"></span>
+						<!--icon--><span id="input0Status" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+						<?php
+							if(!empty($errors[1]))//si la variable erreur n'est pas vide ca qui veut dire qu'il y a une erreur | si exist
+							{
+								?><div class="alert alert-danger alert-dismissible" role="alert">
+								<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+								<strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?= $errors[1];?>
+								</div><?php
+							}
+						?>
+					</div>
 
-                            <div class="form-group has-feedback" id="form_lastname_user">
-                                <label class="control-label" for="lastname_user"><b>Nom</b> <span class="star_form">*</span></label>
-                                <div class="input-group">
-                                    <select class="selectpicker" name="civility">
-                                        <option>Mr.</option>
-                                        <option>Mme.</option>
-                                    </select>
-                                    <input type="text" name="lastname_user" id="lastname_user" value="<?php echo $value_lastname; ?>" placeholder="Nom" class="form-control" data-placement="top" data-toggle="popover" title="Entrez votre nom" data-content="Votre nom ne doit pas dépasser 35 caractères !" />
-                                </div>
-                                <!--message erreur--><span id="error_lastname_user"></span>
-                                <!--icon--><span id="input1Status" class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                                <?php
-                                    if(!empty($errors[2]))//si vide
-                                    {
-                                        ?><div class="alert alert-danger alert-dismissible" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?= $errors[2];?>
-                                        </div><?php
-                                    }
-                                ?>
-                            </div>
+					<div class="form-group has-feedback" id="form_lastname_user">
+						<label class="control-label" for="lastname_user"><b>Nom</b> <span class="star_form">*</span></label>
+						<div class="input-group">
+							<select class="selectpicker" name="civility">
+								<option>Mr.</option>
+								<option>Mme.</option>
+							</select>
+							<input type="text" name="lastname_user" id="lastname_user" value="<?php echo $value_lastname; ?>" placeholder="Nom" class="form-control" data-placement="top" data-toggle="popover" title="Entrez votre nom" data-content="Votre nom ne doit pas dépasser 35 caractères !" />
+						</div>
+						<!--message erreur--><span id="error_lastname_user"></span>
+						<!--icon--><span id="input1Status" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+						<?php
+							if(!empty($errors[2]))//si vide
+							{
+								?><div class="alert alert-danger alert-dismissible" role="alert">
+								<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+								<strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?= $errors[2];?>
+								</div><?php
+							}
+						?>
+					</div>
 
-                            <div class="form-group has-feedback" id="form_firstname_user">
-                                <label class="control-label" for="firstname_user"><b>Prénom</b> <span class="star_form">*</span></label>
-                                <input type="text" id="firstname_user" name="firstname_user" value="<?php echo $value_firstname; ?>" placeholder="Prénom" class="form-control" data-placement="top" data-toggle="popover" title="Entrez votre prénom" data-content="Votre prénom ne doit pas dépasser 35 caractères !" />
-                                <!--message erreur--><span id="error_firstname_user"></span>
-                                <!--icon--><span id="input2Status" class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                                <?php
-                                    if(!empty($errors[3]))
-                                    {
-                                        ?><div class="alert alert-danger alert-dismissible" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?= $errors[3];?>
-                                        </div><?php
-                                    }
-                                ?>
-                            </div>
+					<div class="form-group has-feedback" id="form_firstname_user">
+						<label class="control-label" for="firstname_user"><b>Prénom</b> <span class="star_form">*</span></label>
+						<input type="text" id="firstname_user" name="firstname_user" value="<?php echo $value_firstname; ?>" placeholder="Prénom" class="form-control" data-placement="top" data-toggle="popover" title="Entrez votre prénom" data-content="Votre prénom ne doit pas dépasser 35 caractères !" />
+						<!--message erreur--><span id="error_firstname_user"></span>
+						<!--icon--><span id="input2Status" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+						<?php
+							if(!empty($errors[3]))
+							{
+								?><div class="alert alert-danger alert-dismissible" role="alert">
+								<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+								<strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?= $errors[3];?>
+								</div><?php
+							}
+						?>
+					</div>
 
-                            <div class="form-group has-feedback" id="form_password_user">
-                                <label class="control-label" for="password_user"><b>Mot de passe</b> <span class="star_form">*</span></label>
-                                <input type="password" id="password_user" name="password_user" placeholder="Mot de passe" class="form-control" data-placement="top" data-toggle="popover" title="Entrez votre mot de passe" data-content="Le mot de passe doit contenir au moins un caractère majuscule et un nombre et au moins 4 caractères" />
-                                <!--message erreur--><span id="error_password_user"></span>
-                                <!--icon--><span id="input3Status" class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                                <?php
-                                    if(!empty($errors[4]))//si vide
-                                    {
-                                        ?><div class="alert alert-danger alert-dismissible" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?= $errors[4];?>
-                                        </div><?php
-                                    }
-                                ?>
-                            </div>
+					<div class="form-group has-feedback" id="form_password_user">
+						<label class="control-label" for="password_user"><b>Mot de passe</b> <span class="star_form">*</span></label>
+						<input type="password" id="password_user" name="password_user" placeholder="Mot de passe" class="form-control" data-placement="top" data-toggle="popover" title="Entrez votre mot de passe" data-content="Le mot de passe doit contenir au moins un caractère majuscule et un nombre et au moins 4 caractères" />
+						<!--message erreur--><span id="error_password_user"></span>
+						<!--icon--><span id="input3Status" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+						<?php
+							if(!empty($errors[4]))//si vide
+							{
+								?><div class="alert alert-danger alert-dismissible" role="alert">
+								<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+								<strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?= $errors[4];?>
+								</div><?php
+							}
+						?>
+					</div>
 
-                            <div class="form-group has-feedback" id="form_repeat_password">
-                                <label class="control-label" for="repeat_password"><b>Confirmer le mot de passe</b> <span class="star_form">*</span></label>
-                                <input type="password" name="repeat_password" id="repeat_password" placeholder="Confirmer votre mot de passe" class="form-control" data-placement="top" data-toggle="popover" title="Répétez votre mot de passe" data-content="Veuillez répéter ici votre mot de passe" />
-                                <!--message erreur--><span id="error_repeat_password"></span>
-                                <!--icon--><span id="input4Status" class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                                <?php
-                                    if(!empty($errors[5]))//si vide
-                                    {
-                                        ?><div class="alert alert-danger alert-dismissible" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?= $errors[5];?>
-                                        </div><?php
-                                    }
-                                ?>
-                            </div>
+					<div class="form-group has-feedback" id="form_repeat_password">
+						<label class="control-label" for="repeat_password"><b>Confirmer le mot de passe</b> <span class="star_form">*</span></label>
+						<input type="password" name="repeat_password" id="repeat_password" placeholder="Confirmer votre mot de passe" class="form-control" data-placement="top" data-toggle="popover" title="Répétez votre mot de passe" data-content="Veuillez répéter ici votre mot de passe" />
+						<!--message erreur--><span id="error_repeat_password"></span>
+						<!--icon--><span id="input4Status" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+						<?php
+							if(!empty($errors[5]))//si vide
+							{
+								?><div class="alert alert-danger alert-dismissible" role="alert">
+								<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+								<strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?= $errors[5];?>
+								</div><?php
+							}
+						?>
+					</div>
 
-                            <div class="form-group has-feedback" id="form_email_user">
-                                <label class="control-label" for="email_user"><b>E-mail</b> <span class="star_form">*</span></label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">@</div>
-                                    <input type="email" name="email_user" id="email_user" value="<?php echo $value_email; ?>" placeholder="E-mail" class="form-control" data-placement="top" data-toggle="popover" title="Entrez votre e-mail" data-content="Entrez une adresse mail valide, vous recevrez un mail pour activer votre compte ex:example@lala.com" />
-                                </div>
-                                <!--message erreur--><span id="error_email_user"></span>
-                                <!--icon--><span id="input5Status" class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                                <?php
-                                    if(!empty($errors[6]))//si vide
-                                    {
-                                        ?><div class="alert alert-danger alert-dismissible" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?= $errors[6];?>
-                                        </div><?php
-                                    }
-                                ?>
-                            </div>
+					<div class="form-group has-feedback" id="form_email_user">
+						<label class="control-label" for="email_user"><b>E-mail</b> <span class="star_form">*</span></label>
+						<div class="input-group">
+							<div class="input-group-addon">@</div>
+							<input type="email" name="email_user" id="email_user" value="<?php echo $value_email; ?>" placeholder="E-mail" class="form-control" data-placement="top" data-toggle="popover" title="Entrez votre e-mail" data-content="Entrez une adresse mail valide, vous recevrez un mail pour activer votre compte ex:example@lala.com" />
+						</div>
+						<!--message erreur--><span id="error_email_user"></span>
+						<!--icon--><span id="input5Status" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+						<?php
+							if(!empty($errors[6]))//si vide
+							{
+								?><div class="alert alert-danger alert-dismissible" role="alert">
+								<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+								<strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?= $errors[6];?>
+								</div><?php
+							}
+						?>
+					</div>
 
-                            <div class="form-group has-feedback" id="form_checkbox">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" id="checkbox" name="regle" value="1" />  J'ai lu et j'accepte les <a href="#" title="voir les règles">règles générales du site</a> <span class="star_form">*</span>
-                                    </label>
-                                </div>
-                                <?php
-                                    if(!empty($errors[7]))
-                                    {
-                                        ?><div class="alert alert-danger alert-dismissible" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?= $errors[7];?>
-                                        </div><?php
-                                    }
-                                ?>
-                            </div>
+					<div class="form-group has-feedback" id="form_checkbox">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" id="checkbox" name="regle" value="1" />  J'ai lu et j'accepte les <a href="#" title="voir les règles">règles générales du site</a> <span class="star_form">*</span>
+							</label>
+						</div>
+						<?php
+							if(!empty($errors[7]))
+							{
+								?><div class="alert alert-danger alert-dismissible" role="alert">
+								<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+								<strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?= $errors[7];?>
+								</div><?php
+							}
+						?>
+					</div>
 
-                            <div class="form-group has-feedback" id="form_captcha">
-                                <div class="input-group" style="max-width:250px;">
-                                    <input type="text" name="captcha" id="captcha" value="" placeholder="recopier ici" autocomplete="off" class="form-control" />
-                                    <div class="input-group-addon" ><img id="captcha_image" src="captcha/image.php" alt="image_captcha" class="img-rounded" data-toggle="tooltip" data-placement="top" title="Cliquez pour changer l'image"></div>
-                                </div>
-                                <?php
-                                    if(!empty($errors[8]))//si vide
-                                    {
-                                        ?><div class="alert alert-danger alert-dismissible" role="alert" style="max-width:250px;">
-                                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?= $errors[8];?>
-                                        </div><?php
-                                    }
-                                ?>
-                            </div>
+					<div class="form-group has-feedback" id="form_captcha">
+						<div class="input-group" style="max-width:250px;">
+							<input type="text" name="captcha" id="captcha" value="" placeholder="recopier ici" autocomplete="off" class="form-control" />
+							<div class="input-group-addon" ><img id="captcha_image" src="captcha/image.php" alt="image_captcha" class="img-rounded" data-toggle="tooltip" data-placement="top" title="Cliquez pour changer l'image"></div>
+						</div>
+						<?php
+							if(!empty($errors[8]))//si vide
+							{
+								?><div class="alert alert-danger alert-dismissible" role="alert" style="max-width:250px;">
+								<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+								<strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?= $errors[8];?>
+								</div><?php
+							}
+						?>
+					</div>
 
-                            <input type="submit" name="register" class="btn btn-success btn-lg" value=" S'inscrire ">
-                            <input type="reset" class="btn btn-default" value=" Effacer ">
-                        </form>
-                        <?php }else{ ?>
-                        <div class="alert alert-success" role="alert">
-                            <strong><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> </strong>Un email à été envoyer à l'adresse suivante : <i><?php echo $email_user; ?></i> avec un lien pour activer votre compte. <small>(n'oubliez pas de regarder dans vos spams.)</small> Redirection dans <span id="compteur"></span>
-                        </div>
-                        <?php } ?>
-                    </div>
-                </div>
-            </div>
+					<input type="submit" name="register" class="btn btn-success btn-lg" value=" S'inscrire ">
+					<input type="reset" class="btn btn-default" value=" Effacer ">
+				</form>
+				<?php }else{ ?>
+				<div class="alert alert-success" role="alert">
+					<strong><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> </strong>Un email à été envoyer à l'adresse suivante : <i><?php echo $email_user; ?></i> avec un lien pour activer votre compte. <small>(n'oubliez pas de regarder dans vos spams.)</small> Redirection dans <span id="compteur"></span>
+				</div>
+				<?php } ?>
+			</div>
         </div>
 		<?php 
 			include_once("accessoires/chat.php");
