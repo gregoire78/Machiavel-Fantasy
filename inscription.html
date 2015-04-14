@@ -5,14 +5,14 @@
         <title>Machiavel Fantasy - Inscription</title>
 
         <script src="js/jquery-2.1.3.min.js"></script>
+        <link rel="icon" href="images/icone_site/favicon.png">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" href="images/icone_site/favicon.png">
 
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
-        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
         <!--selecteur-->
         <link rel="stylesheet" type="text/css" href="css/bootstrap-select.min.css">
@@ -49,6 +49,8 @@
 			include_once("accessoires/menu.html");//barre de menu
 		?>
         <div class="col-md-2">
+            <?php   include_once("accessoires/calendrier_aside.php");
+                    include_once("accessoires/actualite_mini.php");var_dump($_SESSION);?>
         </div>
         <div class="col-md-8">
             <div class="panel panel-default contenu">
@@ -68,7 +70,7 @@
                                     {
                                         ?><div class="alert alert-danger alert-dismissible" role="alert">
                                         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?php echo $errors[1];?>
+                                        <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?= $errors[1];?>
                                         </div><?php
                                     }
                                 ?>
@@ -90,7 +92,7 @@
                                     {
                                         ?><div class="alert alert-danger alert-dismissible" role="alert">
                                         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?php echo $errors[2];?>
+                                        <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?= $errors[2];?>
                                         </div><?php
                                     }
                                 ?>
@@ -106,7 +108,7 @@
                                     {
                                         ?><div class="alert alert-danger alert-dismissible" role="alert">
                                         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?php echo $errors[3];?>
+                                        <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?= $errors[3];?>
                                         </div><?php
                                     }
                                 ?>
@@ -122,7 +124,7 @@
                                     {
                                         ?><div class="alert alert-danger alert-dismissible" role="alert">
                                         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?php echo $errors[4];?>
+                                        <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?= $errors[4];?>
                                         </div><?php
                                     }
                                 ?>
@@ -138,7 +140,7 @@
                                     {
                                         ?><div class="alert alert-danger alert-dismissible" role="alert">
                                         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?php echo $errors[5];?>
+                                        <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?= $errors[5];?>
                                         </div><?php
                                     }
                                 ?>
@@ -157,7 +159,7 @@
                                     {
                                         ?><div class="alert alert-danger alert-dismissible" role="alert">
                                         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?php echo $errors[6];?>
+                                        <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?= $errors[6];?>
                                         </div><?php
                                     }
                                 ?>
@@ -174,7 +176,7 @@
                                     {
                                         ?><div class="alert alert-danger alert-dismissible" role="alert">
                                         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?php echo $errors[7];?>
+                                        <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?= $errors[7];?>
                                         </div><?php
                                     }
                                 ?>
@@ -190,7 +192,7 @@
                                     {
                                         ?><div class="alert alert-danger alert-dismissible" role="alert" style="max-width:250px;">
                                         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?php echo $errors[8];?>
+                                        <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?= $errors[8];?>
                                         </div><?php
                                     }
                                 ?>

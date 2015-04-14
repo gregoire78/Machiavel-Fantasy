@@ -1,10 +1,12 @@
 <?php
 session_start();
-include_once("accessoires/menu.php");
-include_once("accessoires/connect_bdd.php");
-include_once("accessoires/auto_connexion.php");
-include_once("accessoires/functions_connect.php");
-$droits = verif_droit();
+session_regenerate_id();
+
+//fonctions
+include_once('accessoires/menu.php');
+
+//l'auto connexion
+auto_connexion(NULL,NULL,0);
 
 if(isset($_GET['modifier'])){
 	$club=1;

@@ -8,8 +8,6 @@ include_once('accessoires/menu.php');
 //l'auto connexion
 auto_connexion(NULL,'index.php',0);
 
-require("accessoires/connect_bdd.php");//a enlever
-
 //on recupere les données de l'utilisateur
 $id_user = (int)$_SESSION['id_user'];
 $data = recup_data_user($id_user);
@@ -34,7 +32,7 @@ if(isset($_POST['modifier_data']))
     /********************** Vérifications pour le nom d'utilisateur ************************/
     if(empty($pseudo_user_new))
     {
-        $error_data[1] = "Veuillez saisir un nom d'utlisateur";
+        $error_data[1] = "Veuillez saisir un pseudo";
     }
     else if(mb_strlen(html_entity_decode($pseudo_user_new),'utf-8') >= $string)
     {
@@ -48,7 +46,7 @@ if(isset($_POST['modifier_data']))
     //vérifions si le pseudo éxiste
     else if($pseudo_user_new!=$pseudo_user_data && verif_existe('pseudo',$pseudo_user_new)!=0)
     {
-        $error_data[1] = "Le pseudo <b><i>".$pseudo_user_new."</i></b> n'est pas disponible";
+        $error_data[1] = "Ce pseudo n'est pas disponible";
     }
     /******************************** Vérifications pour le nom ****************************/
     if(empty($lastname_user_new))

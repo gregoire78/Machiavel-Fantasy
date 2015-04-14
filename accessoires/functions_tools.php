@@ -10,24 +10,20 @@ function format_date($date)
 //Fonction pour vérifier les droits de l'utilisateur quand il veut modifier ce qu'il a posté
 function verif_mod_supp($table, $id_table)//$id_table représente id par rapport à la table  et $table à la table sur laquelle on travail.
 {
-	//On choisi la table sur laquelle on travail
-	switch($table)
-	{
-		case "event": 	$query = recup_event_one($id_table);
-						break;
-		
-		case "jeu"	:	$query = recup_jeu_one($id_table);
-						break;
-	}
-	
+	require("connect_bdd.php");
+	$sql="	SELECT id_user
+			FROM ".$table."		
+			WHERE id_".$table."=:id_table AND statut_".$table." = 1";
+			
+	$query=$connect->prepare($sql);
+	$query->bindParam(':id_table',$id_table,PDO::PARAM_INT);
+	$query->execute();	
 	$data=$query->fetch(PDO::FETCH_ASSOC);
 	
 	if($id_user_table = $data['id_user'])
 	{
-		$id_user = $_SESSION['id_user'];
-		$droits = $_SESSION['droits'];
 		
-		if($id_user != $id_user_table &&  $droits < 3)
+		if($_SESSION['id_user'] != $id_user_table &&  $_SESSION['droits'] < 3)
 		{
 			header("location:index.php");
 		}

@@ -1,6 +1,10 @@
 <?php
 session_start();
-include_once("accessoires/menu.php");
+session_regenerate_id();
+
+include_once('accessoires/menu.php');
+//l'auto connexion
+auto_connexion(NULL,NULL,NULL);
 
 $id_jeu=$_GET['jeu'];
 $query = recup_jeu($id_jeu);

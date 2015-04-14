@@ -1,14 +1,13 @@
 <?php
 session_start();
-include_once("accessoires/connect_bdd.php");
-include_once("accessoires/auto_connexion.php");
+session_regenerate_id();
 
-$droits = verif_droit();
+//fonctions
+include_once('accessoires/menu.php');
 
-if($droits!=3){
-	//On redirige vers la liste du type de jeu modifier;
-	header('Location:index.php');
-}
+//l'auto connexion
+auto_connexion(NULL,'index.php',3);
+
 $id_jeu=$_GET['modifier'];
 if (isset($_POST['modifier'])){//Si no a cliqué sur le bouton modifier depuis la page modifier.html
 	

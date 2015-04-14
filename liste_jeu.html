@@ -2,16 +2,17 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Machiavel Fantasy - <?php echo $libelle_type_jeu; ?></title>
-		<script src="js/jquery-2.1.3.min.js"></script>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="icon" href="images/icone_site/favicon.png">
+		<title>Machiavel Fantasy - <?= $libelle_type_jeu; ?></title>
 
-		<!-- Bootstrap -->
-		<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-		<link 	href="css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
-		<script type="text/javascript" src="js/bootstrap.js"></script>
+        <script src="js/jquery-2.1.3.min.js"></script>
+        <link rel="icon" href="images/icone_site/favicon.png">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -27,42 +28,47 @@
 			include_once("accessoires/menu.html");//barre de menu
 		?>
 		<div class="col-md-2">
-			<?php //include_once("accessoires/calendrier_aside.php");
-				  //include_once("accessoires/actualite_mini.php");
+			<?php include_once("accessoires/calendrier_aside.php");
+				  include_once("accessoires/actualite_mini.php");
 			?>
 		</div>
-		<div class="col-md-8">
-			<div class="panel panel-default contenu">
-			  <div class="panel-body">	  
-				<h3 class="media-heading underline"><?php echo $libelle_type_jeu; ?></h3>
-				<em><?php echo $description_type_jeu; ?></em>
+		<div class="col-md-8 contenu ">
+			<?php if (isset($libelle_type_jeu)){ ?>
+				<h3 class="media-heading">
+					<img src="<?= $icon_type_jeu; ?>" height="75" width="75"/>
+					<span class="underline"><?= $libelle_type_jeu; ?></span>
+				</h3>
+				<!--<span class="text-justify" ><em><?php //echo $description_type_jeu; ?></em></span>-->
 				<?php $i=0; if (isset ($id_jeu[$i]))
 					{
 						while (isset ($id_jeu[$i]))
 						{ ?>
-							<article class="media" style="border:1px solid black;border-radius:4px;">
-							  <div class="media-mod media-img-left col-md-2 col-sm-2 col-xs-2" style="padding:0px;">
-								<a href="complete_jeu.php?jeu=<?php echo $id_jeu[$i];?>">
-									<img class="img-responsive" src="<?php echo $image_jeu[$i];?>" alt="..."/>
-								</a>
-							  </div>
-							  <div class="media-mod col-md-10 col-sm-10 col-xs-10" style="padding:15px;">
-								<h4 class="media-heading underline">
-									<?php echo $title_jeu[$i]; ?>
-								</h4>
-								<p class="text-justify"><?php echo $text_jeu[$i]; ?></p> 
-							  </div>
+							<article class="media liste_jeu">
+								<div class="media-mod media-img-left col-md-2 col-sm-2 col-xs-2">											
+									<img class="img-responsive" src="images/jeux/<?= $image_jeu[$i];?>" alt="..."/>
+								</div>
+								<div class="media-mod col-md-10 col-sm-10 col-xs-10">
+									<h4 class="media-heading" style="background-color: <?= $color_type_jeu; ?>;">
+										<?= $title_jeu[$i]; ?>
+									</h4>
+									<p class="text-justify">
+										<?= $text_jeu[$i]; ?>
+									</p> 
+								</div>
+								<a style="float:right;margin-right:10px;" class="btn btn-primary" href="complete_jeu.php?jeu=<?= $id_jeu[$i];?>" role="button">Lire plus</a>
 							</article>
 				<?php 		$i++;
 						}
+					include_once("accessoires/barre_page.html");
 					}
 					else
 					{ ?>
 						<div class="message_erreur">Il n'y a aucun jeu pour le momment !</div>
 				<?php 
-					} ?>
-			  </div>
-			</div>
+					}
+			} else { ?>
+				<div class="message_erreur">Ce type de jeu n'existe pas !</div>
+			<?php } ?>
 		</div>
 		<?php
 			include_once("accessoires/chat.php");

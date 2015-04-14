@@ -1,13 +1,11 @@
 <?php
 session_start();
-
+session_regenerate_id();
 //fonctions
 include_once('accessoires/menu.php');
 
 //l'auto connexion
 auto_connexion(NULL,'index.php',2);
-
-require("accessoires/connect_bdd.php");//a enlever
 
 //Si on veut éditer un jeu, on récupère les données
 if(isset($_GET['jeu'])){
@@ -23,6 +21,10 @@ if(isset($_GET['jeu'])){
 		header("Location:index.php");
 	}*/
 }
+else
+{
+    $image_jeu = 'defaut_jeu.png';
+}
 //Si on envoie des données en POST
 if(isset($_POST['ajouter'])||isset($_POST['modifier']))
 {
@@ -30,8 +32,6 @@ if(isset($_POST['ajouter'])||isset($_POST['modifier']))
 	$title_jeu=htmlentities(trim($_POST['title_jeu']));
 	$text_jeu=trim($_POST['text_jeu']);
 	$libelle2=$_POST['libelle'];
-	$article_file = $_FILES['inputArticleFile']['name'];
-	$article_file_tmp = $_FILES['inputArticleFile']['tmp_name'];
 
 	//Si on créer un jeu
 	/****verif titre*****/
@@ -60,40 +60,7 @@ if(isset($_POST['ajouter'])||isset($_POST['modifier']))
 	{
 		$errors_jeu[2] = "Veuillez remplir le jeu";
 	}
-	/***verif image jeu**/
-	/*if(empty($jeu_file) && isset($_POST['ajouter']))
-	{
-		$errors_jeu[4] = 'Veuillez ajoutez une image';
-	}*/
-    /*
-	else if(!empty($jeu_file))
-	{
-		$dossier = 'images/jeux/';
-		$taille_maxi = 500000;
-		$extensions = array('.png', '.jpg', '.jpeg');
 
-		$fichier = basename($jeu_file);
-		$fichier = wd_remove_accents($fichier, $charset='utf-8');
-		$taille = filesize($jeu_file_tmp);
-		$extension = strrchr($jeu_file, '.');
-
-		if(!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
-		{
-			$errors_jeu[4] = 'Vous devez uploader un fichier de type png, gif, jpg, jpeg';
-		}
-		else
-		{
-			if($taille>$taille_maxi)
-			{
-				$errors_jeu[4] = "L'image est supérieur à <b>500 Ko</b>";
-			}
-		}
-	}
-	else
-	{
-		$fichier = $image_jeu;
-	}
-*/
 	if(empty($errors_jeu))
 	{
 		$query=recup_id_type_jeu($libelle2);
@@ -102,7 +69,7 @@ if(isset($_POST['ajouter'])||isset($_POST['modifier']))
 		{
 			//Si on ajoute un jeu
 			create_jeu($title_jeu, $text_jeu, 'fgfgf', $id_type_jeu);
-			//upload_avatar($jeu_file_tmp,$fichier,$dossier);
+			//upload_avatar($jeu_file_tmp,$fichier);
 			
 		}
 		/*else if(isset($_POST['modifier']))

@@ -1,6 +1,12 @@
 <?php
 session_start();
-include_once("accessoires/menu.php");
+session_regenerate_id();
+
+//fonctions
+include_once('accessoires/menu.php');
+
+//l'auto connexion
+auto_connexion(NULL,'index.php',3);
 include_once("accessoires/functions_events.php");
 
 if (isset($_GET['modifier']))

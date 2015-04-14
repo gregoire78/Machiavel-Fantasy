@@ -14,7 +14,7 @@ function recup_type_jeu()
 function recup_type_jeu_one($id_type_jeu)
 {
 	require("connect_bdd.php");
-	$sql="	SELECT libelle_type_jeu, description_type_jeu
+	$sql="	SELECT libelle_type_jeu, description_type_jeu, color_type_jeu, icon_type_jeu
 			FROM type_jeu
 			WHERE id_type_jeu=:id_type_jeu";
 	$query=$connect->prepare($sql);
@@ -38,16 +38,35 @@ function recup_id_type_jeu($libelle_type_jeu)
 
 /*-----------------------------TABLE JEU-----------------------------------------*/
 //Fonction pour récupérer tous les jeux d'un type (page liste_jeu)
-function recup_liste_jeu($id_type_jeu)
+function recup_liste_jeu($id_type_jeu, $page)
 {
+	$jeu_page = 5;
+	$nb_jeu = ($page-1)*$jeu_page;
 	require("connect_bdd.php");
 	$sql="	SELECT id_jeu, title_jeu, text_jeu, image_jeu, date_update
 			FROM jeu
-			WHERE id_type_jeu=:id_type_jeu AND statut_jeu = 1";
+			WHERE id_type_jeu=:id_type_jeu AND statut_jeu = 1
+			LIMIT :nb_jeu, :jeu_page";
+	$query=$connect->prepare($sql);
+	$query->bindParam(':id_type_jeu',$id_type_jeu,PDO::PARAM_INT);
+	$query->bindParam(':nb_jeu',$nb_jeu,PDO::PARAM_INT);
+	$query->bindParam(':jeu_page',$jeu_page,PDO::PARAM_INT);
+	$query->execute();
+	return $query;		
+}
+
+//Fonction pour compter le nombre total de ligne d'une table
+function recup_lign($id_type_jeu)
+{
+	require("connect_bdd.php");
+	$sql = "SELECT COUNT(*)
+			FROM jeu
+			WHERE id_type_jeu = :id_type_jeu AND statut_jeu = 1";
 	$query=$connect->prepare($sql);
 	$query->bindParam(':id_type_jeu',$id_type_jeu,PDO::PARAM_INT);
 	$query->execute();
-	return $query;		
+	$data=$query->fetchColumn();
+	return $data;
 }
 
 //Fonction pour récupérer les données d'un seul jeux (page complete_jeu et edit_jeu)

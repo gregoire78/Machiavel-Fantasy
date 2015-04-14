@@ -3,11 +3,8 @@ session_start();
 session_regenerate_id();
 
 include_once('accessoires/menu.php');
-include_once('accessoires/functions_connect.php');
 //l'auto connexion
 auto_connexion('profil.php',NULL,NULL);
-
-require("accessoires/connect_bdd.php");//a enlever
 
 if(isset($_POST['valider']))
 {

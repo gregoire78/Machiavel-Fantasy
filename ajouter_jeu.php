@@ -1,13 +1,13 @@
 <?php
 session_start();
-include_once("accessoires/functions_connect.php");
-include_once("accessoires/auto_connexion.php");
-$droits = verif_droit();
+session_regenerate_id();
 
-if($droits<2){
-	//On redirige vers la liste du type de jeu modifier;
-	header('Location:index.php');
-}
+//fonctions
+include_once('accessoires/menu.php');
+
+//l'auto connexion
+auto_connexion(NULL,'index.php',3);
+
 if (isset($_POST["ajouter"])){
 	include_once("accessoires/connect_bdd.php");
 	

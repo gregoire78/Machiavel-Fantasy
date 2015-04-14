@@ -1,11 +1,13 @@
 <?php
 session_start();
+session_regenerate_id();
 
-//on verifie si il est deja connecté
-$redirin = 'profil';
-include_once('accessoires/auto_connexion.php');
-//inclure le fichier des fonctions
-include_once('accessoires/functions_connect.php');
+//fonctions
+include_once('accessoires/menu.php');
+
+//l'auto connexion
+auto_connexion('profil.php',NULL,NULL);
+
 if(isset($_POST['envoyer']))
 {
     $email_user = htmlentities(trim($_POST["email_user"]));
