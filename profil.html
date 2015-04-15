@@ -13,10 +13,12 @@
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="js/bootstrap-filestyle.min.js"></script>
 		<!--selecteur-->
 		<link rel="stylesheet" type="text/css" href="css/bootstrap-select.min.css">
 		<script type="text/javascript" src="js/bootstrap-select.min.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="css/jasny-bootstrap.min.css">
+        <script type="text/javascript" src="js/jasny-bootstrap.min.js"></script>
 
 		<!--Crop-image-->
 		<link href="crop-image/css/cropper.min.css" rel="stylesheet">
@@ -71,14 +73,14 @@
 						<!--message erreur--><span id="error_pseudo_user"></span>
 						<!--icon--><span id="input0Status" class="glyphicon form-control-feedback" aria-hidden="true"></span>
 						<?php
-								if(!empty($error_data[1]))//si la variable erreur n'est pas vide ca qui veut dire qu'il y a une erreur | si exist
-								{
-									?><div class="alert alert-danger alert-dismissible" role="alert">
-						<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-						<strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?php echo $error_data[1];?>
-					</div><?php
-								}
-							?>
+                            if(!empty($error_data[1]))//si la variable erreur n'est pas vide ca qui veut dire qu'il y a une erreur | si exist
+                            {
+                                ?><div class="alert alert-danger alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?php echo $error_data[1];?>
+                                </div><?php
+                            }
+						?>
 					</div>
 					<div class="form-group has-feedback" style="margin-bottom: 5px;" id="form_lastname_user">
 
@@ -97,9 +99,9 @@
 								if(!empty($error_data[2]))//si vide
 								{
 									?><div class="alert alert-danger alert-dismissible" role="alert">
-						<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-						<strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?php echo $error_data[2];?>
-					</div><?php
+                                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                    <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?php echo $error_data[2];?>
+                                    </div><?php
 								}
 							?>
 					</div>
@@ -114,9 +116,9 @@
 								if(!empty($error_data[3]))
 								{
 									?><div class="alert alert-danger alert-dismissible" role="alert">
-						<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-						<strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?php echo $error_data[3];?>
-					</div><?php
+                                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                    <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?php echo $error_data[3];?>
+                                    </div><?php
 								}
 							?>
 					</div>
@@ -171,8 +173,12 @@
 											<div class="avatar-upload">
 												<input class="avatar-src" name="avatar_src" type="hidden">
 												<input class="avatar-data" name="avatar_data" type="hidden">
-
-												<input class="avatar-input" id="avatarInput" name="avatar_file" accept="image/*" value="fhjfj" type="file">
+                                                <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                                    <div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
+                                                    <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input class="avatar-input" id="avatarInput" name="avatar_file" accept="image/*" value="fhjfj" type="file">
+											        </span>
+                                                    <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                                </div>
 											</div>
 
 											<!-- Crop and preview -->

@@ -14,6 +14,9 @@
         <link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
+        <link href="css/jasny-bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript" src="js/jasny-bootstrap.min.js"></script>
+
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -67,8 +70,12 @@
 						</div>
 						<div class="form-group">
 							<label for="inputArticleFile" class="control-label">Image du jeu</label>
-							<input onchange="readURL(this);" type="file" name="inputArticleFile" class="form-control filestyle" id="inputArticleFile" accept="image/*" data-input="true" data-buttonText="&nbsp;Parcourir" /> <small>(500 Ko Max)</small>
-							<?php if(isset($errors_jeu[4])) { ?>
+                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                <div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
+                                <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input accept="image/*" onchange="readURL(this);" id="inputArticleFile" type="file" name="inputArticleFile"></span>
+                                <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                            </div>
+                            <?php if(isset($errors_jeu[4])) { ?>
 							<div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom: 0">
 								<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 								<strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?= $errors_jeu[4];?>
