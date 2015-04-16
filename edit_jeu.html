@@ -18,6 +18,9 @@
         <link href="css/fileinput.min.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="js/fileinput_locale_fr.js"></script>
 
+        <link href="css/cropper.min.css" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript" src="js/cropper.min.js"></script>
+
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -71,7 +74,26 @@
 						</div>
 						<div class="form-group">
 							<label for="inputArticleFile" class="control-label">Image du jeu</label>
-                            <input id="inputArticleFile" name="inputArticleFile" type="file" class="file" data-preview-file-type="text">
+                            <input onchange="" id="inputArticleFile" name="inputArticleFile" type="file" class="file" accept="image/*" data-show-upload="false" data-show-preview="false">
+
+                            <script>
+                                /* Initialize your widget via javascript as follows */
+                                $("#inputArticleFile").fileinput({
+                                    allowedFileExtensions : ['jpg', 'png','gif'],
+                                    maxFileSize: 500000,
+
+                                    previewFileType: "image",
+                                    browseClass: "btn btn-default",
+                                    browseLabel: "&nbsp;Pick Image",
+                                    browseIcon: '<i class="glyphicon glyphicon-picture"></i>',
+                                    removeClass: "btn btn-danger",
+                                    removeLabel: "",
+                                    removeIcon: '<i class="glyphicon glyphicon-trash"></i>'
+                                });
+                            </script>
+
+                                <img id="crop" src="images/avatars/defaut.png" style="height: 200px">
+
                             <?php if(isset($errors_jeu[4])) { ?>
 							<div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom: 0">
 								<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -81,7 +103,7 @@
 						</div>
 					</div>
 					<div class="col-md-5">
-						<div style="overflow: hidden;height: 200px;width: 200px; float: none;">
+						<div id="ddgdgd" style="overflow: hidden;height: 200px;width: 300px; float: none;">
                             <img id="blah" class=" img-rounded" src="images/jeux/<?= $image_jeu; ?>"/>
                         </div>
 					</div>
@@ -142,7 +164,6 @@
 						<?php 	} ?>
 					</p>
 				</div>
-				<div style="clear: both;"></div>
 			</form>
         </div>
 
@@ -153,7 +174,19 @@
         <script type="text/javascript" src="js/readURL.js"></script>
         <!-- compteur -->
         <script type="text/javascript" src="js/compteur.js"></script>
-        <!--Filestyle-->
-        <script src="js/bootstrap-filestyle.min.js"></script>
+        <script>
+            $('#crop').cropper({
+                support: {
+                    fileList: !!$('<input type="file">').prop('files'),
+                    blobURLs: !!window.URL && URL.createObjectURL,
+                    formData: !!window.FormData
+                },
+                preview : $("#ddgdgd"),
+                aspectRatio: 2/3,
+                crop: function(data) {
+                    // Output the result data for cropping image.
+                }
+            });
+        </script>
     </body>
 </html>
