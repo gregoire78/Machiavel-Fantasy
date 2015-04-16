@@ -21,7 +21,7 @@ function croppy(uurl) {
         $('#crop').cropper({
 
             preview: $(".preview"),
-            aspectRatio: 2 / 3,
+            aspectRatio: 3/4,
             strict: false,
             crop: function (data) {
                 // Output the result data for cropping image.

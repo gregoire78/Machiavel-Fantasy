@@ -106,20 +106,28 @@
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                             <h4 class="modal-title" id="myModalLabel">Modal title</h4>
                                         </div>
+
                                         <div class="modal-body">
-                                            <div class="crop" style="height: 300px">
-                                                <img id="crop" src="" />
-                                                <!--<script>
-                                                    $('#myModal').on('shown.bs.modal', function () {
-                                                        croppy("images/avatars/defaut.png");
-                                                    }).on('hidden.bs.modal', function () {
-                                                        croppy("images/avatars/defaut.png");
-                                                    });
-                                                </script>-->
-                                            </div>
-                                            <div class="preview" style="overflow: hidden;height: 200px;width: 300px; float: none;">
-                                                <img class=" img-rounded" src=""/>
-                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <div class="crop " style="height: 300px">
+                                                        <img id="crop" src="" />
+                                                        <!--<script>
+                                                            $('#myModal').on('shown.bs.modal', function () {
+                                                                croppy("images/avatars/defaut.png");
+                                                            })//.on('hidden.bs.modal', function () {
+                                                                croppy("images/avatars/defaut.png");
+                                                            //})
+                                                            ;
+                                                        </script>-->
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="preview cropper-bg" style="overflow: hidden;height: 200px !important;width: 150px !important; float: none; border-radius: 4px;" >
+                                                        <img src=""/>
+                                                    </div>
+                                                </div>
+                                               </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -128,14 +136,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
-
-
-
-
-
 
                             <?php if(isset($errors_jeu[4])) { ?>
 							<div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom: 0">
@@ -146,8 +146,8 @@
 						</div>
 					</div>
 					<div class="col-md-5">
-                        <div class="preview" style="overflow: hidden;height: 200px;width: 300px; float: none;">
-                            <img class=" img-rounded" src="images/jeux/<?= $image_jeu; ?>"/>
+                        <div class="preview cropper-bg" style="overflow: hidden;height: 200px;width: 150px; float: none; border-radius: 4px;">
+                            <img src="images/jeux/<?= $image_jeu; ?>"/>
                         </div>
 					</div>
 				</div>
