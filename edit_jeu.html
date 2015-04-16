@@ -74,7 +74,7 @@
 						</div>
 						<div class="form-group">
 							<label for="inputArticleFile" class="control-label">Image du jeu</label>
-                            <input onchange="" id="inputArticleFile" name="inputArticleFile" type="file" class="file" accept="image/*" data-show-upload="false" data-show-preview="false">
+                            <input data-toggle="modal" data-target="#myModal" onchange="readURL(this);" id="inputArticleFile" name="inputArticleFile" type="file" class="file" accept="image/*" data-show-upload="false" data-show-preview="false">
 
                             <script>
                                 /* Initialize your widget via javascript as follows */
@@ -84,7 +84,7 @@
 
                                     previewFileType: "image",
                                     browseClass: "btn btn-default",
-                                    browseLabel: "&nbsp;Pick Image",
+                                    browseLabel: "&nbsp;Parcourir",
                                     browseIcon: '<i class="glyphicon glyphicon-picture"></i>',
                                     removeClass: "btn btn-danger",
                                     removeLabel: "",
@@ -92,7 +92,50 @@
                                 });
                             </script>
 
-                                <img id="crop" src="images/avatars/defaut.png" style="height: 200px">
+
+                            <!-- Button trigger modal -->
+                            <!--<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                                Launch demo modal
+                            </button>-->
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="crop" style="height: 300px">
+                                                <img id="crop" src="" />
+                                                <!--<script>
+                                                    $('#myModal').on('shown.bs.modal', function () {
+                                                        croppy("images/avatars/defaut.png");
+                                                    }).on('hidden.bs.modal', function () {
+                                                        croppy("images/avatars/defaut.png");
+                                                    });
+                                                </script>-->
+                                            </div>
+                                            <div class="preview" style="overflow: hidden;height: 200px;width: 300px; float: none;">
+                                                <img class=" img-rounded" src=""/>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
 
                             <?php if(isset($errors_jeu[4])) { ?>
 							<div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom: 0">
@@ -103,8 +146,8 @@
 						</div>
 					</div>
 					<div class="col-md-5">
-						<div id="ddgdgd" style="overflow: hidden;height: 200px;width: 300px; float: none;">
-                            <img id="blah" class=" img-rounded" src="images/jeux/<?= $image_jeu; ?>"/>
+                        <div class="preview" style="overflow: hidden;height: 200px;width: 300px; float: none;">
+                            <img class=" img-rounded" src="images/jeux/<?= $image_jeu; ?>"/>
                         </div>
 					</div>
 				</div>
@@ -174,19 +217,5 @@
         <script type="text/javascript" src="js/readURL.js"></script>
         <!-- compteur -->
         <script type="text/javascript" src="js/compteur.js"></script>
-        <script>
-            $('#crop').cropper({
-                support: {
-                    fileList: !!$('<input type="file">').prop('files'),
-                    blobURLs: !!window.URL && URL.createObjectURL,
-                    formData: !!window.FormData
-                },
-                preview : $("#ddgdgd"),
-                aspectRatio: 2/3,
-                crop: function(data) {
-                    // Output the result data for cropping image.
-                }
-            });
-        </script>
     </body>
 </html>
