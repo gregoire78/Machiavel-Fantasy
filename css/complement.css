@@ -1,302 +1,317 @@
 body{
-background-color: #80848B;
+    background-color: #80848B;
+}
+.underline /*soulignage des titres*/
+{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 }
 
-/*----------------------------Style pour le footer----------------------------------*/
+/*-------------------------------------Classe pour afficher un message d'erreur----------------------*/
+.message_erreur{
+    text-align:center;
+    width:100%;
+    padding:10px 0;
+    border-radius:4px;
+    font-size:20px;
+    background:white;
+}
+/*-------------------------------------------------------------------------------------------------*/
+
+/*----------------------------Style pour le footer----------------------------------------------------*/
 
 .footer{
-	margin-top:20px;
-	background-color: #222;
-	padding:0px;
-	position: relative;
-	border-top: 1px solid #020101;
-	color:#9d9d9d;
-	width:100%;
-	float:left;
+    background-color: #222;
+    padding:0px;
+    position: relative;
+    border-top: 1px solid #020101;
+    color:#9d9d9d;
+    width:100%;
+    float:left;
 }
 .col_footer{/*bloc du footer*/
-	width:31.3333%;
-	float:left;
-	padding:10px 10px 0 10px;
-	margin:1%;
-	border-left:1px solid #767676;
+    width:31.3333%;
+    float:left;
+    padding:10px 10px 0 10px;
+    margin:1%;
+    border-left:1px solid #767676;
 }
 .titre{
-	margin-bottom:5px;
-	border-bottom:1px solid #767676;
-	margin:0 10px;
-	font-size:13px;
-	color:#767676;
+    margin-bottom:5px;
+    border-bottom:1px solid #767676;
+    margin:0 10px;
+    font-size:13px;
+    color:#767676;
 }
 .titre a
 {
-	color:#767676;
+    color:#767676;
 }
 .sous_titre{
-	font-size:11px;
-	margin:0 10px 0 13px;
-	text-align:justify;
-	color:#9d9d9d;
+    font-size:11px;
+    margin:0 10px 0 13px;
+    text-align:justify;
+    color:#9d9d9d;
 }
 .liste_footer{
-	list-style:none;
-	padding:0;
+    list-style:none;
+    padding:0;
 }
 .content_footer{
-	margin-top:3px;
-	margin-bottom:3px;
-	margin-left:8.33333333%;
-	width:83.33333333%;
-	float:left;
-	padding-right:15px;
-	padding-left:15px;
+    margin:3px 0 3px 16.666%;
+    width:66.66666667%;
+    float:left;
 }
 .copyright{/*Bloc du copyright*/
-	width:100%;
-	float:left;
+    width:100%;
+    float:left;
 }
 .copyright h4{ /*Texte du bloc copyright*/
-	margin:0 0 0 12px;
-	font-size:13px;
+    margin:0 0 0 12px;
+    font-size:13px;
 }
 .sous_titre a{
-	color:#9d9d9d;
+    color:#9d9d9d;
 }
 .sous_titre a:hover{
-	color:#6C6C6C;
-	border-bottom:1px solid #6C6C6C;
+    color:#6C6C6C;
+    border-bottom:1px solid #6C6C6C;
 }
 /*-------------------------------------------------------------------*/
 
 /*--------------------------- Bouton barre_page ----------------------*/
 .button_pagination a
 {
-	padding: 6px 12px;
-	width:20%;
-	background-color: #fff;
-	border: 1px solid #ddd;
+    padding: 6px 12px;
+    width:20%;
+    background-color: #fff;
+    border: 1px solid #ddd;
 }
 .button_pagination
 {
-	float:left;margin:20px 0;
+    float:left;margin:20px 0;
 }
+/*----------------------------------------------------------------------------*/
 
-/*-----------------------------bloc contenu de la page----------------------------------*/
+/*-----------------------------bloc contenu de toute les pages----------------------------------*/
 .contenu
 {
-	padding:20px;
-	margin:15px 0;
-	border: 1px solid transparent;
-	border-radius: 4px;
-	background-color: #F5F7FA;
+    padding:20px;
+    margin:15px 0;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: #F5F7FA;
 }
+/*--------------------------------------------------------------------------------------------*/
 
-/*header Machiavel Fantasy*/
+/*------------------------------- header Machiavel Fantasy -------------------------------------------*/
 .page-header
 {
-	padding:20px 0px 29px 0;
-	margin:0px;
-	border:0px;
-	background-color: rgba(255, 255, 255, 0.2);
+    padding:20px 0px 29px 0;
+    margin:0px;
+    border:0px;
+    background-color: rgba(255, 255, 255, 0.2);
 }
+/*-------------------------------------------------------------------------------------------------*/
 
-/*police et style du header Machiavel Fantasy*/
+/*---------------------------------- police et style du header Machiavel Fantasy --------------------------*/
 .machiavel
 {
-	font-family:machiavel;
-	font-size:60px;
-	color: #333;
-	text-decoration: none;
-	margin-left:40px;
+    font-family:machiavel;
+    font-size:60px;
+    color: #333;
+    text-decoration: none;
+    margin-left:40px;
 }
+/*------------------------------------------------------------------------------------------------------*/
 
-/*carousel*/
+/*------------------------------------------ carousel ------------------------------------------*/
 .carousel-inner
 {
-	border-bottom:1px solid #080808;
+    border-bottom:1px solid #080808;
 }
+/*---------------------------------------------------------------------------------------------------*/
 
-/*barre de menu*/
+/*---------------------------------------- barre de menu ------------------------------------------------*/
 nav.navbar.navbar-inverse
 {
-	margin-bottom: 0px;
-	border-radius: 0px;
-	border-left:0px;
-	border-right:0px;
+    margin-bottom: 0px;
+    border-radius: 0px;
+    border-left:0px;
+    border-right:0px;
 }
+/*---------------------------------------------------------------------------------------------------*/
 
 /*--------------------------------- liste_jeu.html -------------------------------------*/
 .liste_jeu
 {
-	border:1px solid #717479;
-	border-radius:4px;
-	background-color: #E8EAEC;
+    border:1px solid #717479;
+    border-radius:4px;
+    background-color: #E8EAEC;
 }
 .liste_jeu div
 {
-	padding:0px;
+    padding:0px;
 }
 .liste_jeu img
 {
-	border-right: 1px solid #717479;
-	width: 100%;
+    border-right: 1px solid #717479;
+    width: 100%;
 }
 .liste_jeu h4
 {
-	border-bottom:1px solid #717479;
-	padding:10px ;
-	margin:0;
+    border-bottom:1px solid #717479;
+    padding:10px ;
+    margin:0;
 }
 .liste_jeu p
 {
-	padding:10px 15px;
-	margin:0;
+    padding:10px 15px;
+    margin:0;
 }
 /*--------------------------------------------------------------------------------------------*/
 
 /*----------------------------- bloc du bouton pour creer un évènement -------------------------------*/
 .creer_evenement{
-margin:20px;
+    margin:20px;
 }
 .creer_evenement a{
-text-decoration: none;
-text-align:center;
+    text-decoration: none;
+    text-align:center;
 }
-
-/*-------------------------------------Classe pour afficher un message d'erreur----------------------*/
-.message_erreur{
-text-align:center;
-width:100%;
-padding:10px 0;
-border-radius:4px;
-font-size:20px;
-background:white;
-}
+/*------------------------------------------------------------------------------------------------------*/
 
 /*-----------------------------------Style de la page d'accueil----------------------------------------*/
 .lien_accueil{/*image de font pour chaque bloc d'article*/
-width:100%;
-float:left;
-/*min-height:250px;*/
-background-color:rgb(168, 168, 168);
+    width:100%;
+    float:left;
+    /*min-height:250px;*/
+    background-color:rgb(168, 168, 168);
 }
 
 .lien_accueil img {
-/*height:248px;*/
-max-width:100%;
+    /*height:248px;*/
+    max-width:100%;
 }
 article.tbl1{
     display: inline-block;
 }
 div.image { /*Position est style de l'image et la zone de text*/
-	position: relative;
-	overflow: hidden;
-	max-width: 100%;
-	/*max-height: 256px;*/
-	display: inline-block;
-	border: 1px solid #ddd;
-	margin:0px;
+    position: relative;
+    overflow: hidden;
+    max-width: 100%;
+    /*max-height: 256px;*/
+    display: inline-block;
+    border: 1px solid #ddd;
+    margin:0px;
 }
 
 a.desc { /*Parametre de la zone de texte flotante*/
-	width: 100%;
-	height: 50px;
-	position: absolute;
-	color:rgba(255, 255, 255, 0.5);
-	background-color:rgba(0, 0, 0, 0.5);
-	font-size: 14px;
-	-webkit-transition: all .3s ease;
-	-moz-transition: all .3s ease;
-	-ms-transition: all .3s ease;
-	-o-transition: all .3s ease;
-	transition: all .3s ease;
-	padding:5px 15px;
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    color:rgba(255, 255, 255, 0.5);
+    background-color:rgba(0, 0, 0, 0.5);
+    font-size: 14px;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+    padding:5px 15px;
 }
 a.desc:hover{
-background-color:rgba(0, 0, 0, 0.9);
-color:rgba(255, 255, 255, 0.9);
+    background-color:rgba(0, 0, 0, 0.9);
+    color:rgba(255, 255, 255, 0.9);
 }
 div.image.boxFULL a { /*1) Dimension zone de txt et 2) Afficher ou pas la zone text */
     height: 110px;
-	bottom: -80px;
+    bottom: -80px;
 }
 div.image.boxFULL:hover a { /*Mouvement de la zone de txt*/
-	bottom: 0px;
-    
+    bottom: 0px;
+
 }
 .image_accueil {
-text-align:center;
-margin:0px;
+    text-align:center;
+    margin:0px;
 }
 .bloc_accueil{ /*largeur de chaque bloc*/
-width:25%;
-float:left;
+    width:25%;
+    float:left;
 }
 .espace_accueil { /*espace entre les blocs d'article*/
-padding:7.5px;
+    padding:7.5px;
 }
 /*---------------------------------------------------------------*/
 
-/*police de Machiavel Fantasy*/
+/*--------------------------------------- police de Machiavel Fantasy -----------------------------------*/
 @font-face {
-  font-family: 'machiavel';
-  src: url('deutsch-webfont.eot');
-  src: url('deutsch-webfont.eot?#iefix') format('embedded-opentype'),
-  url('deutsch-webfont.woff2') format('woff2'),
-  url('deutsch-webfont.woff') format('woff'),
-  url('deutsch-webfont.ttf') format('truetype'),
-  url('deutsch-webfont.svg#deutsch_gothicnormal') format('svg');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'machiavel';
+    src: url('deutsch-webfont.eot');
+    src: url('deutsch-webfont.eot?#iefix') format('embedded-opentype'),
+    url('deutsch-webfont.woff2') format('woff2'),
+    url('deutsch-webfont.woff') format('woff'),
+    url('deutsch-webfont.ttf') format('truetype'),
+    url('deutsch-webfont.svg#deutsch_gothicnormal') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
 
-/*actualite*/
+/*actualite
 .actualite{
 margin-bottom:15px;
-}
+}*/
 
 /*-----------------------Page description.html-----------------------*/
 .text_description /*Suppression de la marge et justification du text*/
 {
-	text-align:justify;
-	margin:0;
+    text-align:justify;
 }
-
+.titre_description
+{
+    text-align:center;
+    margin-top:10px;
+    padding-top:10px;
+    border-top: 1px solid #ddd;
+}
 .espace_description/* Espace entre chaque bloc*/
 {
-	padding:15px;
+    padding:10px;
+    float:left;
 }
 
 .espace_description a{
-margin:0px;
-text-decoration:none;
-color: #333;
+    margin:0px;
+    text-decoration:none;
+    color: #333;
 }
+/*---------------------------------------------------------------------*/
+
 .membre{
-padding:20px;
+    padding:20px;
 }
 .inscrire{
-padding:0px;
-margin-top:15px;
+    padding:0px;
+    margin-top:15px;
 }
 .espace_connexion
 {
-padding:0px 7.5px;
+    padding:0px 7.5px;
 }
 
 h3.underline{
-margin-top:0px;
+    margin-top:0px;
 }
 /*barre de recherche*/
 #barre_search
 {
-  background-color: rgb(47, 47, 47);
-  color: rgb(157, 157, 157);
+    background-color: rgb(47, 47, 47);
+    color: rgb(157, 157, 157);
 }
 #bouton_search
 {
-  background-color: #9D9D9D;
-  background-image: none;
+    background-color: #9D9D9D;
+    background-image: none;
 }
 
 /*------------------------------ calendrier --------------------------*/
@@ -313,18 +328,18 @@ table.cal { cursor:default;font-size:17px; background:#868400; border: 2px solid
 
 /* les cases avec un lien */
 .cal td a {
-  color: #cacaca;
-  background: #353535;
-  display:block;
-  text-decoration:none;
-  font-weight:bold;
-  -webkit-transition: all .3s ease-in;
-  -moz-transition: all .3s ease-in;
-  -o-transition: all .3s ease-in;
-  transition: all .3s ease-in;
+    color: #cacaca;
+    background: #353535;
+    display:block;
+    text-decoration:none;
+    font-weight:bold;
+    -webkit-transition: all .3s ease-in;
+    -moz-transition: all .3s ease-in;
+    -o-transition: all .3s ease-in;
+    transition: all .3s ease-in;
 }
 .cal td a:hover {
-  background: rgb(115, 115, 115);
+    background: rgb(115, 115, 115);
 }
 /* un premier style */
 .cal .st1 { /*font-weight:bold;*/ background: rgb(53, 53, 53); }
@@ -332,124 +347,123 @@ table.cal { cursor:default;font-size:17px; background:#868400; border: 2px solid
 .cal .st2 { font-weight:bold; color:Purple; }
 /*fleches*/
 #fleche_gauche {
-  left: 1px;
+    left: 1px;
 }
 #fleche_droite {
-  right: 1px;
+    right: 1px;
 }
 #fleche_gauche:hover {
-  color: #9d9d9d;
+    color: #9d9d9d;
 }
 #fleche_droite:hover{
-  color: #9d9d9d;
+    color: #9d9d9d;
 }
 #fleche_droite,#fleche_gauche{
-  cursor: pointer;
-  position: absolute;
-  top: 5px;
-  -webkit-transition: all .2s ease-in;
-  -moz-transition: all .2s ease-in;
-  -o-transition: all .2s ease-in;
-  transition: all .2s ease-in;
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    -webkit-transition: all .2s ease-in;
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    transition: all .2s ease-in;
 }
 #panel_cal {
-  min-width: 175px;
+    min-width: 175px;
 }
 
 #de
 {
-  border-radius: 5px;
+    border-radius: 5px;
 }
-.underline{
-border-bottom: 1px solid #4D4949;/*soulignage des titres*/
-}
+
 #jeux{
-height:700px;/*hauteur des blocs jeu de role et jeu de plateau dans jeux.html*/
+    height:700px;/*hauteur des blocs jeu de role et jeu de plateau dans jeux.html*/
 }
 
 /*select bootstrap*/
 .bootstrap-select{
-  min-width:75px;
+    min-width:75px;
 }
 .selectpicker
 {
     border-radius: 4px 0 0 4px;
-  border-right: 0;
+    border-right: 0;
 }
 
 #captcha
 {
-  height:44px;
-  text-align: center;
+    height:44px;
+    text-align: center;
 }
 #captcha_image
 {
-  cursor: pointer;
+    cursor: pointer;
 }
 .star_form
 {
-  color: red;
+    color: red;
 }
 
 /*modif css pages de jeux*/
 .media-left-mod{
-  padding-bottom: 15px;
-  padding-left: 10px;
+    padding-bottom: 15px;
+    padding-left: 10px;
 }
 .media-mod{
-  padding:0;
+    padding:0;
 }
 .media-img-left{
-  padding-right: 10px;
+    padding-right: 10px;
 }
 .media-img-right{
-  padding-left: 10px;
+    padding-left: 10px;
 }
 .img-responsive
 {
-  margin: auto;
+    margin: auto;
 }
 
 /*datepicker*/
 div.ui-datepicker{
-  font-size:12px;
+    font-size:12px;
 }
 
 /*select date*/
 .time{
-display:inline-block;
-width:10%;
+    display:inline-block;
+    width:10%;
 }
 
-/*Style de la page actualité*/
+/*------------------------------------Style de la page actualité -------------------------*/
 .info_event{
-text-align:center;
+    text-align:center;
 }
 .update_event{
-font-size:10px;
-display:inline-block;
-float:right;
-margin:5px 10px 0 0;
+    font-size:10px;
+    display:inline-block;
+    float:right;
+    margin:5px 10px 0 0;
 }
 .date_event{
-margin-left:2%;
-font-style: italic; 
-font-size:12px;
-display:inline-block;
+    margin-left:2%;
+    font-style: italic;
+    font-size:13px;
+    display:inline-block;
 }
 .limite{
-border-right:1px solid #E5E5E5;
+    border-right:1px solid #E5E5E5;
 }
+/*--------------------------------------------------------------------------------------*/
 
 /*empecher ecrire dans input*/
 #inputdate {
-  cursor: pointer;
-  background-color: #ffffff;
-  transition: all .2s ease-in;
+    cursor: pointer;
+    background-color: #ffffff;
+    transition: all .2s ease-in;
 }
 #inputdate:focus {
-  background-color: #f2f2f2;
-  color: #000000;
+    background-color: #f2f2f2;
+    color: #000000;
 }
 /******menu profil*****/
 #drop_compte{

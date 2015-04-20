@@ -1,40 +1,40 @@
 <footer class="footer">
-	<div class="content_footer">
-		<div class="col_footer">
-			<ul class="liste_footer">
-				<li class="titre">A propos</li>
-				<li class="sous_titre">
-					Ce site a été créé dans le cadre d'un projet d'école par Erik MAILLARD, Grégoire JONCOUR, Ivan PERIC, Allan CONTARET. Ce premier site nous a permis d'approfondir nos connaissances sur la manipulation des bases de données et l'utilisation du language php. Il ne sera pas difuser ou même commercialiser (encore que, c'est quand même assez pro comme premier site soit dit en passant...).
-				</li>
-			</ul>
-		</div>
-		<div class="col_footer">
-			<ul class="liste_footer">
-				<li class="titre"><a href="description.php">Jeux</a></li>
-				<?php $i=0; while (isset($libelle_jeu_menu[$i])){ ?>
-				<li class="sous_titre"><a href="liste_jeu.php?jeu=<?php echo $id_jeu_menu[$i]; ?>"><?php echo $libelle_jeu_menu[$i];?></a></li>
-				<?php $i++; } ?>
-			</ul>
-		</div>
-		<div class="col_footer">
-			<ul class="liste_footer">
-				<li class="titre">Information</li>
-				<li class="sous_titre"><a href="club.php" >Club</a></li>
-				<li class="sous_titre"><a href="forum/" >Forum</a></li>
-				<li class="sous_titre"><a href="actualite.php" >Agenda</a></li>
-				<li class="sous_titre"><a href="actualite.php?passer" >Evénement archiver</a></li>
-				<li class="sous_titre">
-					<?php if(!isset($_SESSION['id_user'])){ ?>
-						<a href="inscription.php">S'inscrire</a>
-					<?php }else{ ?>
-						<a href="profil.php" >Profil</a>
-					<?php }?>
-				</li>
-				
-			</ul>
-		</div>
-		<div class="copyright">
-			<h4>© machiavel.fr 2014-<?php echo date("Y"); ?><a style="float:right;color: inherit;font-size:10px;" href="#">Retour en haut de page</a></h4>
-		</div>
-	</div>
+    <div class="content_footer">
+        <div class="col_footer">
+            <ul class="liste_footer">
+                <li class="titre">A propos</li>
+                <li class="sous_titre">
+                    Pour l'instant ce site n'est pas terminé.
+                </li>
+            </ul>
+        </div>
+        <div class="col_footer">
+            <ul class="liste_footer">
+                <li class="titre"><a href="description.php">Jeux</a></li>
+                <?php $i=0; while (isset($libelle_jeu_menu[$i])){ ?>
+                <li class="sous_titre"><a href="liste_jeu.php?jeu=<?php echo $id_jeu_menu[$i]; ?>"><?php echo $libelle_jeu_menu[$i];?></a></li>
+                <?php $i++; } ?>
+            </ul>
+        </div>
+        <div class="col_footer">
+            <ul class="liste_footer">
+                <li class="titre">Information</li>
+                <li class="sous_titre"><a href="club.php" >Club</a></li>
+                <li class="sous_titre"><a href="forum/" >Forum</a></li>
+                <li class="sous_titre"><a href="actualite.php" >Agenda</a></li>
+                <li class="sous_titre"><a href="actualite.php?passer" >Evénement archiver</a></li>
+                <li class="sous_titre">
+                    <?php if(!isset($_SESSION['id_user'])){ ?>
+                    <a href="inscription.php">S'inscrire</a>
+                    <?php }else{ ?>
+                    <a href="profil.php" >Profil</a>
+                    <?php }?>
+                </li>
+
+            </ul>
+        </div>
+        <div class="copyright">
+            <h4>© machiavel.fr 2014-<?php echo date("Y"); ?><a style="float:right;color: inherit;font-size:10px;" href="#">Retour en haut de page</a></h4>
+        </div>
+    </div>
 </footer>
