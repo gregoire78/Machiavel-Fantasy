@@ -4,12 +4,19 @@ session_regenerate_id();
 
 //fonctions
 include_once('accessoires/menu.php');
-
+$referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'index.php';
 //l'auto connexion
 auto_connexion(NULL,NULL,0);
-$id_type_jeu=$_GET['jeu'];
+if(isset($_GET['jeu']))
+{
+    $id_type_jeu=$_GET['jeu'];
+}
+else
+{
+    header('Location: ' . $referer);
+}
 
-$referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'index.php';
+
 
 //On récupère les informations concernant le type de jeu	(.accessoires/functions_jeu.php)
 $query = recup_type_jeu_one($id_type_jeu);
