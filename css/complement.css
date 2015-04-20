@@ -1,13 +1,30 @@
 body{
     background-color: #80848B;
 }
-.underline /*soulignage des titres*/
+
+/*----------------------------------- soulignage des titres -------------------------------------*/
+.underline
 {
     border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 }
+h3.underline{
+    margin-top:0px;
+}
+
+/*-----------------------------bloc contenu de toute les pages----------------------------------*/
+.contenu
+{
+    padding:20px;
+    margin:15px 0;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: #F5F7FA;
+    min-height:350px;
+}
 
 /*-------------------------------------Classe pour afficher un message d'erreur----------------------*/
-.message_erreur{
+.message_erreur
+{
     text-align:center;
     width:100%;
     padding:10px 0;
@@ -15,11 +32,11 @@ body{
     font-size:20px;
     background:white;
 }
-/*-------------------------------------------------------------------------------------------------*/
 
-/*----------------------------Style pour le footer----------------------------------------------------*/
+/*----------------------------Style pour le footer ----------------------------------------------------*/
 
-.footer{
+.footer
+{
     background-color: #222;
     padding:0px;
     position: relative;
@@ -28,14 +45,16 @@ body{
     width:100%;
     float:left;
 }
-.col_footer{/*bloc du footer*/
+.col_footer /*bloc du footer*/
+{
     width:31.3333%;
     float:left;
     padding:10px 10px 0 10px;
     margin:1%;
     border-left:1px solid #767676;
 }
-.titre{
+.titre
+{
     margin-bottom:5px;
     border-bottom:1px solid #767676;
     margin:0 10px;
@@ -46,37 +65,44 @@ body{
 {
     color:#767676;
 }
-.sous_titre{
+.sous_titre
+{
     font-size:11px;
     margin:0 10px 0 13px;
     text-align:justify;
     color:#9d9d9d;
 }
-.liste_footer{
+.liste_footer
+{
     list-style:none;
     padding:0;
 }
-.content_footer{
+.content_footer
+{
     margin:3px 0 3px 16.666%;
     width:66.66666667%;
     float:left;
 }
-.copyright{/*Bloc du copyright*/
+.copyright /*Bloc du copyright*/
+{
     width:100%;
     float:left;
 }
-.copyright h4{ /*Texte du bloc copyright*/
+.copyright h4  /*Texte du bloc copyright*/
+{
     margin:0 0 0 12px;
     font-size:13px;
 }
-.sous_titre a{
+.sous_titre a
+{
     color:#9d9d9d;
 }
-.sous_titre a:hover{
+.sous_titre a:hover
+{
     color:#6C6C6C;
     border-bottom:1px solid #6C6C6C;
 }
-/*-------------------------------------------------------------------*/
+
 
 /*--------------------------- Bouton barre_page ----------------------*/
 .button_pagination a
@@ -90,18 +116,7 @@ body{
 {
     float:left;margin:20px 0;
 }
-/*----------------------------------------------------------------------------*/
 
-/*-----------------------------bloc contenu de toute les pages----------------------------------*/
-.contenu
-{
-    padding:20px;
-    margin:15px 0;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    background-color: #F5F7FA;
-}
-/*--------------------------------------------------------------------------------------------*/
 
 /*------------------------------- header Machiavel Fantasy -------------------------------------------*/
 .page-header
@@ -111,7 +126,7 @@ body{
     border:0px;
     background-color: rgba(255, 255, 255, 0.2);
 }
-/*-------------------------------------------------------------------------------------------------*/
+
 
 /*---------------------------------- police et style du header Machiavel Fantasy --------------------------*/
 .machiavel
@@ -122,14 +137,25 @@ body{
     text-decoration: none;
     margin-left:40px;
 }
-/*------------------------------------------------------------------------------------------------------*/
+/*---------------------------------------- police de Machiavel Fantasy -----------------------------------*/
+@font-face {
+    font-family: 'machiavel';
+    src: url('deutsch-webfont.eot');
+    src: url('deutsch-webfont.eot?#iefix') format('embedded-opentype'),
+    url('deutsch-webfont.woff2') format('woff2'),
+    url('deutsch-webfont.woff') format('woff'),
+    url('deutsch-webfont.ttf') format('truetype'),
+    url('deutsch-webfont.svg#deutsch_gothicnormal') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
 
 /*------------------------------------------ carousel ------------------------------------------*/
 .carousel-inner
 {
     border-bottom:1px solid #080808;
 }
-/*---------------------------------------------------------------------------------------------------*/
+
 
 /*---------------------------------------- barre de menu ------------------------------------------------*/
 nav.navbar.navbar-inverse
@@ -139,7 +165,7 @@ nav.navbar.navbar-inverse
     border-left:0px;
     border-right:0px;
 }
-/*---------------------------------------------------------------------------------------------------*/
+
 
 /*--------------------------------- liste_jeu.html -------------------------------------*/
 .liste_jeu
@@ -168,7 +194,7 @@ nav.navbar.navbar-inverse
     padding:10px 15px;
     margin:0;
 }
-/*--------------------------------------------------------------------------------------------*/
+
 
 /*----------------------------- bloc du bouton pour creer un évènement -------------------------------*/
 .creer_evenement{
@@ -178,34 +204,34 @@ nav.navbar.navbar-inverse
     text-decoration: none;
     text-align:center;
 }
-/*------------------------------------------------------------------------------------------------------*/
+
 
 /*-----------------------------------Style de la page d'accueil----------------------------------------*/
 .lien_accueil{/*image de font pour chaque bloc d'article*/
     width:100%;
     float:left;
-    /*min-height:250px;*/
     background-color:rgb(168, 168, 168);
 }
 
 .lien_accueil img {
-    /*height:248px;*/
     max-width:100%;
 }
 article.tbl1{
     display: inline-block;
 }
-div.image { /*Position est style de l'image et la zone de text*/
+
+div.image  /*Position est style de l'image et la zone de text*/
+{
     position: relative;
     overflow: hidden;
     max-width: 100%;
-    /*max-height: 256px;*/
     display: inline-block;
     border: 1px solid #ddd;
     margin:0px;
 }
 
-a.desc { /*Parametre de la zone de texte flotante*/
+a.desc /*Parametre de la zone de texte flotante*/
+{
     width: 100%;
     height: 50px;
     position: absolute;
@@ -219,48 +245,36 @@ a.desc { /*Parametre de la zone de texte flotante*/
     transition: all .3s ease;
     padding:5px 15px;
 }
-a.desc:hover{
+a.desc:hover
+{
     background-color:rgba(0, 0, 0, 0.9);
     color:rgba(255, 255, 255, 0.9);
 }
-div.image.boxFULL a { /*1) Dimension zone de txt et 2) Afficher ou pas la zone text */
+div.image.boxFULL a /*1) Dimension zone de txt et 2) Afficher ou pas la zone text */
+{
     height: 110px;
     bottom: -80px;
 }
-div.image.boxFULL:hover a { /*Mouvement de la zone de txt*/
+div.image.boxFULL:hover a /*Mouvement de la zone de txt*/
+{
     bottom: 0px;
 
 }
-.image_accueil {
+.image_accueil
+{
     text-align:center;
     margin:0px;
 }
-.bloc_accueil{ /*largeur de chaque bloc*/
+.bloc_accueil  /*largeur de chaque bloc*/
+{
     width:25%;
     float:left;
 }
-.espace_accueil { /*espace entre les blocs d'article*/
+.espace_accueil /*espace entre les blocs d'article*/
+{
     padding:7.5px;
 }
-/*---------------------------------------------------------------*/
 
-/*--------------------------------------- police de Machiavel Fantasy -----------------------------------*/
-@font-face {
-    font-family: 'machiavel';
-    src: url('deutsch-webfont.eot');
-    src: url('deutsch-webfont.eot?#iefix') format('embedded-opentype'),
-    url('deutsch-webfont.woff2') format('woff2'),
-    url('deutsch-webfont.woff') format('woff'),
-    url('deutsch-webfont.ttf') format('truetype'),
-    url('deutsch-webfont.svg#deutsch_gothicnormal') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-/*actualite
-.actualite{
-margin-bottom:15px;
-}*/
 
 /*-----------------------Page description.html-----------------------*/
 .text_description /*Suppression de la marge et justification du text*/
@@ -280,38 +294,27 @@ margin-bottom:15px;
     float:left;
 }
 
-.espace_description a{
+.espace_description a
+{
     margin:0px;
     text-decoration:none;
     color: #333;
 }
-/*---------------------------------------------------------------------*/
 
-.membre{
+/*-------------------- Page connexion.html ----------------------------*/
+.membre
+{
     padding:20px;
+    /*height:330px;*/
 }
-.inscrire{
+.inscrire
+{
     padding:0px;
     margin-top:15px;
 }
 .espace_connexion
 {
     padding:0px 7.5px;
-}
-
-h3.underline{
-    margin-top:0px;
-}
-/*barre de recherche*/
-#barre_search
-{
-    background-color: rgb(47, 47, 47);
-    color: rgb(157, 157, 157);
-}
-#bouton_search
-{
-    background-color: #9D9D9D;
-    background-image: none;
 }
 
 /*------------------------------ calendrier --------------------------*/
@@ -327,7 +330,8 @@ table.cal { cursor:default;font-size:17px; background:#868400; border: 2px solid
 .cal td.today { border:2px solid rgb(126, 126, 126); margin:0; padding:-2px; }
 
 /* les cases avec un lien */
-.cal td a {
+.cal td a
+{
     color: #cacaca;
     background: #353535;
     display:block;
@@ -338,27 +342,33 @@ table.cal { cursor:default;font-size:17px; background:#868400; border: 2px solid
     -o-transition: all .3s ease-in;
     transition: all .3s ease-in;
 }
-.cal td a:hover {
+.cal td a:hover
+{
     background: rgb(115, 115, 115);
 }
 /* un premier style */
-.cal .st1 { /*font-weight:bold;*/ background: rgb(53, 53, 53); }
+.cal .st1{ /*font-weight:bold;*/ background: rgb(53, 53, 53); }
 /* un second style */
 .cal .st2 { font-weight:bold; color:Purple; }
 /*fleches*/
-#fleche_gauche {
+#fleche_gauche
+{
     left: 1px;
 }
-#fleche_droite {
+#fleche_droite
+{
     right: 1px;
 }
-#fleche_gauche:hover {
+#fleche_gauche:hover
+{
     color: #9d9d9d;
 }
-#fleche_droite:hover{
+#fleche_droite:hover
+{
     color: #9d9d9d;
 }
-#fleche_droite,#fleche_gauche{
+#fleche_droite,#fleche_gauche
+{
     cursor: pointer;
     position: absolute;
     top: 5px;
@@ -367,7 +377,8 @@ table.cal { cursor:default;font-size:17px; background:#868400; border: 2px solid
     -o-transition: all .2s ease-in;
     transition: all .2s ease-in;
 }
-#panel_cal {
+#panel_cal
+{
     min-width: 175px;
 }
 
@@ -376,12 +387,9 @@ table.cal { cursor:default;font-size:17px; background:#868400; border: 2px solid
     border-radius: 5px;
 }
 
-#jeux{
-    height:700px;/*hauteur des blocs jeu de role et jeu de plateau dans jeux.html*/
-}
-
-/*select bootstrap*/
-.bootstrap-select{
+/*------------------------------ select bootstrap -----------------*/
+.bootstrap-select
+{
     min-width:75px;
 }
 .selectpicker
@@ -435,54 +443,61 @@ div.ui-datepicker{
 }
 
 /*------------------------------------Style de la page actualité -------------------------*/
-.info_event{
+.info_event
+{
     text-align:center;
 }
-.update_event{
+.update_event
+{
     font-size:10px;
     display:inline-block;
     float:right;
     margin:5px 10px 0 0;
 }
-.date_event{
+.date_event
+{
     margin-left:2%;
     font-style: italic;
     font-size:13px;
     display:inline-block;
 }
-.limite{
+.limite
+{
     border-right:1px solid #E5E5E5;
 }
-/*--------------------------------------------------------------------------------------*/
 
 /*empecher ecrire dans input*/
-#inputdate {
+#inputdate
+{
     cursor: pointer;
     background-color: #ffffff;
     transition: all .2s ease-in;
 }
-#inputdate:focus {
+#inputdate:focus
+{
     background-color: #f2f2f2;
     color: #000000;
 }
-/******menu profil*****/
-#drop_compte{
+
+/************************menu profil********************/
+#drop_compte
+{
     padding-top: 5px;
     padding-bottom: 5px;
 }
-#avatarMenu{
+#avatarMenu
+{
     margin-right: 15px;
     display: inline-block;
     vertical-align: top;
     background-color: #ffffff;
 }
-#compteMenu{
+#compteMenu
+{
     display: inline-block;
     margin-bottom: 0;
 }
-#caretCompte{
+#caretCompte
+{
     display: inline;
 }
-/********************/
-
-/***alerts**/
