@@ -47,9 +47,11 @@
 					</div>
 					</a>
 				 </div>
-			 <?php } ?>
-			<?php $i=0; 
-			while(isset($id_event[$i])){?><!--aficher les évènements de la base de donnée-->
+             <?php }
+			  $i=0;
+			 if (isset($id_event[$i])){
+			while(isset($id_event[$i])){
+			?><!--aficher les évènements de la base de donnée-->
 				<div class="panel panel-default">
 				  <div id="e<?php echo $id_event[$i]; ?>" class="panel-heading">
 					<h3 class="panel-title">
@@ -97,7 +99,12 @@
 					</div>
 				  </div>
 				</div>
-			<?php $i++; } ?>
+			<?php $i++; }
+			 }else
+			 {
+			 ?>
+			    <div class="message_erreur">Il n'y a aucun événement pour le moment</div>
+            <?php } ?>
 		</div>
 		<?php 
 			include_once("accessoires/chat.php");

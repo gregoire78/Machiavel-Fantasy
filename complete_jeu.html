@@ -33,10 +33,21 @@
 			?>
 		</div>
 		<div class="col-md-8 contenu">
-			<h3 class="media-heading underline">
-				<?php echo $title_jeu; ?>					
-			</h3>
-			<?php echo $text_jeu;?>
+            <?php if(isset($title_jeu))
+            { ?>
+                <h3 class="media-heading underline">
+                    <?php echo $title_jeu; ?>
+                </h3>
+                <?php echo $text_jeu;?>
+            <?php
+            }
+            else
+            { ?>
+                <div class="message_erreur">Le jeu que vous recherchez n'existe pas.</div>
+
+            <?php
+            } ?>
+
 		</div>
 		<?php
 			include_once("accessoires/chat.php");
