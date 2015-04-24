@@ -56,26 +56,31 @@
 				<li class="dropdown">
                     <a id="drop_compte" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img alt="av" id="avatarMenu" class="img-circle" height="40" width="40" src="images/avatars/<?php echo $_SESSION['avatars']; ?>"/><p id="compteMenu"><?php echo $_SESSION['pseudo']; ?><br/> <span class="small">(<?php echo recup_rang($_SESSION['droits']) ?>)</span></p><span id="caretCompte" class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-					<li>
-						<a href="deconnexion.php">
-							<span class="glyphicon glyphicon-off"></span> Se déconnecter
-						</a>
-					</li>
-					<li>
-						<a href="profil.php">
-							<span class="glyphicon glyphicon-user"></span> Profil
-						</a>
-					</li>
-					<li>
-						<a href="edit_jeu.php">
-							<span class=""></span> Ajouter un jeu
-						</a>
-					</li>
-					<li>
-						<a href="actualite.php?passer">
-							<span class=""></span> Evénement archiver
-						</a>
-					</li>
+                        <li>
+                            <a href="deconnexion.php">
+                                <span class="glyphicon glyphicon-off"></span> Se déconnecter
+                            </a>
+                        </li>
+                        <li>
+                            <a href="profil.php">
+                                <span class="glyphicon glyphicon-user"></span> Profil
+                            </a>
+                        </li>
+                        <li>
+                            <a href="edit_jeu.php">
+                                <span class=""></span> Ajouter un jeu
+                            </a>
+                        </li>
+                        <li>
+                            <a href="actualite.php?passer">
+                                <span class=""></span> Evénement archiver
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/admin">
+                                <span class=""></span> Panneau d'administration
+                            </a>
+                        </li>
 					</ul>
 				</li>
 			<?php }else { ?> <!-- Sinon afficher -->

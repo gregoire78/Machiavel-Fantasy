@@ -197,26 +197,31 @@ nav.navbar.navbar-inverse
 
 
 /*----------------------------- bloc du bouton pour creer un évènement -------------------------------*/
-.creer_evenement{
+.creer_evenement
+oç{
     margin:20px;
 }
-.creer_evenement a{
+.creer_evenement a
+{
     text-decoration: none;
     text-align:center;
 }
 
 
 /*-----------------------------------Style de la page d'accueil----------------------------------------*/
-.lien_accueil{/*image de font pour chaque bloc d'article*/
+.lien_accueil /*image de font pour chaque bloc d'article*/
+{
     width:100%;
     float:left;
     background-color:rgb(168, 168, 168);
 }
 
-.lien_accueil img {
+.lien_accueil img
+{
     max-width:100%;
 }
-article.tbl1{
+article.tbl1
+{
     display: inline-block;
 }
 
