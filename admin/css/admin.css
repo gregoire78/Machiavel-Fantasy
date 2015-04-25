@@ -5,12 +5,26 @@ body
     background: #DBD7D1;
     margin: 10px 15px;
 }
+a:link, a:visited {
+    color: #105289;
+    text-decoration: none;
+}
+
+a:hover
+{
+    color: #c30001;
+}
 
 #content:after, #acp:after, #tabs:after
 {
     content: '';
     clear: both;
     display: block;
+}
+
+div
+{
+    font-size: small;
 }
 
 /*---------------- Barre de menu ---------------------*/
@@ -74,7 +88,6 @@ body
     padding: 6px 9px 4px;
     float:left;
 }
-
 .tabs a:hover
 {
     color: #c30001;
@@ -99,6 +112,100 @@ body
 }
 /*--------------------------------------------------------------------*/
 
+/*--------------------- Menu de gauche --------------------*/
+#menu
+{
+    float: left;
+    width: 200px;
+    font-size: 1.00em;
+    padding: 0;
+    border-right: 1px solid #CCCFD3;
+    position: relative;
+    z-index: 1;
+}
+
+#menu p
+{
+    font-size: 0.85em;
+    line-height: 1.40em;
+}
+
+.menu-block
+{
+
+}
+
+#menu .header
+{
+    font-family: Tahoma, Helvetica, sans-serif;
+    display: block;
+    font-weight: bold;
+    color: #115098;
+    border-bottom: 1px solid #327AA5;
+    padding: 4px 0 2px;
+    margin-top: 15px;
+    text-transform: uppercase;
+    font-size: 0.75em;
+    text-decoration: none;
+    cursor: inherit;
+    outline-style: none;
+
+}
+
+#menu ul
+{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    word-wrap: normal;
+}
+
+#menu li
+{
+    padding: 0;
+    margin: 0;
+    font-size: 0.85em;
+    font-weight: bold;
+    display: block;
+}
+
+#menu li a:hover
+{
+    text-decoration: none;
+}
+
+#menu li span
+{
+    display: block;
+    padding: 3px 3px 3px 8px;
+    margin: 1px 0;
+    text-decoration: none;
+    font-weight: normal;
+    color: #138ECB;
+}
+
+#menu li span:hover
+{
+    text-decoration: none;
+    font-weight: normal;
+    color: #c30001;
+    background-color: #f4e4eb;
+}
+
+#menu li#activemenu a span {
+    text-decoration: none;
+    font-weight: bold;
+    color: #1180B7;
+    background: transparent url("../images/arrow_right.gif") 0% 50% no-repeat;
+}
+
+#menu li#activemenu a span:hover {
+    text-decoration: none;
+    color: #c30001;
+    background: transparent url("../images/arrow_right.gif") 1% 50% no-repeat;
+    background-color: #f4e4eb;
+}
+
 #acp
 {
     position: relative;
@@ -114,22 +221,11 @@ body
 
 #content
 {
-    float:left;
     width:100%;
+    float:left;
     padding: 30px 10px 10px;
     position: relative;
 
-}
-
-#menu
-{
-    float: left;
-    width: 200px;
-    font-size: 1.00em;
-    padding: 0;
-    border-right: 1px solid #CCCFD3;
-    position: relative;
-    z-index: 1;
 }
 
 #main
