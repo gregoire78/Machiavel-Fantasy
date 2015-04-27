@@ -4,8 +4,20 @@
         <li <?php if(!isset($_GET['j'])|| $_GET['j']=='liste_jeux') echo 'id="activemenu"'; ?>>
             <a href="index.php?i=liste_jeux&j=liste_jeux"><span>Gérer les jeux</span></a>
         </li>
-        <li <?php if(isset($_GET['j'])&& $_GET['j']=='liste_type_jeux') echo 'id="activemenu"'; ?>>
-            <a href="index.php?i=liste_jeux&j=liste_type_jeux"><span>Gérer les catégories de jeu</span></a>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']=='ajouter_jeux') echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=liste_jeux&j=ajouter_jeux"><span>Ajouter un jeu</span></a>
+        </li>
+    </ul>
+</div>
+
+<div class="menu-block">
+    <div class="header">Catégorie de jeux</div>
+    <ul>
+        <li <?php if(!isset($_GET['j'])|| $_GET['j']=='liste_type_jeux') echo 'id="activemenu"'; ?>>
+        <a href="index.php?i=liste_jeux&j=liste_type_jeux"><span>Gérer les categorie de jeu</span></a>
+        </li>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']=='ajouter_type_jeux') echo 'id="activemenu"'; ?>>
+        <a href="index.php?i=liste_jeux&j=ajouter_type_jeux"><span>Ajouter une catégorie de jeu</span></a>
         </li>
     </ul>
 </div>
