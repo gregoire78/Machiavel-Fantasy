@@ -1,17 +1,17 @@
 <div class="menu-block">
     <div class="header">Messages</div>
     <ul>
-        <li <?php if(!isset($_GET['j'])|| $_GET['j']==1) echo 'id="activemenu"'; ?>>
-            <a href="index.php?i=4&j=1"><span>Paramètres des messages privés</span></a>
+        <li <?php if(!isset($_GET['j'])|| $_GET['j']=='parametre_mp') echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=messages&j=parametre_mp"><span>Paramètres des messages privés</span></a>
         </li>
-        <li <?php if(isset($_GET['j'])&& $_GET['j']==2) echo 'id="activemenu"'; ?>>
-            <a href="index.php?i=4&j=2"><span>Paramères des messages</span></a>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']=='parametre_messages') echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=messages&j=parametre_messages"><span>Paramères des messages</span></a>
         </li>
-        <li <?php if(isset($_GET['j'])&& $_GET['j']==3) echo 'id="activemenu"'; ?>>
-            <a href="index.php?i=4&j=3"><span>Icône de sujet</span></a>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']=='icon_topic') echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=messages&j=icon_topic"><span>Icône de sujet</span></a>
         </li>
-        <li <?php if(isset($_GET['j'])&& $_GET['j']==4) echo 'id="activemenu"'; ?>>
-            <a href="index.php?i=4&j=4"><span>Smileys</span></a>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']=='smiley') echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=messages&j=smiley"><span>Smileys</span></a>
         </li>
     </ul>
 </div>
@@ -19,11 +19,11 @@
 <div class="menu-block">
     <div class="header">Fichier joints</div>
     <ul>
-        <li <?php if(isset($_GET['j'])&& $_GET['j']==5) echo 'id="activemenu"'; ?>>
-            <a href="index.php?i=4&j=5"><span>Paramètres des fichiers joints</span></a>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']=='fichiers_joints') echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=messages&j=fichiers_joints"><span>Paramètres des fichiers joints</span></a>
         </li>
-        <li <?php if(isset($_GET['j'])&& $_GET['j']==6) echo 'id="activemenu"'; ?>>
-            <a href="index.php?i=4&j=6"><span>Gérer les fichiers joints</span></a>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']=='edit_fichiers_joints') echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=messages&j=edit_fichiers_joints"><span>Gérer les fichiers joints</span></a>
         </li>
     </ul>
 </div>

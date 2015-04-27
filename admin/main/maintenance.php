@@ -6,24 +6,24 @@
  * Time: 20:26
  */
 
-if (isset($_GET['j'])) {
-    switch ($_GET['j']) {
-        case "1" :
+if (isset($_GET['m'])) {
+    switch ($_GET['m']) {
+        case "global" :
             $text = 1;
             break;
-        case "2" :
+        case "administration" :
             $text = 2;
             break;
-        case "3" :
+        case "jeu" :
             $text = 3;
             break;
-        case "4" :
+        case "forum" :
             $text = 4;
             break;
-        case "5" :
+        case "evenement" :
             $text = 5;
             break;
-        case "6" :
+        case "utilisateur" :
             $text = 6;
             break;
         default  :

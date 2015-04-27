@@ -1,20 +1,20 @@
 <div class="menu-block">
     <div class="header">Accès rapide</div>
     <ul>
-        <li <?php if(!isset($_GET['j'])|| $_GET['j']==1) echo 'id="activemenu"'; ?>>
-            <a href="index.php?i=1&j=1"><span>Gérer les utilisateurs</span></a>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']=='edit_users') echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=general&j=edit_users"><span>Gérer les utilisateurs</span></a>
         </li>
-        <li <?php if(isset($_GET['j'])&& $_GET['j']==2) echo 'id="activemenu"'; ?>>
-            <a href="index.php?i=1&j=2"><span>Gérer les forums</span></a>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']=='edit_forum') echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=general&j=edit_forum"><span>Gérer les forums</span></a>
         </li>
-        <li <?php if(isset($_GET['j'])&& $_GET['j']==3) echo 'id="activemenu"'; ?>>
-            <a href="index.php?i=1&j=3"><span>Journal global</span></a>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']=='maintenance') echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=general&j=maintenance"><span>Journal global</span></a>
         </li>
-        <li <?php if(isset($_GET['j'])&& $_GET['j']==4) echo 'id="activemenu"'; ?>>
-            <a href="index.php?i=1&j=4"><span>Gérer les informations du club</span></a>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']=='info_club') echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=general&j=info_club"><span>Gérer les informations du club</span></a>
         </li>
-        <li <?php if(isset($_GET['j'])&& $_GET['j']==5) echo 'id="activemenu"'; ?>>
-            <a href="index.php?i=1&j=5"><span>Gérer les jeux</span></a>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']=='liste_jeux') echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=general&j=liste_jeux"><span>Gérer les jeux</span></a>
         </li>
     </ul>
 </div>
@@ -24,29 +24,29 @@
 <div class="menu-block">
     <div class="header">Configuration générale</div>
     <ul>
-        <li <?php if(isset($_GET['j'])&& $_GET['j']==6) echo 'id="activemenu"'; ?>>
-            <a href="index.php?i=1&j=6"><span>Paramètres des fichiers joints</span></a>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']=='fichiers_joints') echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=general&j=fichiers_joints"><span>Paramètres des fichiers joints</span></a>
         </li>
-        <li <?php if(isset($_GET['j'])&& $_GET['j']==7) echo 'id="activemenu"'; ?>>
-            <a href="index.php?i=1&j=7"><span>Fonctionalité du forum</span></a>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']=='fonction_forum') echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=general&j=fonction_forum"><span>Fonctionalité du forum</span></a>
         </li>
-        <li <?php if(isset($_GET['j'])&& $_GET['j']==8) echo 'id="activemenu"'; ?>>
-            <a href="index.php?i=1&j=8"><span>Paramètres des avatars</span></a>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']=='parametre_avatar') echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=general&j=parametre_avatar"><span>Paramètres des avatars</span></a>
         </li>
-        <li <?php if(isset($_GET['j'])&& $_GET['j']==9) echo 'id="activemenu"'; ?>>
-            <a href="index.php?i=1&j=9"><span>Paramètres des messages privés</span></a>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']=='parametre_mp') echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=general&j=parametre_mp"><span>Paramètres des messages privés</span></a>
         </li>
-        <li <?php if(isset($_GET['j'])&& $_GET['j']==10) echo 'id="activemenu"'; ?>>
-            <a href="index.php?i=1&j=10"><span>Paramètres des messages</span></a>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']=='parametre_messages') echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=general&j=parametre_messages"><span>Paramètres des messages</span></a>
         </li>
-        <li <?php if(isset($_GET['j'])&& $_GET['j']==11) echo 'id="activemenu"'; ?>>
-            <a href="index.php?i=1&j=11"><span>Paramètres de signature</span></a>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']=='parametre_signature') echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=general&j=parametre_signature"><span>Paramètres de signature</span></a>
         </li>
-        <li <?php if(isset($_GET['j'])&& $_GET['j']==12) echo 'id="activemenu"'; ?>>
-            <a href="index.php?i=1&j=12"><span>Paramètres de la page de contact</span></a>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']=='parametre_contact') echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=general&j=parametre_contact"><span>Paramètres de la page de contact</span></a>
         </li>
-        <li <?php if(isset($_GET['j'])&& $_GET['j']==13) echo 'id="activemenu"'; ?>>
-            <a href="index.php?i=1&j=13"><span>Paramètres des e-mails</span></a>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']=='parametre_email') echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=general&j=parametre_email"><span>Paramètres des e-mails</span></a>
         </li>
     </ul>
 </div>

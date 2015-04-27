@@ -1,23 +1,23 @@
 <div class="menu-block">
     <div class="header">Journaux du site</div>
     <ul>
-        <li <?php if(!isset($_GET['j'])|| $_GET['j']==1) echo 'id="activemenu"'; ?>>
-            <a href="index.php?i=6&j=1"><span>Journal global</span></a>
+        <li <?php if(!isset($_GET['m'])|| $_GET['m']=='global') echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=maintenance&m=global"><span>Journal global</span></a>
         </li>
-        <li <?php if(isset($_GET['j'])&& $_GET['j']==2) echo 'id="activemenu"'; ?>>
-            <a href="index.php?i=6&j=2"><span>Journal d'administration</span></a>
+        <li <?php if(isset($_GET['m'])&& $_GET['m']=='administration') echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=maintenance&m=administration"><span>Journal d'administration</span></a>
         </li>
-        <li <?php if(isset($_GET['j'])&& $_GET['j']==3) echo 'id="activemenu"'; ?>>
-            <a href="index.php?i=6&j=3"><span>Journal de jeu</span></a>
+        <li <?php if(isset($_GET['m'])&& $_GET['m']=='jeu') echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=maintenance&m=jeu"><span>Journal de jeu</span></a>
         </li>
-        <li <?php if(isset($_GET['j'])&& $_GET['j']==4) echo 'id="activemenu"'; ?>>
-            <a href="index.php?i=6&j=4"><span>Journal du forum</span></a>
+        <li <?php if(isset($_GET['m'])&& $_GET['m']=='forum') echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=maintenance&m=forum"><span>Journal du forum</span></a>
         </li>
-        <li <?php if(isset($_GET['j'])&& $_GET['j']==5) echo 'id="activemenu"'; ?>>
-            <a href="index.php?i=6&j=5"><span>Journal d'événement</span></a>
+        <li <?php if(isset($_GET['m'])&& $_GET['m']=='evenement') echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=maintenance&m=evenement"><span>Journal d'événement</span></a>
         </li>
-        <li <?php if(isset($_GET['j'])&& $_GET['j']==6) echo 'id="activemenu"'; ?>>
-            <a href="index.php?i=6&j=6"><span>Journal d'utilisateur</span></a>
+        <li <?php if(isset($_GET['m'])&& $_GET['m']=='utilisateur') echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=maintenance&m=utilisateur"><span>Journal d'utilisateur</span></a>
         </li>
     </ul>
 </div>

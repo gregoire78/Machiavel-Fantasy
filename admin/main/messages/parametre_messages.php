@@ -6,4 +6,5 @@
  * Time: 17:22
  */
 
+include_once("parametre_messages.html");
 ?>

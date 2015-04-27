@@ -1,14 +1,14 @@
 <div class="menu-block">
     <div class="header">Le club</div>
     <ul>
-        <li <?php if(!isset($_GET['j'])|| $_GET['j']==1) echo 'id="activemenu"'; ?>>
-            <a href="index.php?i=2&j=1"><span>Gérer la page d'accueil du site</span></a>
+        <li <?php if(!isset($_GET['j'])|| $_GET['j']=='accueil') echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=club&j=accueil"><span>Gérer la page d'accueil du site</span></a>
         </li>
-        <li <?php if(isset($_GET['j'])&& $_GET['j']==2) echo 'id="activemenu"'; ?>>
-            <a href="index.php?i=2&j=2"><span>Gérer les informations du club</span></a>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']=='info') echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=club&j=info"><span>Gérer les informations du club</span></a>
         </li>
-        <li <?php if(isset($_GET['j'])&& $_GET['j']==3) echo 'id="activemenu"'; ?>>
-            <a href="index.php?i=2&j=3"><span>Gérer les condition général d'utilisation</span></a>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']=='CGU') echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=club&j=CGU"><span>Gérer les condition général d'utilisation</span></a>
         </li>
     </ul>
 </div>

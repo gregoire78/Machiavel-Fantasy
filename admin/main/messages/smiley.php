@@ -5,5 +5,6 @@
  * Date: 25/04/2015
  * Time: 17:25
  */
+include_once("smiley.html");
 
 ?>

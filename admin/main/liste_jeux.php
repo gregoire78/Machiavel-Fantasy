@@ -7,21 +7,17 @@
  */
 if (isset($_GET['j'])) {
     switch ($_GET['j']) {
-        case "1" :
+        case "liste_jeux" :
             include_once("liste_jeux/liste_jeux.php");
-            include_once("liste_jeux/liste_jeux.html");
             break;
-        case "2" :
+        case "liste_type_jeux" :
             include_once("liste_jeux/liste_type_jeux.php");
-            include_once("liste_jeux/liste_type_jeux.html");
             break;
         default  :
             include_once("liste_jeux/liste_jeux.php");
-            include_once("liste_jeux/liste_jeux.html");
             break;
     }
 } else {
     include_once("liste_jeux/liste_jeux.php");
-    include_once("liste_jeux/liste_jeux.html");
 }
 ?>

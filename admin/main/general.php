@@ -8,61 +8,51 @@
 
 if (isset($_GET['j'])) {
     switch ($_GET['j']) {
-        case "1" :
+        case "edit_users" :
             include_once("utilisateurs/edit_users.php");
-            include_once("utilisateurs/edit_users.html");
             break;
-        case "2" :
+        case "edit_forum" :
             include_once("forums/edit_forum.php");
-            include_once("forums/edit_forum.html");
             break;
-        case "4" :
+        case "maintenance" :
+        include_once("maintenance.php");
+        break;
+        case "info_club" :
             include_once("club/info_club.php");
-            include_once("club/info_club.html");
             break;
-        case "5" :
+        case "liste_jeux" :
             include_once("liste_jeux/liste_jeux.php");
-            include_once("liste_jeux/liste_jeux.html");
             break;
-        case "6" :
+        case "fichiers_joints" :
             include_once("messages/fichiers_joints.php");
-            include_once("messages/fichiers_joints.html");
             break;
-        case "7" :
+        case "fonction_forum" :
             include_once("general/fonction_forum.php");
-            include_once("general/fonction_forum.html");
             break;
-        case "8" :
+        case "parametre_avatar" :
             include_once("general/parametre_avatar.php");
-            include_once("general/parametre_avatar.html");
             break;
-        case "9" :
+        case "parametre_mp" :
             include_once("messages/parametre_mp.php");
-            include_once("messages/parametre_mp.html");
             break;
-        case "10" :
+        case "parametre_messages" :
             include_once("messages/parametre_messages.php");
-            include_once("messages/parametre_messages.html");
             break;
-        case "11" :
+        case "parametre_signature" :
             include_once("general/parametre_signature.php");
-            include_once("general/parametre_signature.html");
             break;
-        case "12" :
+        case "parametre_contact" :
             include_once("general/parametre_contact.php");
-            include_once("general/parametre_contact.html");
             break;
-        case "13" :
+        case "parametre_email" :
             include_once("general/parametre_email.php");
-            include_once("general/parametre_email.html");
             break;
         default  :
-            include_once("utilisateurs/edit_users.php");
-            include_once("utilisateurs/edit_users.html");
+            include_once("general/accueil_general.php");
             break;
     }
-} else {
-    include_once("utilisateurs/edit_users.php");
-    include_once("utilisateurs/edit_users.html");
+} else
+{
+    include_once("general/accueil_general.php");
 }
 ?>
