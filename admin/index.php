@@ -6,10 +6,12 @@
  * Time: 15:00
  */
 session_start();
-if(!isset($_SESSION['id_user']) || $_SESSION['droits']< 3)
-{
-    header("Location:../");
-}
+
+session_regenerate_id();
+
+include_once('../accessoires/functions_connect.php');
+//l'auto connexion
+auto_connexion(NULL,'../index.php',3);
 include_once("index.html");
 
 ?>
