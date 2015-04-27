@@ -1,0 +1,17 @@
+<div class="menu-block">
+    <div class="header">Utilisateurs</div>
+    <ul>
+        <li <?php if(!isset($_GET['j'])|| $_GET['j']==1) echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=5&j=1"><span>Utilisateur inactif</span></a>
+        </li>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']==2) echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=5&j=2"><span>Gérer les utilisateurs</span></a>
+        </li>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']==3) echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=5&j=3"><span>Délester des utilisaturs</span></a>
+        </li>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']==4) echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=5&j=4"><span>Interdire des noms d'utilisateurs</span></a>
+        </li>
+    </ul>
+</div>

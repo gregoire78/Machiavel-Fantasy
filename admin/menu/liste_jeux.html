@@ -1,0 +1,11 @@
+<div class="menu-block">
+    <div class="header">Jeux</div>
+    <ul>
+        <li <?php if(!isset($_GET['j'])|| $_GET['j']==1) echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=7&j=1"><span>Gérer les jeux</span></a>
+        </li>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']==2) echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=7&j=2"><span>Gérer les types de jeu</span></a>
+        </li>
+    </ul>
+</div>

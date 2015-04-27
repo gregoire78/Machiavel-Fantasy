@@ -1,0 +1,23 @@
+<div class="menu-block">
+    <div class="header">Journaux du site</div>
+    <ul>
+        <li <?php if(!isset($_GET['j'])|| $_GET['j']==1) echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=6&j=1"><span>Journal global</span></a>
+        </li>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']==2) echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=6&j=2"><span>Journal d'administration</span></a>
+        </li>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']==3) echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=6&j=3"><span>Journal de jeu</span></a>
+        </li>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']==4) echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=6&j=4"><span>Journal du forum</span></a>
+        </li>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']==5) echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=6&j=5"><span>Journal d'événement</span></a>
+        </li>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']==6) echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=6&j=6"><span>Journal d'utilisateur</span></a>
+        </li>
+    </ul>
+</div>

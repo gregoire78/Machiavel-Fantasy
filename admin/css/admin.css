@@ -73,13 +73,13 @@ div
 
 .tabs:hover
 {
-    background: #e3e5e9;
-    background: -moz-linear-gradient(top, #e0e1e5 0%, #e3e5e9 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e0e1e5), color-stop(100%, #e3e5e9));
-    background: -webkit-linear-gradient(top, #e0e1e5 0%, #e3e5e9 100%);
-    background: -o-linear-gradient(top, #e0e1e5 0%, #e3e5e9 100%);
-    background: -ms-linear-gradient(top, #e0e1e5 0%, #e3e5e9 100%);
-    background: linear-gradient(to bottom, #e0e1e5 0%, #e3e5e9 100%);
+    background: #e7e9ed;
+    background: -moz-linear-gradient(top, #e4e5e9 0%, #e7e9ed 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e4e5e9), color-stop(100%, #e7e9ed));
+    background: -webkit-linear-gradient(top, #e4e5e9 0%, #e7e9ed 100%);
+    background: -o-linear-gradient(top, #e4e5e9 0%, #e7e9ed 100%);
+    background: -ms-linear-gradient(top, #e4e5e9 0%, #e3e5e9 100%);
+    background: linear-gradient(to bottom, #e4e5e9 0%, #e7e9ed 100%);
 }
 .tabs a
 {

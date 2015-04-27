@@ -1,0 +1,23 @@
+<div class="menu-block">
+    <div class="header">Gérer les forums</div>
+    <ul>
+        <li <?php if(!isset($_GET['j'])|| $_GET['j']==1) echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=3&j=1"><span>Gérer les forums</span></a>
+        </li>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']==2) echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=3&j=2"><span>Délester les forums</span></a>
+        </li>
+    </ul>
+</div>
+
+<div class="menu-block">
+    <div class="header">Permissions basiques des forums</div>
+    <ul>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']==3) echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=3&j=3"><span>Permissions des forums</span></a>
+        </li>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']==4) echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=3&j=4"><span>Permissions utilisateurs/forums</span></a>
+        </li>
+    </ul>
+</div>

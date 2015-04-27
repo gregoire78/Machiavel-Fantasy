@@ -1,0 +1,14 @@
+<div class="menu-block">
+    <div class="header">Le club</div>
+    <ul>
+        <li <?php if(!isset($_GET['j'])|| $_GET['j']==1) echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=2&j=1"><span>Gérer la page d'accueil du site</span></a>
+        </li>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']==2) echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=2&j=2"><span>Gérer les informations du club</span></a>
+        </li>
+        <li <?php if(isset($_GET['j'])&& $_GET['j']==3) echo 'id="activemenu"'; ?>>
+            <a href="index.php?i=2&j=3"><span>Gérer les condition général d'utilisation</span></a>
+        </li>
+    </ul>
+</div>
