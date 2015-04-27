@@ -5,6 +5,23 @@ body
     background: #DBD7D1;
     margin: 10px 15px;
 }
+
+h1
+{
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 1.70em;
+    font-weight: normal;
+    color: #333333;
+    margin:0;
+}
+
+p
+{
+    margin-bottom: 0.7em;
+    line-height: 1.40em;
+    font-size: 0.90em;
+}
+
 a:link, a:visited {
     color: #105289;
     text-decoration: none;
@@ -226,6 +243,13 @@ div
     padding: 30px 10px 10px;
     position: relative;
 
+}
+
+#content h1
+{
+    color: #115098;
+    line-height: 1.2em;
+    margin-bottom: 0;
 }
 
 #main
