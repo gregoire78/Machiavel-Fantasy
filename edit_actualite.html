@@ -55,12 +55,13 @@
 				</div>
 			  </div>
 			  <div class="form-group">
-				<label for="inputdate" class="col-sm-2 control-label">Partie de </label>
+				<label for="inputdate" class="col-sm-2 control-label">Information </label>
 				<div class="col-sm-10">
-					<select class="form-control time" style="width:27.3%;" name="title_jeu">
-					  <?php $i=0; while (isset($title[$i])) { ?>
-					  <option <?php if(isset($title_jeu) && $title[$i]==$title_jeu){echo 'selected="selected"';} ?> ><?php echo $title[$i];$i++; ?></option>
-					  <?php } ?>
+					<select class="form-control time" style="width:27.3%;" name="libelle_type_jeu">
+					    <?php $i=0; while (isset($libelle_jeu_menu[$i])) { ?>
+					        <option <?php if(isset($id_type_jeu) && $id_jeu_menu[$i]==$id_type_jeu){echo 'selected="selected"';} ?> >Partie de <?php echo $libelle_jeu_menu[$i];$i++; ?></option>
+                        <?php } ?>
+                        <option <?php if(isset($id_type_jeu) && $id_type_jeu==0){echo 'selected="selected"';} ?> >Evénement</option>
 					</select>
 					<div style="width:3%;text-align:center; display:inline-block;">le</div>
 					<input readonly="readonly" type="text" class="form-control" style="width:15%; display:inline-block; text-align:center;" id="inputdate" name="date" value="<?php if(isset($date)){ echo $date;} ?>">								

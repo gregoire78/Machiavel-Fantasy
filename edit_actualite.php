@@ -23,7 +23,8 @@ if (isset($_GET['modifier']))
 		$date = date("m/d/Y",strtotime($data['date_event']));
 		$hour_begin=date("H",strtotime($data['date_event']));
 		$minute_begin=date("i",strtotime($data['date_event']));
-		$title_jeu = $data['title_jeu'];
+        $id_type_jeu = $data['id_type_jeu'];
+		$image_event = $data['image_event'];
 	}
 }
 //Si on a cliqué sur le bouton pour créer un événement
@@ -31,11 +32,12 @@ if(isset($_POST['create'])|| isset ($_POST['update'])){
 	
 	//On enregistre les données dans les variables
 	$title_event=$_POST['title_event'];
-	$title_jeu=$_POST['title_jeu'];
+	$libelle_type_jeu=$_POST['libelle_type_jeu'];
 	$text_event=$_POST['text_event'];
 	$date = $_POST['date'];
 	$hour_begin = $_POST['hour_begin'];
 	$minute_begin =$_POST['minute_begin'];
+	$image_event = NULL;
 	$date_event=date("Y-m-d H:i:s",strtotime($date.' '.$hour_begin.$minute_begin."00"));
 	
 	$string=35; //taille de la chaine caractères accepté
@@ -67,26 +69,17 @@ if(isset($_POST['create'])|| isset ($_POST['update'])){
 	if (empty($error_data))
 	{	
 		if(isset($_POST['create']))//On crée un événement
-		{			
-			create_event($title_event, $text_event, $date_event, $date_update, $title_jeu);
+		{
+			create_event($title_event, $text_event, $date_event, $libelle_type_jeu, $image_event);
 		}
 		else if (isset($_POST['update']))//On met à jour un évènement
 		{
 			$id_event = $_GET['modifier'];
-			update_event($id_event, $title_event, $text_event, $date_event, $date_update, $title_jeu);
+			update_event($id_event, $title_event, $text_event, $date_event, $libelle_type_jeu, $image_event);
 		}
 	//On redirige vers la page d'actualité pour voir le nouvel événement
 	header('Location:actualite.php');
 	}
-}
-
-$query = recup_title();
-
-//On enregistre les titres des jeux dans un tableau
-$i=0;
-while ($data=$query->fetch(PDO::FETCH_ASSOC)){
-	$title[$i] = $data['title_jeu'];	
-	$i++;
 }
 
 //On inclu le fichier html pour la mise en forme

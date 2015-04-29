@@ -452,6 +452,10 @@ div.ui-datepicker{
 {
     text-align:center;
 }
+.actualite
+{
+	margin:15px 0;
+}
 .update_event
 {
     font-size:10px;
@@ -462,13 +466,12 @@ div.ui-datepicker{
 .date_event
 {
     margin-left:2%;
-    font-style: italic;
     font-size:13px;
     display:inline-block;
 }
 .limite
 {
-    border-right:1px solid #E5E5E5;
+    border-left:1px solid #E5E5E5;
 }
 
 /*empecher ecrire dans input*/

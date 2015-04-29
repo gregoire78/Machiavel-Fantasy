@@ -14,9 +14,9 @@ function recup_type_jeu()
 function recup_type_jeu_one($id_type_jeu)
 {
 	require("connect_bdd.php");
-	$sql="	SELECT libelle_type_jeu, description_type_jeu, color_type_jeu, icon_type_jeu
-			FROM type_jeu
-			WHERE id_type_jeu=:id_type_jeu";
+	$sql="	SELECT  libelle_type_jeu, description_type_jeu, color_type_jeu, icon_type_jeu, image_type_jeu
+			FROM    type_jeu
+			WHERE   id_type_jeu=:id_type_jeu";
 	$query=$connect->prepare($sql);
 	$query->bindParam(':id_type_jeu',$id_type_jeu,PDO::PARAM_INT);
 	$query->execute();
@@ -27,9 +27,9 @@ function recup_type_jeu_one($id_type_jeu)
 function recup_id_type_jeu($libelle_type_jeu)
 {
 	require("connect_bdd.php");
-	$sql="	SELECT id_type_jeu
-			FROM type_jeu
-			WHERE libelle_type_jeu=:libelle_type_jeu";
+	$sql="	SELECT  id_type_jeu, image_type_jeu
+			FROM    type_jeu
+			WHERE   libelle_type_jeu=:libelle_type_jeu";
 	$query=$connect->prepare($sql);
 	$query->bindParam(':libelle_type_jeu',$libelle_type_jeu,PDO::PARAM_STR);
 	$query->execute();
@@ -44,9 +44,9 @@ function recup_liste_jeu($id_type_jeu, $page)
 	$nb_jeu = ($page-1)*$jeu_page;
 	require("connect_bdd.php");
 	$sql="	SELECT id_jeu, title_jeu, text_jeu, image_jeu, date_update
-			FROM jeu
-			WHERE id_type_jeu=:id_type_jeu AND statut_jeu = 1
-			LIMIT :nb_jeu, :jeu_page";
+			FROM   jeu
+			WHERE   id_type_jeu=:id_type_jeu AND statut_jeu = 1
+			LIMIT   :nb_jeu, :jeu_page";
 	$query=$connect->prepare($sql);
 	$query->bindParam(':id_type_jeu',$id_type_jeu,PDO::PARAM_INT);
 	$query->bindParam(':nb_jeu',$nb_jeu,PDO::PARAM_INT);
@@ -60,7 +60,7 @@ function recup_lign($id_type_jeu)
 {
 	require("connect_bdd.php");
 	$sql = "SELECT COUNT(*)
-			FROM jeu
+			FROM  jeu
 			WHERE id_type_jeu = :id_type_jeu AND statut_jeu = 1";
 	$query=$connect->prepare($sql);
 	$query->bindParam(':id_type_jeu',$id_type_jeu,PDO::PARAM_INT);
@@ -74,7 +74,7 @@ function recup_jeu($id_jeu)
 {
 	require("connect_bdd.php");
 	$sql="	SELECT *
-			FROM jeu
+			FROM  jeu
 			WHERE id_jeu=:id_jeu";
 	$query=$connect->prepare($sql);
 	$query->bindParam(':id_jeu',$id_jeu,PDO::PARAM_STR);
@@ -99,8 +99,9 @@ function create_jeu($title_jeu, $text_jeu, $path_image, $id_type_jeu)
     $id=$_SESSION['id_user'];
     var_dump($_SESSION,$id,$title_jeu,$text_jeu,$path_image,$id_type_jeu);
 
-    echo $sql = "INSERT INTO jeu(title_jeu, text_jeu, image_jeu, date_update, id_type_jeu, id_user)
-              VALUE        ( :title_jeu, :text_jeu, :image_jeu, NOW(), :id_type_jeu , :id_user)";
+    echo
+    $sql = "  INSERT INTO jeu (  title_jeu,  text_jeu,  image_jeu, date_update,  id_type_jeu,   id_user)
+              VALUE           ( :title_jeu, :text_jeu, :image_jeu, NOW(),       :id_type_jeu , :id_user)";
     $query=$connect->prepare($sql);
     $query->bindParam(':title_jeu',$title_jeu,PDO::PARAM_STR,50);
     $query->bindParam(':text_jeu',$text_jeu,PDO::PARAM_STR);

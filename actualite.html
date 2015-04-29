@@ -33,7 +33,7 @@
 		</div>
 		<div class="col-md-8 contenu">
 			<h3 class="underline"><?php if ($afficher!='<'){?>
-				Actualité
+				Agenda
 				<?php }else{?>
 				Evénement archiver
 				<?php } ?>
@@ -56,7 +56,7 @@
 				  <div id="e<?php echo $id_event[$i]; ?>" class="panel-heading">
 					<h3 class="panel-title">
 						<b><?php echo $title_event[$i]; ?></b><!--Titre de l'événement-->
-						<div class="date_event">le <?php echo $date_event[$i]; ?></div><!--date de l'événement-->								
+						<div class="date_event"><em>le <?php echo $date_event[$i]; ?></em></div><!--date de l'événement-->								
 						
 						<!--------------Bouton pour modifier ou supprimer une actualité------------------------->
 						<?php if(isset($_SESSION['id_user']) && !isset($supprimer) && $afficher!='<' && ($_SESSION['droits']==3 || $_SESSION['id_user'] == $id_user_event[$i])){ ?><!--Si l'utilisateur est un administrateur ou un modérateur alors-->
@@ -74,19 +74,17 @@
 					</h3>
 				  </div>
 				  <div class="media actualite">
-					<div class="col-md-3 limite">
-						<a href="complete_jeu.php?jeu=<?php echo $id_jeu[$i]; ?>">
-							<img class="img-responsive" src="<?php echo $image_jeu[$i]; ?>"/>
-						</a>
+					<div class="col-md-3">
+						<img class="img-responsive" src="<?php echo $image_event[$i]; ?>"/>
 					</div>
-					<div class="col-md-9">
+					<div class="col-md-9 limite">
 						<div class="media-body">									
-							<p class="text-justify"><?php echo $text_event[$i]; ?></p>
+							<p class="text-justify" style="margin:0;"><?php echo $text_event[$i]; ?></p>
 							<?php if (isset($_SESSION['id_user']) && isset($_GET['supprimer'])&& $supprimer == $id_event[$i] && ($_SESSION['id_user']== $id_user_event[$i] || $_SESSION['droits'] == 3)){ ?><!--Si on a appuiyé sur le bouton supprimer alors afficher les boutons de confirmation-->
 								<form class="form-horizontal" action="actualite.php?supprimer=<?php echo $id_event[$i]; ?>" method="POST">
 									<div class="col-sm-offset-3 col-sm-6">
 										<p style="text-align:center;">
-											Voulez-vous vraiment supprimer cet article ?
+											Voulez-vous vraiment supprimer cet événement ?
 										</p>
 										<p style="text-align:center;">
 											<button type="submit" class="btn btn-success" name="valider_supprimer">Valider <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button><!--On redirige vers l'article.php en envoyant l'id de l'article dans l'URL quand on valide la suppression-->

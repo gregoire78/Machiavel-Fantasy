@@ -42,14 +42,10 @@ while ($data=$query->fetch(PDO::FETCH_ASSOC))
 	$id_event[$j]=$data['id_event'];
 	$title_event[$j] = $data['title_event'];
 	$text_event[$j]=nl2br($data['text_event']);
-	$image_jeu[$j]=$data['image_jeu'];
+	$image_event[$j]=$data['image_event'];
 	$date_event[$j]=format_date($data['date_event']) ;
 	$date_update[$j]=format_date($data['date_update']);
-	$id_jeu[$j]=$data['id_jeu'];
 	$id_user_event[$j]=$data['id_user'];
-	
-	$pseudo_event[$j]=$data['pseudo'];
-	$avatar_event[$j]=$data['avatars'];
 	$j++;
 }
 
