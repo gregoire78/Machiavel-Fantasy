@@ -82,11 +82,26 @@ function recup_jeu($id_jeu)
 	return $query;		
 }
 
+//Fonction pour récupérer les données d'un seul jeux (page complete_jeu et edit_jeu)
+function recup_id_jeu($title_jeu)
+{
+    require("connect_bdd.php");
+    $sql="	SELECT id_jeu, image_jeu
+			FROM  jeu
+			WHERE title_jeu=:title_jeu";
+    $query=$connect->prepare($sql);
+    $query->bindParam(':title_jeu',$title_jeu,PDO::PARAM_STR);
+    $query->execute();
+    return $query;
+}
+
 //Fonction pour récupérer tout les titres des jeux
-function recup_title()
+function recup_title_jeu()
 {
 	require("connect_bdd.php");
-	$sql="SELECT title_jeu FROM jeu;";
+	$sql="SELECT title_jeu
+          FROM jeu
+          ORDER BY id_type_jeu;";
 	$query=$connect->prepare($sql);
 	$query->execute();
 	return $query;

@@ -56,7 +56,7 @@
 				  <div id="e<?php echo $id_event[$i]; ?>" class="panel-heading">
 					<h3 class="panel-title">
 						<b><?php echo $title_event[$i]; ?></b><!--Titre de l'événement-->
-						<div class="date_event"><em>le <?php echo $date_event[$i]; ?></em></div><!--date de l'événement-->								
+                        <div class="date_event"><?php if(isset($title_jeu_event[$i])){ ?>Partie de <b><a href="complete_jeu.php?jeu=<?php echo $id_jeu_event[$i] ;?>"><?php echo $title_jeu_event[$i]; ?></b></a> <?php } ?>le <em><?php echo $date_event[$i]; ?></em></div><!--date de l'événement-->
 						
 						<!--------------Bouton pour modifier ou supprimer une actualité------------------------->
 						<?php if(isset($_SESSION['id_user']) && !isset($supprimer) && $afficher!='<' && ($_SESSION['droits']==3 || $_SESSION['id_user'] == $id_user_event[$i])){ ?><!--Si l'utilisateur est un administrateur ou un modérateur alors-->

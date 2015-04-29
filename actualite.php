@@ -46,7 +46,15 @@ while ($data=$query->fetch(PDO::FETCH_ASSOC))
 	$date_event[$j]=format_date($data['date_event']) ;
 	$date_update[$j]=format_date($data['date_update']);
 	$id_user_event[$j]=$data['id_user'];
+    $id_jeu_event[$j]=$data['id_jeu'];
+    if($id_jeu_event[$j]!=0)
+    {
+        $query2=recup_jeu($id_jeu_event[$j]);
+        $data2=$query2->fetch(PDO::FETCH_ASSOC);
+        $title_jeu_event[$j]=$data2['title_jeu'];
+    }
 	$j++;
+
 }
 
 //On affiche le tous dans le html

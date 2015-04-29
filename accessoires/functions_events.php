@@ -11,7 +11,7 @@ function recup_event($condition)
 		$order = "DESC";
 	}
 	require("connect_bdd.php");
-	$sql="	SELECT id_event, title_event, text_event, date_event, statut_event, date_update, image_event, id_user
+	$sql="	SELECT id_event, title_event, text_event, date_event, statut_event, date_update, image_event, id_user, id_jeu
 			FROM event
 			WHERE date_event".$condition."SYSDATE() AND statut_event=1
 			ORDER BY date_event ".$order."";
@@ -24,7 +24,7 @@ function recup_event($condition)
 function recup_event_one($id_event)
 {
 	require("connect_bdd.php");
-	$sql="	SELECT title_event, text_event, date_event, date_update, id_user, id_type_jeu, image_event
+	$sql="	SELECT title_event, text_event, date_event, date_update, id_user, id_jeu, image_event
 			FROM event
 			WHERE id_event=:id_event AND statut_event=1 AND date_event > SYSDATE()";
 	$query=$connect->prepare($sql);
@@ -44,32 +44,32 @@ function delete_event($id_event)
 }
 
 //Fonction pour créer un événement
-function create_event($title_event, $text_event, $date_event, $libelle_type_jeu, $image_event)
+function create_event($title_event, $text_event, $date_event, $title_jeu, $image_event)
 {
 	require("connect_bdd.php");
 	$id_user = $_SESSION['id_user'];
 	if(empty($image_event))
 	{
-        if($libelle_type_jeu=="Evénement")
+        if($title_jeu=="Autre")
         {
-            $id_type_jeu = 0;
+            $id_jeu = 0;
             $image_event = "images/icone_site/calendrier.jpg";
         }
         else
         {
-            $query = recup_id_type_jeu($libelle_type_jeu);
+            $query = recup_id_jeu($title_jeu);
             $data=$query->fetch(PDO::FETCH_ASSOC);
-            $image_event = $data['image_type_jeu'];
-            $id_type_jeu = $data['id_type_jeu'];
+            $image_event = $data['image_jeu'];
+            $id_jeu = $data['id_jeu'];
         }
 	}
 
-	$sql="INSERT INTO event		( title_event,  image_event,  id_type_jeu, date_event,  text_event, date_update, id_user )
-		  VALUES 				(:title_event, :image_event, :id_type_jeu,:date_event, :text_event, NOW(),:id_user);";
+	$sql="INSERT INTO event		( title_event,  image_event,  id_jeu, date_event,  text_event, date_update, id_user )
+		  VALUES 				(:title_event, :image_event, :id_jeu,:date_event, :text_event, NOW(),:id_user);";
 	$query=$connect->prepare($sql);
 	$query->bindParam(':title_event',$title_event,PDO::PARAM_STR,50);
     $query->bindParam(':image_event',$image_event,PDO::PARAM_STR);
-	$query->bindParam(':id_type_jeu',$id_type_jeu,PDO::PARAM_INT);
+	$query->bindParam(':id_jeu',$id_jeu,PDO::PARAM_INT);
 	$query->bindParam(':date_event',$date_event,PDO::PARAM_STR);
 	$query->bindParam(':text_event',$text_event,PDO::PARAM_STR);
 	$query->bindParam(':id_user',$id_user,PDO::PARAM_INT);
@@ -77,28 +77,28 @@ function create_event($title_event, $text_event, $date_event, $libelle_type_jeu,
 }
 
 //Fonction pour mettre à jour un événement
-function update_event($id_event, $title_event, $text_event, $date_event, $libelle_type_jeu, $image_event)
+function update_event($id_event, $title_event, $text_event, $date_event, $title_jeu, $image_event)
 {
 	require("connect_bdd.php");
     if(empty($image_event))
     {
-        if($libelle_type_jeu=="Evénement")
+        if($title_jeu=="Autre")
         {
-            $id_type_jeu = 0;
+            $id_jeu = 0;
             $image_event = "images/icone_site/calendrier.jpg";
         }
         else
         {
-            $query = recup_id_type_jeu($libelle_type_jeu);
+            $query = recup_id_jeu($title_jeu);
             $data=$query->fetch(PDO::FETCH_ASSOC);
-            $image_event = $data['image_type_jeu'];
-            $id_type_jeu = $data['id_type_jeu'];
+            $image_event = $data['image_jeu'];
+            $id_jeu = $data['id_jeu'];
         }
 	}
 	$sql="	UPDATE event 
 			SET title_event = :title_event,
 				image_event = :image_event,
-				id_type_jeu = :id_type_jeu,
+				id_jeu      = :id_jeu,
 				date_event  = :date_event,
 				text_event  = :text_event,
 				date_update = NOW()
@@ -106,7 +106,7 @@ function update_event($id_event, $title_event, $text_event, $date_event, $libell
 			
 	$query=$connect->prepare($sql);
 	$query->bindParam(':title_event',$title_event,PDO::PARAM_STR,50);
-    $query->bindParam(':id_type_jeu',$id_type_jeu,PDO::PARAM_INT);
+    $query->bindParam(':id_jeu',$id_jeu,PDO::PARAM_INT);
 	$query->bindParam(':date_event',$date_event,PDO::PARAM_STR);
 	$query->bindParam(':image_event',$image_event,PDO::PARAM_STR);
 	$query->bindParam(':text_event',$text_event,PDO::PARAM_STR);
