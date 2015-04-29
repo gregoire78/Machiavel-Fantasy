@@ -50,27 +50,28 @@ function create_event($title_event, $text_event, $date_event, $libelle_type_jeu,
 	$id_user = $_SESSION['id_user'];
 	if(empty($image_event))
 	{
-        if($libelle_type_jeu!="Evénement")
-        {
-            $query = recup_id_type_jeu ($libelle_type_jeu);
-            $data = $query->fetch(PDO::FETCH_ASSOC);
-            $image_event = $data['image_type_jeu'];
-            $id_type_jeu = $data['id_type_jeu'];
-        }
-        else
+        if($libelle_type_jeu=="Evénement")
         {
             $id_type_jeu = 0;
             $image_event = "images/icone_site/calendrier.jpg";
         }
+        else
+        {
+            $query = recup_id_type_jeu($libelle_type_jeu);
+            $data=$query->fetch(PDO::FETCH_ASSOC);
+            $image_event = $data['image_type_jeu'];
+            $id_type_jeu = $data['id_type_jeu'];
+        }
 	}
-	$sql="INSERT INTO event		( title_event,  image_event,  id_type_jeu, date_event, text_event, date_update, id_user, )
+
+	$sql="INSERT INTO event		( title_event,  image_event,  id_type_jeu, date_event,  text_event, date_update, id_user )
 		  VALUES 				(:title_event, :image_event, :id_type_jeu,:date_event, :text_event, NOW(),:id_user);";
 	$query=$connect->prepare($sql);
 	$query->bindParam(':title_event',$title_event,PDO::PARAM_STR,50);
+    $query->bindParam(':image_event',$image_event,PDO::PARAM_STR);
 	$query->bindParam(':id_type_jeu',$id_type_jeu,PDO::PARAM_INT);
 	$query->bindParam(':date_event',$date_event,PDO::PARAM_STR);
 	$query->bindParam(':text_event',$text_event,PDO::PARAM_STR);
-	$query->bindParam(':image_event',$image_event,PDO::PARAM_STR);
 	$query->bindParam(':id_user',$id_user,PDO::PARAM_INT);
 	$query->execute();
 }
@@ -79,19 +80,19 @@ function create_event($title_event, $text_event, $date_event, $libelle_type_jeu,
 function update_event($id_event, $title_event, $text_event, $date_event, $libelle_type_jeu, $image_event)
 {
 	require("connect_bdd.php");
-	if(empty($image_event))
-	{
-        if($libelle_type_jeu!="Autre")
-        {
-            $query = recup_id_type_jeu ($libelle_type_jeu);
-            $data = $query->fetch(PDO::FETCH_ASSOC);
-            $image_event = $data['image_type_jeu'];
-            $id_type_jeu = $data['id_type_jeu'];
-        }
-        else
+    if(empty($image_event))
+    {
+        if($libelle_type_jeu=="Evénement")
         {
             $id_type_jeu = 0;
             $image_event = "images/icone_site/calendrier.jpg";
+        }
+        else
+        {
+            $query = recup_id_type_jeu($libelle_type_jeu);
+            $data=$query->fetch(PDO::FETCH_ASSOC);
+            $image_event = $data['image_type_jeu'];
+            $id_type_jeu = $data['id_type_jeu'];
         }
 	}
 	$sql="	UPDATE event 

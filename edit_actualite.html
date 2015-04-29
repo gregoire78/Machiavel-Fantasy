@@ -55,11 +55,11 @@
 				</div>
 			  </div>
 			  <div class="form-group">
-				<label for="inputdate" class="col-sm-2 control-label">Information </label>
+				<label for="inputdate" class="col-sm-2 control-label">Partie </label>
 				<div class="col-sm-10">
 					<select class="form-control time" style="width:27.3%;" name="libelle_type_jeu">
 					    <?php $i=0; while (isset($libelle_jeu_menu[$i])) { ?>
-					        <option <?php if(isset($id_type_jeu) && $id_jeu_menu[$i]==$id_type_jeu){echo 'selected="selected"';} ?> >Partie de <?php echo $libelle_jeu_menu[$i];$i++; ?></option>
+					        <option <?php if(isset($id_type_jeu) && $id_jeu_menu[$i]==$id_type_jeu){echo 'selected="selected"';} ?> ><?php echo $libelle_jeu_menu[$i];$i++; ?></option>
                         <?php } ?>
                         <option <?php if(isset($id_type_jeu) && $id_type_jeu==0){echo 'selected="selected"';} ?> >Evénement</option>
 					</select>

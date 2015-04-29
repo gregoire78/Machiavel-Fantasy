@@ -37,7 +37,7 @@ if(isset($_POST['create'])|| isset ($_POST['update'])){
 	$date = $_POST['date'];
 	$hour_begin = $_POST['hour_begin'];
 	$minute_begin =$_POST['minute_begin'];
-	$image_event = NULL;
+	$image_event = NULL; //$_POST['image_event'];
 	$date_event=date("Y-m-d H:i:s",strtotime($date.' '.$hour_begin.$minute_begin."00"));
 	
 	$string=35; //taille de la chaine caractères accepté
