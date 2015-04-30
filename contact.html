@@ -28,19 +28,16 @@
 			include_once("accessoires/header.html");
 			include_once("accessoires/menu.html");//barre de menu
 		?>
-		<div class="col-md-2">
-			<?php include_once("accessoires/calendrier_aside.php");
+		<div class="col-md-10 col-lg-offset-1 contenu">
+            <div class="col-md-10 main">
+                <h3 class="underline">Contact</h3>
+            </div>
+            <div class="col-md-2" style="padding-right:0;">
+                <?php include_once("accessoires/calendrier_aside.php");
 				  include_once("accessoires/actualite_mini.php");?>
+            </div>
 		</div>
-		<div class="col-md-8">
-			<div class="panel panel-default contenu">
-				<div class="panel-body">
-					<h3 class="underline">Contact</h3>
-				</div>
-			</div>
-		</div>
-		<?php 
-			include_once("accessoires/chat.php");
+		<?php
 			include_once("accessoires/footer.html");
 		?>
 	</body>
