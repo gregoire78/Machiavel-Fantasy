@@ -1,1 +1,187 @@
-Ajouter un jeu
+<div class="col-md-12 contenu">
+    <h3 class="underline">
+        <?php if(isset ($_GET['jeu'])){?>
+        Modifier un jeu
+        <?php } else{ ?>
+        Ajouter un jeu
+        <?php }?>
+    </h3>
+    <form method="POST" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="form-group">
+                    <label for="inputArticleTitle" class="ccontrol-label">Titre du jeu</label>
+                    <div>
+                        <input type="text" class="form-control" id="inputArticleTitle"  name="title_jeu" value="<?php if(isset($title_jeu))echo $title_jeu; ?>" required>
+                        <?php if(isset($errors_jeu[1])) { ?>
+                        <div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom: 0">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?= $errors_article[1];?>
+                        </div>
+                        <?php } ?>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputtype" class="control-label">Type de jeu</label>
+                    <select id="inputtype" class="form-control" name="libelle">
+                        <?php $i=0; while (isset($id_jeu_menu[$i])){ ?>
+                        <option <?php if(isset($_GET['jeu'])){ if ($libelle_jeu_menu[$i]==$id_type_jeu[$i]){ echo 'selected="selected"';} }?> >
+                        <?= $libelle_jeu_menu[$i]; ?>
+                        </option>
+                        <?php $i++; } ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="inputArticleFile" class="control-label">Image du jeu</label>
+                    <input data-toggle="modal" data-target="#myModal" onchange="readURL(this);" id="inputArticleFile" name="inputArticleFile" type="file" class="file" accept="image/*" data-show-upload="false" data-show-preview="false">
+
+                    <script>
+                        /* Initialize your widget via javascript as follows */
+                        $("#inputArticleFile").fileinput({
+                            allowedFileExtensions : ['jpg', 'png','gif'],
+                            maxFileSize: 500000,
+
+                            previewFileType: "image",
+                            browseClass: "btn btn-default",
+                            browseLabel: "&nbsp;Parcourir",
+                            browseIcon: '<i class="glyphicon glyphicon-picture"></i>',
+                            removeClass: "btn btn-danger",
+                            removeLabel: "",
+                            removeIcon: '<i class="glyphicon glyphicon-trash"></i>'
+                        });
+                    </script>
+
+
+                    <!-- Button trigger modal -->
+                    <!--<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                        Launch demo modal
+                    </button>-->
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                                </div>
+
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="crop " style="height: 300px">
+                                                <img id="crop" src="" />
+                                                <!--<script>
+                                                    $('#myModal').on('shown.bs.modal', function () {
+                                                        croppy("images/avatars/defaut.png");
+                                                    })//.on('hidden.bs.modal', function () {
+                                                        croppy("images/avatars/defaut.png");
+                                                    //})
+                                                    ;
+                                                </script>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div id="pre_crop" class="preview cropper-bg" style="overflow: hidden;height: 235px;width: 176px; float: none;border: 3px solid #fff;box-shadow: 0 0 5px rgba(0,0,0,.15);margin-left: auto;margin-right: auto;" >
+                                                <img src=""/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary zoomin" type="button" title="Zoom +"><span class="glyphicon glyphicon-zoom-in"></span></button>
+                                    <button class="btn btn-primary zoomout" type="button" title="Zoom -"><span class="glyphicon glyphicon-zoom-out"></span></button>
+                                    <script>
+                                        $(".zoomin").on("click",function(){
+                                            $("#crop").cropper("zoom",0.1);
+                                        });
+                                        $(".zoomout").on("click",function(){
+                                            $("#crop").cropper("zoom",-0.1);
+                                        });
+                                    </script>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <?php if(isset($errors_jeu[4])) { ?>
+                    <div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom: 0">
+                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?= $errors_jeu[4];?>
+                    </div>
+                    <?php } ?>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div id="pre_form" class="preview cropper-bg" style="overflow: hidden;height: 200px;width: 150px; float: noneborder: 3px solid #fff;box-shadow: 0 0 5px rgba(0,0,0,.15);margin-left: auto;margin-right: auto;">
+                    <label for="inputArticleFile" style="cursor: pointer;"><img src="../images/jeux/<?= $image_jeu; ?>"/></label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="editor1" class="control-label">Contenu</label>
+            <div>
+                <?php if(isset($errors_jeu[2])) { ?>
+                <div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom: 0">
+                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?= $errors_jeu[2];?>
+                </div>
+                <?php } ?>
+                <textarea id="editor1" name="text_jeu" required="required"><?php if(isset($text_jeu)) echo $text_jeu; ?></textarea>
+                <script type="text/javascript">
+                    CKEDITOR.replace( 'editor1',{
+                        height: '200px',
+                        toolbar: [
+                            { name: 'document', items: [ 'Source']},
+                            { name: 'view', items: ['Preview','-','Maximize','ShowBlocks','CreateDiv']},
+                            { name: 'basicstyles', items: [ 'Bold', 'Italic','Strike','Underline', '-', 'RemoveFormat'  ] },
+                            { name: 'styles', items: [ 'Font', 'FontSize' ] },
+                            { name: 'insert', items: [ 'Smiley', 'SpecialChar' ,'CodeSnippet', 'EqnEditor'] },
+                            { name: 'editing', groups: [ 'find', 'selection', 'spellchecker' ], items: [ 'SelectAll', '-', 'Scayt' ] },
+                            { name: 'colors', items: [ 'TextColor', 'BGColor'] },
+                            { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
+                            { name: 'insert', items: [ 'Image', 'Flash', 'Table', 'HorizontalRule', 'SpecialChar', 'PageBreak', 'Iframe' ] },
+                            { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl' ] },
+                        ]
+                    } );
+                </script>
+            </div>
+        </div>
+        <div class="form-group">
+            <div >
+                <?php if(isset($errors_jeu[3])) { ?>
+                <div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom: 0">
+                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?= $errors_article[3];?>
+                </div>
+                <?php } ?>
+                <!--<p>Activer les commentaires : </p>
+                <div class='input'>
+                    <input type='radio' value='1' id='input5' name='com_allowed' <?php //if(isset ($_GET['article'])){ if($com_allowed==1){echo 'checked';}}else{echo 'checked';} ?> required>
+                    <label for="input5">Oui</label>
+                    <input type='radio' value='0' id='input6' name='com_allowed' <?php //if(isset ($_GET['article'])){ if($com_allowed==0){echo 'checked';}} ?> required>
+                    <label for="input6">Non</label>
+                </div>-->
+            </div>
+        </div>
+        <div class="form-group">
+            <p>
+                <?php 	if(isset($_GET['jeu']))
+								{ ?>
+                <input class="btn btn-default" type="submit" value=" Modifier " name="modifier"/>
+                <?php 	}else	{ ?>
+                <input class="btn btn-default" type="submit" value=" Poster " name="ajouter"/>
+                <?php 	} ?>
+            </p>
+        </div>
+    </form>
+</div>
+
+<!--read url pour l'image-->
+<script type="text/javascript" src="../js/readURL.js"></script>
+<!-- compteur -->
+<script type="text/javascript" src="../js/compteur.js"></script>
+<script>
+
+</script>
