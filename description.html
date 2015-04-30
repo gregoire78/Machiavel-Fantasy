@@ -27,12 +27,7 @@
 			include_once("accessoires/header.html");//logo du site
 			include_once("accessoires/menu.html");//barre de menu
 		?>
-		<div class="col-md-2">
-			<?php include_once("accessoires/calendrier_aside.php");
-				  include_once("accessoires/actualite_mini.php");
-			?>
-		</div>
-		<div class="col-md-8 contenu espace_description">
+		<div class="col-md-10 col-lg-offset-1 contenu espace_description">
 			<div style="float:left;">
 				<h3 class="media-heading underline">Les jeux du club... <small></small></h3>
 				<p class="text_description">
@@ -55,8 +50,7 @@
 					</div>
 			<?php $i++; } ?>
 		</div>
-		<?php 
-			include_once("accessoires/chat.php");
+		<?php
 			include_once("accessoires/footer.html");
 		?>
 	</body>

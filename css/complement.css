@@ -14,12 +14,21 @@ h3.underline{
 /*-----------------------------bloc contenu de toute les pages----------------------------------*/
 .contenu
 {
-    padding:20px;
-    margin:15px 0;
-    border: 1px solid transparent;
-    border-radius: 4px;
     background-color: #F5F7FA;
-    min-height:350px;
+    margin-top:15px;
+    border:1px solid #292626;
+    padding:15px;
+    border-bottom:0;
+}
+.main
+{
+
+    /*
+    margin-top:15px;
+    margin-bottom:15px;*/
+    padding:0;
+    padding-right:15px;
+    border-right:1px solid #E5E5E5;
 }
 
 /*-------------------------------------Classe pour afficher un message d'erreur----------------------*/
@@ -39,10 +48,11 @@ h3.underline{
 {
     background-color: #222;
     padding:0px;
+    margin-left: 8.33333333%;
     position: relative;
-    border-top: 1px solid #020101;
+    border: 1px solid #292626;
     color:#9d9d9d;
-    width:100%;
+    width:83.33333333%;
     float:left;
 }
 .col_footer /*bloc du footer*/
@@ -79,8 +89,8 @@ h3.underline{
 }
 .content_footer
 {
-    margin:3px 0 3px 16.666%;
-    width:66.66666667%;
+    margin:3px 0 3px 0;
+    width:100%;
     float:left;
 }
 .copyright /*Bloc du copyright*/
@@ -164,6 +174,10 @@ nav.navbar.navbar-inverse
     border-radius: 0px;
     border-left:0px;
     border-right:0px;
+}
+.menu
+{
+    padding:0px;
 }
 
 

@@ -27,12 +27,8 @@
 			include_once("accessoires/header.html");//logo du site
 			include_once("accessoires/menu.html");//barre de menu
 		?>
-		<div class="col-md-2">
-			<?php 	include_once("accessoires/calendrier_aside.php");
-					include_once("accessoires/actualite_mini.php");
-			?>
-		</div>
-		<div class="col-md-8 contenu">
+        <div class="contenu col-md-10 col-lg-offset-1">
+            <div class="col-md-10 main">
             <?php if(isset($title_jeu))
             { ?>
                 <h3 class="media-heading underline">
@@ -47,10 +43,14 @@
 
             <?php
             } ?>
-
+            </div>
+            <div class="col-md-2" style="padding-right:0;">
+                <?php 	include_once("accessoires/calendrier_aside.php");
+					include_once("accessoires/actualite_mini.php");
+			?>
+            </div>
 		</div>
 		<?php
-			include_once("accessoires/chat.php");
 			include_once("accessoires/footer.html");
 		?>
 	</body>

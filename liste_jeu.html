@@ -27,51 +27,52 @@
 			include_once("accessoires/header.html");//logo du site
 			include_once("accessoires/menu.html");//barre de menu
 		?>
-		<div class="col-md-2">
-			<?php include_once("accessoires/calendrier_aside.php");
+        <div class="contenu col-md-10 col-lg-offset-1">
+            <div class="col-md-10 main">
+                <?php if (isset($libelle_type_jeu)){ ?>
+                    <h3 class="media-heading">
+                        <img src="<?= $icon_type_jeu; ?>" height="75" width="75"/>
+                        <span class="underline"><?= $libelle_type_jeu; ?></span>
+                    </h3>
+                    <!--<span class="text-justify" ><em><?php //echo $description_type_jeu; ?></em></span>-->
+                    <?php $i=0; if (isset ($id_jeu[$i]))
+                        {
+                            while (isset ($id_jeu[$i]))
+                            { ?>
+                                <article class="media liste_jeu">
+                                    <div class="media-mod media-img-left col-md-3 col-sm-3 col-xs-3">
+                                        <img class="img-responsive" src="<?= $image_jeu[$i];?>" alt="..."/>
+                                    </div>
+                                    <div class="media-mod col-md-9 col-sm-9 col-xs-9">
+                                        <h4 class="media-heading" style="background-color: <?= $color_type_jeu; ?>;">
+                                            <?= $title_jeu[$i]; ?>
+                                        </h4>
+                                        <p class="text-justify">
+                                            <?= $text_jeu[$i]; ?>
+                                        </p>
+                                    </div>
+                                    <a style="float:right;margin:10px;" class="btn btn-primary" href="complete_jeu.php?jeu=<?= $id_jeu[$i];?>" role="button">Lire plus</a>
+                                </article>
+                    <?php 		$i++;
+                            }
+                        include_once("accessoires/barre_page.html");
+                        }
+                        else
+                        { ?>
+                            <div class="message_erreur">Il n'y a aucun jeu pour le momment.</div>
+                    <?php
+                        }
+                } else { ?>
+                    <div class="message_erreur">Le type de jeu que vous recherchez n'existe pas.</div>
+                <?php } ?>
+            </div>
+            <div class="col-md-2" style="padding-right:0;">
+                <?php include_once("accessoires/calendrier_aside.php");
 				  include_once("accessoires/actualite_mini.php");
 			?>
-		</div>
-		<div class="col-md-8 contenu ">
-			<?php if (isset($libelle_type_jeu)){ ?>
-				<h3 class="media-heading">
-					<img src="<?= $icon_type_jeu; ?>" height="75" width="75"/>
-					<span class="underline"><?= $libelle_type_jeu; ?></span>
-				</h3>
-				<!--<span class="text-justify" ><em><?php //echo $description_type_jeu; ?></em></span>-->
-				<?php $i=0; if (isset ($id_jeu[$i]))
-					{
-						while (isset ($id_jeu[$i]))
-						{ ?>
-							<article class="media liste_jeu">
-								<div class="media-mod media-img-left col-md-3 col-sm-3 col-xs-3">											
-									<img class="img-responsive" src="<?= $image_jeu[$i];?>" alt="..."/>
-								</div>
-								<div class="media-mod col-md-9 col-sm-9 col-xs-9">
-									<h4 class="media-heading" style="background-color: <?= $color_type_jeu; ?>;">
-										<?= $title_jeu[$i]; ?>
-									</h4>
-									<p class="text-justify">
-										<?= $text_jeu[$i]; ?>
-									</p> 
-								</div>
-								<a style="float:right;margin:10px;" class="btn btn-primary" href="complete_jeu.php?jeu=<?= $id_jeu[$i];?>" role="button">Lire plus</a>
-							</article>
-				<?php 		$i++;
-						}
-					include_once("accessoires/barre_page.html");
-					}
-					else
-					{ ?>
-						<div class="message_erreur">Il n'y a aucun jeu pour le momment.</div>
-				<?php 
-					}
-			} else { ?>
-				<div class="message_erreur">Le type de jeu que vous recherchez n'existe pas.</div>
-			<?php } ?>
+            </div>
 		</div>
 		<?php
-			include_once("accessoires/chat.php");
 			include_once("accessoires/footer.html");
 		?>
 	</body>
