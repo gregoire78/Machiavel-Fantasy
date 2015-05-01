@@ -12,7 +12,7 @@
                 <div class="form-group">
                     <label for="inputArticleTitle" class="ccontrol-label">Titre du jeu</label>
                     <div>
-                        <input type="text" class="form-control" id="inputArticleTitle"  name="title_jeu" value="<?php if(isset($title_jeu))echo $title_jeu; ?>" required>
+                        <input type="text" class="form-control" id="inputArticleTitle"  name="title_jeu" value="<?php if(isset($title_jeu))echo $title_jeu; ?>">
                         <?php if(isset($errors_jeu[1])) { ?>
                         <div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom: 0">
                             <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -33,7 +33,7 @@
                 </div>
                 <div class="form-group">
                     <label for="inputArticleFile" class="control-label">Image du jeu</label>
-                    <input data-toggle="modal" data-target="#myModal" onchange="readURL(this);" id="inputArticleFile" name="inputArticleFile" type="file" class="file" accept="image/*" data-show-upload="false" data-show-preview="false">
+                    <input onchange="open_modal(this);" id="inputArticleFile" name="inputArticleFile" type="file" class="file" accept="image/png,image/jpeg,image/gif" data-show-upload="false" data-show-preview="false">
 
                     <script>
                         /* Initialize your widget via javascript as follows */
@@ -86,6 +86,7 @@
                                             <div id="pre_crop" class="preview cropper-bg pre_label" style="overflow: hidden;height: 235px;width: 176px; float: none;border: 3px solid #fff;box-shadow: 0 0 5px rgba(0,0,0,.15);margin-left: auto;margin-right: auto;" >
                                                 <img src=""/>
                                             </div>
+                                            <div id="dim"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -187,7 +188,6 @@
             </p>
         </div>
     </form>
-    <span id="mime1"></span>
 </div>
 
 <!--read url pour l'image-->
