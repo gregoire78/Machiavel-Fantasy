@@ -3,37 +3,50 @@
  */
 
 function readURL(input) {
-    $('body')
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
 
-        reader.onload = function (e) {
-            var url = e.target.result;
+    var typefile = input.files[0];
 
-            croppy(url,'defaut_jeu.png');
-        };
-        reader.readAsDataURL(input.files[0]);
+    if (input.files && typefile) {
+        if(typefile.type.match(/(png|jpg|gif|jpeg)/))
+        {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var url = e.target.result;
+
+                croppy(url,'defaut_jeu.png');
+            };
+            reader.readAsDataURL(typefile);
+        }
+        else
+        {
+            $("#inputError").html("Le type de fichier <b>("+typefile.type+")</b> n'est pas pris en charge.<br> Sont autorisées les <b>png, jpg et gif</b>").show();
+            $('#myModal').modal('hide');
+        }
     }
 }
 function croppy(uurl,defaut) {
 
-    var img_crop = '<img id="crop" src="' + uurl + '">',canvasData, cropBoxData;
-    var img_pre_def = '<label for="inputArticleFile" style="cursor: pointer;"><img src="../images/jeux/'+defaut+'"/></label>'
+    var img_crop = '<img id="crop" src="' + uurl + '">';
+    var img_pre_def = '<img src="../images/jeux/'+defaut+'"/>';
 
     $('.fileinput-remove').on('click',function(){
-        $('#pre_form').empty().html(img_pre_def);
+        $("#inputError").hide();
+        $("#crop").cropper("setAspectRatio",3/4);
+        $('#pre_form').empty().removeAttr('data-tooggle').removeAttr('data-target').css('cursor','default').html(img_pre_def);
         $('#pre_crop').empty().html('<img src="" />');
         $('.crop').empty();
     });
 
+    $("#pre_form").attr('data-toggle','modal').attr('data-target','#myModal').css('cursor','pointer');
     $('.crop').empty().html(img_crop);
     $('#crop').cropper({
 
         preview: $(".preview"),
-        aspectRatio: 3/4,
+        aspectRatio : 3/4,
         strict: false,
-        autoCropArea: 0.5,
-        zoom:-0.1,
+        dragCrop:false,
+        responsive:true,
+        autoCropArea: 1,
         crop: function (data) {
             // Output the result data for cropping image.
             var json = [
@@ -43,12 +56,6 @@ function croppy(uurl,defaut) {
                 '"width":' + data.width,
                 '"rotate":' + data.rotate + '}'
             ].join()
-        },
-        built: function () {
-            img_crop.cropper('setCanvasData', canvasData);
-            img_crop.cropper('setCropBoxData', cropBoxData);
-        },
-
-
+        }
     });
 }
