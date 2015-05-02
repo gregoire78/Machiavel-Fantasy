@@ -52,7 +52,6 @@
                     </script>
                     <div id="inputError" class="alert alert-danger" style="display:none"></div>
 
-
                     <!-- Button trigger modal -->
                     <!--<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
                         Launch demo modal
@@ -83,7 +82,7 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div id="type_crop">Portrait (3:4)</div>
-                                            <div id="pre_crop" class="preview cropper-bg pre_label" style="overflow: hidden;height: 235px;width: 176px; float: none;border: 3px solid #fff;box-shadow: 0 0 5px rgba(0,0,0,.15);margin-left: auto;margin-right: auto;" >
+                                            <div id="pre_crop" class="preview pre_label" style="overflow: hidden;height: 235px;width: 176px; float: none;border: 3px solid #fff;box-shadow: 0 0 5px rgba(0,0,0,.15);margin-left: auto;margin-right: auto;" >
                                                 <img src=""/>
                                             </div>
                                             <div id="dim"></div>
@@ -111,6 +110,29 @@
                                             $("#type_crop").empty().text("Portrait (3:4)");
                                         });
                                     </script>
+                                    <span><input type="text" value="222" id="border-color" class="pick-a-color form-control"></span>
+                                    <script type="text/javascript">
+
+                                        $(document).ready(function () {
+
+                                            $(".pick-a-color").pickAColor({
+                                                showSpectrum            : true,
+                                                showSavedColors         : true,
+                                                saveColorsPerElement    : true,
+                                                fadeMenuToggle          : true,
+                                                showAdvanced		    : true,
+                                                showBasicColors         : true,
+                                                showHexInput            : false,
+                                                allowBlank				: true,
+                                                inlineDropdown			: true
+                                            });
+
+                                        });
+                                        $("#border-color").on("change", function () {
+                                            console.log($(this).val());
+                                            $('.preview').css('background-color','#'+$(this).val()+'')
+                                        });
+                                    </script>
                                     <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
                                 </div>
                             </div>
@@ -126,7 +148,7 @@
                 </div>
             </div>
             <div class="col-md-5">
-                <div id="pre_form" class="preview cropper-bg" style="overflow: hidden;height: 200px;width: 150px; float: noneborder: 3px solid #fff;box-shadow: 0 0 5px rgba(0,0,0,.15);margin-left: auto;margin-right: auto;">
+                <div id="pre_form" class="preview" style="overflow: hidden;height: 200px;width: 150px; float: noneborder: 3px solid #fff;box-shadow: 0 0 5px rgba(0,0,0,.15);margin-left: auto;margin-right: auto;">
                     <img src="../images/jeux/<?= $image_jeu; ?>"/>
                 </div>
             </div>
