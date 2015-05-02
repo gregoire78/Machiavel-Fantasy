@@ -16,7 +16,7 @@
                         <?php if(isset($errors_jeu[1])) { ?>
                         <div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom: 0">
                             <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?= $errors_article[1];?>
+                            <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?= $errors_jeu[1];?>
                         </div>
                         <?php } ?>
                     </div>
@@ -32,12 +32,12 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="inputArticleFile" class="control-label">Image du jeu</label>
-                    <input onchange="open_modal(this);" id="inputArticleFile" name="inputArticleFile" type="file" class="file" accept="image/png,image/jpeg,image/gif" data-show-upload="false" data-show-preview="false">
+                    <label for="inputGameFile" class="control-label">Image du jeu</label>
+                    <input onchange="open_modal(this);" id="inputGameFile" name="inputGameFile" type="file" class="file" accept="image/png,image/jpeg,image/gif" data-show-upload="false" data-show-preview="false">
 
                     <script>
                         /* Initialize your widget via javascript as follows */
-                        $("#inputArticleFile").fileinput({
+                        $("#inputGameFile").fileinput({
                             allowedFileExtensions : ['jpg', 'png','gif'],
                             maxFileSize: 500000,
 
@@ -68,7 +68,7 @@
                                 <div class="modal-body">
                                     <div class="row">
                                         <div class="col-md-8">
-                                            <div class="crop " style="height: 300px">
+                                            <div class="crop " style="height: 300px;">
                                                 <img id="crop" src="" />
                                                 <!--<script>
                                                     $('#myModal').on('shown.bs.modal', function () {
@@ -90,7 +90,9 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <input type="text" value="fff" id="border-color" class="pick-a-color form-control">
+
+                                    <!--***************** Input couleur de fond de l'image *****************************-->
+                                    <input type="text" value="fff" id="backgroundColor" name="" class="pick-a-color form-control">
                                     <script type="text/javascript">
 
                                         $(document).ready(function () {
@@ -105,13 +107,10 @@
                                                 allowBlank				: true,
                                                 inlineDropdown			: false
                                             });
-                                            $("#border-color").on("change", function () {
-                                                console.log($(this).val());
-                                                $('.preview').css('background-color','#'+$(this).val()+'')
-                                            });
                                         });
 
                                     </script>
+                                    <!--****************-->
                                     <button class="btn btn-primary zoomin" type="button" title="Zoom +" style="padding-left: 4px;padding-right: 4px;padding-top: 2px;padding-bottom: 2px;"><span class="glyphicon glyphicon-zoom-in" style="font-size: 25px"></span></button>
                                     <button class="btn btn-primary zoomout" type="button" title="Zoom -" style="padding-left: 4px;padding-right: 4px;padding-top: 2px;padding-bottom: 2px;"><span class="glyphicon glyphicon-zoom-out" style="font-size: 25px"></span></button>
                                     <button class="btn btn-primary carre" type="button" title="Zoom -">1:1</button>
@@ -151,6 +150,7 @@
                     <img src="../images/jeux/<?= $image_jeu; ?>"/>
                 </div>
             </div>
+            <input id="data" name="data" type="hidden"/>
         </div>
         <div class="form-group">
             <label for="editor1" class="control-label">Contenu</label>
@@ -213,5 +213,3 @@
 
 <!--read url pour l'image-->
 <script type="text/javascript" src="../js/readURL.js"></script>
-<!-- compteur -->
-<script type="text/javascript" src="../js/compteur.js"></script>
