@@ -34,94 +34,107 @@
 			include_once("accessoires/menu.html");//barre de menu
 		?>
 		<div class="col-md-10 col-lg-offset-1 contenu">
-			<h3 class="underline"><?php if(isset($_GET['modifier'])){ ?>Modifier un événement <?php } else { ?> Créer un évènement <?php } ?></h3>
-			<form action="edit_actualite.php<?php if(isset($_GET['modifier'])) echo "?modifier=".$id_event;?>" method="POST" class="form-horizontal">
-			    <div class="form-group">
-				    <label for="inputEmail3" class="col-sm-2 control-label">Sujet</label>
-				    <div class="col-sm-10">
-					    <input type="text" class="form-control" id="title_event" name="title_event" value="<?php if(isset($title_event)){ echo $title_event;} ?>">
-					
-					    <!------------------Message d'erreur si on n'a pas mis de titre ------------------------>
-                        <?php if (isset($error_data[1])){ ?>
-                            <div class="alert alert-danger alert-dismissible" role="alert" >
-                              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                              <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?php echo $error_data[1]; ?>
-                            </div>
-                        <?php } ?>
-				    </div>
-			    </div>
-                <div>
+            <h3  class="title_page" style="background-color: rgba(72, 55, 187, 0.56);">
+                <img src="images/icone_site/edit-calendrier.png" height="75" width="75"></img>
+                <?php if(isset($_GET['modifier'])){ ?>
+                    <span>Modifier un événement</span>
+                <?php } else{ ?>
+                    <span>Créer un événement</span>
+                <?php } ?>
+            </h3>
+            <div class="col-md-10 main">
+                <form action="edit_actualite.php<?php if(isset($_GET['modifier'])) echo "?modifier=".$id_event;?>" method="POST" class="form-horizontal">
                     <div class="form-group">
-                        <label for="inputdate" class="col-sm-2 control-label">Partie de</label>
-                        <div class="col-sm-10" >
-                            <select class="form-control time" name="title_jeu">
-                                <?php $i=0; while (isset($title[$i])) { ?>
-                                    <option <?php if(isset($title_jeu) && $title[$i]==$title_jeu){echo 'selected="selected"';} ?> ><?php echo $title[$i];$i++; ?></option>
-                                <?php } ?>
-                                <option <?php if(isset($title_jeu) && $title_jeu=="Autre"){echo 'selected="selected"';} ?> >Autre</option>
-                            </select>
+                        <label for="inputEmail3" class="col-sm-2 control-label">Sujet</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="title_event" name="title_event" value="<?php if(isset($title_event)){ echo $title_event;} ?>">
 
-                            <!----------Message d'alerte si on n'a pas renseigner de date------------------------->
-                            <?php if (isset($error_data[3])){ ?>
-                                <div class="alert alert-danger alert-dismissible" role="alert">
+                            <!------------------Message d'erreur si on n'a pas mis de titre ------------------------>
+                            <?php if (isset($error_data[1])){ ?>
+                                <div class="alert alert-danger alert-dismissible" role="alert" >
                                   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                  <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?php echo $error_data[3]; ?>
+                                  <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?php echo $error_data[1]; ?>
                                 </div>
                             <?php } ?>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Date</label>
-                        <div class="col-sm-10">
-                            <input readonly="readonly" type="text" class="form-control" style="width:15%; display:inline-block; text-align:center;" id="inputdate" name="date" value="<?php if(isset($date)){ echo $date;} ?>">
-                            à
-                            <select class="form-control time" name="hour_begin">
-                                <?php for ($i=0; $i<=23;$i++) { ?>
-                                <option <?php if((isset($hour_begin)) && $i==$hour_begin){echo 'selected="selected"';} ?> ><?php echo sprintf("%'.02d", $i); ?></option>
-                                <?php } ?>
-                            </select>
-                            h
-                            <select class="form-control time" name="minute_begin">
-                                <?php for ($i=0; $i<60;$i+=5) { ?>
-                                <option <?php if((isset($minute_begin)) && $i==$minute_begin) {echo 'selected="selected"';} ?> ><?php echo sprintf("%'.02d", $i); ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Nombre de participant</label>
-                        <div class="col-sm-10">
-                            <input class="form-control" type="number" min="0" step="1"></input>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputtext" class="col-sm-2 control-label">Corps du message</label>
-                    <div class="col-sm-10">
-                        <textarea class="form-control" rows="20" style="resize:none;" name="text_event"><?php if (isset($text_event))echo $text_event; ?></textarea>
+                    <div>
+                        <div class="form-group">
+                            <label for="inputdate" class="col-sm-2 control-label">Partie de</label>
+                            <div class="col-sm-10" >
+                                <select class="form-control time" name="title_jeu">
+                                    <?php $i=0; while (isset($title[$i])) { ?>
+                                        <option <?php if(isset($title_jeu) && $title[$i]==$title_jeu){echo 'selected="selected"';} ?> ><?php echo $title[$i];$i++; ?></option>
+                                    <?php } ?>
+                                    <option <?php if(isset($title_jeu) && $title_jeu=="Autre"){echo 'selected="selected"';} ?> >Autre</option>
+                                </select>
 
-                        <!----------Message d'alerte si on n'a pas mis de texte------------------------->
-                        <?php if (isset($error_data[2])){ ?>
-                            <div class="alert alert-danger alert-dismissible" role="alert">
-                              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                              <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?php echo $error_data[2]; ?>
+                                <!----------Message d'alerte si on n'a pas renseigner de date------------------------->
+                                <?php if (isset($error_data[3])){ ?>
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                      <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?php echo $error_data[3]; ?>
+                                    </div>
+                                <?php } ?>
                             </div>
-                        <?php } ?>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Date</label>
+                            <div class="col-sm-10">
+                                <input readonly="readonly" type="text" class="form-control" style="width:15%; display:inline-block; text-align:center;" id="inputdate" name="date" value="<?php if(isset($date)){ echo $date;} ?>">
+                                à
+                                <select class="form-control time" name="hour_begin">
+                                    <?php for ($i=0; $i<=23;$i++) { ?>
+                                    <option <?php if((isset($hour_begin)) && $i==$hour_begin){echo 'selected="selected"';} ?> ><?php echo sprintf("%'.02d", $i); ?></option>
+                                    <?php } ?>
+                                </select>
+                                h
+                                <select class="form-control time" name="minute_begin">
+                                    <?php for ($i=0; $i<60;$i+=5) { ?>
+                                    <option <?php if((isset($minute_begin)) && $i==$minute_begin) {echo 'selected="selected"';} ?> ><?php echo sprintf("%'.02d", $i); ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Nombre de participant</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" value="<?php if(isset($inscription_event)){ echo $inscription_event; } ?>" type="number" min="1" step="1" name="inscription_event"></input>
+                            </div>
+                        </div>
                     </div>
-                </div>
-			  <div class="form-group">
-				<div class="col-sm-offset-2 col-sm-10">							
-					<?php if(isset ($_GET['modifier']))
-					{ ?>
-						<button type="submit" class="btn btn-default" name="update"> Modifier </button><?php
-					}
-					else	{ ?>
-						<button type="submit" class="btn btn-default" name="create"> Créer </button>
-					<?php } ?>
-					<button type="reset" class="btn btn-default" > Réinialiser </button>
-				</div>
-			  </div>
-			</form>
+                    <div class="form-group">
+                        <label for="inputtext" class="col-sm-2 control-label">Corps du message</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" rows="20" style="resize:none;" name="text_event"><?php if (isset($text_event))echo $text_event; ?></textarea>
+
+                            <!----------Message d'alerte si on n'a pas mis de texte------------------------->
+                            <?php if (isset($error_data[2])){ ?>
+                                <div class="alert alert-danger alert-dismissible" role="alert">
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                  <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?php echo $error_data[2]; ?>
+                                </div>
+                            <?php } ?>
+                        </div>
+                    </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <?php if(isset ($_GET['modifier']))
+                        { ?>
+                            <button type="submit" class="btn btn-default" name="update"> Modifier </button><?php
+                        }
+                        else	{ ?>
+                            <button type="submit" class="btn btn-default" name="create"> Créer </button>
+                        <?php } ?>
+                        <button type="reset" class="btn btn-default" > Réinialiser </button>
+                    </div>
+                  </div>
+                </form>
+            </div>
+            <div class="col-md-2" style="padding-right:0;">
+                <?php include_once("accessoires/calendrier_aside.php");
+				  include_once("accessoires/actualite_mini.php");?>
+            </div>
 		</div>
 		<?php
 			include_once("accessoires/footer.html");

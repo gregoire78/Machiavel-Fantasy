@@ -28,12 +28,13 @@
 			include_once("accessoires/menu.html");//barre de menu
 		?>
         <div class="contenu col-md-10 col-lg-offset-1">
+            <h3 class="title_page" style="background-color: <?= $color_type_jeu; ?>;">
+                <img src="<?= $icon_type_jeu; ?>" height="75" width="75"></img>
+                <span class=""><?= $libelle_type_jeu; ?></span>
+            </h3>
             <div class="col-md-10 main">
                 <?php if (isset($libelle_type_jeu)){ ?>
-                    <h3 class="media-heading">
-                        <img src="<?= $icon_type_jeu; ?>" height="75" width="75"/>
-                        <span class="underline"><?= $libelle_type_jeu; ?></span>
-                    </h3>
+
                     <!--<span class="text-justify" ><em><?php //echo $description_type_jeu; ?></em></span>-->
                     <?php $i=0; if (isset ($id_jeu[$i]))
                         {
@@ -44,7 +45,7 @@
                                         <img class="img-responsive" src="<?= $image_jeu[$i];?>" alt="..."/>
                                     </div>
                                     <div class="media-mod col-md-9 col-sm-9 col-xs-9">
-                                        <h4 class="media-heading" style="background-color: <?= $color_type_jeu; ?>;">
+                                        <h4 class="media-heading" >
                                             <?= $title_jeu[$i]; ?>
                                         </h4>
                                         <p class="text-justify">

@@ -28,27 +28,26 @@
 			include_once("accessoires/menu.html");//barre de menu
 		?>
         <div class="contenu col-md-10 col-lg-offset-1">
-            <div class="col-md-10 main">
             <?php if(isset($title_jeu))
             { ?>
-                <h3 class="media-heading underline">
-                    <?php echo $title_jeu; ?>
-                </h3>
+            <h3 class="title_page">
+                <span><?php echo $title_jeu; ?></span>
+            </h3>
+            <div class="col-md-10 main">
                 <?php echo $text_jeu;?>
+            </div>
+            <div class="col-md-2" style="padding-right:0;">
+                <?php 	include_once("accessoires/calendrier_aside.php");
+                        include_once("accessoires/actualite_mini.php");
+                ?>
+            </div>
             <?php
             }
             else
             { ?>
                 <div class="message_erreur">Le jeu que vous recherchez n'existe pas.</div>
-
             <?php
             } ?>
-            </div>
-            <div class="col-md-2" style="padding-right:0;">
-                <?php 	include_once("accessoires/calendrier_aside.php");
-					include_once("accessoires/actualite_mini.php");
-			?>
-            </div>
 		</div>
 		<?php
 			include_once("accessoires/footer.html");

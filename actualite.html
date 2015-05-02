@@ -29,83 +29,106 @@
 		?>
 
 		<div class="col-md-10 col-lg-offset-1 contenu">
-            <div class="col-md-10 main">
-                <h3 class="underline"><?php if ($afficher!='<'){?>
-                    Agenda
-                    <?php }else{?>
-                    Evénement archiver
-                    <?php } ?>
-                </h3>
-                 <?php if (isset($_SESSION['id_user']) && !isset($supprimer) && $afficher!='<'){ ?> <!--Si on ne supprime pas un évènement et que les évènements ne sont pas passer on affiche le bouton pour créer un évènement-->
-                     <div class="panel panel-default creer_evenement">
-                        <a href="edit_actualite.php">
-                        <div class="panel-body">
-                            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-                            Créer un évènement
-                        </div>
+            <h3  class="title_page"style="background-color: rgba(166, 197, 78, 0.56);">
+                <img src="images/icone_site/calendrier.png" height="75" width="75"></img>
+                <?php if($afficher!='<') { ?>
+                    <span>Agenda</span>
+                    <?php if (isset($_SESSION['id_user']) && !isset($supprimer)){ ?><!--Boutton pour créer un événement-->
+                        <a class="edit_event" style="" href="edit_actualite.php">
+                            <span class="glyphicon glyphicon-plus-sign" ></span>
+                            <span>Créer un événement</span>
                         </a>
-                     </div>
-                 <?php }
-                  $i=0;
-                 if (isset($id_event[$i])){
-                while(isset($id_event[$i])){
-                ?><!--aficher les évènements de la base de donnée-->
-                    <div class="panel panel-default">
-                      <div id="e<?php echo $id_event[$i]; ?>" class="panel-heading">
-                        <h3 class="panel-title">
-                            <b><?php echo $title_event[$i]; ?></b><!--Titre de l'événement-->
-                            <div class="date_event"><?php if(isset($title_jeu_event[$i])){ ?>Partie de <b><a href="complete_jeu.php?jeu=<?php echo $id_jeu_event[$i] ;?>"><?php echo $title_jeu_event[$i]; ?></b></a> <?php } ?><em style="margin-left:20px;">le <?php echo $date_event[$i]; ?></em></div><!--date de l'événement-->
+                    <?php }
+                }else{ ?>
+                    <span>Evénement archiver</span>
+                <?php } ?>
+            </h3>
+            <div style="margin-bottom:15px;float:left;height: 30px;width:100%;background: #cccaca;"><b>TOP</b></div><!--Barre page top-->
 
-                            <!--------------Bouton pour modifier ou supprimer une actualité------------------------->
-                            <?php if(isset($_SESSION['id_user']) && !isset($supprimer) && $afficher!='<' && ($_SESSION['droits']==3 || $_SESSION['id_user'] == $id_user_event[$i])){ ?><!--Si l'utilisateur est un administrateur ou un modérateur alors-->
-                            <div class="btn-group btn-group-xs" style="float:right;" role="group" aria-label="...">
-                              <a type="button" class="btn btn-default" href="edit_actualite.php?modifier=<?php echo $id_event[$i] ; ?>">
-                                <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span><!--bouton pour modifié l'actualité-->
-                              </a>
-                              <a type="button" class="btn btn-default" href="actualite.php?supprimer=<?php echo $id_event[$i]; ?>#e<?php echo $id_event[$i]; ?>">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span><!--bouton pour supprimer l'actualité-->
-                              </a>
-                            </div>
-                            <?php } ?>
+            <?php $i=0; if (isset($id_event[$i])){ //Si on a récupérer un événement en base de donnée
+                while (isset($id_event[$i])) { ?><!--Tant qu'on peut afficher un événément-->
 
-                            <div class="update_event">mise à jour : <em><?php echo $date_update[$i]; ?></em></div><!--Date de dernière mise à jour-->
-                        </h3>
-                      </div>
-                      <div class="media actualite">
-                        <div class="col-md-3">
-                            <img class="img-responsive" src="<?php echo $image_event[$i]; ?>"/>
-                        </div>
-                        <div class="col-md-9 limite">
-                            <div class="media-body">
-                                <p class="text-justify" style="margin:0;"><?php echo $text_event[$i]; ?></p>
-                                <?php if (isset($_SESSION['id_user']) && isset($_GET['supprimer'])&& $supprimer == $id_event[$i] && ($_SESSION['id_user']== $id_user_event[$i] || $_SESSION['droits'] == 3)){ ?><!--Si on a appuiyé sur le bouton supprimer alors afficher les boutons de confirmation-->
-                                    <form class="form-horizontal" action="actualite.php?supprimer=<?php echo $id_event[$i]; ?>" method="POST">
-                                        <div class="col-sm-offset-3 col-sm-6">
-                                            <p style="text-align:center;">
-                                                Voulez-vous vraiment supprimer cet événement ?
-                                            </p>
-                                            <p style="text-align:center;">
-                                                <button type="submit" class="btn btn-success" name="valider_supprimer">Valider <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button><!--On redirige vers l'article.php en envoyant l'id de l'article dans l'URL quand on valide la suppression-->
-                                                <a class="btn btn-danger" href="actualite.php" role="button">Annuler <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a><!--On redirige vers l'article pour annuler la suppression-->
-                                            </p>
-                                        </div>
-                                    </form>
+                    <div class="event" id="e<?php echo $id_event[$i]; ?>">
+                        <img class="image_event" src="<?php echo $image_event[$i]; ?>" alt="image_event"> </img>
+                        <div class="content_event">
+                            <div class="underline title_event">
+                                <b><?php echo $title_event[$i]; ?></b>
+
+                                <!--Bouton pour modifier ou supprimer un événement-->
+                                <?php if(isset($_SESSION['id_user']) && !isset($supprimer) && $afficher!='<' && ($_SESSION['droits']==3 || $_SESSION['id_user'] == $id_user_event[$i])){ ?><!--Si l'utilisateur est un administrateur ou un modérateur alors-->
+                                    <div class="btn-group btn-group-xs" style="float:right; " role="group" aria-label="...">
+                                        <a type="button" class="btn btn-default" style="font-size: 9px;" href="edit_actualite.php?modifier=<?php echo $id_event[$i] ; ?>">
+                                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span><!--bouton pour modifié l'actualité-->
+                                        </a>
+                                        <a type="button" class="btn btn-default" style="font-size: 9px;" href="actualite.php?supprimer=<?php echo $id_event[$i]; ?>#e<?php echo $id_event[$i]; ?>">
+                                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span><!--bouton pour supprimer l'actualité-->
+                                        </a>
+                                    </div>
                                 <?php } ?>
                             </div>
+                            <div class="text_event">
+                                <?php echo $text_event[$i]; ?>
+
+                                <?php if (isset($_SESSION['id_user']) && isset($_GET['supprimer'])&& $supprimer == $id_event[$i] && ($_SESSION['id_user']== $id_user_event[$i] || $_SESSION['droits'] == 3)){ ?><!--Si on a appuiyé sur le bouton supprimer alors afficher les boutons de confirmation-->
+                                <form class="form-horizontal" action="actualite.php?supprimer=<?php echo $id_event[$i]; ?>" method="POST">
+                                    <div class="col-sm-offset-3 col-sm-6">
+                                        <p style="text-align:center;">
+                                            Voulez-vous vraiment supprimer cet événement ?
+                                        </p>
+                                        <p style="text-align:center;">
+                                            <button type="submit" class="btn btn-success" name="valider_supprimer">Valider <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button><!--On redirige vers l'article.php en envoyant l'id de l'article dans l'URL quand on valide la suppression-->
+                                            <a class="btn btn-danger" href="actualite.php" role="button">Annuler <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a><!--On redirige vers l'article pour annuler la suppression-->
+                                        </p>
+                                    </div>
+                                </form>
+                                <?php } ?>
+
+                            </div>
                         </div>
-                      </div>
+                        <div class="info_event">
+                            <?php if(isset($title_jeu_event[$i])){ ?><!--Si c'est une partie de jeu-->
+                                <div style="margin-top:0;" class="text_info">Partie de <b><a href="complete_jeu.php?jeu=<?php echo $id_jeu_event[$i] ;?>"><b><?php echo $title_jeu_event[$i]; ?></b></a></b></div>
+                            <?php } ?>
+                            <div <?php if(!isset($title_jeu_event[$i]))echo  'style="margin-top:0;"'; ?> class="text_info"><b><?php echo $date_event[$i]; ?></b></div>
+
+                            <div class="text_info">
+                                <div class="particip_event">
+                                    <span>Participant(es) <b>(<?php echo $nb_inscrit[$i]."/".$inscription_event[$i]; ?>)</b></span>
+                                    <?php if(isset($_SESSION['id_user']) && $afficher!='<' && $nb_inscrit[$i] < $inscription_event[$i]) { ?> <!--On affiche un lien pour s'inscrire ou se désinscrire si on est connecté-->
+                                        <a href="actualite.php?id=<?php echo $id_event[$i]; ?>">
+                                            <?php if (!$nb[$i]) { ?>
+                                                <span><small>S'inscrire</small></span>
+                                            <?php }else{ ?>
+                                                <span><small>Se désinscrire</small></span>
+                                            <?php } ?>
+                                        </a>
+                                    <?php } ?>
+                                </div>
+                                <ul>
+                                    <?php for($j=0 ; $j<$inscription_event[$i] ; $j++) { ?>
+                                        <?php if(isset($pseudo_inscrit[$j][$i])) { ?><!--On affiche les personnes inscrite-->
+                                            <li>
+                                                <img src="images/avatars/<?php echo $avatar_inscrit[$j][$i]; ?>" width="45" height="45" alt="avatar_inscrit"></img>
+                                                <span><small><?php echo $pseudo_inscrit[$j][$i]; ?></small></span>
+                                            </li>
+                                        <?php } else { ?>
+                                            <li>
+                                                <!--On affiche que la place est disponible-->
+                                                <img src="images/icone_site/profil.png" width="45" height="45" alt="profil_non_inscrit"></img>
+                                                <small>Place disponible</small>
+                                            </li>
+                                        <?php } ?>
+                                    <?php } ?>
+                                </ul>
+                            </div>
+                            <div class="text_info"><em><small>mis à jour : <?php echo $date_update[$i]; ?></small></em></div>
+                        </div>
                     </div>
-                <?php $i++; }
-                 }else
-                 {
-                 ?>
-                    <div class="message_erreur">Il n'y a aucun événement pour le moment</div>
-                <?php } ?>
-            </div>
-            <div class="col-md-2" style="padding-right:0;">
-                <?php include_once("accessoires/calendrier_aside.php");
-				  include_once("accessoires/actualite_mini.php");?>
-            </div>
+                <?php $i++; } ?>
+                    <div style="height: 30px;width:100%;background: #cccaca;float:left;"><b>BOTTOM</b></div><!--barre page bottom-->
+                <?php } else { ?>
+                <div class="message_erreur">Il n'y a aucun événement pour le moment</div>
+            <?php } ?>
 		</div>
 		<?php
 			include_once("accessoires/footer.html");

@@ -29,7 +29,10 @@
 		?>
 		<div class="col-md-10 col-lg-offset-1 contenu espace_description">
 			<div style="float:left;">
-				<h3 class="media-heading underline">Les jeux du club... <small></small></h3>
+				<h3 class="title_page" style="background-color: #b12d69">
+                    <img src="images/icone_site/jeux_club.png" height="75" ></img>
+                    <span>Les jeux du club</span>
+                </h3>
 				<p class="text_description">
 					<em>
 						Post hanc adclinis Libano monti Phoenice, regio plena gratiarum et venustatis, urbibus
@@ -41,7 +44,7 @@
 			<?php $i=0;
 				while(isset($id_type_jeu[$i]))
 				{ ?>
-					<div class="col-xs-6 col-md-6 espace_description">
+					<div class="col-xs-4 col-md-4 espace_description">
 						<a href="liste_jeu.php?jeu=<?php echo $id_type_jeu[$i]; ?>" class="thumbnail" style="">
 							<p style="text-align:center;color: #333;" ><img class="img-responsive" src="<?php echo $image_type_jeu[$i]; ?>" alt="<?php echo $libelle_type_jeu[$i]; ?>"></p>
 							<h4 class="media-heading text-center underline" style="margin-top:10px;"><?php echo $libelle_type_jeu[$i]; ?></h4>
