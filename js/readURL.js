@@ -23,6 +23,7 @@ function open_modal(input)
                     {
                         size = input.files[0].size;
                         actu = input.files[0].name;
+                        $(".pick-a-color-markup").removeClass('input-group').css({width: '0px',height: '0px'});
                         readURL(input);
                     }
                 });

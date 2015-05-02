@@ -90,6 +90,28 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
+                                    <input type="text" value="fff" id="border-color" class="pick-a-color form-control">
+                                    <script type="text/javascript">
+
+                                        $(document).ready(function () {
+                                            $(".pick-a-color").pickAColor({
+                                                showSpectrum            : true,
+                                                showSavedColors         : true,
+                                                saveColorsPerElement    : true,
+                                                fadeMenuToggle          : true,
+                                                showAdvanced		    : true,
+                                                showBasicColors         : true,
+                                                showHexInput            : false,
+                                                allowBlank				: true,
+                                                inlineDropdown			: false
+                                            });
+                                            $("#border-color").on("change", function () {
+                                                console.log($(this).val());
+                                                $('.preview').css('background-color','#'+$(this).val()+'')
+                                            });
+                                        });
+
+                                    </script>
                                     <button class="btn btn-primary zoomin" type="button" title="Zoom +" style="padding-left: 4px;padding-right: 4px;padding-top: 2px;padding-bottom: 2px;"><span class="glyphicon glyphicon-zoom-in" style="font-size: 25px"></span></button>
                                     <button class="btn btn-primary zoomout" type="button" title="Zoom -" style="padding-left: 4px;padding-right: 4px;padding-top: 2px;padding-bottom: 2px;"><span class="glyphicon glyphicon-zoom-out" style="font-size: 25px"></span></button>
                                     <button class="btn btn-primary carre" type="button" title="Zoom -">1:1</button>
@@ -108,29 +130,6 @@
                                         $(".rectangle").on("click",function(){
                                             $("#crop").cropper("setAspectRatio",3/4);
                                             $("#type_crop").empty().text("Portrait (3:4)");
-                                        });
-                                    </script>
-                                    <span><input type="text" value="222" id="border-color" class="pick-a-color form-control"></span>
-                                    <script type="text/javascript">
-
-                                        $(document).ready(function () {
-
-                                            $(".pick-a-color").pickAColor({
-                                                showSpectrum            : true,
-                                                showSavedColors         : true,
-                                                saveColorsPerElement    : true,
-                                                fadeMenuToggle          : true,
-                                                showAdvanced		    : true,
-                                                showBasicColors         : true,
-                                                showHexInput            : false,
-                                                allowBlank				: true,
-                                                inlineDropdown			: true
-                                            });
-
-                                        });
-                                        $("#border-color").on("change", function () {
-                                            console.log($(this).val());
-                                            $('.preview').css('background-color','#'+$(this).val()+'')
                                         });
                                     </script>
                                     <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
