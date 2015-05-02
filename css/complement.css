@@ -19,6 +19,8 @@ h3.underline{
     border:1px solid #292626;
     padding:15px;
     border-bottom:0;
+    min-height:400px;
+    float:left;
 }
 .main
 {
@@ -28,7 +30,13 @@ h3.underline{
     margin-bottom:15px;*/
     padding:0;
     padding-right:15px;
-    border-right:1px solid #E5E5E5;
+    border-right:1px solid #828282;
+}
+.title_page
+{
+    margin:0 0 15px 0;
+    float:left;
+    width:100%;
 }
 
 /*-------------------------------------Classe pour afficher un message d'erreur----------------------*/
@@ -47,13 +55,14 @@ h3.underline{
 .footer
 {
     background-color: #222;
-    padding:0px;
+    padding:0;
     margin-left: 8.33333333%;
     position: relative;
     border: 1px solid #292626;
     color:#9d9d9d;
     width:83.33333333%;
     float:left;
+    margin-bottom: 15px;
 }
 .col_footer /*bloc du footer*/
 {
@@ -65,7 +74,6 @@ h3.underline{
 }
 .titre
 {
-    margin-bottom:5px;
     border-bottom:1px solid #767676;
     margin:0 10px;
     font-size:13px;
@@ -134,7 +142,9 @@ h3.underline{
     padding:20px 0px 29px 0;
     margin:0px;
     border:0px;
-    background-color: rgba(255, 255, 255, 0.2);
+    width: 83.33333333%;
+    margin-left: 8.33333333%;
+
 }
 
 
@@ -207,18 +217,6 @@ nav.navbar.navbar-inverse
 {
     padding:10px 15px;
     margin:0;
-}
-
-
-/*----------------------------- bloc du bouton pour creer un évènement -------------------------------*/
-.creer_evenement
-oç{
-    margin:20px;
-}
-.creer_evenement a
-{
-    text-decoration: none;
-    text-align:center;
 }
 
 
@@ -324,6 +322,7 @@ div.image.boxFULL:hover a /*Mouvement de la zone de txt*/
 .membre
 {
     padding:20px;
+    margin:0;
     /*height:330px;*/
 }
 .inscrire
@@ -331,14 +330,20 @@ div.image.boxFULL:hover a /*Mouvement de la zone de txt*/
     padding:0px;
     margin-top:15px;
 }
-.espace_connexion
+.connexion_left
 {
-    padding:0px 7.5px;
+    padding-left:0px;
+    padding-right: 7.5px;
+}
+.connexion_right
+{
+    padding-right: 0px;
+    padding-left: 7.5px;
 }
 
 /*------------------------------ calendrier --------------------------*/
 /* Feuille de style pour Calendrier */
-table.cal { cursor:default;font-size:17px; background:#868400; border: 2px solid #2A2A2A;margin-top:15px; }
+table.cal { cursor:default;font-size:17px; background:#868400; border: 2px solid #2A2A2A;/*margin-top:15px;*/ }
 /* la case contenant le nom du mois */
 .cal td.cal_titre { font-weight:bold; }
 /* les cases des jours de la semaine */
@@ -462,30 +467,111 @@ div.ui-datepicker{
 }
 
 /*------------------------------------Style de la page actualité -------------------------*/
+
+/*--------------Bloc global de l'événement-------------------*/
+.edit_event
+{
+    float:right;
+    font-size: 14px;
+    margin-right:18.5px;
+    margin-top:18.5px;
+    padding:10px;
+    background-color: rgba(255, 255, 255, 0.48);
+    border-radius: 2px;
+    border: 1px solid transparent;
+}
+.title_page a
+{
+    text-decoration:none;
+}
+
+.event
+{
+    width:100%;
+    background-color:#f0f4fd;
+    float:left;
+    margin-bottom:30px;
+    border: 2px solid #e5e5e5;
+    box-shadow:6px 6px 6px #ababab;
+}
+
+/*---------------Image de l'événement------------------*/
+.image_event
+{
+    float:left;
+    width:20%;
+}
+
+/*-----------------Contenu de l'événement--------------*/
+.content_event
+{
+    float:left;
+    padding:10px;
+    width:55%;
+}
+.title_event
+{
+    float:left;
+    width:100%;
+    font-size:20px;
+}
+.text_event
+{
+    float:left;
+    margin-top:15px;
+    width:100%;
+    text-align: justify;
+}
+
+/*-----------------Bloc d'info sur l'événement----------------------*/
 .info_event
 {
-    text-align:center;
+    float:left;
+    width:25%;
+    padding:10px;
+    border-left: 1px solid #c8c5cc;
 }
-.actualite
+.text_info
 {
-	margin:15px 0;
+     float:left;
+     margin-top:10px;
+     width:100%;
 }
-.update_event
+.text_info em small /*Style pour la date de mise à jour*/
 {
-    font-size:10px;
-    display:inline-block;
     float:right;
-    margin:5px 10px 0 0;
+    margin-right:10px;
 }
-.date_event
+.particip_event
 {
-    margin-left:2%;
-    font-size:13px;
-    display:inline-block;
+    float:left;
+    width:100%;
+    padding:0 10px;
 }
-.limite
+.particip_event a
 {
-    border-left:1px solid #E5E5E5;
+    float:right;
+}
+.text_info ul
+{
+    overflow:auto;
+    width:100%;
+    max-height: 150px;
+    float:left;
+    border:3px solid #cccaca;
+    list-style:none;
+    padding:0 5px;
+    margin:0;
+}
+.text_info ul li
+{
+    margin:5px 0;
+    border:1px solid #8a8a8a;
+}
+.text_info ul li a
+{
+    text-decoration: none;
+    width:100%;
 }
 
 /*empecher ecrire dans input*/

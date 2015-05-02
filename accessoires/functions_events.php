@@ -11,7 +11,7 @@ function recup_event($condition)
 		$order = "DESC";
 	}
 	require("connect_bdd.php");
-	$sql="	SELECT id_event, title_event, text_event, date_event, statut_event, date_update, image_event, id_user, id_jeu
+	$sql="	SELECT id_event, title_event, text_event, date_event, statut_event, date_update, image_event, id_user, id_jeu, inscription_event, nb_inscrit
 			FROM event
 			WHERE date_event".$condition."SYSDATE() AND statut_event=1
 			ORDER BY date_event ".$order."";
@@ -24,7 +24,7 @@ function recup_event($condition)
 function recup_event_one($id_event)
 {
 	require("connect_bdd.php");
-	$sql="	SELECT title_event, text_event, date_event, date_update, id_user, id_jeu, image_event
+	$sql="	SELECT title_event, text_event, date_event, date_update, id_user, id_jeu, image_event, inscription_event
 			FROM event
 			WHERE id_event=:id_event AND statut_event=1 AND date_event > SYSDATE()";
 	$query=$connect->prepare($sql);
@@ -44,7 +44,7 @@ function delete_event($id_event)
 }
 
 //Fonction pour créer un événement
-function create_event($title_event, $text_event, $date_event, $title_jeu, $image_event)
+function create_event($title_event, $text_event, $date_event, $title_jeu, $image_event, $inscription_event)
 {
 	require("connect_bdd.php");
 	$id_user = $_SESSION['id_user'];
@@ -64,12 +64,13 @@ function create_event($title_event, $text_event, $date_event, $title_jeu, $image
         }
 	}
 
-	$sql="INSERT INTO event		( title_event,  image_event,  id_jeu, date_event,  text_event, date_update, id_user )
-		  VALUES 				(:title_event, :image_event, :id_jeu,:date_event, :text_event, NOW(),:id_user);";
+	$sql="INSERT INTO event		( title_event,  image_event,  id_jeu, date_event,  text_event, date_update, id_user, inscription_event)
+		  VALUES 				(:title_event, :image_event, :id_jeu,:date_event, :text_event, NOW(),:id_user, :inscription_event);";
 	$query=$connect->prepare($sql);
 	$query->bindParam(':title_event',$title_event,PDO::PARAM_STR,50);
     $query->bindParam(':image_event',$image_event,PDO::PARAM_STR);
 	$query->bindParam(':id_jeu',$id_jeu,PDO::PARAM_INT);
+    $query->bindParam(':inscription_event',$inscription_event,PDO::PARAM_INT);
 	$query->bindParam(':date_event',$date_event,PDO::PARAM_STR);
 	$query->bindParam(':text_event',$text_event,PDO::PARAM_STR);
 	$query->bindParam(':id_user',$id_user,PDO::PARAM_INT);
@@ -77,9 +78,10 @@ function create_event($title_event, $text_event, $date_event, $title_jeu, $image
 }
 
 //Fonction pour mettre à jour un événement
-function update_event($id_event, $title_event, $text_event, $date_event, $title_jeu, $image_event)
+function update_event($id_event, $title_event, $text_event, $date_event, $title_jeu, $image_event, $inscription_event)
 {
 	require("connect_bdd.php");
+    require("functions_inscription.php");
     if(empty($image_event))
     {
         if($title_jeu=="Autre")
@@ -101,16 +103,24 @@ function update_event($id_event, $title_event, $text_event, $date_event, $title_
 				id_jeu      = :id_jeu,
 				date_event  = :date_event,
 				text_event  = :text_event,
-				date_update = NOW()
+				date_update = NOW(),
+				inscription_event = :inscription_event
 			WHERE id_event=:id_event";
 			
 	$query=$connect->prepare($sql);
 	$query->bindParam(':title_event',$title_event,PDO::PARAM_STR,50);
+    $query->bindParam(':inscription_event',$inscription_event,PDO::PARAM_INT);
     $query->bindParam(':id_jeu',$id_jeu,PDO::PARAM_INT);
 	$query->bindParam(':date_event',$date_event,PDO::PARAM_STR);
 	$query->bindParam(':image_event',$image_event,PDO::PARAM_STR);
 	$query->bindParam(':text_event',$text_event,PDO::PARAM_STR);
 	$query->bindParam(':id_event',$id_event,PDO::PARAM_INT);
 	$query->execute();
+
+
+    while ($verif = verif_inscription($id_event, "<"))
+    {
+        desinscription_last_user($id_event);
+    }
 }
 ?>

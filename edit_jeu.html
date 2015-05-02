@@ -36,13 +36,14 @@
             include_once("accessoires/menu.html");
         ?>
         <div class="col-md-10 col-lg-offset-1 contenu">
-			<h3 class="underline">
-				<?php if(isset ($_GET['jeu'])){?>
-				Modifier un jeu
-				<?php } else{ ?>
-				Ajouter un jeu
-				<?php }?>
-			</h3>
+            <h3  class="title_page" style="background-color: rgba(89, 38, 195, 0.56);">
+                <img src="images/icone_site/jeu.png" height="75" width="75"></img>
+                <?php if(!isset($_GET['jeu'])) { ?>
+                    <span>Ajouter un jeu</span>
+                <?php } else{ ?>
+                    <span>Modifier un jeu</span>
+                <?php } ?>
+            </h3>
 			<form method="POST" enctype="multipart/form-data">
 				<div class="row">
 					<div class="col-md-7">

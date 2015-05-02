@@ -51,231 +51,240 @@
 	</head>
 	<body>
         <?php   include_once("accessoires/header.html");//logo du site
-                    include_once("accessoires/menu.html");//barre de menu
-            ?>
+                include_once("accessoires/menu.html");//barre de menu
+        ?>
 		<div class="contenu col-md-10 col-lg-offset-1">
-            <h1>Mon profil <span style="font-size: 20px;">(<?php echo $pseudo_user_data; ?>)</span></h1>
+            <h2 class="title_page" style="background-color: rgba(195, 169, 111, 0.56);">
+                <img src="images/icone_site/profil.png" height="75" width="75"></img>
+                <span>Mon profil</span>
+            </h2>
             <!-- ********** Informations de l'utilisateur ****************-->
-            <div class="col-md-7">
-                <p><b>Informations sur l'utilisateur</b></p>
-                <?php if(!isset($success_data)) { ?>
-                <form action="profil.php" method="POST" role="form">
-                    <div class="form-group has-feedback" style="margin-bottom: 5px;" id="form_pseudo_user">
+            <div class="col-md-10 main">
+                <div class="col-md-7">
+                    <p><b>Informations sur l'utilisateur</b></p>
+                    <?php if(!isset($success_data)) { ?>
+                    <form action="profil.php" method="POST" role="form">
+                        <div class="form-group has-feedback" style="margin-bottom: 5px;" id="form_pseudo_user">
 
-                        <label style="font-weight: normal;" class="control-label" for="pseudo_user">Nom d'utilisateur <span class="star_form">*</span></label>
-                        <input type="text" class="form-control" name="pseudo_user" id="pseudo_user" value="<?php echo $pseudo_user_data; ?>" placeholder="Nom d'utilisateur" autocomplete="off" data-placement="top" data-toggle="popover" title="Entrez un nom d'utilisateur" data-content="Le nom d'utilisateur ne doit pas dépasser 35 caractères !" />
+                            <label style="font-weight: normal;" class="control-label" for="pseudo_user">Nom d'utilisateur <span class="star_form">*</span></label>
+                            <input type="text" class="form-control" name="pseudo_user" id="pseudo_user" value="<?php echo $pseudo_user_data; ?>" placeholder="Nom d'utilisateur" autocomplete="off" data-placement="top" data-toggle="popover" title="Entrez un nom d'utilisateur" data-content="Le nom d'utilisateur ne doit pas dépasser 35 caractères !" />
 
-                        <!--message erreur--><span id="error_pseudo_user"></span>
-                        <!--icon--><span id="input0Status" class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                        <?php
-                            if(!empty($error_data[1]))//si la variable erreur n'est pas vide ca qui veut dire qu'il y a une erreur | si exist
-                            {
-                                ?><div class="alert alert-danger alert-dismissible" role="alert">
-                                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?php echo $error_data[1];?>
-                                </div><?php
-                            }
-                        ?>
+                            <!--message erreur--><span id="error_pseudo_user"></span>
+                            <!--icon--><span id="input0Status" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            <?php
+                                if(!empty($error_data[1]))//si la variable erreur n'est pas vide ca qui veut dire qu'il y a une erreur | si exist
+                                {
+                                    ?><div class="alert alert-danger alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                    <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?php echo $error_data[1];?>
+                                    </div><?php
+                                }
+                            ?>
+                        </div>
+                        <div class="form-group has-feedback" style="margin-bottom: 5px;" id="form_lastname_user">
+
+                            <label style="font-weight: normal;" class="control-label" for="lastname_user">Nom <span class="star_form">*</span></label>
+                            <div class="input-group">
+                                <select class="selectpicker" name="civility_user">
+                                    <option value="Mr."  <?php if($civility_user_data=='Mr.')echo 'selected="selected"';?> >Mr.</option>
+                                    <option value="Mme." <?php if($civility_user_data=='Mme.')echo 'selected="selected"';?> >Mme.</option>
+                                </select>
+                                <input type="text" name="lastname_user" id="lastname_user" value="<?php echo $lastname_user_data; ?>" placeholder="Nom" class="form-control" data-placement="top" data-toggle="popover" title="Entrez votre nom" data-content="Votre nom ne doit pas dépasser 35 caractères !" />
+                            </div>
+
+                            <!--message erreur--><span id="error_lastname_user"></span>
+                            <!--icon--><span id="input1Status" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            <?php
+                                    if(!empty($error_data[2]))//si vide
+                                    {
+                                        ?><div class="alert alert-danger alert-dismissible" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                        <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?php echo $error_data[2];?>
+                                        </div><?php
+                                    }
+                                ?>
+                        </div>
+                        <div class="form-group has-feedback" style="margin-bottom: 5px;" id="form_firstname_user">
+
+                            <label style="font-weight: normal;" class="control-label" for="firstname_user">Prénom <span class="star_form">*</span></label>
+                            <input type="text" id="firstname_user" name="firstname_user" value="<?php echo $firstname_user_data; ?>" placeholder="Prénom" class="form-control" data-placement="top" data-toggle="popover" title="Entrez votre prénom" data-content="Votre prénom ne doit pas dépasser 35 caractères !" />
+
+                            <!--message erreur--><span id="error_firstname_user"></span>
+                            <!--icon--><span id="input2Status" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            <?php
+                                    if(!empty($error_data[3]))
+                                    {
+                                        ?><div class="alert alert-danger alert-dismissible" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                        <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?php echo $error_data[3];?>
+                                        </div><?php
+                                    }
+                                ?>
+                        </div>
+                        <div class="form-group has-feedback" style="margin-bottom: 5px;" id="form_email_user">
+
+                            <label for="email_user"  style="font-weight: normal;" class="control-label">Email <span class="star_form">*</span></label>
+                            <input type="email" name="email_user" id="email_user" value="<?php echo $email_user_data; ?>" placeholder="E-mail" class="form-control" data-placement="top" data-toggle="popover" title="Entrez votre e-mail" data-content="Entrez une adresse mail valide, vous recevrez un mail pour activer votre compte ex:example@lala.com" />
+
+                            <!--message erreur--><span id="error_email_user"></span>
+                            <!--icon--><span id="input5Status" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            <?php
+                                    if(!empty($error_data[4]))//si vide
+                                    {
+                                        ?><div class="alert alert-danger alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?php echo $error_data[4];?>
+                        </div><?php
+                                    }
+                                ?>
+                        </div>
+                        <input type="submit" name="modifier_data" class="btn btn-success btn-md" value=" Modifier ">
+                    </form>
+                    <?php }else{ ?>
+                    <div class="alert alert-success" role="alert">
+                        <strong><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> </strong>Informations sauvegardées !</span>
                     </div>
-                    <div class="form-group has-feedback" style="margin-bottom: 5px;" id="form_lastname_user">
+                    <?php } ?>
+                </div>
+                <!-- ************ Edition de l'image du Profil ************* -->
+                <div class="col-md-5" style="min-height: 320px;">
+                    <p style="text-align: center;"><b>Image de profil</b></p>
+                    <div id="crop-avatar">
 
-                        <label style="font-weight: normal;" class="control-label" for="lastname_user">Nom <span class="star_form">*</span></label>
-                        <div class="input-group">
-                            <select class="selectpicker" name="civility_user">
-                                <option value="Mr."  <?php if($civility_user_data=='Mr.')echo 'selected="selected"';?> >Mr.</option>
-                                <option value="Mme." <?php if($civility_user_data=='Mme.')echo 'selected="selected"';?> >Mme.</option>
-                            </select>
-                            <input type="text" name="lastname_user" id="lastname_user" value="<?php echo $lastname_user_data; ?>" placeholder="Nom" class="form-control" data-placement="top" data-toggle="popover" title="Entrez votre nom" data-content="Votre nom ne doit pas dépasser 35 caractères !" />
+                        <!-- Current avatar -->
+                        <div class="avatar-view" title="Changer l'image de profil">
+                            <img src="images/avatars/<?php echo $avatar; ?>" id="gt" alt="Avatar">
                         </div>
 
-                        <!--message erreur--><span id="error_lastname_user"></span>
-                        <!--icon--><span id="input1Status" class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                        <?php
-                                if(!empty($error_data[2]))//si vide
-                                {
-                                    ?><div class="alert alert-danger alert-dismissible" role="alert">
-                                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                    <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?php echo $error_data[2];?>
-                                    </div><?php
-                                }
-                            ?>
-                    </div>
-                    <div class="form-group has-feedback" style="margin-bottom: 5px;" id="form_firstname_user">
+                        <!-- Cropping modal -->
+                        <div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <form class="avatar-form" action="crop-image/crop.php" enctype="multipart/form-data" method="post">
+                                        <div class="modal-header">
+                                            <button class="close" data-dismiss="modal" type="button">&times;</button>
+                                            <h4 class="modal-title" id="avatar-modal-label">Changer votre image de profil</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="avatar-body">
 
-                        <label style="font-weight: normal;" class="control-label" for="firstname_user">Prénom <span class="star_form">*</span></label>
-                        <input type="text" id="firstname_user" name="firstname_user" value="<?php echo $firstname_user_data; ?>" placeholder="Prénom" class="form-control" data-placement="top" data-toggle="popover" title="Entrez votre prénom" data-content="Votre prénom ne doit pas dépasser 35 caractères !" />
-
-                        <!--message erreur--><span id="error_firstname_user"></span>
-                        <!--icon--><span id="input2Status" class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                        <?php
-                                if(!empty($error_data[3]))
-                                {
-                                    ?><div class="alert alert-danger alert-dismissible" role="alert">
-                                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                    <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?php echo $error_data[3];?>
-                                    </div><?php
-                                }
-                            ?>
-                    </div>
-                    <div class="form-group has-feedback" style="margin-bottom: 5px;" id="form_email_user">
-
-                        <label for="email_user"  style="font-weight: normal;" class="control-label">Email <span class="star_form">*</span></label>
-                        <input type="email" name="email_user" id="email_user" value="<?php echo $email_user_data; ?>" placeholder="E-mail" class="form-control" data-placement="top" data-toggle="popover" title="Entrez votre e-mail" data-content="Entrez une adresse mail valide, vous recevrez un mail pour activer votre compte ex:example@lala.com" />
-
-                        <!--message erreur--><span id="error_email_user"></span>
-                        <!--icon--><span id="input5Status" class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                        <?php
-                                if(!empty($error_data[4]))//si vide
-                                {
-                                    ?><div class="alert alert-danger alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?php echo $error_data[4];?>
-                    </div><?php
-                                }
-                            ?>
-                    </div>
-                    <input type="submit" name="modifier_data" class="btn btn-success btn-md" value=" Modifier ">
-                </form>
-                <?php }else{ ?>
-                <div class="alert alert-success" role="alert">
-                    <strong><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> </strong>Informations sauvegardées !</span>
-                </div>
-                <?php } ?>
-            </div>
-            <!-- ************ Edition de l'image du Profil ************* -->
-            <div class="col-md-5" style="min-height: 320px;">
-                <p style="text-align: center;"><b>Image de profil</b></p>
-                <div id="crop-avatar">
-
-                    <!-- Current avatar -->
-                    <div class="avatar-view" title="Changer l'image de profil">
-                        <img src="images/avatars/<?php echo $avatar; ?>" id="gt" alt="Avatar">
-                    </div>
-
-                    <!-- Cropping modal -->
-                    <div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <form class="avatar-form" action="crop-image/crop.php" enctype="multipart/form-data" method="post">
-                                    <div class="modal-header">
-                                        <button class="close" data-dismiss="modal" type="button">&times;</button>
-                                        <h4 class="modal-title" id="avatar-modal-label">Changer votre image de profil</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="avatar-body">
-
-                                            <!-- Upload image and data -->
-                                            <div class="avatar-upload">
-                                                <input class="avatar-src" name="avatar_src" type="hidden">
-                                                <input class="avatar-data" name="avatar_data" type="hidden">
-                                                <div class="fileinput fileinput-new input-group" data-provides="fileinput">
-                                                    <div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
-                                                    <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input class="avatar-input" id="avatarInput" name="avatar_file" accept="image/*" value="fhjfj" type="file">
-                                                    </span>
-                                                    <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-                                                </div>
-                                            </div>
-
-                                            <!-- Crop and preview -->
-                                            <div class="row">
-                                                <div class="col-md-9">
-                                                    <div class="avatar-wrapper"></div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="avatar-preview preview-lg"></div>
-                                                    <div class="avatar-preview preview-md"></div>
-                                                    <div class="avatar-preview preview-sm"></div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row avatar-btns">
-                                                <div class="col-md-9">
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-primary" data-method="rotate" data-option="-90" type="button" title="Rotate -90 degrees"><span class="glyphicon glyphicon-repeat" style="transform: scaleX(-1);"></span> Pivoter à gauche</button>
-                                                        <button class="btn btn-primary" data-method="rotate" data-option="-15" type="button">-15°</button>
-                                                        <button class="btn btn-primary" data-method="rotate" data-option="-30" type="button">-30°</button>
-                                                        <button class="btn btn-primary" data-method="rotate" data-option="-45" type="button">-45°</button>
-                                                    </div>
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-primary" data-method="rotate" data-option="90" type="button" title="Rotate 90 degrees"><span class="glyphicon glyphicon-repeat"></span> Pivoter à droite</button>
-                                                        <button class="btn btn-primary" data-method="rotate" data-option="15" type="button">15°</button>
-                                                        <button class="btn btn-primary" data-method="rotate" data-option="30" type="button">30°</button>
-                                                        <button class="btn btn-primary" data-method="rotate" data-option="45" type="button">45°</button>
+                                                <!-- Upload image and data -->
+                                                <div class="avatar-upload">
+                                                    <input class="avatar-src" name="avatar_src" type="hidden">
+                                                    <input class="avatar-data" name="avatar_data" type="hidden">
+                                                    <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                                        <div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
+                                                        <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input class="avatar-input" id="avatarInput" name="avatar_file" accept="image/*" value="fhjfj" type="file">
+                                                        </span>
+                                                        <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3">
-                                                    <button class="btn btn-success" type="submit">OK&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-saved"></span></button>
-                                                    <button class="btn btn-default btn-xs" data-dismiss="modal" type="button"><span class="glyphicon glyphicon-remove"></span> Annuler</button>
+
+                                                <!-- Crop and preview -->
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <div class="avatar-wrapper"></div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="avatar-preview preview-lg"></div>
+                                                        <div class="avatar-preview preview-md"></div>
+                                                        <div class="avatar-preview preview-sm"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row avatar-btns">
+                                                    <div class="col-md-9">
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-primary" data-method="rotate" data-option="-90" type="button" title="Rotate -90 degrees"><span class="glyphicon glyphicon-repeat" style="transform: scaleX(-1);"></span> Pivoter à gauche</button>
+                                                            <button class="btn btn-primary" data-method="rotate" data-option="-15" type="button">-15°</button>
+                                                            <button class="btn btn-primary" data-method="rotate" data-option="-30" type="button">-30°</button>
+                                                            <button class="btn btn-primary" data-method="rotate" data-option="-45" type="button">-45°</button>
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-primary" data-method="rotate" data-option="90" type="button" title="Rotate 90 degrees"><span class="glyphicon glyphicon-repeat"></span> Pivoter à droite</button>
+                                                            <button class="btn btn-primary" data-method="rotate" data-option="15" type="button">15°</button>
+                                                            <button class="btn btn-primary" data-method="rotate" data-option="30" type="button">30°</button>
+                                                            <button class="btn btn-primary" data-method="rotate" data-option="45" type="button">45°</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <button class="btn btn-success" type="submit">OK&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-saved"></span></button>
+                                                        <button class="btn btn-default btn-xs" data-dismiss="modal" type="button"><span class="glyphicon glyphicon-remove"></span> Annuler</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- <div class="modal-footer">
-                                      <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
-                                    </div> -->
-                                </form>
+                                        <!-- <div class="modal-footer">
+                                          <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+                                        </div> -->
+                                    </form>
+                                </div>
                             </div>
-                        </div>
-                    </div><!-- /.modal -->
+                        </div><!-- /.modal -->
 
-                    <!-- Loading state -->
-                    <div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
+                        <!-- Loading state -->
+                        <div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
+                    </div>
                 </div>
-            </div>
-            <!-- ************ Modification du Mot de passe ************* -->
-            <div class="col-md-6" style="margin-top: 15px;">
-                <p><b>Modification du mot de passe</b></p>
-                <form action="profil.php" method="POST" role="form">
-                    <div class="form-group has-feedback" id="form_password_actuelr" style="margin-bottom: 5px;">
-                        <label class="control-label" for="password_user" style="font-weight: normal;">Mot de passe actuel </label>
-                        <input type="password" id="password_user" name="passwordActuel" placeholder="Mot de passe actuel" class="form-control" data-placement="top" data-toggle="popover" title="Entrez votre mot de passe actuel" data-content="Vueillez inscrire votre mot de passe" />
-                        <!--message erreur--><span id="error_password_user"></span>
-                        <!--icon--><span id="iconPasswordActuel" class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                        <?php
-                                if(!empty($errors_mdp[1]))//si mauvais
-                                {
-                                    ?><div class="alert alert-danger alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?php echo $errors_mdp[1];?>
-                    </div><?php
-                                }
-                            ?>
-                    </div>
-                    <div class="form-group has-feedback" id="form_new_password" style="margin-bottom: 5px;">
-                        <label class="control-label" for="repeat_password" style="font-weight: normal;">Insérer un nouveau mot de passe </label>
-                        <input type="password" name="NewPassword" id="repeat_password" placeholder="Nouveau mot de passe" class="form-control" data-placement="top" data-toggle="popover" title="Entrer votre nouveau mot de passe" data-content="Le mot de passe doit contenir une majuscule,mininuscule,un numéro et au moins 4 caractères." />
-                        <!--message erreur--><span id="error_repeat_password"></span>
-                        <!--icon--><span id="iconNewPassword" class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                        <?php
-                                if(!empty($errors_mdp[2]))//si vide
-                                {
-                                    ?><div class="alert alert-danger alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?php echo $errors_mdp[2];?>
-                    </div><?php
-                                }
-                            ?>
-                    </div>
-                    <div class="form-group has-feedback" id="form_repeat_new_password">
-                        <label class="control-label" for="new_password" style="font-weight: normal;">Confirmer le nouveau mot de passe </label>
-                        <input type="password" id="new_password" name="ConfNewPassword" placeholder="Confirmer le mot de passe" class="form-control" data-placement="top" data-toggle="popover" title="Confirmer le nouveau mot de passe" data-content="Vueillez répéter le nouveau mot de passe" />
-                        <!--message erreur--><span id=""></span>
-                        <!--icon--><span id="iconConfNewPassword" class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                        <?php
-                                if(!empty($errors_mdp[3]))//si vide
-                                {
-                                    ?><div class="alert alert-danger alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?php echo $errors_mdp[3];?>
-                    </div><?php
-                                }
-                            ?>
-                    </div>
-                    <input type="submit" name="modifierPassword" class="btn btn-success btn-md" value=" Modifier ">
-                </form>
+                <!-- ************ Modification du Mot de passe ************* -->
+                <div class="col-md-6" style="margin-top: 15px;">
+                    <p><b>Modification du mot de passe</b></p>
+                    <form action="profil.php" method="POST" role="form">
+                        <div class="form-group has-feedback" id="form_password_actuelr" style="margin-bottom: 5px;">
+                            <label class="control-label" for="password_user" style="font-weight: normal;">Mot de passe actuel </label>
+                            <input type="password" id="password_user" name="passwordActuel" placeholder="Mot de passe actuel" class="form-control" data-placement="top" data-toggle="popover" title="Entrez votre mot de passe actuel" data-content="Vueillez inscrire votre mot de passe" />
+                            <!--message erreur--><span id="error_password_user"></span>
+                            <!--icon--><span id="iconPasswordActuel" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            <?php
+                                    if(!empty($errors_mdp[1]))//si mauvais
+                                    {
+                                        ?><div class="alert alert-danger alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?php echo $errors_mdp[1];?>
+                        </div><?php
+                                    }
+                                ?>
+                        </div>
+                        <div class="form-group has-feedback" id="form_new_password" style="margin-bottom: 5px;">
+                            <label class="control-label" for="repeat_password" style="font-weight: normal;">Insérer un nouveau mot de passe </label>
+                            <input type="password" name="NewPassword" id="repeat_password" placeholder="Nouveau mot de passe" class="form-control" data-placement="top" data-toggle="popover" title="Entrer votre nouveau mot de passe" data-content="Le mot de passe doit contenir une majuscule,mininuscule,un numéro et au moins 4 caractères." />
+                            <!--message erreur--><span id="error_repeat_password"></span>
+                            <!--icon--><span id="iconNewPassword" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            <?php
+                                    if(!empty($errors_mdp[2]))//si vide
+                                    {
+                                        ?><div class="alert alert-danger alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?php echo $errors_mdp[2];?>
+                        </div><?php
+                                    }
+                                ?>
+                        </div>
+                        <div class="form-group has-feedback" id="form_repeat_new_password">
+                            <label class="control-label" for="new_password" style="font-weight: normal;">Confirmer le nouveau mot de passe </label>
+                            <input type="password" id="new_password" name="ConfNewPassword" placeholder="Confirmer le mot de passe" class="form-control" data-placement="top" data-toggle="popover" title="Confirmer le nouveau mot de passe" data-content="Vueillez répéter le nouveau mot de passe" />
+                            <!--message erreur--><span id=""></span>
+                            <!--icon--><span id="iconConfNewPassword" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            <?php
+                                    if(!empty($errors_mdp[3]))//si vide
+                                    {
+                                        ?><div class="alert alert-danger alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?php echo $errors_mdp[3];?>
+                        </div><?php
+                                    }
+                                ?>
+                        </div>
+                        <input type="submit" name="modifierPassword" class="btn btn-success btn-md" value=" Modifier ">
+                    </form>
+                </div>
             </div>
 			<!-- ******************************************************** -->
 			<!--<a type="button" class="btn btn-default" href="profil.php"> Réinialiser </a>-->
+            <div class="col-md-2" style="padding-right:0;">
+                <?php include_once("accessoires/calendrier_aside.php");
+				  include_once("accessoires/actualite_mini.php");?>
+            </div>
 		</div>
         <?php
 			include_once("accessoires/footer.html");

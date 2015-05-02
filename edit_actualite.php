@@ -24,6 +24,7 @@ if (isset($_GET['modifier']))
 		$hour_begin=date("H",strtotime($data['date_event']));
 		$minute_begin=date("i",strtotime($data['date_event']));
         $image_event = $data['image_event'];
+        $inscription_event = $data['inscription_event'];
         if($data['id_jeu']==0)
         {
             $title_jeu="Autre";
@@ -46,6 +47,7 @@ if(isset($_POST['create'])|| isset ($_POST['update'])){
 	$hour_begin = $_POST['hour_begin'];
 	$minute_begin =$_POST['minute_begin'];
 	$image_event = NULL; //$_POST['image_event'];
+    $inscription_event = $_POST['inscription_event'];
 	$date_event=date("Y-m-d H:i:s",strtotime($date.' '.$hour_begin.$minute_begin."00"));
 	
 	$string=35; //taille de la chaine caractères accepté
@@ -78,12 +80,12 @@ if(isset($_POST['create'])|| isset ($_POST['update'])){
 	{	
 		if(isset($_POST['create']))//On crée un événement
 		{
-			create_event($title_event, $text_event, $date_event, $title_jeu, $image_event);
+			create_event($title_event, $text_event, $date_event, $title_jeu, $image_event, $inscription_event);
 		}
 		else if (isset($_POST['update']))//On met à jour un évènement
 		{
 			$id_event = $_GET['modifier'];
-			update_event($id_event, $title_event, $text_event, $date_event, $title_jeu, $image_event);
+			update_event($id_event, $title_event, $text_event, $date_event, $title_jeu, $image_event, $inscription_event);
 		}
 	//On redirige vers la page d'actualité pour voir le nouvel événement
 	header('Location:actualite.php');
