@@ -64,6 +64,19 @@ if(isset($_POST['ajouter'])||isset($_POST['modifier']))
         $errors_jeu[2] = "Veuillez remplir le jeu";
     }
 
+
+    if(isset($_FILES['inputGameFile']['name']))
+    {
+        $avatar_file = $_FILES['inputGameFile']['name'];
+        $avatar_file_tmp = $_FILES['inputGameFile']['tmp_name'];
+
+        $fichier = basename($avatar_file);
+        $taille = filesize($avatar_file_tmp);
+        $extension = strrchr($avatar_file, '.');
+
+    }
+    var_dump($_FILES,$_POST);
+
     if(empty($errors_jeu))
     {
         $query=recup_id_type_jeu($libelle2);
@@ -84,10 +97,9 @@ if(isset($_POST['ajouter'])||isset($_POST['modifier']))
         }*/
         //On redirige vers le type d'actualité
 
-        header("Location:liste_jeu.php?jeu=".$id_type_jeu);
+
     }
 
 }
 
-include_once("ajouter_jeux.html")
-?>
+include_once("ajouter_jeux.html");
