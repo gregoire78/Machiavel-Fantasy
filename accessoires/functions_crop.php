@@ -75,7 +75,7 @@ function traitement_fichier($file,$taille_max,$extensions,$mimes,$type_upload)
     if ($traiterFileOK===false) 
     {
         $msgErreurFile 	= '<b>Erreur ('.$type_upload.')</b> :<br />'.$msgErreurFile.'Impossible d\'enregistrer le fichier.';
-        return $msgErreurFile;
+        //return $msgErreurFile;
     }
     // -------------------------------------
     // si pas d'erreur : TRAITEMENT
