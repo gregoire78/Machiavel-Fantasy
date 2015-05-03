@@ -68,7 +68,7 @@
                                 <div class="modal-body">
                                     <div class="row">
                                         <div class="col-md-8">
-                                            <div class="crop " style="height: 300px;">
+                                            <div class="crop" style="min-height: 300px;max-height: 500px;">
                                                 <img id="crop" src="" />
                                                 <!--<script>
                                                     $('#myModal').on('shown.bs.modal', function () {
@@ -92,7 +92,7 @@
                                 <div class="modal-footer">
 
                                     <!--***************** Input couleur de fond de l'image *****************************-->
-                                    <input type="text" value="fff" id="backgroundColor" name="" class="pick-a-color form-control">
+                                    <input type="text" value="fff" id="backgroundColor" name="backgroundColor" class="pick-a-color form-control">
                                     <script type="text/javascript">
 
                                         $(document).ready(function () {
@@ -150,7 +150,10 @@
                     <img src="../images/jeux/<?= $image_jeu; ?>"/>
                 </div>
             </div>
-            <input id="data" name="data" type="hidden"/>
+            <input type="hidden" id="dataX" name="dataX" />
+            <input type="hidden" id="dataY" name="dataY" />
+            <input type="hidden" id="dataHeight" name="dataHeight" />
+            <input type="hidden" id="dataWidth" name="dataWidth" />
         </div>
         <div class="form-group">
             <label for="editor1" class="control-label">Contenu</label>

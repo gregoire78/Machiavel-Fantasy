@@ -97,23 +97,16 @@ function croppy(uurl) {
 
     $('.crop').empty().html(img_crop);
     $('#crop').hide().cropper({
-        responsive:false,
-        preview: preview,
+        responsive:true,
+        preview: ".preview",
         aspectRatio : 3/4,
         strict: false,
         dragCrop:false,
-        autoCropArea: 1,
         crop: function (data) {
-            // Output the result data for cropping image.
-            var json = [
-                '{"x":' + data.x,
-                '"y":' + data.y,
-                '"height":' + data.height,
-                '"width":' + data.width,
-                '"rotate":' + data.rotate
-                + '}'
-            ].join();
-            $('#data').val(json);
+            $("#dataX").val(data.x);
+            $("#dataY").val(data.y);
+            $("#dataHeight").val(data.height);
+            $("#dataWidth").val(data.width);
             $('#dim').html("<p>x: "+data.x+"<br>y: "+data.y+"<br>height: "+data.height+"<br>width: "+data.width+"<br>Taille(poid): "+size+" octets</p>");
         }
     });
