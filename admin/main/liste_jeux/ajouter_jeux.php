@@ -8,6 +8,7 @@
 
 //fonctions
 include_once('../accessoires/functions_jeu.php');
+include_once('../accessoires/functions_crop.php');
 include_once('../accessoires/menu.php');
 
 //Si on veut éditer un jeu, on récupère les données
@@ -65,17 +66,12 @@ if(isset($_POST['ajouter'])||isset($_POST['modifier']))
     }
 
 
-    if(isset($_FILES['inputGameFile']['name']))
+    if(isset($_FILES['inputGameFile']))
     {
-        $avatar_file = $_FILES['inputGameFile']['name'];
-        $avatar_file_tmp = $_FILES['inputGameFile']['tmp_name'];
-
-        $fichier = basename($avatar_file);
-        $taille = filesize($avatar_file_tmp);
-        $extension = strrchr($avatar_file, '.');
-
+        $file = $_FILES['inputGameFile'];
+        traitement_fichier($file,5000000,"jpg,jpeg,png,gif","image/jpeg,image/gif,image/png","photo");
     }
-    var_dump($_FILES,$_POST);
+    //var_dump($_FILES,$_POST);
 
     if(empty($errors_jeu))
     {
