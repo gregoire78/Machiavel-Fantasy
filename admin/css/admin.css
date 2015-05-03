@@ -263,3 +263,27 @@ div
 {
     margin-left: 210px;
 }
+
+
+/**********************cropper edition image************/
+.preview
+{
+    overflow: hidden;
+    float: none;
+    border: 3px solid #fff;
+    box-shadow: 0 0 5px rgba(0,0,0,.15);
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #ffffff;
+}
+#pre_crop
+{
+    height: 235px;
+    width: 176px;
+}
+
+#pre_form
+{
+    height: 200px;
+    width: 150px;
+}

@@ -13,7 +13,7 @@ var img_pre_def = '<img src="../images/jeux/'+defaut+'"/>'; //image preview par 
 
 var id_input_color = $(".demo2"); // balise input du color picker
 var id_input_image = $("#inputGameFile"); // balise input selection image
-
+var back = $('#backgroundColor').val();
 //si on change de couleur
 id_input_color.colorpicker().on('changeColor.colorpicker', function(event){
     //preview.backgroundColor = event.color.toHex();
@@ -42,6 +42,7 @@ function open_modal(input)
                             active = input.files[0].name;
 
                             //initialisation de la couleur (blanc par defaut)
+
                             id_input_color.colorpicker(function(event){
                                 preview.css('background-color',event.color.toHex());
                             });
