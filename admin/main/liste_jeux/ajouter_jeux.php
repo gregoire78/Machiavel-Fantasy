@@ -66,12 +66,12 @@ if(isset($_POST['ajouter'])||isset($_POST['modifier']))
     }
 
 
-    if(isset($_FILES['inputGameFile']))
+    if(isset($_FILES['inputGameFile']) && $_FILES['inputGameFile']['size']>0)
     {
         $file = $_FILES['inputGameFile'];
         traitement_fichier($file,5000000,"jpg,jpeg,png,gif","image/jpeg,image/gif,image/png","photo");
     }
-    //var_dump($_FILES,$_POST);
+    var_dump($_FILES,$_POST);
 
     if(empty($errors_jeu))
     {

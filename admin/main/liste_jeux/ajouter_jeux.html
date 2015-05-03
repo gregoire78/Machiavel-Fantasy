@@ -92,23 +92,14 @@
                                 <div class="modal-footer">
 
                                     <!--***************** Input couleur de fond de l'image *****************************-->
-                                    <input type="text" value="fff" id="backgroundColor" name="backgroundColor" class="pick-a-color form-control">
-                                    <script type="text/javascript">
-
-                                        $(document).ready(function () {
-                                            $(".pick-a-color").pickAColor({
-                                                showSpectrum            : true,
-                                                showSavedColors         : true,
-                                                saveColorsPerElement    : true,
-                                                fadeMenuToggle          : true,
-                                                showAdvanced		    : true,
-                                                showBasicColors         : true,
-                                                showHexInput            : false,
-                                                allowBlank				: true,
-                                                inlineDropdown			: false
-                                            });
+                                    <div class="demo2" style="width: 10px;float: left;">
+                                        <input type="hidden" value="#ffffff" id="backgroundColor" name="backgroundColor" class="form-control">
+                                        <span class="input-group-addon" style="  border: 1px solid #245580;border-radius: 4px;background-image: linear-gradient(to bottom, #337ab7 0%, #265a88 100%);cursor: pointer; height: 35px;  padding-top: 5px;  padding-bottom: 4px;"><span style="color: #ffffff;font-size: 13px;">Couleur de fond</span> <i style="border-radius: 2px; border: 1px solid white;" ></i></span>
+                                    </div>
+                                    <script>
+                                        $(function(){
+                                            $('.demo2').colorpicker();
                                         });
-
                                     </script>
                                     <!--****************-->
                                     <button class="btn btn-primary zoomin" type="button" title="Zoom +" style="padding-left: 4px;padding-right: 4px;padding-top: 2px;padding-bottom: 2px;"><span class="glyphicon glyphicon-zoom-in" style="font-size: 25px"></span></button>
@@ -213,6 +204,8 @@
         </div>
     </form>
 </div>
-
+<script src="../js/bootstrap-colorpicker.min.js"></script>
 <!--read url pour l'image-->
 <script type="text/javascript" src="../js/readURL.js"></script>
+<!-- pick color addon -->
+

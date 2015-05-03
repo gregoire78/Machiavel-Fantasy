@@ -83,6 +83,7 @@ function traitement_fichier($file,$taille_max,$extensions,$mimes,$type_upload)
     if ($traiterFileOK===true)
     {
         echo "C'est bien un fichier dans les règles";
+        //return $traiterFileOK;
     }
     var_dump($file_name,$file_taille,$file_extension,$file_MimeType,$msgErreurFile,$traiterFileOK);
 }

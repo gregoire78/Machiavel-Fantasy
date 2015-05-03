@@ -11,14 +11,14 @@ var input_error = $("#inputError"); // balise pour les erreurs
 var preview = $(".preview"); // balise des priviews
 var img_pre_def = '<img src="../images/jeux/'+defaut+'"/>'; //image preview par defaut
 
-var id_input_color = $("#backgroundColor"); // balise input du color picker
+var id_input_color = $(".demo2"); // balise input du color picker
 var id_input_image = $("#inputGameFile"); // balise input selection image
 var back_color = id_input_color.val(); // valeur (par defaut) du color picker
 
 //si on change de couleur
-id_input_color.on("change", function () {
-    back_color = $(this).val();
-    preview.css('background-color','#'+back_color+'');
+id_input_color.colorpicker().on('changeColor.colorpicker', function(event){
+    //preview.backgroundColor = event.color.toHex();
+    preview.css('background-color',event.color.toHex());
 });
 
 function open_modal(input)
@@ -32,7 +32,6 @@ function open_modal(input)
             {
                 if(input.files[0].size < 5000000)
                 {
-                    $(".pick-a-color-markup").removeClass('input-group').css({width: '0px',height: '0px'});
                     modal_win.modal('show');
                     // loader
                     $('#dim').html("Chargement <img src='/images/jquery-ui/ajax-loader.gif'/>");
@@ -44,7 +43,7 @@ function open_modal(input)
                             active = input.files[0].name;
 
                             //initialisation de la couleur (blanc par defaut)
-                            preview.css('background-color','#'+back_color+'');
+                            preview.css('background-color',back_color);
 
                             // et enfin on met l'image dans le cropper
                             readURL(input);
