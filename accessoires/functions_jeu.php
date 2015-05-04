@@ -83,6 +83,10 @@ function recup_jeu($id_jeu)
 }
 
 //Fonction pour récupérer les données d'un seul jeux (page complete_jeu et edit_jeu)
+/**
+ * @param $title_jeu
+ * @return mixed
+ */
 function recup_id_jeu($title_jeu)
 {
     require("connect_bdd.php");
@@ -96,6 +100,9 @@ function recup_id_jeu($title_jeu)
 }
 
 //Fonction pour récupérer tout les titres des jeux
+/**
+ * @return array
+ */
 function recup_title_jeu()
 {
 	require("connect_bdd.php");
@@ -108,13 +115,17 @@ function recup_title_jeu()
 }
 
 //Fonction pour ajouter un jeu (edit_jeu)
+/**
+ * @param $title_jeu
+ * @param $text_jeu
+ * @param $path_image
+ * @param $id_type_jeu
+ */
 function create_jeu($title_jeu, $text_jeu, $path_image, $id_type_jeu)
 {
     require("connect_bdd.php");
     $id=$_SESSION['id_user'];
-    var_dump($_SESSION,$id,$title_jeu,$text_jeu,$path_image,$id_type_jeu);
 
-    echo
     $sql = "  INSERT INTO jeu (  title_jeu,  text_jeu,  image_jeu, date_update,  id_type_jeu,   id_user)
               VALUE           ( :title_jeu, :text_jeu, :image_jeu, NOW(),       :id_type_jeu , :id_user)";
     $query=$connect->prepare($sql);
@@ -124,6 +135,8 @@ function create_jeu($title_jeu, $text_jeu, $path_image, $id_type_jeu)
     $query->bindParam(':id_type_jeu',$id_type_jeu,PDO::PARAM_INT);
     $query->bindParam(':id_user',$id,PDO::PARAM_INT);
     $query->execute();
+
+    //header("Location:/liste_jeu.php?jeu=".$id_type_jeu);
 }
 
 //Fonction pour modifier un jeu (edit_jeu)

@@ -8,6 +8,7 @@
 
 //fonctions
 include_once('../accessoires/functions_jeu.php');
+include_once('../accessoires/functions_crop.php');
 include_once('../accessoires/menu.php');
 
 //Si on veut éditer un jeu, on récupère les données
@@ -64,6 +65,14 @@ if(isset($_POST['ajouter'])||isset($_POST['modifier']))
         $errors_jeu[2] = "Veuillez remplir le jeu";
     }
 
+
+    if(isset($_FILES['inputGameFile']) && $_FILES['inputGameFile']['size']>0)
+    {
+        $file = $_FILES['inputGameFile'];
+        traitement_fichier($file,5000000,"jpg,jpeg,png,gif","image/jpeg,image/gif,image/png","photo");
+    }
+    var_dump($_FILES,$_POST);
+
     if(empty($errors_jeu))
     {
         $query=recup_id_type_jeu($libelle2);
@@ -84,10 +93,9 @@ if(isset($_POST['ajouter'])||isset($_POST['modifier']))
         }*/
         //On redirige vers le type d'actualité
 
-        header("Location:liste_jeu.php?jeu=".$id_type_jeu);
+
     }
 
 }
 
-include_once("ajouter_jeux.html")
-?>
+include_once("ajouter_jeux.html");

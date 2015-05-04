@@ -1,6 +1,6 @@
 <?php
 $ipserveur = $_SERVER['SERVER_ADDR'];
-if($ipserveur != "127.0.0.1")
+if($ipserveur == "127.0.0.1")
 {
 	ini_set("SMTP", "smtp-auth.sfr.fr");
 	ini_set('smtp_port',587);

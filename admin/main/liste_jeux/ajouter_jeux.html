@@ -6,7 +6,7 @@
         Ajouter un jeu
         <?php }?>
     </h3>
-    <form method="POST" enctype="multipart/form-data">
+    <form method="POST" action="#" enctype="multipart/form-data">
         <div class="row">
             <div class="col-md-7">
                 <div class="form-group">
@@ -16,7 +16,7 @@
                         <?php if(isset($errors_jeu[1])) { ?>
                         <div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom: 0">
                             <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?= $errors_article[1];?>
+                            <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?= $errors_jeu[1];?>
                         </div>
                         <?php } ?>
                     </div>
@@ -32,13 +32,13 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="inputArticleFile" class="control-label">Image du jeu</label>
-                    <input onchange="open_modal(this);" id="inputArticleFile" name="inputArticleFile" type="file" class="file" accept="image/png,image/jpeg,image/gif" data-show-upload="false" data-show-preview="false">
+                    <label for="inputGameFile" class="control-label">Image du jeu</label>
+                    <input onchange="open_modal(this);" id="inputGameFile" name="inputGameFile" type="file" class="file" accept="image/png,image/jpeg,image/gif" data-show-upload="false" data-show-preview="false">
 
                     <script>
                         /* Initialize your widget via javascript as follows */
-                        $("#inputArticleFile").fileinput({
-                            allowedFileExtensions : ['jpg', 'png','gif'],
+                        $("#inputGameFile").fileinput({
+                            allowedFileExtensions : ['jpg', 'png','gif','jpeg'],
                             maxFileSize: 500000,
 
                             previewFileType: "image",
@@ -51,7 +51,6 @@
                         });
                     </script>
                     <div id="inputError" class="alert alert-danger" style="display:none"></div>
-
 
                     <!-- Button trigger modal -->
                     <!--<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
@@ -68,8 +67,8 @@
 
                                 <div class="modal-body">
                                     <div class="row">
-                                        <div class="col-md-8">
-                                            <div class="crop " style="height: 300px">
+                                        <div class="col-md-8" style="padding-left: 10px;padding-right: 10px">
+                                            <div class="crop" style="margin:auto;height: 350px;width: 390px;padding: 0">
                                                 <img id="crop" src="" />
                                                 <!--<script>
                                                     $('#myModal').on('shown.bs.modal', function () {
@@ -83,14 +82,29 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div id="type_crop">Portrait (3:4)</div>
-                                            <div id="pre_crop" class="preview cropper-bg pre_label" style="overflow: hidden;height: 235px;width: 176px; float: none;border: 3px solid #fff;box-shadow: 0 0 5px rgba(0,0,0,.15);margin-left: auto;margin-right: auto;" >
-                                                <img src=""/>
+                                            <div id="pre_crop" class="preview pre_label">
+                                                <!--<img src="" alt="preview"/>-->
                                             </div>
                                             <div id="dim"></div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
+
+                                    <!--***************** Input couleur de fond de l'image *****************************-->
+                                    <div class="demo2" style="width: 10px;float: left;">
+                                        <input type="hidden" value="#ffffff" id="backgroundColor" name="backgroundColor" class="form-control">
+                                        <span class="input-group-addon" style="  border: 1px solid #245580;border-radius: 4px;background-image: linear-gradient(to bottom, #337ab7 0%, #265a88 100%);cursor: pointer; height: 35px;  padding-top: 5px;  padding-bottom: 4px;">
+                                            <span style="color: #ffffff;font-size: 13px;">Couleur de fond </span>
+                                            <i style="border-radius: 2px; border: 1px solid white;" ></i>
+                                        </span>
+                                    </div>
+                                    <script>
+                                        $(function(){
+                                            $('.demo2').colorpicker();
+                                        });
+                                    </script>
+                                    <!--****************-->
                                     <button class="btn btn-primary zoomin" type="button" title="Zoom +" style="padding-left: 4px;padding-right: 4px;padding-top: 2px;padding-bottom: 2px;"><span class="glyphicon glyphicon-zoom-in" style="font-size: 25px"></span></button>
                                     <button class="btn btn-primary zoomout" type="button" title="Zoom -" style="padding-left: 4px;padding-right: 4px;padding-top: 2px;padding-bottom: 2px;"><span class="glyphicon glyphicon-zoom-out" style="font-size: 25px"></span></button>
                                     <button class="btn btn-primary carre" type="button" title="Zoom -">1:1</button>
@@ -126,10 +140,14 @@
                 </div>
             </div>
             <div class="col-md-5">
-                <div id="pre_form" class="preview cropper-bg" style="overflow: hidden;height: 200px;width: 150px; float: noneborder: 3px solid #fff;box-shadow: 0 0 5px rgba(0,0,0,.15);margin-left: auto;margin-right: auto;">
+                <div id="pre_form" class="preview">
                     <img src="../images/jeux/<?= $image_jeu; ?>"/>
                 </div>
             </div>
+            <input type="hidden" id="dataX" name="dataX" />
+            <input type="hidden" id="dataY" name="dataY" />
+            <input type="hidden" id="dataHeight" name="dataHeight" />
+            <input type="hidden" id="dataWidth" name="dataWidth" />
         </div>
         <div class="form-group">
             <label for="editor1" class="control-label">Contenu</label>
@@ -189,8 +207,8 @@
         </div>
     </form>
 </div>
-
+<script src="../js/bootstrap-colorpicker.min.js"></script>
 <!--read url pour l'image-->
 <script type="text/javascript" src="../js/readURL.js"></script>
-<!-- compteur -->
-<script type="text/javascript" src="../js/compteur.js"></script>
+<!-- pick color addon -->
+
