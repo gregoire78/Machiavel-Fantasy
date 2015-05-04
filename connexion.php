@@ -27,7 +27,6 @@ if(isset($_POST['valider']))
         {
             $_SESSION['id_user'] = (int)$data['id_user'];
             $_SESSION['pseudo'] = $data['pseudo'];
-            $_SESSION['droits'] = (int)$data['droits'];
             $_SESSION['avatars'] = $data['avatars'];
 
             //defini la date de dernière connection

@@ -7,50 +7,133 @@ include_once('accessoires/menu.php');
 $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'index.php';
 //l'auto connexion
 auto_connexion(NULL,NULL,0);
-if(isset($_GET['jeu']))
-{
-    $id_type_jeu=$_GET['jeu'];
-}
-else
+
+/*
+$method_tri[0]="title_jeu";    $nom_tri[0]="Titre de jeu";
+$method_tri[1]="date_update";   $nom_tri[1]="Date de mise à jour";*/
+
+if(!isset($_GET['jeu']))
 {
     header('Location: ' . $referer);
 }
 
-
-
 //On récupère les informations concernant le type de jeu	(.accessoires/functions_jeu.php)
-$query = recup_type_jeu_one($id_type_jeu);
+$query = recup_type_jeu_one($_GET['jeu']);
 $data=$query->fetch(PDO::FETCH_ASSOC);
 $libelle_type_jeu = $data['libelle_type_jeu'];
 $description_type_jeu = $data['description_type_jeu'];
 $color_type_jeu = $data['color_type_jeu'];
 $icon_type_jeu = $data['icon_type_jeu'];
 
-$total_jeu = recup_lign($id_type_jeu);
+$fichier_originel = "liste_jeu.php?jeu=".$_GET['jeu'];
+$fichier = $fichier_num_page = $fichier_originel;
 
-$nb_page = ceil($total_jeu / 5);
-
-if (isset ($_GET['page']))
+/*//Si on veut trier dans un ordre précis
+if(isset($_GET['tri']) || isset($_GET['ordre']))
 {
-	if ($_GET['page']>$nb_page || $_GET['page']< 1)
-	{
-		header('Location: ' . $referer);
-	}
-	else
-	{
-		$page = (int)$_GET['page'];
-	}
+    //Si il y a une méthode de tri de dans l'URL
+    if(isset($_GET['tri']))
+    {
+        switch($_GET['tri'])
+        {
+            case $method_tri[0]:
+                $tri = $method_tri[0];
+                break;
+            case $method_tri[1]:
+                $tri = $method_tri[1];
+                break;
+            default :
+                $tri = $method_tri[0];
+                break;
+        }
+        $fichier = $fichier."&tri=".$tri;
+        $fichier_num_page = $fichier;
+    }
+    //Sinon on tri selon la première méthode de tri
+    else
+    {
+        $tri = $method_tri[0];
+    }
+
+    //Si on a un ordre de tri de dans l'URL
+    if(isset($_GET['ordre']))
+    {
+        switch($_GET['ordre'])
+        {
+            case "Croissant":
+                $ordre = "ASC";
+                break;
+            case "Décroissant":
+                $ordre = "DESC";
+                break;
+            default :
+                $ordre ="ASC";
+                break;
+        }
+        $fichier = $fichier."&ordre=".$_GET['ordre'];
+        $fichier_num_page = $fichier;
+    }
+    //Sinon on tri dans l'ordre croissant
+    else
+    {
+        $ordre = "ASC";
+    }
+}
+//Si on a aucun des deux tri dans l'URL on tri selon la première méthode par ordre croissant
+else
+{
+    $ordre ="ASC";
+    $tri = $method_tri[0];
+}*/
+
+//Si on a déjà un nombre de d'événement par page sinon par défaut on affichera 5 actu par page
+if(isset($_GET['view']))
+{
+    switch($_GET['view'])
+    {
+        case 5 :
+            $nombre_liste = 5;
+            break;
+        case 10 :
+            $nombre_liste = 10;
+            break;
+        case 15 :
+            $nombre_liste = 15;
+            break;
+        default :
+            $nombre_liste = 5;
+            break;
+    }
+    $fichier = $fichier."&view=".$nombre_liste;
 }
 else
 {
-	$page = 1;
+    $nombre_liste = 5;
 }
 
-$fichier = "liste_jeu.php?jeu=".$id_type_jeu;
+//On récupère le nombre de page pour afficher le nombre de jeu dans la base de donnée
+$nb_page = recup_nb_page(recup_lign($_GET['jeu']), $nombre_liste);
+
+if (isset ($_GET['page']))
+{
+    if ($_GET['page']>$nb_page || $_GET['page']< 1)
+    {
+        header('Location: ' . $referer);
+    }
+    else
+    {
+        $page = (int)$_GET['page'];
+    }
+}
+else
+{
+    $page = 1;
+}
 
 //On récupère la liste des jeux en base de donnée			(.accessoires/functions_jeu.php)
-$query=recup_liste_jeu($id_type_jeu, $page);
+$query=recup_liste_jeu($_GET['jeu'], $page, $nombre_liste);
 $j=0;
+
 //On parcourt les jeux de la base de donnée
 while ($data=$query->fetch(PDO::FETCH_ASSOC))
 {

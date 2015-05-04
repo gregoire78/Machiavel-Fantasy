@@ -6,6 +6,19 @@
  * Time: 22:19
  */
 
+//Fonction pour récupérer le statut d'un utilisateur
+function recup_statut()
+{
+    require("connect_bdd.php");
+    $sql="SELECT droits
+          FROM users
+          WHERE activation=1 AND id_user=:id_user";
+    $query=$connect->prepare($sql);
+    $query->bindParam(':id_user',$_SESSION['id_user'],PDO::PARAM_INT);
+    $query->execute();
+    $data=$query->fetch(PDO::FETCH_ASSOC);
+    return $data['droits'];
+}
 //Fonction pour récupérer tous les utilisateurs
 function recup_all_user($tri, $ordre)
 {
@@ -21,7 +34,7 @@ function recup_all_user($tri, $ordre)
     return $query;
 }
 
-//Fonction pour récupéré un utilisateur
+//Fonction pour récupéré les données d'un utilisateur
 function recup_one_user($id_user)
 {
     require("connect_bdd.php");

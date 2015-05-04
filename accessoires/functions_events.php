@@ -1,23 +1,45 @@
 <?php
 //Fonction pour récupérer les événements passer ou à avenir
-function recup_event($condition)
+function recup_event($condition, $id_user, $page, $event_page, $tri, $ordre)
 {
-	if($condition==">=")
-	{
-		$order = "ASC";
-	}
-	else
-	{
-		$order = "DESC";
-	}
+    $nb_event = ($page-1)*$event_page;
 	require("connect_bdd.php");
-	$sql="	SELECT id_event, title_event, text_event, date_event, statut_event, date_update, image_event, id_user, id_jeu, inscription_event, nb_inscrit
-			FROM event
-			WHERE date_event".$condition."SYSDATE() AND statut_event=1
-			ORDER BY date_event ".$order."";
+	$sql="	SELECT id_event AS id_event_bis, title_event, text_event, date_event, statut_event, date_update, image_event, id_user, id_jeu AS id_jeu_bis, inscription_event, nb_inscrit,
+
+            CASE id_jeu
+            WHEN 0 THEN 'Autre'
+            ELSE (SELECT title_jeu FROM jeu WHERE id_jeu =  id_jeu_bis)
+            END title_jeu,
+
+            CASE :id_user_bis
+            WHEN 0 THEN 0
+            ELSE (SELECT COUNT(*) FROM inscription WHERE id_event =id_event_bis AND id_user =:id_user_bis)
+            END verif
+
+            FROM event
+
+			WHERE date_event ".$condition." SYSDATE() AND statut_event=1
+			ORDER BY "."$tri"." ".$ordre."
+			LIMIT   :nb_event, :event_page";
 	$query=$connect->prepare($sql);
+    $query->bindParam(':id_user_bis',$id_user,PDO::PARAM_INT);
+    $query->bindParam(':nb_event',$nb_event,PDO::PARAM_INT);
+    $query->bindParam(':event_page',$event_page,PDO::PARAM_INT);
 	$query->execute();
 	return $query;
+}
+
+//Fonction pour compter le nombre total de ligne d'une table
+function recup_lign_event($condition)
+{
+    require("connect_bdd.php");
+    $sql = "SELECT COUNT(*)
+			FROM  event
+			WHERE date_event ".$condition." SYSDATE() AND statut_event=1";
+    $query=$connect->prepare($sql);
+    $query->execute();
+    $data=$query->fetchColumn();
+    return $data;
 }
 
 //Fonction pour récupérer les données d'un évènement à venir

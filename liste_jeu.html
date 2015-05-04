@@ -28,15 +28,27 @@
 			include_once("accessoires/menu.html");//barre de menu
 		?>
         <div class="contenu col-md-10 col-lg-offset-1">
-            <h3 class="title_page" style="background-color: <?= $color_type_jeu; ?>;">
-                <img src="<?= $icon_type_jeu; ?>" height="75" width="75"></img>
-                <span class=""><?= $libelle_type_jeu; ?></span>
-            </h3>
-            <div class="col-md-10 main">
-                <?php if (isset($libelle_type_jeu)){ ?>
-
-                    <!--<span class="text-justify" ><em><?php //echo $description_type_jeu; ?></em></span>-->
-                    <?php $i=0; if (isset ($id_jeu[$i]))
+            <?php if (isset($libelle_type_jeu)){ ?>
+                <h3 class="title_page" style="background-color: <?php echo $color_type_jeu; ?>;">
+                    <img src="<?= $icon_type_jeu; ?>" height="75" width="75"></img>
+                    <span class=""><?php echo $libelle_type_jeu; ?></span>
+                </h3>
+                <span class="text-justify" ><em><?php echo $description_type_jeu; ?></em></span>
+                <div class="col-md-10 main">
+                <form method="GET" action="<?php echo $fichier; ?>">
+                    <div class="pagination_top">
+                        <?php
+                            include_once("accessoires/view.html");
+                            if($nb_page > 1)
+                            {
+                                include_once("accessoires/page.html");
+                            }
+                        ?>
+                    </div>
+                </form>
+                    <?php
+                    $i=0;
+                    if (isset ($id_jeu[$i]))
                         {
                             while (isset ($id_jeu[$i]))
                             { ?>
@@ -55,23 +67,31 @@
                                     <a style="float:right;margin:10px;" class="btn btn-primary" href="complete_jeu.php?jeu=<?= $id_jeu[$i];?>" role="button">Lire plus</a>
                                 </article>
                     <?php 		$i++;
-                            }
-                        include_once("accessoires/barre_page.html");
-                        }
+                            } ?>
+                        <div class="pagination_bottom">
+                            <?php
+                                include("accessoires/view.html");
+                                if($nb_page > 1)
+                                {
+                                    include("accessoires/page.html");
+                                }
+                            ?>
+                        </div>
+                        <?php }
                         else
                         { ?>
                             <div class="message_erreur">Il n'y a aucun jeu pour le momment.</div>
                     <?php
-                        }
-                } else { ?>
-                    <div class="message_erreur">Le type de jeu que vous recherchez n'existe pas.</div>
-                <?php } ?>
-            </div>
-            <div class="col-md-2" style="padding-right:0;">
-                <?php include_once("accessoires/calendrier_aside.php");
-				  include_once("accessoires/actualite_mini.php");
-			?>
-            </div>
+                        } ?>
+                </div>
+                <div class="col-md-2" style="padding-right:0;">
+                    <?php include_once("accessoires/calendrier_aside.php");
+                          include_once("accessoires/actualite_mini.php");
+                    ?>
+                </div>
+            <?php } else { ?>
+                <div class="message_erreur">Le type de jeu que vous recherchez n'existe pas.</div>
+            <?php } ?>
 		</div>
 		<?php
 			include_once("accessoires/footer.html");

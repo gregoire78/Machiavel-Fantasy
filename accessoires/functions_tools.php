@@ -38,17 +38,24 @@ function verif_mod_supp($table, $id_table)//$id_table représente id par rapport
 function recup_rang($droits)
 {
     switch($droits) {
-        case 0 : $rang = 'banni';
+        case 0 : $rang = 'Banni';
             break;
-        case 1 : $rang = 'utilisateur';
+        case 1 : $rang = 'Utilisateur';
             break;
-        case 2 : $rang = 'modérateur';
+        case 2 : $rang = 'Adhérent';
             break;
-        case 3 : $rang = 'administrateur';
+        case 3 : $rang = 'Administrateur';
             break;
         default : $rang = 'N/A';
             break;
     }
     return $rang;
+}
+
+//Fonction qui calcul le nombre page
+function recup_nb_page($total_liste, $nombre_by_page)
+{
+    $nb_page = ceil($total_liste / $nombre_by_page);
+    return $nb_page;
 }
 ?>

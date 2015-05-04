@@ -32,9 +32,8 @@ function nb_incrit($id_event)
     $query->bindParam(':id_event',$id_event,PDO::PARAM_INT);
     $query->execute();
 }
-
-//Fonction pour sélectionner la dernière personne inscrit à un événement
-function recup_last_user_inscrit($id_event)
+//Fonction pour désinscrire la dernière perssonne enregistrer
+function desinscription_last_user($id_event)
 {
     require("connect_bdd.php");
     $sql="SELECT id_user
@@ -44,18 +43,23 @@ function recup_last_user_inscrit($id_event)
     $query->bindParam(':id_event',$id_event,PDO::PARAM_INT);
     $query->execute();
     $data=$query->fetch(PDO::FETCH_ASSOC);
-    return $data['id_user'];
-
-}
-//Fonction pour désinscrire la dernière perssonne enregistrer
-function desinscription_last_user($id_event)
-{
-    $id_user = recup_last_user_inscrit($id_event);
+    $id_user = $data['id_user'];
     desinscription_event($id_event, $id_user);
 }
 
+//Fonction pour désinscrire toute les personnes inscrites à un événement
+function desinscription_event($id_event)
+{
+    require("connect_bdd.php");
+    $sql="DELETE FROM inscription
+          WHERE id_event = :id_event";
+    $query=$connect->prepare($sql);
+    $query->bindParam(':id_event',$id_event,PDO::PARAM_INT);
+    $query->execute();
+}
+
 //Fonction pour se désinscrire d'un événement
-function desinscription_event($id_event, $id_user)
+function desinscription_user_event($id_event, $id_user)
 {
     require("connect_bdd.php");
     $sql="DELETE FROM inscription

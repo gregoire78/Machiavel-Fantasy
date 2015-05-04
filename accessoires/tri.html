@@ -1,0 +1,18 @@
+<div class="pagination_left">
+    <div class="trie">
+        <label for="trie">Trier par :</label>
+        <select name="tri" id="trie">
+            <?php $i=0;while(isset($method_tri[$i])){ ?>
+            <option <?php if(isset($_GET['tri']) && $_GET['tri']==$method_tri[$i])echo "selected='selected'"; ?> value="<?php echo $method_tri[$i]; ?>"><?php echo $nom_tri[$i];?></option>
+            <?php $i++; } ?>
+        </select>
+    </div>
+    <div class="ordre">
+        <label for="ordre">Ordre :</label>
+        <select name="ordre" id="ordre">
+            <option <?php if(isset($_GET['ordre']) && $_GET['ordre']=="Croissant")echo "selected='selected'"; ?> >Croissant</option>
+            <option <?php if(isset($_GET['ordre']) && $_GET['ordre']=="Décroissant")echo "selected='selected'"; ?> >Décroissant</option>
+        </select>
+    </div>
+    <input type="submit" value="Trier" class="valider" />
+</div>

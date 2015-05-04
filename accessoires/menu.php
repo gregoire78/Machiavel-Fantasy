@@ -1,10 +1,15 @@
 <?php
 include_once('functions_connect.php');
 include_once("functions_jeu.php");
+include_once("functions_user.php");
 include_once("functions_tools.php");
 if(!isset ($_SESSION['id_user']))
 {
-    $droits = $avatar = $id_user = $pseudo =  NULL;
+    $droits = $_SESSION['avatar'] = $_SESSION['id_user'] = $_SESSION['pseudo'] =  NULL;
+}
+else
+{
+    $droits = recup_statut();
 }
 $query = recup_type_jeu();
 $i=0;

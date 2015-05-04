@@ -58,7 +58,7 @@ function connexion_user($email,$hash)
 }
 
 //fonction parmettant d'auto connecter l'utilisateur à inserer sur toute les pages en relation avec l'utilisateur
-function auto_connexion($page_redirection_ok,$page_redirection_nok,$droit)
+function auto_connexion($page_redirection_ok,$page_redirection_nok,$droits)
 {
     require("connect_bdd.php");
 
@@ -96,14 +96,14 @@ function auto_connexion($page_redirection_ok,$page_redirection_nok,$droit)
             }
         }
 
-        //si il y a une restriction de droit
-        if(isset($droit))
+        /*//si il y a une restriction de droit
+        if(isset($droits))
         {
-            if($_SESSION['droits']<$droit)
+            if($_SESSION['droits']<$droits)
             {
                 header('Location:index.php');
             }
-        }
+        }*/
     }
     else if(isset($_COOKIE['auth']))
     {
@@ -121,7 +121,6 @@ function auto_connexion($page_redirection_ok,$page_redirection_nok,$droit)
             {
                 $_SESSION['id_user'] = (int)$id_user[$i];
                 $_SESSION['pseudo'] = $data['pseudo'];
-                $_SESSION['droits'] = (int)$data['droits'];
                 $_SESSION['avatars'] = $data['avatars'];
 
                 //met à jour la date last connexion
@@ -155,7 +154,7 @@ function recup_data_user($id_user)
     return $data;
 }
 
-//fonction sui vamettre a jour les normes européennes et CF
+//fonction sui va mettre a jour les normes européennes et CF
 function update_data_user($pseudo_user,$lastname_user,$firstname_user,$civility_user,$email_user,$id_user)
 {
     require "connect_bdd.php";

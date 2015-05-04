@@ -43,11 +43,18 @@
                     <span>Evénement archiver</span>
                 <?php } ?>
             </h3>
-            <div style="margin-bottom:15px;float:left;height: 30px;width:100%;background: #cccaca;"><b>TOP</b></div><!--Barre page top-->
-
-            <?php $i=0; if (isset($id_event[$i])){ //Si on a récupérer un événement en base de donnée
-                while (isset($id_event[$i])) { ?><!--Tant qu'on peut afficher un événément-->
-
+            <?php if (isset($id_event[0])){ ?> <!--Si on a récupérer un événement en base de donnée-->
+                <div class="pagination_top">
+                    <?php
+                        include_once("accessoires/tri.html");
+                        include_once("accessoires/view.html");
+                        if($nb_page > 1)
+                        {
+                            include_once("accessoires/page.html");
+                        }
+                    ?>
+                </div>
+                <?php $i=0; while (isset($id_event[$i])) { ?><!--Tant qu'on peut afficher un événément-->
                     <div class="event" id="e<?php echo $id_event[$i]; ?>">
                         <img class="image_event" src="<?php echo $image_event[$i]; ?>" alt="image_event"> </img>
                         <div class="content_event">
@@ -55,7 +62,7 @@
                                 <b><?php echo $title_event[$i]; ?></b>
 
                                 <!--Bouton pour modifier ou supprimer un événement-->
-                                <?php if(isset($_SESSION['id_user']) && !isset($supprimer) && $afficher!='<' && ($_SESSION['droits']==3 || $_SESSION['id_user'] == $id_user_event[$i])){ ?><!--Si l'utilisateur est un administrateur ou un modérateur alors-->
+                                <?php if(isset($_SESSION['id_user']) && !isset($supprimer) && $afficher!='<' && ($droits==3 || $_SESSION['id_user'] == $id_user_event[$i])){ ?><!--Si l'utilisateur est un administrateur ou un modérateur alors-->
                                     <div class="btn-group btn-group-xs" style="float:right; " role="group" aria-label="...">
                                         <a type="button" class="btn btn-default" style="font-size: 9px;" href="edit_actualite.php?modifier=<?php echo $id_event[$i] ; ?>">
                                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span><!--bouton pour modifié l'actualité-->
@@ -69,9 +76,9 @@
                             <div class="text_event">
                                 <?php echo $text_event[$i]; ?>
 
-                                <?php if (isset($_SESSION['id_user']) && isset($_GET['supprimer'])&& $supprimer == $id_event[$i] && ($_SESSION['id_user']== $id_user_event[$i] || $_SESSION['droits'] == 3)){ ?><!--Si on a appuiyé sur le bouton supprimer alors afficher les boutons de confirmation-->
+                                <?php if (isset($_SESSION['id_user']) && isset($_GET['supprimer'])&& $_GET['supprimer'] == $id_event[$i] && ($_SESSION['id_user']== $id_user_event[$i] || $droits == 3)){ ?><!--Si on a appuiyé sur le bouton supprimer alors afficher les boutons de confirmation-->
                                 <form class="form-horizontal" action="actualite.php?supprimer=<?php echo $id_event[$i]; ?>" method="POST">
-                                    <div class="col-sm-offset-3 col-sm-6">
+                                    <div class="col-sm-offset-1 col-sm-10">
                                         <p style="text-align:center;">
                                             Voulez-vous vraiment supprimer cet événement ?
                                         </p>
@@ -86,30 +93,32 @@
                             </div>
                         </div>
                         <div class="info_event">
-                            <?php if(isset($title_jeu_event[$i])){ ?><!--Si c'est une partie de jeu-->
+                            <?php if($title_jeu_event[$i]!="Autre"){ ?><!--Si c'est une partie de jeu-->
                                 <div style="margin-top:0;" class="text_info">Partie de <b><a href="complete_jeu.php?jeu=<?php echo $id_jeu_event[$i] ;?>"><b><?php echo $title_jeu_event[$i]; ?></b></a></b></div>
                             <?php } ?>
-                            <div <?php if(!isset($title_jeu_event[$i]))echo  'style="margin-top:0;"'; ?> class="text_info"><b><?php echo $date_event[$i]; ?></b></div>
+                            <div <?php if($title_jeu_event[$i]=="Autre")echo  'style="margin-top:0;"'; ?> class="text_info"><b><?php echo $date_event[$i]; ?></b></div>
 
                             <div class="text_info">
                                 <div class="particip_event">
-                                    <span>Participant(es) <b>(<?php echo $nb_inscrit[$i]."/".$inscription_event[$i]; ?>)</b></span>
-                                    <?php if(isset($_SESSION['id_user']) && $afficher!='<' && $nb_inscrit[$i] < $inscription_event[$i]) { ?> <!--On affiche un lien pour s'inscrire ou se désinscrire si on est connecté-->
-                                        <a href="actualite.php?id=<?php echo $id_event[$i]; ?>">
-                                            <?php if (!$nb[$i]) { ?>
+                                    <span>Participant(s) <b>(<?php echo $nb_inscrit[$i]."/".$inscription_event[$i]; ?>)</b></span>
+                                    <?php if(isset($_SESSION['id_user']) && $droits > 1 && $afficher!='<' && ($nb_inscrit[$i] < $inscription_event[$i]) || $nb[$i]) { ?> <!--On affiche un lien pour s'inscrire ou se désinscrire si on est connecté-->
+                                        <?php if (!$nb[$i]) { ?>
+                                            <a href="<?php echo $fichier."&page=".$page.'&inscrire='.$id_event[$i]; ?>">
                                                 <span><small>S'inscrire</small></span>
-                                            <?php }else{ ?>
+                                            </a>
+                                        <?php }else{ ?>
+                                            <a href="<?php echo $fichier."&page=".$page.'&desinscrire='.$id_event[$i]; ?>">
                                                 <span><small>Se désinscrire</small></span>
-                                            <?php } ?>
-                                        </a>
+                                            </a>
+                                        <?php } ?>
                                     <?php } ?>
                                 </div>
                                 <ul>
                                     <?php for($j=0 ; $j<$inscription_event[$i] ; $j++) { ?>
-                                        <?php if(isset($pseudo_inscrit[$j][$i])) { ?><!--On affiche les personnes inscrite-->
+                                        <?php if(isset($id_user_inscrit[$j][$i])) { ?><!--On affiche les personnes inscrite-->
                                             <li>
-                                                <img src="images/avatars/<?php echo $avatar_inscrit[$j][$i]; ?>" width="45" height="45" alt="avatar_inscrit"></img>
-                                                <span><small><?php echo $pseudo_inscrit[$j][$i]; ?></small></span>
+                                                <img src="images/avatars/<?php echo $avatar_inscrit[$j][$i]; ?>" width="45" height="45" alt="avatar_inscrit"></img><!--On affiche l'image de profil de l'inscrit-->
+                                                <span><small><?php echo $pseudo_inscrit[$j][$i]; ?></small></span><!--On affiche le pseudo de l'inscrit-->
                                             </li>
                                         <?php } else { ?>
                                             <li>
@@ -121,12 +130,20 @@
                                     <?php } ?>
                                 </ul>
                             </div>
-                            <div class="text_info"><em><small>mis à jour : <?php echo $date_update[$i]; ?></small></em></div>
+                            <div class="text_info"><em><small>mis à jour le <b><?php echo $date_update[$i]; ?></b></small></em></div>
                         </div>
                     </div>
                 <?php $i++; } ?>
-                    <div style="height: 30px;width:100%;background: #cccaca;float:left;"><b>BOTTOM</b></div><!--barre page bottom-->
-                <?php } else { ?>
+                <div class="pagination_bottom">
+                    <?php
+                        include("accessoires/view.html");
+                        if($nb_page > 1)
+                        {
+                            include("accessoires/page.html");
+                        }
+                    ?>
+                </div>
+                <?php  } else { ?>
                 <div class="message_erreur">Il n'y a aucun événement pour le moment</div>
             <?php } ?>
 		</div>
