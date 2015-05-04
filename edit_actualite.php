@@ -6,7 +6,7 @@ session_regenerate_id();
 include_once('accessoires/menu.php');
 
 //l'auto connexion
-auto_connexion(NULL,'index.php',3);
+auto_connexion(NULL,'index.php',2);
 include_once("accessoires/functions_events.php");
 
 if (isset($_GET['modifier']))

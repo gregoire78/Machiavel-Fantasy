@@ -61,6 +61,7 @@ function connexion_user($email,$hash)
 function auto_connexion($page_redirection_ok,$page_redirection_nok,$droits)
 {
     require("connect_bdd.php");
+    include_once("functions_user.php");
 
     if(isset($_SESSION['id_user']))
     {
@@ -96,14 +97,16 @@ function auto_connexion($page_redirection_ok,$page_redirection_nok,$droits)
             }
         }
 
-        /*//si il y a une restriction de droit
+        //si il y a une restriction de droit
+
         if(isset($droits))
         {
-            if($_SESSION['droits']<$droits)
+            $droitsData=recup_statut();
+            if($droitsData<$droits)
             {
-                header('Location:index.php');
+                header('Location:/index.php');
             }
-        }*/
+        }
     }
     else if(isset($_COOKIE['auth']))
     {
