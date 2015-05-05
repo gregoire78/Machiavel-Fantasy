@@ -199,12 +199,5 @@ function last_jeu_id()
     $query=$connect->query($sql);
     $result = $query->fetch();
     $lastidjeu = (int)$result[0];
-    if($lastidjeu == 0)
-    {
-        return 0;
-    }
-    else
-    {
-        return $lastidjeu+1;
-    }
+    return $lastidjeu+1;
 }
