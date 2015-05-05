@@ -37,6 +37,21 @@ if(isset($_POST['ajouter'])||isset($_POST['modifier']))
     $text_jeu=trim($_POST['text_jeu']);
     $libelle2=$_POST['libelle'];
 
+    //on recupere les donnée cachées pour les verifier
+    $dataX = htmlentities($_POST['dataX']);
+    $dataY = htmlentities($_POST['dataY']);
+    $dataHeight = htmlentities($_POST['dataHeight']);
+    $dataWidth = htmlentities($_POST['dataWidth']);
+    $backgroundColor = htmlentities($_POST['backgroundColor']);
+
+    if(($dataHeight!='' || $dataWidth!='' || $dataX!='' || $dataY!=''))
+    {
+        if(is_numeric($dataX)==false || is_numeric($dataY)==false || is_numeric($dataHeight)==false || is_numeric($dataWidth)==false || is_numeric(hexdec(substr($backgroundColor,1,7)))==false)
+        {
+            $errors_jeu[0] = "Erreur 488 ... (donnée(s) interdite(s))";
+        }
+    }
+
     //Si on créer un jeu
     /********************** Vérifications pour le titre jeu ************************/
     $string = 50;

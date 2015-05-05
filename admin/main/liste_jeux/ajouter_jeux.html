@@ -9,6 +9,11 @@
     <noscript>
         <div class="alert alert-danger">Veuillez activer le javascript dans votre navigateur !</div>
     </noscript>
+    <?php if(isset($errors_jeu[0])) { ?>
+    <div class="alert alert-danger" role="alert">
+        <?= $errors_jeu[0]; ?>
+    </div>
+    <?php } ?>
     <form method="POST" action="#" enctype="multipart/form-data">
         <div class="row">
             <div class="col-md-7">
