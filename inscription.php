@@ -7,10 +7,12 @@
 session_start();
 session_regenerate_id();
 
+//l'auto connexion
+include_once('accessoires/functions_connect.php');
+auto_connexion('profil.php',NULL,NULL);
+
 //fonctions
 include_once('accessoires/menu.php');
-//l'auto connexion
-auto_connexion('profil.php',NULL,NULL);
 
 //si il existe post register cad si on clique sur le bouton submit name=register
 if(isset($_POST['valider']))

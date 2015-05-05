@@ -1,11 +1,13 @@
 <?php
 session_start();
 session_regenerate_id();
-//fonctions
-include_once('accessoires/menu.php');
 
 //l'auto connexion
+include_once('accessoires/functions_connect.php');
 auto_connexion(NULL,'index.php',2);
+
+//fonctions
+include_once('accessoires/menu.php');
 
 //Si on veut éditer un jeu, on récupère les données
 if(isset($_GET['jeu'])){

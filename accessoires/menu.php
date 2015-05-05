@@ -1,13 +1,8 @@
 <?php
-include_once('functions_connect.php');
 include_once("functions_jeu.php");
 include_once("functions_user.php");
 include_once("functions_tools.php");
-if(!isset ($_SESSION['id_user']))
-{
-    $droits = $_SESSION['avatar'] = $_SESSION['id_user'] = $_SESSION['pseudo'] =  NULL;
-}
-else
+if(isset($_SESSION['id_user']))
 {
     $droits = recup_statut();
 }

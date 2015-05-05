@@ -2,11 +2,12 @@
 session_start();
 session_regenerate_id();
 
+//l'auto connexion
+include_once('accessoires/functions_connect.php');
+auto_connexion(NULL,'index.php',0);
+
 //fonctions
 include_once('accessoires/menu.php');
-
-//l'auto connexion
-auto_connexion(NULL,'index.php',0);
 
 //on recupere les données de l'utilisateur
 $id_user = (int)$_SESSION['id_user'];

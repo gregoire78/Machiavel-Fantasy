@@ -2,11 +2,13 @@
 session_start();
 session_regenerate_id();
 
+//l'auto connexion
+include_once('accessoires/functions_connect.php');
+auto_connexion(NULL,NULL,0);
+
 //fonctions
 include_once('accessoires/menu.php');
 $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'index.php';
-//l'auto connexion
-auto_connexion(NULL,NULL,0);
 
 /*
 $method_tri[0]="title_jeu";    $nom_tri[0]="Titre de jeu";
