@@ -38,34 +38,34 @@ if(isset($_POST['ajouter'])||isset($_POST['modifier']))
     $libelle2=$_POST['libelle'];
 
     //Si on créer un jeu
-    /****verif titre*****/
+    /********************** Vérifications pour le titre jeu ************************/
     $string = 50;
     if(empty($title_jeu))
     {
         $errors_jeu[1] = "Veuillez mettre un titre au jeu";
     }
-    else
+    else if(strlen(html_entity_decode($title_jeu)) > $string)
     {
-        if(strlen(html_entity_decode($title_jeu)) > $string)
-        {
-            $errors_jeu[1] = "Le titre ne doit pas dépasser <b>".$string." caractères</b>";
-        }
-        else
-        {
-            //vérifions s'il ya des caracteres speciaux
-            if(preg_match("/[^0-9A-Za-zàâçéèêëîïôûùüÿñæœ.:!?_\' ]/",$_POST['title_jeu']))
-            {
-                $errors_jeu[1] = "Veuillez n'insérer que des lettres ou chiffres dans le titre.";
-            }
-        }
+        $errors_jeu[1] = "Le titre ne doit pas dépasser <b>".$string." caractères</b>";
     }
-    /***verif text**/
+    //vérifions s'il ya des caracteres speciaux
+    else if(preg_match('/[^0-9A-Za-zàâçéèêëîïôûùüÿñæœ \']/',html_entity_decode($title_jeu)))
+    {
+        $errors_jeu[1] = "Veuillez n'insérer que des lettres ou chiffres dans le titre.";
+    }
+    //vérifions si le pseudo éxiste
+    else if(verif_existe('id_jeu','jeu','title_jeu',$title_jeu)!=0)
+    {
+        $errors_jeu[1] = "Ce titre n'est pas disponible";
+    }
+
+    /*************** Vérifications pour le texte de contenu du jeu ******************/
     if(empty($text_jeu))
     {
         $errors_jeu[2] = "Veuillez remplir le jeu";
     }
 
-    /***verif image**/
+    /********************** Vérifications pour l'image du jeu ************************/
     if(isset($_FILES['inputGameFile']) && $_FILES['inputGameFile']['size']>0)
     {
         $file = $_FILES['inputGameFile'];
@@ -76,16 +76,20 @@ if(isset($_POST['ajouter'])||isset($_POST['modifier']))
             $crop = crop_image($file,$_POST['dataWidth'],$_POST['dataHeight'],$_POST['dataX'],$_POST['dataY'],150,'../images/jeux/',$nom_image_jeu,$_POST['backgroundColor']);
             if($crop)
             {
-                echo $crop; // erreur de crop
+                $crop; // erreur de crop
             }
         }
         else
         {
-            echo $crop; // erreurs de traitement de fichier
+            $crop; // erreurs de traitement de fichier
         }
     }
+    else
+    {
+        $crop = "Veuillez Insérer une image d'illustration";
+    }
 
-    /***Si aucune erreur***/
+    /**************************** Si il n'y a aucune erreur(s) *************************/
     if(empty($errors_jeu) && empty($crop))
     {
         $query=recup_id_type_jeu($libelle2);

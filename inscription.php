@@ -18,7 +18,7 @@ include_once('accessoires/menu.php');
 if(isset($_POST['valider']))
 {
     $email_user = htmlentities(trim($_POST["email_user"]));
-    if(verif_existe('email',$email_user)!=0)
+    if(verif_existe('id_user','users','email',$email_user)!=0)
     {
         header('Location:connexion.php');
     }
@@ -55,7 +55,7 @@ if(isset($_POST["register"]))
         $errors[1] = "Veuillez n'insérer que des lettres ou chiffres dans votre pseudo.";
     }
     //vérifions si le pseudo éxiste
-    else if(verif_existe('pseudo',$pseudo_user)!=0)
+    else if(verif_existe('id_user','users','pseudo',$pseudo_user)!=0)
     {
         $errors[1] = "Le pseudo <b><i>".$pseudo_user."</i></b> n'est pas disponible";
     }
@@ -115,7 +115,7 @@ if(isset($_POST["register"]))
         $errors[6] = "Ceci n'est pas une adresse mail valide";
     }
     //verifions si l'email existe
-    else if(verif_existe('email',$email_user)!=0)
+    else if(verif_existe('id_user','users','email',$email_user)!=0)
     {
         $errors[6] = "L'adresse <b><i>".$email_user."</i></b> éxiste déjà";
     }

@@ -45,7 +45,7 @@ if(isset($_POST['modifier_data']))
         $error_data[1] = "Veuillez n'insérer que des lettres ou chiffres dans votre pseudo.";
     }
     //vérifions si le pseudo éxiste
-    else if($pseudo_user_new!=$pseudo_user_data && verif_existe('pseudo',$pseudo_user_new)!=0)
+    else if($pseudo_user_new!=$pseudo_user_data && verif_existe('id_user','users','pseudo',$pseudo_user_new)!=0)
     {
         $error_data[1] = "Ce pseudo n'est pas disponible";
     }
@@ -86,7 +86,7 @@ if(isset($_POST['modifier_data']))
         $error_data[4] = "Ceci n'est pas une adresse mail valide";
     }
     //verifions si l'email existe
-    else if($email_user_new!=$email_user_data && verif_existe('email',$email_user_new)!=0)
+    else if($email_user_new!=$email_user_data && verif_existe('id_user','users','email',$email_user_new)!=0)
     {
         $error_data[4] = "L'adresse <b><i>".$email_user_new."</i></b> éxiste déjà";
     }

@@ -6,6 +6,9 @@
         Ajouter un jeu
         <?php }?>
     </h3>
+    <noscript>
+        <div class="alert alert-danger">Veuillez activer le javascript dans votre navigateur !</div>
+    </noscript>
     <form method="POST" action="#" enctype="multipart/form-data">
         <div class="row">
             <div class="col-md-7">
@@ -51,6 +54,12 @@
                         });
                     </script>
                     <div id="inputError" class="alert alert-danger" style="display:none"></div>
+                    <?php if(isset($crop)) { ?>
+                    <div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom: 0">
+                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?= $crop;?>
+                    </div>
+                    <?php } ?>
 
                     <!-- Button trigger modal -->
                     <!--<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">

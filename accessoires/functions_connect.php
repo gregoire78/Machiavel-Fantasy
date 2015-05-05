@@ -1,9 +1,9 @@
 <?php
 //fonction qui verifie si l'entité preciser existe
-function verif_existe($col,$email_user)
+function verif_existe($id,$tab,$col,$email_user)
 {
     require('connect_bdd.php');
-    $sql="SELECT count(id_user) FROM users WHERE ".$col."= :email_user";
+    $sql="SELECT count(".$id.") FROM ".$tab." WHERE ".$col."= :email_user";
     $query=$connect->prepare($sql);
     $query->bindParam(':email_user',$email_user,PDO::PARAM_STR,35);
     $query->execute();

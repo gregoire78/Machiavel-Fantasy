@@ -9,12 +9,12 @@ if(isset($_POST['pseudo_user_data']))
 	//execute la fonction
 	if($pseudo_user!=$pseudo_user_data)
 	{
-		echo verif_existe('pseudo',$pseudo_user);
+		echo verif_existe('id_user','users','pseudo',$pseudo_user);
 	}
 }
 else
 {
-	echo verif_existe('pseudo',$pseudo_user);
+	echo verif_existe('id_user','users','pseudo',$pseudo_user);
 }
 
 ?>
