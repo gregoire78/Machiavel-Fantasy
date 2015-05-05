@@ -8,7 +8,7 @@
 
 //fonctions
 include_once('../accessoires/functions_jeu.php');
-include_once('../accessoires/functions_crop.php');
+include_once('../accessoires/functions_file.php');
 include_once('../accessoires/menu.php');
 
 //Si on veut éditer un jeu, on récupère les données
@@ -65,15 +65,15 @@ if(isset($_POST['ajouter'])||isset($_POST['modifier']))
         $errors_jeu[2] = "Veuillez remplir le jeu";
     }
 
-
+    /***verif image**/
     if(isset($_FILES['inputGameFile']) && $_FILES['inputGameFile']['size']>0)
     {
         $file = $_FILES['inputGameFile'];
         $crop = traitement_fichier($file,5000000,"jpg,jpeg,png,gif","image/jpeg,image/gif,image/png","photo");
         if(!$crop)
         {
-            $nom_image_jeu = sha1(last_jeu_id());
-            $crop = crop_image($file,$_POST['dataWidth'],$_POST['dataHeight'],$_POST['dataX'],$_POST['dataY'],150,200,'../images/jeux/',$nom_image_jeu,$_POST['backgroundColor']);
+            $nom_image_jeu = $title_jeu;
+            $crop = crop_image($file,$_POST['dataWidth'],$_POST['dataHeight'],$_POST['dataX'],$_POST['dataY'],150,'../images/jeux/',$nom_image_jeu,$_POST['backgroundColor']);
             if($crop)
             {
                 echo $crop; // erreur de crop
@@ -85,6 +85,7 @@ if(isset($_POST['ajouter'])||isset($_POST['modifier']))
         }
     }
 
+    /***Si aucune erreur***/
     if(empty($errors_jeu) && empty($crop))
     {
         $query=recup_id_type_jeu($libelle2);
@@ -94,7 +95,7 @@ if(isset($_POST['ajouter'])||isset($_POST['modifier']))
             //Si on ajoute un jeu
             create_jeu($title_jeu, $text_jeu, 'defaut_jeu.png', $id_type_jeu);
 
-            header("Location:/liste_jeu.php?jeu=".$id_type_jeu);
+            //header("Location:/liste_jeu.php?jeu=".$id_type_jeu);
         }
         /*else if(isset($_POST['modifier']))
         {

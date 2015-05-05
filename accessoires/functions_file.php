@@ -79,10 +79,22 @@ function traitement_fichier($file,$taille_max,$extensions,$mimes,$type_upload)
     }
 }
 
-function crop_image($file,$data_width,$data_height,$data_x,$data_y,$dst_width,$dst_height,$dst_path,$dst_name,$fill_color)
+function crop_image($file,$data_width,$data_height,$data_x,$data_y,$dst_width,$dst_path,$dst_name,$fill_color)
 {
     $msgErreurImageCrop = '';
     $traiterImageCropOK = true;
+
+    // calcul du ratio pour savoir s'il s'agit d'un carré(1:1) ou d'un rectangle(3:4)
+    $ratio_src = $data_height/$data_width;
+    $portrait = 4/3;
+    if(round($ratio_src,7) == round($portrait,7)) // 3:4
+    {
+        $dst_height = round((4/3)*$dst_width);
+    }
+    else if($ratio_src == 1) // 1:1
+    {
+        $dst_height = $dst_width;
+    }
 
     $src = $file['tmp_name'];
     // récupération du type MIME
@@ -149,7 +161,7 @@ function crop_image($file,$data_width,$data_height,$data_x,$data_y,$dst_width,$d
         $dst_y /= $ratio;
         $dst_w /= $ratio;
         $dst_h /= $ratio;
-        /*************************************************/
+        /** ********************************************* **/
 
         $dst_img = imagecreatetruecolor($dst_width, $dst_height); // on créer la nouvelle image
 
@@ -190,14 +202,13 @@ function crop_image($file,$data_width,$data_height,$data_x,$data_y,$dst_width,$d
     }
 }
 
-// recuperation du dernier id pour le nom de l'image
-function last_jeu_id()
+function formatNomFichier($name_file)
 {
-    require("connect_bdd.php");
-
-    $sql = " SELECT MAX(id_jeu) FROM jeu";
-    $query=$connect->query($sql);
-    $result = $query->fetch();
-    $lastidjeu = (int)$result[0];
-    return $lastidjeu+1;
+    $name_file = mb_strtolower($name_file, 'UTF-8');
+    $name_file = str_replace(
+        array(' ', 'à', 'â', 'ä', 'á', 'ã', 'å', 'î', 'ï', 'ì', 'í', 'ô', 'ö', 'ò', 'ó', 'õ', 'ø', 'ù', 'û', 'ü', 'ú', 'é', 'è', 'ê', 'ë', 'ç', 'ÿ', 'ñ'),
+        array('_', 'a', 'a', 'a', 'a', 'a', 'a', 'i', 'i', 'i', 'i', 'o', 'o', 'o', 'o', 'o', 'o', 'u', 'u', 'u', 'u', 'e', 'e', 'e', 'e', 'c', 'y', 'n'),
+        $name_file
+    );
+    return $name_file;
 }
