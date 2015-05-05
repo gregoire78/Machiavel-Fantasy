@@ -11,7 +11,7 @@ var input_error = $("#inputError"); // balise pour les erreurs
 var preview = $(".preview"); // balise des priviews
 var img_pre_def = '<img src="../images/jeux/'+defaut+'"/>'; //image preview par defaut
 
-var id_input_color = $(".demo2"); // balise input du color picker
+var id_input_color = $(".contentColor"); // balise input du color picker
 var id_input_image = $("#inputGameFile"); // balise input selection image
 var back = $('#backgroundColor').val();
 //si on change de couleur
@@ -108,7 +108,7 @@ function croppy(uurl) {
             $("#dataY").val(data.y);
             $("#dataHeight").val(data.height);
             $("#dataWidth").val(data.width);
-            $('#dim').html("<p>x: "+Math.round(data.x)+"<br>y: "+Math.round(data.y)+"<br>height: "+Math.round(data.height)+"<br>width: "+Math.round(data.width)+"<br>Taille(poid): "+size+" octets</p>");
+            $('#dim').html("<p>x: "+Math.round(data.x)+"<br>y: "+Math.round(data.y)+"<br>hauteur: "+Math.round(data.height)+" px<br>largeur: "+Math.round(data.width)+" px<br>Taille(poid): "+size+" octets</p>");
         }
     });
 }

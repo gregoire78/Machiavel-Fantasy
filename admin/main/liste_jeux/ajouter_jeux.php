@@ -72,7 +72,7 @@ if(isset($_POST['ajouter'])||isset($_POST['modifier']))
         $crop = traitement_fichier($file,5000000,"jpg,jpeg,png,gif","image/jpeg,image/gif,image/png","photo");
         if(!$crop)
         {
-            $nom_image_jeu = $title_jeu;
+            $nom_image_jeu = formatNomFichier(html_entity_decode($title_jeu));
             $crop = crop_image($file,$_POST['dataWidth'],$_POST['dataHeight'],$_POST['dataX'],$_POST['dataY'],150,'../images/jeux/',$nom_image_jeu,$_POST['backgroundColor']);
             if($crop)
             {
@@ -93,9 +93,9 @@ if(isset($_POST['ajouter'])||isset($_POST['modifier']))
         if(isset($_POST['ajouter']))
         {
             //Si on ajoute un jeu
-            create_jeu($title_jeu, $text_jeu, 'defaut_jeu.png', $id_type_jeu);
+            create_jeu($title_jeu, $text_jeu, $nom_image_jeu, $id_type_jeu);
 
-            //header("Location:/liste_jeu.php?jeu=".$id_type_jeu);
+            header("Location:/liste_jeu.php?jeu=".$id_type_jeu);
         }
         /*else if(isset($_POST['modifier']))
         {
