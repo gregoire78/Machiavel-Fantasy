@@ -108,7 +108,7 @@ function croppy(uurl) {
             $("#dataY").val(data.y);
             $("#dataHeight").val(data.height);
             $("#dataWidth").val(data.width);
-            $('#dim').html("<p>x: "+data.x+"<br>y: "+data.y+"<br>height: "+data.height+"<br>width: "+data.width+"<br>Taille(poid): "+size+" octets</p>");
+            $('#dim').html("<p>x: "+Math.round(data.x)+"<br>y: "+Math.round(data.y)+"<br>height: "+Math.round(data.height)+"<br>width: "+Math.round(data.width)+"<br>Taille(poid): "+size+" octets</p>");
         }
     });
 }
