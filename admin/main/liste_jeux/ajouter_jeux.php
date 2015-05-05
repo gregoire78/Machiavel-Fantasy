@@ -69,11 +69,23 @@ if(isset($_POST['ajouter'])||isset($_POST['modifier']))
     if(isset($_FILES['inputGameFile']) && $_FILES['inputGameFile']['size']>0)
     {
         $file = $_FILES['inputGameFile'];
-        traitement_fichier($file,5000000,"jpg,jpeg,png,gif","image/jpeg,image/gif,image/png","photo");
+        $crop = traitement_fichier($file,5000000,"jpg,jpeg,png,gif","image/jpeg,image/gif,image/png","photo");
+        if(!$crop)
+        {
+            $nom_image_jeu = sha1(last_jeu_id());
+            $crop = crop_image($file,$_POST['dataWidth'],$_POST['dataHeight'],$_POST['dataX'],$_POST['dataY'],150,200,'../images/jeux/',$nom_image_jeu,$_POST['backgroundColor']);
+            if($crop)
+            {
+                echo $crop; // erreur de crop
+            }
+        }
+        else
+        {
+            echo $crop; // erreurs de traitement de fichier
+        }
     }
-    var_dump($_FILES,$_POST);
 
-    if(empty($errors_jeu))
+    if(empty($errors_jeu) && empty($crop))
     {
         $query=recup_id_type_jeu($libelle2);
         $id_type_jeu = $query->fetchColumn();
@@ -81,8 +93,8 @@ if(isset($_POST['ajouter'])||isset($_POST['modifier']))
         {
             //Si on ajoute un jeu
             create_jeu($title_jeu, $text_jeu, 'defaut_jeu.png', $id_type_jeu);
-            //upload_avatar($jeu_file_tmp,$fichier);
 
+            header("Location:/liste_jeu.php?jeu=".$id_type_jeu);
         }
         /*else if(isset($_POST['modifier']))
         {

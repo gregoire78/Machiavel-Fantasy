@@ -135,8 +135,6 @@ function create_jeu($title_jeu, $text_jeu, $path_image, $id_type_jeu)
     $query->bindParam(':id_type_jeu',$id_type_jeu,PDO::PARAM_INT);
     $query->bindParam(':id_user',$id,PDO::PARAM_INT);
     $query->execute();
-
-    //header("Location:/liste_jeu.php?jeu=".$id_type_jeu);
 }
 
 //Fonction pour modifier un jeu (edit_jeu)
