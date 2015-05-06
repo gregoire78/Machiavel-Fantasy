@@ -9,6 +9,9 @@ auto_connexion('profil.php',NULL,NULL);
 include_once('accessoires/menu.php');
 
 require("accessoires/connect_bdd.php");
+include_once("accessoires/functions_user.php");
+include_once("accessoires/functions_historique.php");
+
 if(isset($_GET['pseudo']) && isset($_GET['key']))
 {
     //Récupération des variables nécessaires à l'activation
@@ -36,6 +39,13 @@ if(isset($_GET['pseudo']) && isset($_GET['key']))
         $query->bindParam(':new_key',$new_key,PDO::PARAM_STR,100);
         $query->execute();
         $success = "Votre compte est activé, vous pouvez <a class='alert-link' href='connexion.php'>vous connecter</a>.";
+
+        $query = recup_one_user(NULL, $pseudo_user);
+        $data=$query->fetch(PDO::FETCH_ASSOC);
+        $id_user = $data['id_user'];
+
+        $table_historique = 5;
+        create_historique($table_historique, "L'utilisateur a activé son compte", $id_user);
     }
     else
     {

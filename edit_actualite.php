@@ -8,14 +8,20 @@ auto_connexion(NULL,'index.php',2);
 
 //fonctions
 include_once('accessoires/menu.php');
-
+include_once("accessoires/functions_historique.php");
 include_once("accessoires/functions_events.php");
+
+$table_historique = 2;
+
+//include_once("accessoires/functions_events.php");
+
+//l'auto connexion
+//auto_connexion(NULL,'index.php',3);
 
 if (isset($_GET['modifier']))
 {
 	//On vérifie que la personne à le droit de modifier l'événement
 	$id_event = $_GET['modifier'];
-	verif_mod_supp('event', $id_event);
 	
 	$query = recup_event_one($id_event);
 	if ($data=$query->fetch(PDO::FETCH_ASSOC))
@@ -83,10 +89,13 @@ if(isset($_POST['create'])|| isset ($_POST['update'])){
 		if(isset($_POST['create']))//On crée un événement
 		{
 			create_event($title_event, $text_event, $date_event, $title_jeu, $image_event, $inscription_event);
+            $query = recup_last_event();
+            create_historique($table_historique, "L'utilisateur à créé l'événement : ".$title_event, $_SESSION['id_user']);
 		}
 		else if (isset($_POST['update']))//On met à jour un évènement
 		{
-			$id_event = $_GET['modifier'];
+            $id_event = $_GET['modifier'];
+            create_historique($table_historique, "L'utilisateur à mis à jour l'événement : ".$title_event, $_SESSION['id_user']);
 			update_event($id_event, $title_event, $text_event, $date_event, $title_jeu, $image_event, $inscription_event);
 		}
 	//On redirige vers la page d'actualité pour voir le nouvel événement

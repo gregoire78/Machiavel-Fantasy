@@ -1,1 +1,23 @@
-liste <?php echo $text; ?>
+<h1><?php echo $titre_maintenance; ?></h1>
+<p><?php echo $text_maintenance; ?></p>
+<div class="panel panel-default">
+    <table class="table">
+        <tr>
+            <th>Utilisateur</th>
+            <th>Action</th>
+            <th>Date</th>
+        </tr>
+        <?php
+            $i=0;
+             while (isset($id_historique[$i]))
+                { ?>
+                    <tr>
+                        <td><img src="../images/avatars/<?php echo $avatar_historique[$i]; ?>" width="45" height="45" alt="avatar_user"> </img><?php echo $pseudo_historique[$i]; ?> </td>
+                        <td><?php echo $text_historique[$i]; ?></td>
+                        <td><?php echo $date_historique[$i]; ?></td>
+                    </tr>
+                <?php $i++;
+                } ?>
+    </table>
+    <div> <?php if($nb_page > 1)include_once("../accessoires/page.html"); ?></div>
+</div>

@@ -68,7 +68,6 @@ h3.underline{
     float:left;
     padding:10px 10px 0 10px;
     margin:1%;
-    border-left:1px solid #767676;
 }
 .titre
 {
@@ -120,7 +119,7 @@ h3.underline{
 }
 
 
-/*--------------------------- Bouton barre_page ----------------------*/
+/*--------------------------- Barre de navigation (nombre resultat par page, pages, tri ----------------------*/
 .pagination_top, .pagination_bottom
 {
     float:left;
@@ -246,6 +245,7 @@ h3.underline{
     border-bottom:1px solid #080808;
 }
 
+/*-------------------------------------- Style édit_actulité --------------------------------------------*/
 
 /*---------------------------------------- barre de menu ------------------------------------------------*/
 nav.navbar.navbar-inverse
@@ -526,6 +526,7 @@ table.cal { cursor:default;font-size:17px; background:#868400; border: 2px solid
     margin: auto;
 }
 
+/*-------------------------- Page edit jeu --------------------------*/
 /*datepicker*/
 div.ui-datepicker{
     font-size:12px;
@@ -537,6 +538,99 @@ div.ui-datepicker{
     width:10%;
 }
 
+.image_edit
+{
+    float:left;
+    width:40%;
+}
+
+.content_edit
+{
+    float: left;
+    width:60%;
+}
+
+.title_edit
+{
+    float: left;
+    width: 100%;
+}
+
+.partie_particip
+{
+    margin-top:15px;
+    float: left;
+    width: 100%;
+}
+
+.partie
+{
+    float:left;
+    width:75%;
+    padding-right:10px;
+}
+.particip
+{
+    float: left;
+    width:25%;
+}
+
+/*empecher ecrire dans input*/
+#inputdate
+{
+    cursor: pointer;
+    background-color: #ffffff;
+    transition: all .2s ease-in;
+}
+#inputdate:focus
+{
+    background-color: #f2f2f2;
+    color: #000000;
+}
+
+.date_edit
+{
+    float:left;
+    width:100%;
+    margin-top:15px;
+}
+
+.date_edit_title
+{
+    float:left;
+    width:100%;
+}
+
+.edit_date
+{
+    float:left;
+    width:50%;
+}
+
+.time_edit
+{
+    float:left;
+    width:25%;
+}
+
+.time_edit div
+{
+    float:left;
+    width:10%;
+    text-align: center;
+}
+
+.time_edit select
+{
+    float:left;
+    width:90%;
+}
+.name_image
+{
+    margin-top:15px;
+    float: left;
+    width: 100%;
+}
 /*------------------------------------Style de la page actualité -------------------------*/
 
 /*--------------Bloc global de l'événement-------------------*/
@@ -646,18 +740,7 @@ div.ui-datepicker{
     width:100%;
 }
 
-/*empecher ecrire dans input*/
-#inputdate
-{
-    cursor: pointer;
-    background-color: #ffffff;
-    transition: all .2s ease-in;
-}
-#inputdate:focus
-{
-    background-color: #f2f2f2;
-    color: #000000;
-}
+
 
 /************************menu profil********************/
 #drop_compte

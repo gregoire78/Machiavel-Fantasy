@@ -55,11 +55,28 @@ function recup_event_one($id_event)
 	return $query;	
 }
 
+//Fonction pour récupérer les données du dernier événement crée par l'utilisateur
+function recup_last_event()
+{
+    require("connect_bdd.php");
+    $id_user = $_SESSION['id_user'];
+    $sql="	SELECT id_event, title_event, text_event, date_event, date_update, id_jeu, image_event, inscription_event
+			FROM event
+			WHERE id_user=:id_user
+            ORDER BY date_update DESC
+            LIMIT 1";
+    $query=$connect->prepare($sql);
+    $query->bindParam(':id_user',$id_user,PDO::PARAM_INT);
+    $query->execute();
+    return $query;
+}
+
 //Fonction pour supprimer un évènement
 function delete_event($id_event)
 {
 	require("connect_bdd.php");
-	$sql="UPDATE event SET statut_event= 0 WHERE id_event=:id_event;";
+	$sql="  DELETE FROM event
+            WHERE id_event=:id_event;";
 	$query=$connect->prepare($sql);
 	$query->bindParam(':id_event',$id_event,PDO::PARAM_INT);
 	$query->execute();

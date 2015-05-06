@@ -7,9 +7,17 @@
 session_start();
 session_regenerate_id();
 
+
+//fonctions
+include_once('accessoires/menu.php');
+include_once("accessoires/functions_user.php");
+include_once("accessoires/functions_historique.php");
+
+
 //l'auto connexion
 include_once('accessoires/functions_connect.php');
 auto_connexion('profil.php',NULL,NULL);
+
 
 //fonctions
 include_once('accessoires/menu.php');
@@ -132,6 +140,14 @@ if(isset($_POST["register"]))
     if(empty($errors))
     {
         insertion_user($pseudo_user,$civility_user,$lastname_user,$firstname_user,$pw_user,$email_user,$key);
+
+        $query = recup_one_user(NULL, $pseudo_user);
+        $data=$query->fetch(PDO::FETCH_ASSOC);
+        $id_user = $data['id_user'];
+
+        $table_historique = 5;
+        create_historique($table_historique, "L'utilisateur s'est inscrit", $id_user);
+
         include_once("accessoires/mail_confirm.php");
         session_unset();
         $success = true;
