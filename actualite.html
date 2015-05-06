@@ -14,6 +14,9 @@
         <link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
+        <link rel="stylesheet" href="css/perfect-scrollbar.min.css">
+        <script type="text/javascript" src="js/perfect-scrollbar.jquery.min.js"></script>
+
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 		<!--[if lt IE 9]>
@@ -21,6 +24,9 @@
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 		<link 	href="css/complement.css" rel="stylesheet" type="text/css"/><!--CSS personnaliser-->
+        <style>
+
+        </style>
 	</head>
 	<body>
 		<?php
@@ -30,7 +36,7 @@
 
 		<div class="col-md-10 col-lg-offset-1 contenu">
             <h3  class="title_page"style="background-color: rgba(166, 197, 78, 0.56);">
-                <img src="images/icone_site/calendrier.png" height="75" width="75"></img>
+                <img src="images/icone_site/calendrier.png" height="75" width="75">
                 <?php if($afficher!='<') { ?>
                     <span>Agenda</span>
                     <?php if (isset($_SESSION['id_user']) && !isset($supprimer)){ ?><!--Boutton pour créer un événement-->
@@ -56,7 +62,7 @@
                 </div>
                 <?php $i=0; while (isset($id_event[$i])) { ?><!--Tant qu'on peut afficher un événément-->
                     <div class="event" id="e<?php echo $id_event[$i]; ?>">
-                        <img class="image_event" src="<?php echo $image_event[$i]; ?>" alt="image_event"> </img>
+                        <img class="image_event" src="<?php echo $image_event[$i]; ?>" alt="image_event">
                         <div class="content_event">
                             <div class="underline title_event">
                                 <b><?php echo $title_event[$i]; ?></b>
@@ -113,22 +119,27 @@
                                         <?php } ?>
                                     <?php } ?>
                                 </div>
-                                <ul>
+                                <ul id="ScrollBar">
                                     <?php for($j=0 ; $j<$inscription_event[$i] ; $j++) { ?>
-                                        <?php if(isset($id_user_inscrit[$j][$i])) { ?><!--On affiche les personnes inscrite-->
-                                            <li>
-                                                <img src="images/avatars/<?php echo $avatar_inscrit[$j][$i]; ?>" width="45" height="45" alt="avatar_inscrit"></img><!--On affiche l'image de profil de l'inscrit-->
-                                                <span><small><?php echo $pseudo_inscrit[$j][$i]; ?></small></span><!--On affiche le pseudo de l'inscrit-->
-                                            </li>
-                                        <?php } else { ?>
-                                            <li>
-                                                <!--On affiche que la place est disponible-->
-                                                <img src="images/icone_site/profil.png" width="45" height="45" alt="profil_non_inscrit"></img>
-                                                <small>Place disponible</small>
-                                            </li>
-                                        <?php } ?>
+                                    <?php if(isset($id_user_inscrit[$j][$i])) { ?><!--On affiche les personnes inscrite-->
+                                    <li>
+                                        <img src="images/avatars/<?php echo $avatar_inscrit[$j][$i]; ?>" width="45" height="45" alt="avatar_inscrit"><!--On affiche l'image de profil de l'inscrit-->
+                                        <span><small><?php echo $pseudo_inscrit[$j][$i]; ?></small></span><!--On affiche le pseudo de l'inscrit-->
+                                    </li>
+                                    <?php } else { ?>
+                                    <li>
+                                        <!--On affiche que la place est disponible-->
+                                        <img src="images/icone_site/profil.png" width="45" height="45" alt="profil_non_inscrit">
+                                        <small>Place disponible</small>
+                                    </li>
+                                    <?php } ?>
                                     <?php } ?>
                                 </ul>
+                                <script>
+                                    $(document).ready(function ($) {
+                                        $('#ScrollBar').perfectScrollbar(/*{wheelSpeed: 5}*/);
+                                    });
+                                </script>
                             </div>
                             <div class="text_info"><em><small>mis à jour le <b><?php echo $date_update[$i]; ?></b></small></em></div>
                         </div>
