@@ -10,13 +10,13 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                       </button>
-                      <a class="navbar-brand" href="index.php">Accueil</a>
+                      <a class="navbar-brand" href="/index.php">Accueil</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="club.php">
+                            <a href="/club.php">
                                 <span class="glyphicon glyphicon-home"></span> Le club
                             </a>
                         </li>
@@ -28,7 +28,7 @@
                             <ul class="dropdown-menu" role="menu">
                                 <?php $i=0; while (isset($id_jeu_menu[$i])){ ?>
                                 <li>
-                                    <a href="liste_jeu.php?jeu=<?php echo $id_jeu_menu[$i]; ?>"><!--Afficher le titre des jeux de la base de donnée-->
+                                    <a href="/liste_jeu.php?jeu=<?php echo $id_jeu_menu[$i]; ?>"><!--Afficher le titre des jeux de la base de donnée-->
                                         <?php echo $libelle_jeu_menu[$i]; ?>
                                     </a>
                                 </li>
@@ -36,49 +36,49 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="actualite.php">
+                            <a href="/actualite.php">
                                 <span class="glyphicon glyphicon-calendar"></span> Agenda
                             </a>
                         </li>
                         <li>
-                            <a href="forum/">
+                            <a href="/forum/">
                                 <span class="glyphicon glyphicon-comment"></span> Forum
                             </a>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="contact.php">
+                            <a href="/contact.php">
                                 <span class="glyphicon glyphicon-envelope"></span>
                                 Contact
                             </a>
                         </li>
                         <?php if(isset($_SESSION['id_user'])){ ?><!-- Si l'utilisateur est connecté afficher -->
                             <li class="dropdown">
-                                <a id="drop_compte" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img alt="av" id="avatarMenu" class="img-circle" height="40" width="40" src="images/avatars/<?php echo $_SESSION['avatars']; ?>"/><p id="compteMenu"><?php echo $_SESSION['pseudo']; ?><br/> <span class="small">(<?php echo recup_rang($droits) ?>)</span></p><span id="caretCompte" class="caret"></span></a>
+                                <a id="drop_compte" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img alt="av" id="avatarMenu" class="img-circle" height="40" width="40" src="/images/avatars/<?php echo $_SESSION['avatars']; ?>"/><p id="compteMenu"><?php echo $_SESSION['pseudo']; ?><br/> <span class="small">(<?php echo recup_rang($droits) ?>)</span></p><span id="caretCompte" class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="deconnexion.php">
+                                        <a href="/deconnexion.php">
                                             <span class="glyphicon glyphicon-off"></span> Se déconnecter
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="profil.php">
+                                        <a href="/profil.php">
                                             <span class="glyphicon glyphicon-user"></span> Profil
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="edit_jeu.php">
+                                        <a href="/edit_jeu.php">
                                             <span class=""></span> Ajouter un jeu
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="actualite.php?passer">
+                                        <a href="/actualite.php?passer">
                                             <span class=""></span> Evénement archiver
                                         </a>
                                     </li>
                                     <li>
-                                        <a target="_blank" href="admin/">
+                                        <a target="_blank" href="/admin/">
                                             <span class=""></span> Panneau d'administration
                                         </a>
                                     </li>
@@ -86,7 +86,7 @@
                             </li>
                         <?php }else { ?> <!-- Sinon afficher -->
                             <li>
-                                <a href="connexion.php">
+                                <a href="/connexion.php">
                                     <span class="glyphicon glyphicon-user"></span> Mon compte
                                 </a>
                             </li>
