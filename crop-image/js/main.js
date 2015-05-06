@@ -85,7 +85,7 @@
     initPreview: function () {
       /*var url = this.$avatar.attr('src');
       this.$avatarPreview.empty().html('<img src="' + url + '">');*/
-        this.url.remove();
+        //this.url.remove();
          },
 
     initIframe: function () {

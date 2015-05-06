@@ -17,8 +17,9 @@
 		<link rel="stylesheet" type="text/css" href="css/bootstrap-select.min.css">
 		<script type="text/javascript" src="js/bootstrap-select.min.js"></script>
 
-        <link rel="stylesheet" type="text/css" href="css/jasny-bootstrap.min.css">
-        <script type="text/javascript" src="js/jasny-bootstrap.min.js"></script>
+        <script type="text/javascript" src="../js/fileinput.min.js"></script>
+        <link href="../css/fileinput.min.css" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript" src="../js/fileinput_locale_fr.js"></script>
 
 		<!--Crop-image-->
 		<link href="crop-image/css/cropper.min.css" rel="stylesheet">
@@ -47,7 +48,7 @@
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 		<link   href="css/complement.css" rel="stylesheet" type="text/css"/><!--CSS personnaliser-->
-		<!--<script src='js/func_verif_profil.js'></script>-->
+		<script src='js/func_verif_profil.js'></script>
 	</head>
 	<body>
         <?php   include_once("accessoires/header.html");//logo du site
@@ -55,7 +56,7 @@
         ?>
 		<div class="contenu col-md-10 col-lg-offset-1">
             <h2 class="title_page" style="background-color: rgba(195, 169, 111, 0.56);">
-                <img src="images/icone_site/profil.png" height="75" width="75"></img>
+                <img src="images/icone_site/profil.png" height="75" width="75">
                 <span>Mon profil</span>
             </h2>
             <!-- ********** Informations de l'utilisateur ****************-->
@@ -170,14 +171,7 @@
 
                                                 <!-- Upload image and data -->
                                                 <div class="avatar-upload">
-                                                    <input class="avatar-src" name="avatar_src" type="hidden">
-                                                    <input class="avatar-data" name="avatar_data" type="hidden">
-                                                    <div class="fileinput fileinput-new input-group" data-provides="fileinput">
-                                                        <div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
-                                                        <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input class="avatar-input" id="avatarInput" name="avatar_file" accept="image/*" value="fhjfj" type="file">
-                                                        </span>
-                                                        <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-                                                    </div>
+                                                    <input class="avatar-input" id="avatarInput" name="avatar_file" accept="image/*"  data-show-upload="false" data-show-preview="false" type="file">
                                                 </div>
 
                                                 <!-- Crop and preview -->
@@ -291,10 +285,21 @@
 		?>
 
 		<script>
-			$("#avatarInput").filestyle({buttonText: "&nbsp;&nbsp;Parcourir",buttonName: "btn-primary",buttonBefore: true});
+            $("#avatarInput").fileinput({
+                allowedFileExtensions : ['jpg', 'png','gif','jpeg'],
+                maxFileSize: 500000,
+
+                previewFileType: "image",
+                browseClass: "btn btn-default",
+                browseLabel: "&nbsp;Parcourir",
+                browseIcon: '<i class="glyphicon glyphicon-picture"></i>',
+                removeClass: "btn btn-danger",
+                removeLabel: "",
+                removeIcon: '<i class="glyphicon glyphicon-trash"></i>'
+            });
 			//initialisation variables js pour les verifications côté client
-			var pseudo_user_data = '<?php echo $pseudo_user_data; ?>';
-			var email_user_data = '<?php echo $email_user_data; ?>';
+			var pseudo_user_data = '<?= $pseudo_user_data; ?>';
+			var email_user_data = '<?= $email_user_data; ?>';
 		</script>
 		<script src="crop-image/js/cropper.min.js"></script>
 		<script src="crop-image/js/main.js"></script>
