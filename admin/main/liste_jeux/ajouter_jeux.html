@@ -17,20 +17,24 @@
     <form method="POST" action="#" enctype="multipart/form-data">
         <div class="row">
             <div class="col-md-7">
-                <div class="form-group">
-                    <label for="inputArticleTitle" class="ccontrol-label">Titre du jeu</label>
+                <label for="inputArticleTitle" class="ccontrol-label">Titre du jeu</label>
+                <div class="form-group has-feedback" id="form_title_jeu">
                     <div>
                         <input type="text" class="form-control" id="inputArticleTitle"  name="title_jeu" value="<?php if(isset($title_jeu))echo $title_jeu; ?>">
+
+                        <!--message erreur--><span id="error_title_jeu"></span>
+                        <!--icon--><span id="input0Status" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+
                         <?php if(isset($errors_jeu[1])) { ?>
-                        <div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom: 0">
-                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?= $errors_jeu[1];?>
-                        </div>
+                            <div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom: 0">
+                                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?= $errors_jeu[1];?>
+                            </div>
                         <?php } ?>
                     </div>
                 </div>
+                <label for="inputtype" class="control-label">Type de jeu</label>
                 <div class="form-group">
-                    <label for="inputtype" class="control-label">Type de jeu</label>
                     <select id="inputtype" class="form-control" name="libelle">
                         <?php $i=0; while (isset($id_jeu_menu[$i])){ ?>
                         <option <?php if(isset($_GET['jeu'])){ if ($libelle_jeu_menu[$i]==$id_type_jeu[$i]){ echo 'selected="selected"';} }?> >
@@ -39,8 +43,8 @@
                         <?php $i++; } ?>
                     </select>
                 </div>
+                <label for="inputGameFile" class="control-label">Image du jeu</label>
                 <div class="form-group">
-                    <label for="inputGameFile" class="control-label">Image du jeu</label>
                     <input onchange="open_modal(this);" id="inputGameFile" name="inputGameFile" type="file" class="file" accept="image/png,image/jpeg,image/gif" data-show-upload="false" data-show-preview="false">
 
                     <script>
@@ -162,8 +166,9 @@
             <input type="hidden" id="dataHeight" name="dataHeight" />
             <input type="hidden" id="dataWidth" name="dataWidth" />
         </div>
+        <label for="editor1" class="control-label">Contenu</label>
         <div class="form-group">
-            <label for="editor1" class="control-label">Contenu</label>
+            <!--message erreur--><span id="error_text_jeu"></span>
             <div>
                 <?php if(isset($errors_jeu[2])) { ?>
                 <div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom: 0">
@@ -220,6 +225,7 @@
         </div>
     </form>
 </div>
+<script src="../js/func_verif_edit_jeu.js"></script>
 <script src="../js/bootstrap-colorpicker.min.js"></script>
 <!--read url pour l'image-->
 <script type="text/javascript" src="../js/readURL.js"></script>
