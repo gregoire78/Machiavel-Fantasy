@@ -35,7 +35,27 @@ function recup_all_user($tri, $ordre)
 }
 
 //Fonction pour récupéré les données d'un utilisateur
-function recup_one_user($id_user)
+function recup_one_user($id_user, $pseudo_user)
+{
+    if(isset($id_user))
+    {
+        $restrict = "id_user = ".$id_user;
+    }
+    else
+    {
+        $restrict = "pseudo = '".$pseudo_user."'";
+    }
+    require("connect_bdd.php");
+    $sql="SELECT id_user, pseudo, civility, lastname, firstname, email, date_register, avatars, droits, messages_users
+          FROM users
+          WHERE ".$restrict.";";
+    $query=$connect->prepare($sql);
+    $query->execute();
+    return $query;
+}
+
+/*Fonction pour récupérer le dernier utilisateur inscrit
+function recup_last_user_inscrit()
 {
     require("connect_bdd.php");
     $sql="SELECT pseudo, civility, lastname, firstname, email, date_register, avatars, droits, messages_users
@@ -45,7 +65,7 @@ function recup_one_user($id_user)
     $query=$connect->prepare($sql);
     $query->execute();
     return $query;
-}
+}*/
 
 //Fonction pour mettre à jour le statut d'un utilisateur
 function update_statut_user($id_user, $droits)
