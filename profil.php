@@ -2,14 +2,13 @@
 session_start();
 session_regenerate_id();
 
-//fonctions
-include_once('accessoires/menu.php');
-include_once("accessoires/functions_historique.php");
-
 //l'auto connexion
 include_once('accessoires/functions_connect.php');
 auto_connexion(NULL,'index.php',0);
 
+//fonctions
+include_once('accessoires/menu.php');
+include_once("accessoires/functions_historique.php");
 
 //on recupere les données de l'utilisateur
 $id_user = (int)$_SESSION['id_user'];
