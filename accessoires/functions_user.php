@@ -43,7 +43,7 @@ function recup_one_user($id_user, $pseudo_user)
           WHERE id_user=:id_user OR pseudo=:pseudo_user";
     $query=$connect->prepare($sql);
     $query->bindParam(':id_user',$id_user,PDO::PARAM_INT);
-    $query->bindParam(':pseudo_user',$pseudo_user,PDO::PARAM_INT);
+    $query->bindParam(':pseudo_user',$pseudo_user,PDO::PARAM_STR);
     $query->execute();
     return $query;
 }
