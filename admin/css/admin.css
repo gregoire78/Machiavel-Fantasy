@@ -283,8 +283,9 @@ table {
     background-color: #FFFFFF;
     display: table;
     border-collapse: separate;
-    border-spacing: 2px;
-    /* padding: 1px; */
+    border-spacing: 1px;
+    margin-bottom: 0px;
+    padding: 1px;
 }
 th {
     padding: 3px 4px;
@@ -307,10 +308,10 @@ td {
     padding: 4px;
     line-height: 1.20em;
 }
-table.table tbody tr:nth-child(odd) {
+table.table1 tbody tr:nth-child(odd) {
     background-color: #DCEBFE;
 }
-table.table tbody tr:nth-child(even) {
+table.table1 tbody tr:nth-child(even) {
     background-color: #F9F9F9;
 }
 /**********************cropper edition image************/
