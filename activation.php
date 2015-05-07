@@ -40,7 +40,7 @@ if(isset($_GET['pseudo']) && isset($_GET['key']))
         $query->execute();
         $success = "Votre compte est activé, vous pouvez <a class='alert-link' href='connexion.php'>vous connecter</a>.";
 
-        $query = recup_one_user(NULL, $pseudo_user);
+        $query = recup_one_user(NULL, $pseudo);
         $data=$query->fetch(PDO::FETCH_ASSOC);
         $id_user = $data['id_user'];
 
