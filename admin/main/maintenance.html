@@ -1,23 +1,24 @@
 <h1><?php echo $titre_maintenance; ?></h1>
 <p><?php echo $text_maintenance; ?></p>
-<div class="panel panel-default">
-    <table class="table">
-        <tr>
-            <th>Utilisateur</th>
-            <th>Action</th>
-            <th>Date</th>
-        </tr>
-        <?php
-            $i=0;
-             while (isset($id_historique[$i]))
-                { ?>
-                    <tr>
-                        <td><img src="../images/avatars/<?php echo $avatar_historique[$i]; ?>" width="45" height="45" alt="avatar_user"> </img><?php echo $pseudo_historique[$i]; ?> </td>
-                        <td><?php echo $text_historique[$i]; ?></td>
-                        <td><?php echo $date_historique[$i]; ?></td>
-                    </tr>
-                <?php $i++;
-                } ?>
-    </table>
-    <div> <?php if($nb_page > 1)include_once("../accessoires/page.html"); ?></div>
-</div>
+<div> <?php if($nb_page > 1)include_once("../accessoires/page.html"); ?></div>
+<table class="table">
+    <tr>
+        <th style="  width: 15%;">Nom d'utilisateur</th>
+        <th style="  width: 20%;">Date</th>
+        <th>Action</th>
+        <th style="  width: 50px;">Cocher</th>
+    </tr>
+    <?php
+        $i=0;
+         while (isset($id_historique[$i]))
+            { ?>
+                <tr>
+                    <td><img src="../images/avatars/<?php echo $avatar_historique[$i]; ?>" width="40" height="40" alt="avatar_user"> </img><?php echo $pseudo_historique[$i]; ?> </td>
+                    <td><?php echo $date_historique[$i]; ?></td>
+                    <td><strong><?php echo $text_historique[$i]; ?></strong></td>
+                    <td style="text-align: center;"><input style="" type="checkbox" name="mark[]" value="<?php echo $id_historique[$i]; ?>" ></input></td>
+                </tr>
+            <?php $i++;
+            } ?>
+</table>
+<div> <?php if($nb_page > 1)include("../accessoires/page.html"); ?></div>

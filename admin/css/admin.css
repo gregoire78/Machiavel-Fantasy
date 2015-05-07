@@ -264,7 +264,55 @@ div
     margin-left: 210px;
 }
 
-
+/*------------------- Maintenance -----------------------------*/
+.table>tbody>tr>td
+{
+    vertical-align: middle;
+}
+.table tr td img
+{
+    border-radius: 3px;
+}
+.panel
+{
+    margin-bottom:0;
+}
+table {
+    width: 100%;
+    border: 1px solid #CCCFD3;
+    background-color: #FFFFFF;
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    /* padding: 1px; */
+}
+th {
+    padding: 3px 4px;
+    color: #FFFFFF;
+    background: #70AED3 url("../images/gradient2b.gif") bottom left repeat-x;
+    border-top: 1px solid #6DACD2;
+    border-bottom: 1px solid #327AA5;
+    text-align: left;
+    font-size: 0.75em;
+    text-transform: uppercase;
+}
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+td {
+    text-align: left;
+    font-size: 0.85em;
+    padding: 4px;
+    line-height: 1.20em;
+}
+table.table tbody tr:nth-child(odd) {
+    background-color: #DCEBFE;
+}
+table.table tbody tr:nth-child(even) {
+    background-color: #F9F9F9;
+}
 /**********************cropper edition image************/
 .preview
 {

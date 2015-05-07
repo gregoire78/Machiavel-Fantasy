@@ -124,10 +124,10 @@ if(isset($_GET['ordre']))
     $fichier = $fichier."&ordre=".$_GET['ordre'];
     $fichier_num_page =$fichier;
 }
-//Sinon on tri dans l'ordre croissant
+//Sinon on tri dans l'ordre décroissant
 else
 {
-    $ordre = "ASC";
+    $ordre = "DESC";
 }
 $query = recup_historique($restrict, $ordre, $page, $nombre_liste);
 
