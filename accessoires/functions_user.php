@@ -37,19 +37,13 @@ function recup_all_user($tri, $ordre)
 //Fonction pour récupéré les données d'un utilisateur
 function recup_one_user($id_user, $pseudo_user)
 {
-    if(isset($id_user))
-    {
-        $restrict = "id_user = ".$id_user;
-    }
-    else
-    {
-        $restrict = "pseudo = '".$pseudo_user."'";
-    }
     require("connect_bdd.php");
     $sql="SELECT id_user, pseudo, civility, lastname, firstname, email, date_register, avatars, droits, messages_users
           FROM users
-          WHERE ".$restrict.";";
+          WHERE id_user=:id_user OR pseudo=:pseudo_user";
     $query=$connect->prepare($sql);
+    $query->bindParam(':id_user',$id_user,PDO::PARAM_INT);
+    $query->bindParam(':pseudo_user',$pseudo_user,PDO::PARAM_INT);
     $query->execute();
     return $query;
 }
