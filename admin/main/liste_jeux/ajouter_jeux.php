@@ -64,7 +64,7 @@ if(isset($_POST['ajouter'])||isset($_POST['modifier']))
         $errors_jeu[1] = "Le titre ne doit pas dépasser <b>".$string." caractères</b>";
     }
     //vérifions s'il ya des caracteres speciaux
-    else if(preg_match('/[^0-9A-Za-zàâçéèêëîïôûùüÿñæœ \']/',html_entity_decode($title_jeu)))
+    else if(preg_match('/[^0-9A-Za-zàâçéèêëîïôûùüÿñæœ\- \']/',html_entity_decode($title_jeu)))
     {
         $errors_jeu[1] = "Veuillez n'insérer que des lettres ou chiffres dans le titre.";
     }
