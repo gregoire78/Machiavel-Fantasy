@@ -38,14 +38,14 @@ function recup_id_type_jeu($libelle_type_jeu)
 
 /*-----------------------------TABLE JEU-----------------------------------------*/
 //Fonction pour récupérer tous les jeux d'un type (page liste_jeu)
-function recup_liste_jeu($id_type_jeu, $page, $jeu_page)
+function recup_liste_jeu($id_type_jeu, $tri, $ordre, $page, $jeu_page)
 {
 	$nb_jeu = ($page-1)*$jeu_page;
 	require("connect_bdd.php");
 	$sql="	SELECT id_jeu, title_jeu, text_jeu, image_jeu, date_update
 			FROM   jeu
 			WHERE  id_type_jeu=:id_type_jeu AND statut_jeu = 1
-			ORDER BY title_jeu ASC
+			ORDER BY ".$tri." ".$ordre."
 			LIMIT   :nb_jeu, :jeu_page";
 	$query=$connect->prepare($sql);
 	$query->bindParam(':id_type_jeu',$id_type_jeu,PDO::PARAM_INT);

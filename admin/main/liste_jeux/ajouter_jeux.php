@@ -11,6 +11,7 @@ include_once('../accessoires/functions_jeu.php');
 include_once('../accessoires/functions_file.php');
 include_once('../accessoires/menu.php');
 
+
 //Si on veut éditer un jeu, on récupère les données
 if(isset($_GET['jeu'])){
     $id_jeu=$_GET['jeu'];

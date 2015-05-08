@@ -1,23 +1,17 @@
-<div class="pagination_left">
+<fieldset class="pagination_left">
     <div class="num_page_left">
         Afficher :
     </div>
-    <a href="<?php echo $fichier_num_page.'&view=5'; ?>">
-        <div class="num_page <?php if(!isset($_GET['view']) || $_GET['view']==5)echo 'page_curent';?>">
-            <span>5</span>
-        </div>
-    </a>
-    <a href="<?php echo $fichier_num_page.'&view=10'; ?>">
-        <div class="num_page <?php if(isset($_GET['view']) && $_GET['view']==10)echo 'page_curent';?>">
-            <span>10</span>
-        </div>
-    </a>
-    <a href="<?php echo $fichier_num_page.'&view=15'; ?>">
-        <div class="num_page <?php if(isset($_GET['view']) && $_GET['view']==15)echo 'page_curent';?>">
-            <span>15</span>
-        </div>
-    </a>
+
+    <?php $i= 0; while(isset($view[$i])){ ?>
+        <a href="<?php echo $fichier_num_page.'&view='.$view[$i]; ?>">
+            <div class="num_page <?php if($nombre_liste==$view[$i])echo 'page_curent';?>">
+                <span><?php echo $view[$i]; ?></span>
+            </div>
+        </a>
+    <?php $i++;} ?>
+
     <div class="num_page_right">
         résultats par page
     </div>
-</div>
+</fieldset>

@@ -1,0 +1,30 @@
+<hr>
+<fieldset class="quick">
+    <input class="button2" type="submit" name="delall" value="Tout supprimer">&nbsp;
+    <input class="button2" type="submit" name="delmarked" value="Supprimer la sélection"><br>
+    <p class="small">
+        <a href="#" onclick="marklist('list', 'mark', true); return false;">Tout cocher</a> • <a href="#" onclick="marklist('list', 'mark', false); return false;">Tout décocher</a>
+    </p>
+
+    <div>
+        <input type="checkbox" onclick="CocheTout(this, 'mark[]');" name="select_all"/>
+        <span>Tout cocher</span>
+    </div>
+    <script>
+        function CocheTout(ref, name) {
+            var form = ref;
+
+            while (form.parentNode && form.nodeName.toLowerCase() != 'form'){
+                form = form.parentNode;
+            }
+
+            var elements = form.getElementsByTagName('input');
+
+            for (var i = 0; i < elements.length; i++) {
+                if (elements[i].type == 'checkbox' && elements[i].name == name) {
+                    elements[i].checked = ref.checked;
+                }
+            }
+        }
+    </script>
+</fieldset>

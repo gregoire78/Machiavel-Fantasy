@@ -1,41 +1,43 @@
-<h1><?php echo $titre_maintenance; ?></h1>
-<p><?php echo $text_maintenance; ?></p>
-<div> <?php if($nb_page > 1)include_once("../accessoires/page.html"); ?></div>
-<table class="table1">
-    <tr>
-        <th style="  width: 15%;">Nom d'utilisateur</th>
-        <th style="  width: 20%;">Date</th>
-        <th>Action</th>
-        <th style="  width: 50px;">Cocher<input type="checkbox" onclick="CocheTout(this, 'mark[]');" name="select_all"/></th>
-    </tr>
-    <?php
-        $i=0;
-         while (isset($id_historique[$i]))
-            { ?>
-                <tr>
-                    <td><img src="../images/avatars/<?php echo $avatar_historique[$i]; ?>" width="40" height="40" alt="avatar_user"> </img><strong><?php echo $pseudo_historique[$i]; ?></strong></td>
-                    <td><?php echo $date_historique[$i]; ?></td>
-                    <td><strong><?php echo $text_historique[$i]; ?></strong></td>
-                    <td style="text-align: center;"><input style="" type="checkbox" name="mark[]" value="<?php echo $id_historique[$i]; ?>" ></input></td>
-                </tr>
-            <?php $i++;
+<form method="POST" action="<?php echo $fichier; ?>">
+    <?php if( !isset($_POST['delall']) && !isset($_POST['delmarked'])) { ?>
+        <h1><?php echo $titre_maintenance; ?></h1>
+        <p><?php echo $text_maintenance; ?> Vous pouvez trier par nom, date ou par action. Si vous avez les permissions nécessaires vous pouvez aussi effacer individuellement les opérations ou le journal complet.</p>
+            <?php if(isset($id_historique[0])) { ?>
+                <div class="pagination_top">
+                    <?php
+                        if($nb_page > 1)include_once("../accessoires/page.html");
+                        include_once("../accessoires/tri.html");
+                    ?>
+                </div>
+                <table class="table1">
+                    <tr>
+                        <th style="  width: 15%;">Nom d'utilisateur</th>
+                        <th style="  width: 20%;">Date</th>
+                        <th>Action</th>
+                        <th style="text-align: center;width: 80px;">Cocher</th>
+                    </tr>
+                    <?php
+                        $i=0;
+                         while (isset($id_historique[$i]))
+                            { ?>
+                                <tr>
+                                    <td><img src="../images/avatars/<?php echo $avatar_historique[$i]; ?>" width="40" height="40" alt="avatar_user"> </img><strong style="<?php echo $color_user[$i]; ?>"><?php echo $pseudo_historique[$i]; ?></strong></td>
+                                    <td><?php echo $date_historique[$i]; ?></td>
+                                    <td><strong><?php echo $text_historique[$i]; ?></strong></td>
+                                    <td style="text-align: center;"><input style="" type="checkbox" name="mark[]" value="<?php echo $id_historique[$i]; ?>" ></input></td>
+                                </tr>
+                            <?php $i++;
+                            } ?>
+                </table>
+                <?php
+                    if($nb_page > 1)include("../accessoires/page.html");
+                    include_once("../accessoires/view.html");
+                    include_once("../accessoires/supprimer.html");
+                ?>
+            <?php } else {
+                include_once("../accessoires/errorbox.html");
             } ?>
-</table>
-<div> <?php if($nb_page > 1)include("../accessoires/page.html"); ?></div>
-<script>
-    function CocheTout(ref, name) {
-        var form = ref;
-
-        while (form.parentNode && form.nodeName.toLowerCase() != 'form'){
-            form = form.parentNode;
-        }
-
-        var elements = form.getElementsByTagName('input');
-
-        for (var i = 0; i < elements.length; i++) {
-            if (elements[i].type == 'checkbox' && elements[i].name == name) {
-                elements[i].checked = ref.checked;
-            }
-        }
-    }
-</script>
+    <?php } else {
+        include_once("../accessoires/valider_supprimer.html");
+    } ?>
+</form>

@@ -50,16 +50,16 @@
                 <?php } ?>
             </h3>
             <?php if (isset($id_event[0])){ ?> <!--Si on a récupérer un événement en base de donnée-->
-
                 <div class="pagination_top">
-                    <?php
-                        include_once("accessoires/tri.html");
-                        include_once("accessoires/view.html");
-                        if($nb_page > 1)
-                        {
-                            include_once("accessoires/page.html");
-                        }
-                    ?>
+                    <form method="POST" action="<?php echo $fichier; ?>">
+                        <?php
+                            include_once("accessoires/tri.html");
+                            if($nb_page > 1)
+                            {
+                                include_once("accessoires/page.html");
+                            }
+                        ?>
+                    </form>
                 </div>
                 <?php $i=0; while (isset($id_event[$i])) { ?><!--Tant qu'on peut afficher un événément-->
                     <div class="event" id="e<?php echo $id_event[$i]; ?>">
@@ -148,7 +148,7 @@
                 <?php $i++; } ?>
                 <div class="pagination_bottom">
                     <?php
-                        include("accessoires/view.html");
+                        include_once("accessoires/view.html");
                         if($nb_page > 1)
                         {
                             include("accessoires/page.html");

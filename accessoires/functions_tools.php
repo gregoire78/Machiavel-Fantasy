@@ -3,7 +3,7 @@
 function format_date($date)
 {
 	setlocale (LC_TIME, 'fr_FR.utf8','fra');
-	$date=utf8_encode(strftime("%A %d %B %Y &agrave; %Hh%M", strtotime($date)));
+	$date=ucfirst(utf8_encode(strftime("%A %d %B %Y &agrave; %Hh%M", strtotime($date))));
 	return $date;
 }
 

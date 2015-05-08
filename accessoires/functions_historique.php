@@ -20,11 +20,11 @@ function create_historique($table_historique, $text_historique, $id_user)
 }
 
 //Fonction pour recupérer l'historique
-function recup_historique($restrict, $ordre, $page, $historique_page)
+function recup_historique($restrict,$tri, $ordre, $page, $historique_page)
 {
     $nb_historique = ($page-1)*$historique_page;
     require("connect_bdd.php");
-    $sql="	SELECT id_historique, pseudo, avatars, h.id_user, text_historique, date_historique
+    $sql="	SELECT id_historique, pseudo, avatars, h.id_user, droits, text_historique, date_historique
 			FROM historique h
 
             JOIN users u
@@ -32,7 +32,7 @@ function recup_historique($restrict, $ordre, $page, $historique_page)
 
 			".$restrict."
 
-			ORDER BY date_historique ".$ordre."
+			ORDER BY ".$tri." ".$ordre."
 
 			LIMIT   :nb_historique, :historique_page" ;
 
@@ -43,17 +43,13 @@ function recup_historique($restrict, $ordre, $page, $historique_page)
     return $query;
 }
 
-//Fonction pour supprimer l'historique à partir de la date actuel
+//Fonction pour supprimer l'historique
 function delete_historique($restrict)
 {
     require("connect_bdd.php");
-    $sql="  DELETE FROM inscription
+    echo $sql="  DELETE FROM historique
             ".$restrict ;
-
-          //WHERE date_historique < fonction d'ajout(SYSDATE, nombre à ajouter )
-          //WHERE id_historique IN ( mettre les id_historique)
     $query=$connect->prepare($sql);
-    $query->bindParam(':id_event',$id_event,PDO::PARAM_INT);
     $query->execute();
 }
 

@@ -23,6 +23,11 @@ $method_tri[0]="date_event";    $nom_tri[0]="Date de l'événement";
 $method_tri[1]="date_update";   $nom_tri[1]="Date de mise à jour";
 $method_tri[2]="title_event";   $nom_tri[2]="Titre de l'événement";
 
+//Tableau pour les diffrents nombre d'affichage par pages
+$view[0]=5;
+$view[1]=10;
+$view[2]=15;
+
 //On vérifie si on veut afficher les événements passer ou à venir
 if(isset($_GET['passer']))
 {
@@ -34,7 +39,7 @@ if(isset($_GET['passer']))
     $afficher='>=';
 }
 
-//Si on veut trier dans un ordre précis
+/*Si on veut trier dans un ordre précis
 if(isset($_GET['tri']) || isset($_GET['ordre']))
 {
     //Si il y a une méthode de tri de dans l'URL
@@ -101,6 +106,82 @@ else
         $ordre ="ASC";
     }
     $tri = $method_tri[0];
+}*/
+
+
+/*---------------------Nouveau ------------------*/
+//Si il y a une méthode de tri de dans l'URL
+if(isset($_POST['tri']) || isset($_GET['tri']))
+{
+    if(isset($_POST['tri']))
+    {
+        $switch_tri = $_POST['tri'];
+    }
+    else if(isset($_GET['tri']))
+    {
+        $switch_tri = $_GET['tri'];
+    }
+    switch($switch_tri)
+    {
+        case $method_tri[0]:
+            $tri = $method_tri[0];
+            break;
+        case $method_tri[1]:
+            $tri = $method_tri[1];
+            break;
+        case $method_tri[2]:
+            $tri = $method_tri[2];
+            break;
+        default :
+            $tri = $method_tri[0];
+            break;
+    }
+    $fichier = $fichier."&tri=".$tri;
+    $fichier_num_page = $fichier;
+}
+//Sinon on tri selon la première méthode de tri
+else
+{
+    $tri = $method_tri[0];
+}
+
+if(isset($_POST['ordre']) || isset($_GET['ordre']))
+{
+    if(isset($_POST['ordre']))
+    {
+        $switch_ordre = $_POST['ordre'];
+    }
+    else if (isset($_GET['ordre']))
+    {
+        $switch_ordre = $_GET['ordre'];
+    }
+    switch($switch_ordre)
+    {
+        case "Croissant":
+            $ordre = "ASC";
+            break;
+        case "Décroissant":
+            $ordre = "DESC";
+            break;
+        default :
+            $ordre ="ASC";
+            break;
+    }
+    $fichier = $fichier."&ordre=".$ordre;
+    $fichier_num_page =$fichier;
+}
+//Sinon on tri dans l'ordre décroissant
+else
+{
+    //Si l'événement est passé on tri selon la première méthode par ordre décroissant sinon selon la première méthode par ordre croissant
+    if(isset($_GET['passer']))
+    {
+        $ordre = "DESC";
+    }
+    else
+    {
+        $ordre ="ASC";
+    }
 }
 
 //Si on a déjà un nombre de d'événement par page sinon par défaut on affichera 5 actu par page
@@ -108,24 +189,24 @@ if(isset($_GET['view']))
 {
     switch($_GET['view'])
     {
-        case 5 :
-            $nombre_liste = 5;
+        case $view[0] :
+            $nombre_liste = $view[0];
             break;
-        case 10 :
-            $nombre_liste = 10;
+        case $view[1] :
+            $nombre_liste = $view[1];
             break;
-        case 15 :
-            $nombre_liste = 15;
+        case $view[2] :
+            $nombre_liste = $view[2];
             break;
         default :
-            $nombre_liste = 5;
+            $nombre_liste = $view[0];
             break;
     }
     $fichier = $fichier."&view=".$nombre_liste;
 }
 else
 {
-    $nombre_liste = 5;
+    $nombre_liste = $view[0];
 }
 
 // On récupère le nombre de page pour afficher un nombre d'événement
@@ -156,7 +237,7 @@ if(isset($_SESSION['id_user']) && !isset($_GET['passer']) && $droits > 1 && (iss
         $query = recup_event_one($_GET['inscrire']);
         $data=$query->fetch(PDO::FETCH_ASSOC);
         $title_event_inscrit = $data['title_event'];
-        create_historique($table_historique, "L'utilisateur s'est inscrit à l'événement : ".$title_event_inscrit, $_SESSION['id_user']);
+        create_historique($table_historique, "Inscription à l'événement : ".$title_event_inscrit, $_SESSION['id_user']);
         inscription_event($_GET['inscrire']);
         header("location:".$fichier."&page=".$page."#e".$_GET['inscrire']);
     }
@@ -165,7 +246,7 @@ if(isset($_SESSION['id_user']) && !isset($_GET['passer']) && $droits > 1 && (iss
         $query = recup_event_one($_GET['desinscrire']);
         $data=$query->fetch(PDO::FETCH_ASSOC);
         $title_event_desinscrit = $data['title_event'];
-        create_historique($table_historique, "L'utilisateur s'est désinscrit de l'événement : ".$title_event_desinscrit, $_SESSION['id_user']);
+        create_historique($table_historique, "Désinscription de l'événement : ".$title_event_desinscrit, $_SESSION['id_user']);
         desinscription_user_event($_GET['desinscrire'], $_SESSION['id_user']);
         header("location:".$fichier."&page=".$page."#e".$_GET['desinscrire']);
     }
@@ -186,7 +267,7 @@ if(isset($_GET['supprimer']))
         $query = recup_event_one( $_GET['supprimer']);
         $data=$query->fetch(PDO::FETCH_ASSOC);
         $title_event_supp = $data['title_event'];
-        create_historique($table_historique, "L'utilisateur a supprimé l'événement : ".$title_event_supp, $_SESSION['id_user'] );
+        create_historique($table_historique, "Suppression de l'événement : ".$title_event_supp, $_SESSION['id_user'] );
         delete_event($_GET['supprimer']);
         desinscription_event($_GET['supprimer']);
 
@@ -221,7 +302,7 @@ while ($data=$query->fetch(PDO::FETCH_ASSOC))
 	$title_event[$i] = $data['title_event'];
 	$text_event[$i]=nl2br($data['text_event']);
 	$image_event[$i]=$data['image_event'];
-	$date_event[$i]=format_date($data['date_event']) ;
+	$date_event[$i]=format_date($data['date_event']);
 	$date_update[$i]=format_date($data['date_update']);
 	$id_user_event[$i]=$data['id_user'];
     $id_jeu_event[$i]=$data['id_jeu_bis'];

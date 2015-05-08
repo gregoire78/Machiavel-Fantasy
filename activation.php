@@ -45,7 +45,7 @@ if(isset($_GET['pseudo']) && isset($_GET['key']))
         $id_user = $data['id_user'];
 
         $table_historique = 5;
-        create_historique($table_historique, "L'utilisateur a activé son compte", $id_user);
+        create_historique($table_historique, "Activation du compte", $id_user);
     }
     else
     {

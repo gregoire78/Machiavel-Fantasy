@@ -1,0 +1,15 @@
+<fieldset>
+    <h1>Confirmer</h1>
+    <p>Êtes-vous sûr de vouloir effectuer cette opération&nbsp;?</p>
+    <input type="hidden" name="delmarked" value="<?php echo $delmark; ?>"/>
+    <input type="hidden" name="delall" value="<?php echo $delall; ?>"/>
+
+    <?php $i=0; while(isset($cocher[$i])) { ?>
+    <input type="hidden" name="mark[]" value="<?php echo $cocher[$i]; ?>"/>
+    <?php $i++;}  ?>
+
+    <div style="text-align: center;">
+        <input type="submit" name="confirm" value="Oui" class="button2"/>&nbsp;
+        <input type="submit" name="cancel" value="Non" class="button2"/>
+    </div>
+</fieldset>

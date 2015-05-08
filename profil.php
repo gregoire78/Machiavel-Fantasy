@@ -97,7 +97,7 @@ if(isset($_POST['modifier_data']))
         update_data_user($pseudo_user_new,$lastname_user_new,$firstname_user_new,$civility_user_new,$email_user_new,$id_user);
 
         $table_historique = 5;
-        create_historique($table_historique, "L'utilisateur a modifié ses informations d'utilisateur", $_SESSION['id_user']);
+        create_historique($table_historique, "Modification des informations utilisateur", $_SESSION['id_user']);
 
         $success_data = true;
         header('Refresh: 2;URL=#');
@@ -146,7 +146,7 @@ if(isset($_POST['modifierPassword']))
                             $success=update_password($password_new);
 
                             $table_historique = 5;
-                            create_historique($table_historique, "L'utilisateur a modifié son mot de passe", $_SESSION['id_user']);
+                            create_historique($table_historique, "Modification du mot de passe", $_SESSION['id_user']);
 
                             header('Refresh: 2;URL=#');
                         }

@@ -90,12 +90,12 @@ if(isset($_POST['create'])|| isset ($_POST['update'])){
 		{
 			create_event($title_event, $text_event, $date_event, $title_jeu, $image_event, $inscription_event);
             $query = recup_last_event();
-            create_historique($table_historique, "L'utilisateur à créé l'événement : ".$title_event, $_SESSION['id_user']);
+            create_historique($table_historique, "Création de l'événement : ".$title_event, $_SESSION['id_user']);
 		}
 		else if (isset($_POST['update']))//On met à jour un évènement
 		{
             $id_event = $_GET['modifier'];
-            create_historique($table_historique, "L'utilisateur à mis à jour l'événement : ".$title_event, $_SESSION['id_user']);
+            create_historique($table_historique, "Mis à jour de l'événement : ".$title_event, $_SESSION['id_user']);
 			update_event($id_event, $title_event, $text_event, $date_event, $title_jeu, $image_event, $inscription_event);
 		}
 	//On redirige vers la page d'actualité pour voir le nouvel événement
@@ -107,7 +107,8 @@ $query = recup_title_jeu();
 
 //On enregistre les titres des jeux dans un tableau
 $i=0;
-while ($data=$query->fetch(PDO::FETCH_ASSOC)){
+while ($data=$query->fetch(PDO::FETCH_ASSOC))
+{
     $title[$i] = $data['title_jeu'];
     $i++;
 }
