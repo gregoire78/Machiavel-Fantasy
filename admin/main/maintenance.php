@@ -278,7 +278,7 @@ if($nb_historique!=0)
 }
 else
 {
-    $error = "Aucune entrée au journal";
+    $error = "Aucune entrée au journal.";
 }
 
 include_once("maintenance.html");
