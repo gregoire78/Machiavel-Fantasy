@@ -501,7 +501,7 @@ input.button2:hover
     color: #AA0000;
     border-color:#AA0000;
 }
-input:focus, textarea:focus {
+input[type=submit]:focus{
     border: 1px solid #BC2A4D;
     background-color: #E9E9E2;
     color: #BC2A4D;
