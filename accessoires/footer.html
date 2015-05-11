@@ -10,24 +10,24 @@
         </div>
         <div class="col_footer">
             <ul class="liste_footer">
-                <li class="titre"><a href="description.php">Jeux</a></li>
+                <li class="titre"><a href="/description.php">Jeux</a></li>
                 <?php $i=0; while (isset($libelle_jeu_menu[$i])){ ?>
-                <li class="sous_titre"><a href="liste_jeu.php?jeu=<?php echo $id_jeu_menu[$i]; ?>"><?php echo $libelle_jeu_menu[$i];?></a></li>
+                <li class="sous_titre"><a href="/liste_jeu.php?jeu=<?php echo $id_jeu_menu[$i]; ?>"><?php echo $libelle_jeu_menu[$i];?></a></li>
                 <?php $i++; } ?>
             </ul>
         </div>
         <div class="col_footer">
             <ul class="liste_footer">
                 <li class="titre">Information</li>
-                <li class="sous_titre"><a href="club.php" >Club</a></li>
-                <li class="sous_titre"><a href="forum/" >Forum</a></li>
-                <li class="sous_titre"><a href="actualite.php" >Agenda</a></li>
-                <li class="sous_titre"><a href="actualite.php?passer" >Evénement archiver</a></li>
+                <li class="sous_titre"><a href="/club.php" >Club</a></li>
+                <li class="sous_titre"><a href="/forum/" >Forum</a></li>
+                <li class="sous_titre"><a href="/actualite.php" >Agenda</a></li>
+                <li class="sous_titre"><a href="/actualite.php?passer" >Evénement archiver</a></li>
                 <li class="sous_titre">
                     <?php if(!isset($_SESSION['id_user'])){ ?>
-                    <a href="inscription.php">S'inscrire</a>
+                    <a href="/inscription.php">S'inscrire</a>
                     <?php }else{ ?>
-                    <a href="profil.php" >Profil</a>
+                    <a href="/profil.php" >Profil</a>
                     <?php }?>
                 </li>
 
