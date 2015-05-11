@@ -37,7 +37,7 @@ if (isset($_GET['m']))
             case "global" :
                 $titre_maintenance = "Journal global";
                 $text_maintenance = "Liste toutes les actions.";
-                $restrict = "WHERE 1";
+                $restrict = "";
                 $fichier_originel = "index.php?i=maintenance&m=global";
                 break;
             case "administration" :

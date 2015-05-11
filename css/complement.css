@@ -1,5 +1,6 @@
 body{
-    background-color: #80848B;
+    background-color: #80848B;/*
+    background: #000 url(Fabric-18.png) repeat scroll center top;*/
 }
 
 /*----------------------------------- soulignage des titres -------------------------------------*/
@@ -222,9 +223,13 @@ h3.underline{
 {
     font-family:machiavel;
     font-size:60px;
-    color: #333;
     text-decoration: none;
     margin-left:40px;
+}
+.machiavel a
+{
+    color: #333;
+    text-decoration: none;
 }
 /*---------------------------------------- police de Machiavel Fantasy -----------------------------------*/
 @font-face {
@@ -303,7 +308,7 @@ nav.navbar.navbar-inverse
 {
     max-width:100%;
 }
-article.tbl1
+div.tbl1
 {
     display: inline-block;
 }
@@ -314,7 +319,7 @@ div.image  /*Position est style de l'image et la zone de text*/
     overflow: hidden;
     max-width: 100%;
     display: inline-block;
-    border: 1px solid #ddd;
+    border: 1px solid #737373;
     margin:0px;
 }
 
@@ -360,7 +365,7 @@ div.image.boxFULL:hover a /*Mouvement de la zone de txt*/
 }
 .espace_accueil /*espace entre les blocs d'article*/
 {
-    padding:7.5px;
+    padding:3px;
 }
 
 

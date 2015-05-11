@@ -304,13 +304,13 @@ div
 }
 
 /*------------------- Maintenance -----------------------------*/
-.table>tbody>tr>td
+/*.table1>tbody>tr>td
 {
     vertical-align: middle;
-}
-.table tr td img
+}*/
+.table1 tr td img
 {
-    border-radius: 3px;
+    border-radius: 2px;
 }
 .panel
 {

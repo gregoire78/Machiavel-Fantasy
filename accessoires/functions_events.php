@@ -7,7 +7,7 @@ function recup_event($condition, $id_user, $page, $event_page, $tri, $ordre)
 	$sql="	SELECT id_event AS id_event_bis, title_event, text_event, date_event, statut_event, date_update, image_event, id_user, id_jeu AS id_jeu_bis, inscription_event, nb_inscrit,
 
             CASE id_jeu
-            WHEN 0 THEN 'Autre'
+            WHEN 0 THEN NULL
             ELSE (SELECT title_jeu FROM jeu WHERE id_jeu =  id_jeu_bis)
             END title_jeu,
 

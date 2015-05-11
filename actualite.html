@@ -100,16 +100,17 @@
                             </div>
                         </div>
                         <div class="info_event">
-                            <?php if($title_jeu_event[$i]!="Autre"){ ?><!--Si c'est une partie de jeu-->
+                            <?php if(isset($title_jeu_event[$i])){ ?><!--Si c'est une partie de jeu-->
                                 <div style="margin-top:0;" class="text_info">Partie de <b><a href="complete_jeu.php?jeu=<?php echo $id_jeu_event[$i] ;?>"><b><?php echo $title_jeu_event[$i]; ?></b></a></b></div>
                             <?php } ?>
-                            <div <?php if($title_jeu_event[$i]=="Autre")echo  'style="margin-top:0;"'; ?> class="text_info"><b><?php echo $date_event[$i]; ?></b></div>
+                            <div <?php if(!isset($title_jeu_event[$i]))echo  'style="margin-top:0;"'; ?> class="text_info"><b><?php echo $date_event[$i]; ?></b></div>
 
                             <div class="text_info">
                                 <div class="particip_event">
                                     <span>Participant(s) <b>(<?php echo $nb_inscrit[$i]."/".$inscription_event[$i]; ?>)</b></span>
-                                    <?php if(isset($_SESSION['id_user']) && $droits > 1 && $afficher!='<' && ($nb_inscrit[$i] < $inscription_event[$i]) || $nb[$i]) { ?> <!--On affiche un lien pour s'inscrire ou se désinscrire si on est connecté-->
-                                        <?php if (!$nb[$i]) { ?>
+                                    <?php if(isset($_SESSION['id_user']) && !isset($_GET['passer']) && $droits > 1 && ($nb_inscrit[$i] < $inscription_event[$i])) //On affiche un lien pour s'inscrire ou se désinscrire si on est connecté
+                                    {
+                                        if (!$nb[$i]) { ?>
                                             <a href="<?php echo $fichier."&page=".$page.'&inscrire='.$id_event[$i]; ?>">
                                                 <span><small>S'inscrire</small></span>
                                             </a>
@@ -117,23 +118,23 @@
                                             <a href="<?php echo $fichier."&page=".$page.'&desinscrire='.$id_event[$i]; ?>">
                                                 <span><small>Se désinscrire</small></span>
                                             </a>
-                                        <?php } ?>
-                                    <?php } ?>
+                                        <?php }
+                                    } ?>
                                 </div>
                                 <ul class="ScrollBar">
                                     <?php for($j=0 ; $j<$inscription_event[$i] ; $j++) { ?>
-                                    <?php if(isset($id_user_inscrit[$j][$i])) { ?><!--On affiche les personnes inscrite-->
-                                    <li>
-                                        <img src="images/avatars/<?php echo $avatar_inscrit[$j][$i]; ?>" width="45" height="45" alt="avatar_inscrit"><!--On affiche l'image de profil de l'inscrit-->
-                                        <span><small><?php echo $pseudo_inscrit[$j][$i]; ?></small></span><!--On affiche le pseudo de l'inscrit-->
-                                    </li>
-                                    <?php } else { ?>
-                                    <li>
-                                        <!--On affiche que la place est disponible-->
-                                        <img src="images/icone_site/profil.png" width="45" height="45" alt="profil_non_inscrit">
-                                        <small>Place disponible</small>
-                                    </li>
-                                    <?php } ?>
+                                        <?php if(isset($id_user_inscrit[$j][$i])) { ?><!--On affiche les personnes inscrite-->
+                                        <li>
+                                            <img src="images/avatars/<?php echo $avatar_inscrit[$j][$i]; ?>" width="45" height="45" alt="avatar_inscrit"><!--On affiche l'image de profil de l'inscrit-->
+                                            <span><small><?php echo $pseudo_inscrit[$j][$i]; ?></small></span><!--On affiche le pseudo de l'inscrit-->
+                                        </li>
+                                        <?php } else { ?>
+                                        <li>
+                                            <!--On affiche que la place est disponible-->
+                                            <img src="images/icone_site/profil.png" width="45" height="45" alt="profil_non_inscrit">
+                                            <small>Place disponible</small>
+                                        </li>
+                                        <?php } ?>
                                     <?php } ?>
                                 </ul>
                                 <script>

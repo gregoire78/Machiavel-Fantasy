@@ -22,6 +22,7 @@ $table_historique = 2;
 $method_tri[0]="date_event";    $nom_tri[0]="Date de l'événement";
 $method_tri[1]="date_update";   $nom_tri[1]="Date de mise à jour";
 $method_tri[2]="title_event";   $nom_tri[2]="Titre de l'événement";
+$method_tri[3]="title_jeu";     $nom_tri[3]="Jeux";
 
 //Tableau pour les diffrents nombre d'affichage par pages
 $view[0]=5;
@@ -31,83 +32,13 @@ $view[2]=15;
 //On vérifie si on veut afficher les événements passer ou à venir
 if(isset($_GET['passer']))
 {
-    $afficher='<';
+    $afficher="<";
     $fichier = $fichier."passer";
     $fichier_num_page  = $fichier;
 }else
 {
     $afficher='>=';
 }
-
-/*Si on veut trier dans un ordre précis
-if(isset($_GET['tri']) || isset($_GET['ordre']))
-{
-    //Si il y a une méthode de tri de dans l'URL
-    if(isset($_GET['tri']))
-    {
-        switch($_GET['tri'])
-        {
-            case $method_tri[0]:
-                $tri = $method_tri[0];
-                break;
-            case $method_tri[1]:
-                $tri = $method_tri[1];
-                break;
-            case $method_tri[2]:
-                $tri = $method_tri[2];
-                break;
-            default :
-                $tri = $method_tri[0];
-                break;
-        }
-        $fichier = $fichier."&tri=".$tri;
-        $fichier_num_page = $fichier;
-    }
-    //Sinon on tri selon la première méthode de tri
-    else
-    {
-        $tri = $method_tri[0];
-    }
-
-    //Si on un ordre de tri de dans l'URL
-    if(isset($_GET['ordre']))
-    {
-        switch($_GET['ordre'])
-        {
-            case "Croissant":
-                $ordre = "ASC";
-                break;
-            case "Décroissant":
-                $ordre = "DESC";
-                break;
-            default :
-                $ordre ="ASC";
-                break;
-        }
-        $fichier = $fichier."&ordre=".$_GET['ordre'];
-        $fichier_num_page =$fichier;
-    }
-    //Sinon on tri dans l'ordre croissant
-    else
-    {
-        $ordre = "ASC";
-    }
-}
-//Si on a aucun des deux tri dans l'URL
-else
-{
-    //Si l'événement est passé on tri selon la première méthode par ordre décroissant sinon selon la première méthode par ordre croissant
-    if(isset($_GET['passer']))
-    {
-        $ordre = "DESC";
-    }
-    else
-    {
-        $ordre ="ASC";
-    }
-    $tri = $method_tri[0];
-}*/
-
 
 /*---------------------Nouveau ------------------*/
 //Si il y a une méthode de tri de dans l'URL
@@ -131,6 +62,9 @@ if(isset($_POST['tri']) || isset($_GET['tri']))
             break;
         case $method_tri[2]:
             $tri = $method_tri[2];
+            break;
+        case $method_tri[3]:
+            $tri = $method_tri[3];
             break;
         default :
             $tri = $method_tri[0];
@@ -254,6 +188,9 @@ if(isset($_SESSION['id_user']) && !isset($_GET['passer']) && $droits > 1 && (iss
     {
         header("location:".$fichier."&page=".$page);
     }
+}else if(isset($_GET['passer']) && (isset($_GET['desinscrire']) || isset($_GET['inscrire'])))
+{
+    header("location:".$fichier."&page=".$page);
 }
 
 if(isset($_GET['supprimer']))
