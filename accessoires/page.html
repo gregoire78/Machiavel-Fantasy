@@ -1,6 +1,6 @@
 <fieldset class="pagination_right">
     <?php if($page > 1){ ?>
-        <a href="<?php echo $fichier.'&page='.($page-1); ?>">
+        <a href="<?php echo $fichier_num_page.'&page='.($page-1); ?>">
             <div class="num_page">
                 <span class="glyphicon glyphicon-triangle-left"></span>
             </div>
@@ -8,7 +8,7 @@
     <?php }
 
     for($i=1; $i<=$nb_page; $i++){ ?>
-        <a href="<?php echo $fichier.'&page='.$i; ?>">
+        <a href="<?php echo $fichier_num_page.'&page='.$i; ?>">
             <div class="num_page <?php if($page==$i)echo 'page_curent';?> ">
                 <span><?php echo $i; ?></span>
             </div>
@@ -16,7 +16,7 @@
     <?php }
 
     if ($page < $nb_page){ ?>
-        <a href="<?php echo $fichier.'&page='.($page+1); ?>">
+        <a href="<?php echo $fichier_num_page.'&page='.($page+1); ?>">
             <div class="num_page">
                 <span class="glyphicon glyphicon-triangle-right"></span>
             </div>

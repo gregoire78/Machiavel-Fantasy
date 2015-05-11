@@ -15,9 +15,9 @@ $method_tri[0]="title_jeu";    $nom_tri[0]="Titre de jeu";
 $method_tri[1]="date_update";   $nom_tri[1]="Date de mise à jour";
 
 //Tableau pour les diffrents nombre d'affichage par pages
-$view[0]=5;
-$view[1]=10;
-$view[2]=15;
+$num_view[0]=5;
+$num_view[1]=10;
+$num_view[2]=15;
 
 if(!isset($_GET['jeu']))
 {
@@ -33,117 +33,26 @@ $color_type_jeu = $data['color_type_jeu'];
 $icon_type_jeu = $data['icon_type_jeu'];
 
 $fichier_originel = "liste_jeu.php?jeu=".$_GET['jeu'];
-$fichier = $fichier_num_page = $fichier_originel;
+$fichier = $fichier_originel;
 
-//Si il y a une méthode de tri de dans l'URL
-if(isset($_POST['tri']) || isset($_GET['tri']))
-{
-    if(isset($_POST['tri']))
-    {
-        $switch_tri = $_POST['tri'];
-    }
-    else if(isset($_GET['tri']))
-    {
-        $switch_tri = $_GET['tri'];
-    }
-    switch($switch_tri)
-    {
-        case $method_tri[0]:
-            $tri = $method_tri[0];
-            break;
-        case $method_tri[1]:
-            $tri = $method_tri[1];
-            break;
-        default :
-            $tri = $method_tri[0];
-            break;
-    }
-    $fichier = $fichier."&tri=".$tri;
-    $fichier_num_page = $fichier;
-}
-//Sinon on tri selon la première méthode de tri
-else
-{
-    $tri = $method_tri[0];
-}
+$tri_result = tri_result($method_tri, $fichier);
+$tri = $tri_result['tri'];
+$ordre = $tri_result['ordre'];
 
-if(isset($_POST['ordre']) || isset($_GET['ordre']))
-{
-    if(isset($_POST['ordre']))
-    {
-        $switch_ordre = $_POST['ordre'];
-    }
-    else if (isset($_GET['ordre']))
-    {
-        $switch_ordre = $_GET['ordre'];
-    }
-    switch($switch_ordre)
-    {
-        case "Croissant":
-            $ordre = "ASC";
-            break;
-        case "Décroissant":
-            $ordre = "DESC";
-            break;
-        default :
-            $ordre ="ASC";
-            break;
-    }
-    $fichier = $fichier."&ordre=".$ordre;
-    $fichier_num_page =$fichier;
-}
-//Sinon on tri dans l'ordre décroissant
-else
-{
-    $ordre ="ASC";
-}
+$fichier = $tri_result['fichier'];
+$fichier_num_page = $tri_result['fichier'];
 
-//Si on a déjà un nombre de d'événement par page sinon par défaut on affichera 5 actu par page
-if(isset($_GET['view']))
-{
-    switch($_GET['view'])
-    {
-        case 5 :
-            $nombre_liste = 5;
-            break;
-        case 10 :
-            $nombre_liste = 10;
-            break;
-        case 15 :
-            $nombre_liste = 15;
-            break;
-        default :
-            $nombre_liste = 5;
-            break;
-    }
-    $fichier = $fichier."&view=".$nombre_liste;
-}
-else
-{
-    $nombre_liste = 5;
-}
+$view_result = view($num_view, $fichier);
+$view = $view_result['view'];
+$fichier = $view_result['fichier'];
 
 //On récupère le nombre de page pour afficher le nombre de jeu dans la base de donnée
-$nb_page = recup_nb_page(recup_lign($_GET['jeu']), $nombre_liste);
+$nb_page = recup_nb_page(recup_lign($_GET['jeu']), $view);
 
-if (isset ($_GET['page']))
-{
-    if ($_GET['page']>$nb_page || $_GET['page']< 1)
-    {
-        header('Location: ' . $referer);
-    }
-    else
-    {
-        $page = (int)$_GET['page'];
-    }
-}
-else
-{
-    $page = 1;
-}
+$page = page($nb_page, $referer);
 
 //On récupère la liste des jeux en base de donnée			(.accessoires/functions_jeu.php)
-$query=recup_liste_jeu($_GET['jeu'], $tri, $ordre, $page, $nombre_liste);
+$query=recup_liste_jeu($_GET['jeu'], $tri, $ordre, $page, $view);
 $j=0;
 
 //On parcourt les jeux de la base de donnée
