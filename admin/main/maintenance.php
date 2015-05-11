@@ -22,6 +22,9 @@ $method_tri[0]="date_historique";   $nom_tri[0]="Date";
 $method_tri[1]="pseudo";            $nom_tri[1]="Nom d'utilisateur";
 $method_tri[2]="text_historique";   $nom_tri[2]="Journal d'action";
 
+$method_ordre[0]="ASC";             $nom_ordre[0]="Croissant";
+$method_ordre[1]="DESC";            $nom_ordre[1]="Décroissant";
+
 /*------------- Tableau de couleur de texte d'utilisateur --------------*/
 $color[0]="color: #333;"; //Banni
 $color[1]="color: #597FB2;"; //Utilisateur
@@ -90,7 +93,7 @@ else
 
 $fichier = $fichier_originel;
 
-$tri_result = tri_result($method_tri, $fichier);
+$tri_result = tri_result($method_tri,$method_ordre, $fichier);
 $tri = $tri_result['tri'];
 $ordre = $tri_result['ordre'];
 $fichier = $tri_result['fichier'];

@@ -10,8 +10,10 @@ auto_connexion(NULL,NULL,0);
 include_once('accessoires/menu.php');
 $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'index.php';
 
+$method_ordre[0]="ASC";         $nom_ordre[0]="Croissant";
+$method_ordre[1]="DESC";        $nom_ordre[1]="Décroissant";
 
-$method_tri[0]="title_jeu";    $nom_tri[0]="Titre de jeu";
+$method_tri[0]="title_jeu";     $nom_tri[0]="Titre de jeu";
 $method_tri[1]="date_update";   $nom_tri[1]="Date de mise à jour";
 
 //Tableau pour les diffrents nombre d'affichage par pages
@@ -35,7 +37,7 @@ $icon_type_jeu = $data['icon_type_jeu'];
 $fichier_originel = "liste_jeu.php?jeu=".$_GET['jeu'];
 $fichier = $fichier_originel;
 
-$tri_result = tri_result($method_tri, $fichier);
+$tri_result = tri_result($method_tri,$method_ordre, $fichier);
 $tri = $tri_result['tri'];
 $ordre = $tri_result['ordre'];
 

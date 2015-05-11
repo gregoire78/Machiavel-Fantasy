@@ -24,12 +24,15 @@ $method_tri[1]="date_update";   $nom_tri[1]="Date de mise à jour";
 $method_tri[2]="title_event";   $nom_tri[2]="Titre de l'événement";
 $method_tri[3]="title_jeu";     $nom_tri[3]="Jeux";
 
+$method_ordre[0]="ASC";         $nom_ordre[0]="Croissant";
+$method_ordre[1]="DESC";        $nom_ordre[1]="Décroissant";
+
 //Tableau pour les diffrents nombre d'affichage par pages
 $num_view[0]=5;
 $num_view[1]=10;
 $num_view[2]=15;
 
-$tri_result = tri_result($method_tri, $fichier);
+$tri_result = tri_result($method_tri,$method_ordre, $fichier);
 $tri = $tri_result['tri'];
 $ordre = $tri_result['ordre'];
 

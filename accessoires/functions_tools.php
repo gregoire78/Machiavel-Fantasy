@@ -60,8 +60,9 @@ function recup_nb_page($total_liste, $nombre_by_page)
 }
 
 //Fonction pour trier les résultats d'une page
-function tri_result($method_tri, $fichier)
+function tri_result($method_tri,$method_ordre, $fichier)
 {
+    $data['fichier'] = $fichier;
     //Si il y a une méthode de tri de dans l'URL
     if(isset($_POST['tri']) || isset($_GET['tri']))
     {
@@ -81,6 +82,7 @@ function tri_result($method_tri, $fichier)
             $i++;
         }
         if(!isset($data['tri'])) $data['tri'] = $method_tri[0];
+        $data['fichier'] = $data['fichier']."&tri=".$data['tri'];
     }
     //Sinon on tri selon la première méthode de tri
     else
@@ -88,7 +90,6 @@ function tri_result($method_tri, $fichier)
         $data['tri'] = $method_tri[0];
     }
 
-    $data['fichier'] = $fichier."&tri=".$data['tri'];
     if(isset($_POST['ordre']) || isset($_GET['ordre']))
     {
         if(isset($_POST['ordre']))
@@ -99,33 +100,28 @@ function tri_result($method_tri, $fichier)
         {
             $switch_ordre = $_GET['ordre'];
         }
-        switch($switch_ordre)
+
+        $i=0;
+        while (isset($method_ordre[$i]))
         {
-            case "Croissant":
-                $data['ordre'] = "ASC";
-                break;
-            case "Décroissant":
-                $data['ordre'] = "DESC";
-                break;
-            default :
-                $data['ordre'] ="ASC";
-                break;
+            if($switch_ordre == $method_ordre[$i]) $data['ordre'] = $method_ordre[$i];
+            $i++;
         }
+        if(!isset($data['ordre'])) $data['ordre'] = $method_ordre[0];
+        $data['fichier'] = $data['fichier']."&ordre=".$data['ordre'];
     }
-//Sinon on tri dans l'ordre décroissant
+    //Sinon on tri dans l'ordre décroissant
     else
     {
-        //Si l'événement est passé on tri selon la première méthode par ordre décroissant sinon selon la première méthode par ordre croissant
         if(isset($_GET['passer']))
         {
-            $data['ordre'] = "DESC";
+            $data['ordre'] = $method_ordre[1];
         }
         else
         {
-            $data['ordre'] ="ASC";
+            $data['ordre'] = $method_ordre[0];
         }
     }
-    $data['fichier'] = $data['fichier']."&ordre=".$data['ordre'];
     return $data;
 }
 
