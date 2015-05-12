@@ -2,29 +2,28 @@
 <fieldset class="quick">
     <input class="button2" type="submit" name="delall" value="Tout supprimer">&nbsp;
     <input class="button2" type="submit" name="delmarked" value="Supprimer la sélection"><br>
-    <p class="small">
-        <a href="#">Tout cocher</a> • <a href="#">Tout décocher</a>
-    </p>
 
-    <div>
-        <input type="checkbox" onclick="CocheTout(this, 'mark[]');" name="select_all"/>
-        <span>Tout cocher</span>
+
+    <div class="checkbox">
+        <input type="checkbox" id="cocheTout" name="select_all" style="cursor: pointer"/>
+        <label id="cocheText" for="cocheTout">
+            Tout cocher
+        </label>
     </div>
     <script>
-        function CocheTout(ref, name) {
-            var form = ref;
+        $(document).ready(function() {
+            $('#cocheTout').click(function() { // clic sur la case cocher/decocher
 
-            while (form.parentNode && form.nodeName.toLowerCase() != 'form'){
-                form = form.parentNode;
-            }
-
-            var elements = form.getElementsByTagName('input');
-
-            for (var i = 0; i < elements.length; i++) {
-                if (elements[i].type == 'checkbox' && elements[i].name == name) {
-                    elements[i].checked = ref.checked;
+                var cases = $(".table1").find('input[type=checkbox][name="mark[]"]'); // on cherche les checkbox qui dépendent de la liste 'cases'
+                if(this.checked){ // si 'cocheTout' est coché
+                    cases.prop('checked', true); // on coche les cases
+                    $('#cocheText').html('Tout décocher'); // mise à jour du texte de cocheText
+                }else{ // si on décoche 'cocheTout'
+                    cases.prop('checked', false);// on coche les cases
+                    $('#cocheText').html('Tout cocher');// mise à jour du texte de cocheText
                 }
-            }
-        }
+
+            });
+        });
     </script>
 </fieldset>

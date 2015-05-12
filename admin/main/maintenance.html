@@ -21,10 +21,10 @@
                          while (isset($id_historique[$i]))
                             { ?>
                                 <tr>
-                                    <td><img src="../images/avatars/<?php echo $avatar_historique[$i]; ?>" width="40" height="40" alt="avatar_user"> </img><strong style="<?php echo $color_user[$i]; ?>"><?php echo $pseudo_historique[$i]; ?></strong></td>
+                                    <td><img src="../images/avatars/<?php echo $avatar_historique[$i]; ?>" width="40" height="40" alt="avatar_user" /> <strong style="<?php echo $color_user[$i]; ?>"><?php echo $pseudo_historique[$i]; ?></strong></td>
                                     <td><?php echo $date_historique[$i]; ?></td>
                                     <td><strong><?php echo $text_historique[$i]; ?></strong></td>
-                                    <td style="text-align: center;"><input style="" type="checkbox" name="mark[]" value="<?php echo $id_historique[$i]; ?>" ></input></td>
+                                    <td ><div style="margin-right: auto; width: 20px; margin-left: auto" class="checkbox checkbox-circle"><input style="cursor: pointer" type="checkbox" name="mark[]" value="<?php echo $id_historique[$i]; ?>" /><label></label></div></td>
                                 </tr>
                             <?php $i++;
                             } ?>

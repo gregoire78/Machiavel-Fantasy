@@ -345,7 +345,7 @@ td {
     text-align: left;
     font-size: 0.85em;
     padding: 4px;
-    line-height: 1.20em;
+    /*line-height: 1.20em;*/
 }
 table.table1 tbody tr:nth-child(odd) {
     background-color: #DCEBFE;
@@ -442,9 +442,9 @@ table.table1 tbody tr:nth-child(even) {
     line-height: normal;
     display: inline;
 }
-input[type=checkbox], input[type=radio] {
+/*input[type=checkbox], input[type=radio] {
     margin: 0;
-}
+}*/
 
 fieldset.quick, p.quick
 {
