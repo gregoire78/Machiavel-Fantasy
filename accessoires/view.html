@@ -3,10 +3,10 @@
         Afficher :
     </div>
 
-    <?php $i= 0; while(isset($view[$i])){ ?>
-        <a href="<?php echo $fichier_num_page.'&view='.$view[$i]; ?>">
-            <div class="num_page <?php if($nombre_liste==$view[$i])echo 'page_curent';?>">
-                <span><?php echo $view[$i]; ?></span>
+    <?php $i= 0; while(isset($num_view[$i])){ ?>
+        <a href="<?php echo $fichier_num_page.'&view='.$num_view[$i]; ?>">
+            <div class="num_page <?php if($view==$num_view[$i])echo 'page_curent';?>">
+                <span><?php echo $num_view[$i]; ?></span>
             </div>
         </a>
     <?php $i++;} ?>

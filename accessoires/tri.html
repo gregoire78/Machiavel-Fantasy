@@ -3,15 +3,16 @@
         <label for="trie">Trier par :</label>
         <select name="tri" id="trie">
             <?php $i=0;while(isset($method_tri[$i])){ ?>
-            <option <?php if($tri==$method_tri[$i])echo "selected='selected'"; ?> value="<?php echo $method_tri[$i]; ?>"><?php echo $nom_tri[$i];?></option>
+                <option <?php if($tri==$method_tri[$i])echo "selected='selected'"; ?> value="<?php echo $method_tri[$i]; ?>"><?php echo $nom_tri[$i];?></option>
             <?php $i++; } ?>
         </select>
     </div>
     <div class="ordre">
         <label for="ordre">Ordre :</label>
         <select name="ordre" id="ordre">
-            <option <?php if($ordre=="ASC")echo "selected='selected'"; ?> >Croissant</option>
-            <option <?php if($ordre=="DESC")echo "selected='selected'"; ?> >Décroissant</option>
+            <?php $i=0;while(isset($method_ordre[$i])){ ?>
+                <option <?php if($ordre==$method_ordre[$i])echo "selected='selected'"; ?> value="<?php echo $method_ordre[$i]; ?>" ><?php echo $nom_ordre[$i];?></option>
+            <?php $i++; } ?>
         </select>
     </div>
     <input type="submit" value="Trier" class="valider" />
