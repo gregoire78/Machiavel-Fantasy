@@ -113,7 +113,7 @@ if(isset($_POST['ajouter'])||isset($_POST['modifier']))
         if(isset($_POST['ajouter']))
         {
             //Si on ajoute un jeu
-            create_jeu($title_jeu, $text_jeu, $nom_image_jeu, $id_type_jeu);
+            create_jeu($title_jeu, $text_jeu, $nom_image_jeu.'.png', $id_type_jeu);
 
             header("Location:/liste_jeu.php?jeu=".$id_type_jeu);
         }

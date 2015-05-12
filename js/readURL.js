@@ -4,7 +4,6 @@
 
 var active = null; // mouchard si l'image choisie est dejà selectionné
 var modal_win = $('#myModal'); // id de la fentêre modal pour le cropper
-var defaut = 'defaut_jeu.png'; // image par defaut
 
 var input_error = $("#inputError"); // balise pour les erreurs
 

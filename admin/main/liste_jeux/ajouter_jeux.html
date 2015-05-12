@@ -45,6 +45,9 @@
                 </div>
                 <label for="inputGameFile" class="control-label">Image du jeu</label>
                 <div class="form-group">
+                    <script>
+                        var defaut = '<?= $image_jeu ?>.png'; // image par defaut
+                    </script>
                     <input onchange="open_modal(this);" id="inputGameFile" name="inputGameFile" type="file" class="file" accept="image/png,image/jpeg,image/gif" data-show-upload="false" data-show-preview="false">
 
                     <script>

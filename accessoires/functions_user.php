@@ -23,7 +23,7 @@ function recup_statut()
 function recup_all_user($tri, $ordre)
 {
     require("connect_bdd.php");
-    $sql="SELECT pseudo, civility, lastname, firstname, email, date_register, avatars, droits, messages_users
+    $sql="SELECT pseudo, civility, lastname, firstname, email, date_register, avatars, droits
           FROM users
           WHERE activation=1
           ORDER BY :ordre :tri;";
@@ -38,7 +38,7 @@ function recup_all_user($tri, $ordre)
 function recup_one_user($id_user, $pseudo_user)
 {
     require("connect_bdd.php");
-    $sql="SELECT id_user, pseudo, civility, lastname, firstname, email, date_register, avatars, droits, messages_users
+    $sql="SELECT id_user, pseudo, civility, lastname, firstname, email, date_register, avatars, droits
           FROM users
           WHERE id_user=:id_user OR pseudo=:pseudo_user";
     $query=$connect->prepare($sql);
