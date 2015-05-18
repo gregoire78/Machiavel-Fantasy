@@ -24,13 +24,25 @@ $method_tri[1]="date_update";   $nom_tri[1]="Date de mise à jour";
 $method_tri[2]="title_event";   $nom_tri[2]="Titre de l'événement";
 $method_tri[3]="title_jeu";     $nom_tri[3]="Jeux";
 
-$method_ordre[0]="ASC";         $nom_ordre[0]="Croissant";
-$method_ordre[1]="DESC";        $nom_ordre[1]="Décroissant";
-
 //Tableau pour les diffrents nombre d'affichage par pages
 $num_view[0]=5;
 $num_view[1]=10;
 $num_view[2]=15;
+
+//On vérifie si on veut afficher les événements passer ou à venir
+if(isset($_GET['passer']))
+{
+    $afficher="<";
+    $fichier = $fichier."passer";
+    $fichier_num_page  = $fichier;
+    $method_ordre[0]="DESC";        $nom_ordre[0]="Décroissant";
+    $method_ordre[1]="ASC";         $nom_ordre[1]="Croissant";
+}else
+{
+    $afficher='>=';
+    $method_ordre[0]="ASC";         $nom_ordre[0]="Croissant";
+    $method_ordre[1]="DESC";        $nom_ordre[1]="Décroissant";
+}
 
 $tri_result = tri_result($method_tri,$method_ordre, $fichier);
 $tri = $tri_result['tri'];
@@ -42,17 +54,6 @@ $fichier_num_page = $tri_result['fichier'];
 $view_result = view($num_view, $fichier);
 $view = $view_result['view'];
 $fichier = $view_result['fichier'];
-
-//On vérifie si on veut afficher les événements passer ou à venir
-if(isset($_GET['passer']))
-{
-    $afficher="<";
-    $fichier = $fichier."passer";
-    $fichier_num_page  = $fichier;
-}else
-{
-    $afficher='>=';
-}
 
 // On récupère le nombre de page pour afficher un nombre d'événement
 $nb_page = recup_nb_page(recup_lign_event($afficher), $view);

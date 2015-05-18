@@ -20,7 +20,7 @@ h3.underline{
     border:1px solid #292626;
     padding:15px;
     border-bottom:0;
-    min-height:400px;
+    min-height:500px;
     float:left;
 }
 .main
@@ -531,7 +531,7 @@ table.cal { cursor:default;font-size:17px; background:#868400; border: 2px solid
     margin: auto;
 }
 
-/*-------------------------- Page edit jeu --------------------------*/
+/*-------------------------- Page edit actu --------------------------*/
 /*datepicker*/
 div.ui-datepicker{
     font-size:12px;
@@ -547,7 +547,28 @@ div.ui-datepicker{
 {
     float:left;
     width:40%;
+
 }
+.preview
+{
+    overflow: hidden;
+    float: none;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+#pre_form
+{
+    height: 289px;
+    max-width: 289px;
+}
+#pre_form img
+{
+    border: 3px solid #fff;
+    box-shadow: 0 0 5px rgba(0,0,0,.15);
+}
+
+
 
 .content_edit
 {

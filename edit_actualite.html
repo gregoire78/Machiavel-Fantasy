@@ -45,9 +45,10 @@
             <div class="col-md-10 main">
                 <form action="edit_actualite.php<?php if(isset($_GET['modifier'])) echo "?modifier=".$id_event;?>" method="POST" class="form-horizontal">
                     <div class="image_edit">
-                        <img src="" alt="image_edit"> </img>
+                        <div id="pre_form" class="preview">
+                            <img height="289"  src="<?= $image_event; ?>" alt="image_edit" ></img>
+                        </div>
                     </div>
-
 
 
                     <div class="content_edit">

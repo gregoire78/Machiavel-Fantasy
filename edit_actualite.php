@@ -12,8 +12,7 @@ include_once("accessoires/functions_historique.php");
 include_once("accessoires/functions_events.php");
 
 $table_historique = 2;
-
-//include_once("accessoires/functions_events.php");
+$image_event = "../images/jeux/defaut_jeu.png";
 
 //l'auto connexion
 //auto_connexion(NULL,'index.php',3);

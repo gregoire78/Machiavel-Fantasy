@@ -113,14 +113,7 @@ function tri_result($method_tri,$method_ordre, $fichier)
     //Sinon on tri dans l'ordre décroissant
     else
     {
-        if(isset($_GET['passer']))
-        {
-            $data['ordre'] = $method_ordre[1];
-        }
-        else
-        {
-            $data['ordre'] = $method_ordre[0];
-        }
+        $data['ordre'] = $method_ordre[0];
     }
     return $data;
 }
