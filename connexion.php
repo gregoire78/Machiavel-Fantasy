@@ -24,7 +24,7 @@ if(isset($_POST['valider']))
         $data = connexion_user($email_user,$hash);
         if($data['activation'] == 0)
         {
-            $error_connexion = "votre compte n'est activé, veuillez vérifier vos mails pour activer votre compte !";
+            $error_connexion = "votre compte n'est pas activé, veuillez vérifier vos mails pour activer votre compte !";
         }
         else if($data['droits'] == 0)
         {
