@@ -142,7 +142,7 @@ if(isset($_POST["register"]))
         $table_historique = 5;
         create_historique($table_historique, "L'utilisateur s'est inscrit", $id_user);
 
-        include_once("accessoires/mail_confirm.php");
+        include_once("accessoires/mail_confirmation_inscription.php");
         session_unset();
         $success = true;
         header('Refresh: 5;URL=index.php');
