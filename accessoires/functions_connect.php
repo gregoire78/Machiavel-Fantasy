@@ -48,7 +48,7 @@ function connexion_user($email,$hash)
 {
     require("connect_bdd.php");
 
-    $sql = "SELECT pseudo,avatars,id_user,droits FROM users WHERE email= :email AND password= :password AND activation=1";
+    $sql = "SELECT pseudo,avatars,id_user,droits,activation FROM users WHERE email= :email AND password= :password";
     $query=$connect->prepare($sql);
     $query->bindParam(':email',$email,PDO::PARAM_STR,320);
     $query->bindParam(':password',$hash,PDO::PARAM_STR,60);

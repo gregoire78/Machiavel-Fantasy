@@ -22,7 +22,11 @@ if(isset($_POST['valider']))
     {
 
         $data = connexion_user($email_user,$hash);
-        if($data['droits'] == 0)
+        if($data['activation'] == 0)
+        {
+            $error_connexion = "votre compte n'est activé, veuillez vérifier vos mails pour activer votre compte !";
+        }
+        else if($data['droits'] == 0)
         {
             $error_connexion = "Vous êtes Banni !!!";
         }

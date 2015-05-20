@@ -2,14 +2,14 @@
 $ipserveur = $_SERVER['SERVER_ADDR'];
 if($ipserveur == "127.0.0.1")
 {
-	ini_set("SMTP", "smtp-auth.sfr.fr");
-	ini_set('smtp_port',587);
+	ini_set("SMTP", "127.0.0.1");
+	ini_set('smtp_port',25);
 }
-else
+/*/else
 {
 	ini_set("SMTP", "smtp.completel.net");
-}
-ini_set('sendmail_from' , 'greg.autre@gmail.com');
+}*/
+ini_set('sendmail_from' , 'newmdp@machiavel.fr');
 // multiple recipients
 $to  = $email_user;
 
