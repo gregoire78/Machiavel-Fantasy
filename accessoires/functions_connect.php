@@ -3,7 +3,7 @@
 function verif_existe($id,$tab,$col,$email_user)
 {
     require('connect_bdd.php');
-    $sql="SELECT count(".$id.") FROM ".$tab." WHERE ".$col."= :email_user";
+    $sql="SELECT count(".$id.") FROM ".$tab." WHERE ".$col."= :email_user AND activation=1";
     $query=$connect->prepare($sql);
     $query->bindParam(':email_user',$email_user,PDO::PARAM_STR,35);
     $query->execute();
@@ -165,13 +165,13 @@ function recup_data_user($pram,$action)
     }
     else if($action == 'newmdp')
     {
-        $sql="SELECT id_user,key_user FROM users WHERE email= :email";
+        $sql="SELECT id_user,key_user FROM users WHERE email= :email AND activation=1";
         $query=$connect->prepare($sql);
         $query->bindParam(':email',$pram["email"],PDO::PARAM_STR,320);
     }
     else if($action == 'newmdverif')
     {
-        $sql="SELECT count(id_user) FROM users WHERE key_user= :key_user AND id_user= :id_user ";
+        $sql="SELECT count(id_user) FROM users WHERE key_user= :key_user AND id_user= :id_user  AND activation=1";
         $query=$connect->prepare($sql);
         $query->bindParam(':key_user',$pram["key_user"],PDO::PARAM_STR);
         $query->bindParam(':id_user',$pram["id_user"],PDO::PARAM_INT);
