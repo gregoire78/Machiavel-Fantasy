@@ -3,7 +3,7 @@
 // Created by Grégoire JONCOUR on 20/05/2015.
 // Copyright (c) 2015 Grégoire JONCOUR. All rights reserved.
 //
-
+$hostname = $_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'] ;
 date_default_timezone_set('Europe/Paris');
 
 require 'PHPMailer/PHPMailerAutoload.php';
@@ -47,7 +47,7 @@ $mail->msgHTML('
             <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border: 1px solid #cccccc; border-collapse: collapse;">
                 <tr>
                     <td align="center" bgcolor="#7F838A" style="padding: 40px 0 30px 0; color: #153643; font-size: 28px; font-weight: bold; font-family: Arial, sans-serif;">
-                        <img src="http://machiavel.fr/images/mail/h1Email.png" alt="Machiavel Fantasy" width="350" height="128" style="display: block;" />
+                        <img src="http://'.$hostname.'/images/mail/h1Email.png" alt="Machiavel Fantasy" width="350" height="128" style="display: block;" />
                     </td>
                 </tr>
                 <tr>
@@ -60,7 +60,7 @@ $mail->msgHTML('
                             </tr>
                             <tr>
                                 <td style="padding: 20px 0 20px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
-                                    Vous venez de créer un compte sur <a href="http://machiavel.fr" style="color: #153643;text-decoration: none;font-weight: bold">Machiavel Fantasy</a>. Pour activer votre compte il vous suffit de cliquer sur ce lien :
+                                    Vous venez de créer un compte sur <a href="http://'.$hostname.'" style="color: #153643;text-decoration: none;font-weight: bold">Machiavel Fantasy</a>. Pour activer votre compte il vous suffit de cliquer sur ce lien :
                                 </td>
                             </tr>
                             <tr>
@@ -68,7 +68,7 @@ $mail->msgHTML('
                                     <table border="0" cellpadding="0" cellspacing="0" style="background-color:#505050; border:1px solid #353535; border-radius:5px;">
                                         <tr>
                                             <td align="center" valign="middle" style="font-family: Arial, sans-serif;color:#FFFFFF;font-size:16px; font-weight:bold; letter-spacing:-.5px; padding:15px 30px 15px 30px;">
-                                                <img src="http://machiavel.fr/images/mail/Lock.png" width="15" alt="lock" />&nbsp;&nbsp;&nbsp;<a href="http://machiavel.fr/activation.php?pseudo='.urlencode($pseudo_user).'&key='.urlencode($key).'" target="_blank" style="color:#FFFFFF; text-decoration:none;">Activer mon compte</a>&nbsp;&nbsp;&nbsp;<img src="http://machiavel.fr/images/mail/Lock.png" width="15" alt="lock" />
+                                                <img src="http://'.$hostname.'/images/mail/Lock.png" width="15" alt="lock" />&nbsp;&nbsp;&nbsp;<a href="http://'.$hostname.'/activation.php?pseudo='.urlencode($pseudo_user).'&key='.urlencode($key).'" target="_blank" style="color:#FFFFFF; text-decoration:none;">Activer mon compte</a>&nbsp;&nbsp;&nbsp;<img src="http://'.$hostname.'/images/mail/Lock.png" width="15" alt="lock" />
                                             </td>
                                         </tr>
                                     </table>
@@ -87,7 +87,7 @@ $mail->msgHTML('
                         <table border="0" cellpadding="0" cellspacing="0" width="100%">
                             <tr>
                                 <td align="left" width="50%" style="color: #ffffff; font-family: Arial, sans-serif; font-size: 14px;">
-                                    &copy; <a href="http://machiavel.fr" target="_blank" style="color: #ffffff;"><font color="#ffffff">Machiavel Fantasy</font></a>, '.date("Y").'
+                                    &copy; <a href="http://'.$hostname.'" target="_blank" style="color: #ffffff;"><font color="#ffffff">Machiavel Fantasy</font></a>, '.date("Y").'
                                 </td>
                                 <td align="left" width="50%" style="color:#FF8181; font-family: Arial, sans-serif; font-size: 12px;">
                                     Si vous n\'êtes pas à l\'origine de la création de ce compte ne tenez pas compte de cet email, le compte sera automatiquement supprimé.
