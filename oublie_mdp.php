@@ -42,7 +42,7 @@ if(isset($_GET['pseudo']) && isset($_GET['key']))
                     {
                         $success=update_password($password_new,$_GET['pseudo']);
                         $table_historique = 5;
-                        create_historique($table_historique, "Modification du mot de passe", $_GET['pseudo']);
+                        create_historique($table_historique, "Modification du mot de passe (oublie du mot de passe)", $_GET['pseudo']);
 
                         header('Refresh: 2;URL=connexion.php');
                     }
