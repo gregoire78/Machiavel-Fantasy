@@ -61,7 +61,7 @@ $(document).ready(function(){
     });
 
     /*si clique sur submit*/
-    $('form').submit(function(){
+    $('#form_envoie_mail_mdp').submit(function(){
 
         var email_user1 = $('#email_user').val();
         email_user1 = $.trim(email_user1);

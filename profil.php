@@ -12,7 +12,7 @@ include_once("accessoires/functions_historique.php");
 
 //on recupere les données de l'utilisateur
 $id_user = (int)$_SESSION['id_user'];
-$data = recup_data_user($id_user);
+$data = recup_data_user(array("id_user" => $id_user),'profil');
 $pseudo_user_data=$_SESSION['pseudo'];
 $civility_user_data=$data['civility'];
 $lastname_user_data=$data['lastname'];
@@ -143,7 +143,7 @@ if(isset($_POST['modifierPassword']))
                         }
                         else
                         {
-                            $success=update_password($password_new);
+                            $success=update_password($password_new,$_SESSION['id_user']);
 
                             $table_historique = 5;
                             create_historique($table_historique, "Modification du mot de passe", $_SESSION['id_user']);

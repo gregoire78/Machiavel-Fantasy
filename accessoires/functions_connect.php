@@ -3,7 +3,7 @@
 function verif_existe($id,$tab,$col,$email_user)
 {
     require('connect_bdd.php');
-    $sql="SELECT count(".$id.") FROM ".$tab." WHERE ".$col."= :email_user";
+    $sql="SELECT count(".$id.") FROM ".$tab." WHERE ".$col."= :email_user AND activation=1";
     $query=$connect->prepare($sql);
     $query->bindParam(':email_user',$email_user,PDO::PARAM_STR,35);
     $query->execute();
@@ -44,7 +44,7 @@ function recup_hash($col,$email)
 }
 
 //fonction qui récupère l'id de l'user pour la connexion
-function connexion_user($email,$hash)
+/*function connexion_user($email,$hash)
 {
     require("connect_bdd.php");
 
@@ -55,7 +55,7 @@ function connexion_user($email,$hash)
     $query->execute();
     $data=$query->fetch(PDO::FETCH_ASSOC);
     return $data;
-}
+}*/
 
 //fonction parmettant d'auto connecter l'utilisateur à inserer sur toute les pages en relation avec l'utilisateur
 function auto_connexion($page_redirection_ok,$page_redirection_nok,$droits)
@@ -145,13 +145,37 @@ function auto_connexion($page_redirection_ok,$page_redirection_nok,$droits)
     }
 }
 
-//fonction récupérant les informations de l'urilisateur
-function recup_data_user($id_user)
+//fonction récupérant les informations de l'utilisateur (remplace connexion_user)
+function recup_data_user($pram,$action)
 {
     require("connect_bdd.php");
-    $sql = "SELECT civility,lastname,firstname,email,date_register,date_lastco FROM users WHERE id_user= :id_user";
-    $query=$connect->prepare($sql);
-    $query->bindParam(':id_user',$id_user,PDO::PARAM_INT);
+
+    if($action == 'connexion')
+    {
+        $sql = "SELECT pseudo,avatars,id_user,droits,activation FROM users WHERE email= :email AND password= :password";
+        $query=$connect->prepare($sql);
+        $query->bindParam(':email',$pram["email"],PDO::PARAM_STR,320);
+        $query->bindParam(':password',$pram["password"],PDO::PARAM_STR,60);
+    }
+    if($action == 'profil')
+    {
+        $sql = "SELECT civility,lastname,firstname,email,date_register,date_lastco FROM users WHERE id_user= :id_user";
+        $query=$connect->prepare($sql);
+        $query->bindParam(':id_user',$pram["id_user"],PDO::PARAM_INT);
+    }
+    else if($action == 'newmdp')
+    {
+        $sql="SELECT id_user,key_user FROM users WHERE email= :email AND activation=1";
+        $query=$connect->prepare($sql);
+        $query->bindParam(':email',$pram["email"],PDO::PARAM_STR,320);
+    }
+    else if($action == 'newmdverif')
+    {
+        $sql="SELECT count(id_user) FROM users WHERE key_user= :key_user AND id_user= :id_user  AND activation=1";
+        $query=$connect->prepare($sql);
+        $query->bindParam(':key_user',$pram["key_user"],PDO::PARAM_STR);
+        $query->bindParam(':id_user',$pram["id_user"],PDO::PARAM_INT);
+    }
     $query->execute();
     $data=$query->fetch(PDO::FETCH_ASSOC);
     return $data;
@@ -188,17 +212,21 @@ function update_avatar($name_avatar)
 }
 
 //fonction update le password
-function update_password($password)
+function update_password($password,$id_user)
 {
     require("connect_bdd.php");
+    $new_key = md5(microtime(TRUE)*100000);
     $passwordhash = password_hash($password,PASSWORD_BCRYPT);
-    $sql = "UPDATE users SET password = :password WHERE id_user= :id";
+    $sql = "UPDATE users SET password = :password, key_user= :new_key WHERE id_user= :id";
     $query=$connect->prepare($sql);
     $query->bindParam(':password',$passwordhash,PDO::PARAM_STR,60);
-    $query->bindParam(':id',$_SESSION['id_user'],PDO::PARAM_INT);
+    $query->bindParam(':id',$id_user,PDO::PARAM_INT);
+    $query->bindParam(':new_key',$new_key,PDO::PARAM_STR,100);
     $query->execute();
     return true;
 }
+
+//fonction recup infos pour
 /************************* ******************************/
 
 //fonction qui vérifie si le mot de passe est valide

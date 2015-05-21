@@ -21,7 +21,8 @@ if(isset($_POST['valider']))
     if (password_verify($pw_user,$hash))
     {
 
-        $data = connexion_user($email_user,$hash);
+        //$data = connexion_user($email_user,$hash);
+        $data = recup_data_user(array("email" => $email_user, "password" => $hash),'connexion');
         if($data['activation'] == 0)
         {
             $error_connexion = "votre compte n'est pas activé, veuillez vérifier vos mails pour activer votre compte !";
