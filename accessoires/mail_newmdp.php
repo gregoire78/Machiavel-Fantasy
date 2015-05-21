@@ -1,10 +1,10 @@
 <?php
 $ipserveur = $_SERVER['SERVER_ADDR'];
-if($ipserveur == "127.0.0.1")
-{
-	ini_set("SMTP", "127.0.0.1");
+/*if($ipserveur == "127.0.0.1")
+{*/
+	ini_set("SMTP", "machiavel.fr");
 	ini_set('smtp_port',25);
-}
+//}
 /*/else
 {
 	ini_set("SMTP", "smtp.completel.net");
@@ -19,7 +19,7 @@ $subject = 'Vous avez demandé un nouveau mot de passe';
 // message
 $message = '<h2>Service Mot de passe de Machiavel Fantasy !</h2>
 			<p>Cher(e) ami(e),</p>
-			<p>voici votre nouveau mot de passe : <b>'.$randmdp.'</b></p>
+			<p>lien nouveau MDP : <b><a href="http://machiavel.fr/oublie_mdp.php?pseudo='.urlencode($id_user).'&key='.urlencode($key).'" target="_blank">lien</a></b></p>
 ';
 
 // To send HTML mail, the Content-type header must be set

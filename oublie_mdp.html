@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8"/>
-        <title>Machiavel Fantasy - Inscription</title>
+        <title>Machiavel Fantasy - Oublie Mot de passe</title>
 
         <script src="js/jquery-2.1.3.min.js"></script>
         <link rel="icon" href="images/icone_site/favicon.png">
@@ -50,10 +50,57 @@
         ?>
         <div class="col-md-10 col-lg-offset-1 contenu">
             <h3 class="underline">Mot de passe oublié</h3>
+            <?php if(isset($affiche_form) && $affiche_form == true) { ?>
+
+            <div class="col-md-offset-3 col-md-6">
+                <?php if(!isset($success)) { ?>
+                <form action="#" method="POST" role="form">
+                    <div class="form-group has-feedback" id="form_new_password" style="margin-bottom: 5px;">
+                        <label class="control-label" for="repeat_password" style="font-weight: normal;">Insérer un nouveau mot de passe </label>
+                        <input type="password" name="NewPassword" id="repeat_password" placeholder="Nouveau mot de passe" class="form-control" data-placement="top" data-toggle="popover" title="Entrer votre nouveau mot de passe" data-content="Le mot de passe doit contenir une majuscule,mininuscule,un numéro et au moins 4 caractères." />
+                        <!--message erreur--><span id="error_repeat_password"></span>
+                        <!--icon--><span id="iconNewPassword" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                        <?php
+                            if(!empty($errors_mdp[2]))//si vide
+                            {
+                                ?><div class="alert alert-danger alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?php echo $errors_mdp[2];?>
+                                </div><?php
+                            }
+                            ?>
+                    </div>
+                    <div class="form-group has-feedback" id="form_repeat_new_password">
+                        <label class="control-label" for="new_password" style="font-weight: normal;">Confirmer le nouveau mot de passe </label>
+                        <input type="password" id="new_password" name="ConfNewPassword" placeholder="Confirmer le mot de passe" class="form-control" data-placement="top" data-toggle="popover" title="Confirmer le nouveau mot de passe" data-content="Vueillez répéter le nouveau mot de passe" />
+                        <!--message erreur--><span id=""></span>
+                        <!--icon--><span id="iconConfNewPassword" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                        <?php
+                            if(!empty($errors_mdp[3]))//si vide
+                            {
+                                ?><div class="alert alert-danger alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong><?php echo $errors_mdp[3];?>
+                                </div><?php
+                            }
+                            ?>
+                    </div>
+
+                    <input type="submit" name="modifierPassword" class="btn btn-success btn-sm" value=" Enregistrer nouveau mot de passe "> <a type="button" class="btn btn-default btn-xs" href="connexion.php"> Annuler </a>
+                </form>
+                <?php }else{ ?>
+                <div class="alert alert-success" role="alert">
+                    <strong><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> </strong>mot de passe changé. Redirection dans <span id="compteur"></span>
+                </div>
+                <?php } ?>
+            </div>
+
+            <?php }else{ ?>
+
             <div class="col-md-offset-3 col-md-6">
                 <?php if(!isset($page_ok)) { ?>
-                <!--Formulaire d'inscription-->
-                <form action="oublie_mdp.php" method="POST" role="form">
+                <!--Formulaire oublie mdp-->
+                <form id="form_envoie_mail_mdp" action="oublie_mdp.php" method="POST" role="form">
                     <div class="form-group has-feedback" id="form_email_user">
                         <label class="control-label" for="email_user"><b>E-mail</b> <span class="star_form">*</span></label>
                         <div class="input-group">
@@ -109,13 +156,15 @@
                             }
                         ?>
                     </div>
-                    <input type="submit" name="envoyer" class="btn btn-success btn-sm" value=" Envoyer un nouveau mot de passe "> <a type="button" class="btn btn-default btn-xs" href="connexion.php"> Annuler </a>
+                    <input type="submit" name="envoyer" class="btn btn-success btn-sm" value=" Envoyer un lien de regénération du MDP "> <a type="button" class="btn btn-default btn-xs" href="connexion.php"> Annuler </a>
                 </form>
                 <?php }else{ ?>
                     <div class="alert alert-success" role="alert">
-                        <strong><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> </strong>Un email à été envoyer à l'adresse suivante : <i><?php echo $email_user; ?></i> avec votre nouveau mot de passe. <small>(n'oubliez pas de regarder dans vos spams.)</small> Redirection dans <span id="compteur"></span>
+                        <strong><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> </strong>Un email à été envoyer à l'adresse suivante : <i><?php echo $email_user; ?></i> avec un lien de regnération du mot de passe. <small>(n'oubliez pas de regarder dans vos spams.)</small> Redirection dans <span id="compteur"></span>
                     </div>
-                <?php } ?>
+                <?php }
+
+            }?>
             </div>
         </div>
 		<?php
