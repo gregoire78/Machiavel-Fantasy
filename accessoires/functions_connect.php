@@ -3,7 +3,7 @@
 function verif_existe($id,$tab,$col,$email_user)
 {
     require('connect_bdd.php');
-    $sql="SELECT count(".$id.") FROM ".$tab." WHERE ".$col."= :email_user AND activation=1";
+    $sql="SELECT count(".$id.") FROM ".$tab." WHERE ".$col."= :email_user";
     $query=$connect->prepare($sql);
     $query->bindParam(':email_user',$email_user,PDO::PARAM_STR,35);
     $query->execute();
