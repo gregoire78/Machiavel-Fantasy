@@ -42,6 +42,8 @@ $mail->SMTPAuth = true;
 $mail->Username = "exemple@gmail.Com";
 //Password to use for SMTP authentication
 $mail->Password = "mdp gmail";
+//cherser
+$mail->CharSet = 'UTF-8';
 /*-------------------------------*/
 
 
@@ -52,9 +54,8 @@ $mail->addAddress($email_user);
 //Set the subject line
 $mail->Subject = 'Bienvenue sur Machiavel Fantasy !';
 //Read an HTML message body from an external file, convert referenced images to embedded,
-//convert HTML into a basic plain-text alternative body
-$mail->CharSet = 'UTF-8';
-$mail->msgHTML('
+
+$message = '
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -123,7 +124,8 @@ $mail->msgHTML('
 </table>
 </body>
 </html>
-');
+';
+$mail->msgHTML($message);
 //Replace the plain text body with one created manually
 $mail->AltBody = 'This is a plain-text message body';
 
