@@ -19,12 +19,34 @@ $mail->isSMTP();
 $mail->SMTPDebug = 0;
 //Ask for HTML-friendly debug output
 $mail->Debugoutput = 'html';
+
+/*------email smtp local----*/
 //Set the hostname of the mail server
 $mail->Host = "machiavel.fr";
 //Set the SMTP port number - likely to be 25, 465 or 587
 $mail->Port = 25;
+ //Whether to use SMTP authentication
+$mail->SMTPAuth = true;
+/*---------------------------*/
+
+/*--------email par gmail---------
+//Set the hostname of the mail server
+$mail->Host = 'smtp.gmail.com';
+//Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
+$mail->Port = 587;
+//Set the encryption system to use - ssl (deprecated) or tls
+$mail->SMTPSecure = 'tls';
 //Whether to use SMTP authentication
 $mail->SMTPAuth = true;
+//Username to use for SMTP authentication - use full email address for gmail
+$mail->Username = "exemple@gmail.Com";
+//Password to use for SMTP authentication
+$mail->Password = "mdp gmail";
+//cherser
+$mail->CharSet = 'UTF-8';
+/*-------------------------------*/
+
+
 //Set who the message is to be sent from
 $mail->setFrom('confirmation@machiavel.fr', 'Machiavel Fantasy');
 //Set who the message is to be sent to
@@ -32,13 +54,13 @@ $mail->addAddress($email_user);
 //Set the subject line
 $mail->Subject = 'Bienvenue sur Machiavel Fantasy !';
 //Read an HTML message body from an external file, convert referenced images to embedded,
-//convert HTML into a basic plain-text alternative body
-$mail->msgHTML('
+
+$message = '
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-  <title>PHPMailer Test</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Message de confirmation du compte</title>
 </head>
 <body>
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
@@ -102,13 +124,14 @@ $mail->msgHTML('
 </table>
 </body>
 </html>
-');
+';
+$mail->msgHTML($message);
 //Replace the plain text body with one created manually
 $mail->AltBody = 'This is a plain-text message body';
 
 //send the message, check for errors
 if (!$mail->send()) {
-    echo "Mailer Error: " . $mail->ErrorInfo;
+    $succesSendMail = false;
 } else {
-    echo "Message sent!";
+    $succesSendMail = true;
 }

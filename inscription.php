@@ -133,8 +133,19 @@ if(isset($_POST["register"]))
     /****************************** Si il n'y a aucune erreur(s) ***************************/
     if(empty($errors))
     {
-        insertion_user($pseudo_user,$civility_user,$lastname_user,$firstname_user,$pw_user,$email_user,$key);
+        //envoie du mail
+        include_once("accessoires/mail_confirmation_inscription.php");
+        if($succesSendMail==true) // verifications mail result
+        {
+            $success = true;
+        }
+        else
+        {
+            $success = false;
+        }
 
+        //insertion dans bdd
+        insertion_user($pseudo_user,$civility_user,$lastname_user,$firstname_user,$pw_user,$email_user,$key);
         $query = recup_one_user(NULL, $pseudo_user);
         $data=$query->fetch(PDO::FETCH_ASSOC);
         $id_user = $data['id_user'];
@@ -142,9 +153,7 @@ if(isset($_POST["register"]))
         $table_historique = 5;
         create_historique($table_historique, "L'utilisateur s'est inscrit", $id_user);
 
-        include_once("accessoires/mail_confirmation_inscription.php");
         session_unset();
-        $success = true;
         header('Refresh: 5;URL=index.php');
     }
 }
