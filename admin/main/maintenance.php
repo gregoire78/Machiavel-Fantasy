@@ -6,8 +6,8 @@
  * Time: 20:26
  */
 
-include_once("../accessoires/functions_historique.php");
-include_once("../accessoires/functions_tools.php");
+include_once("../functions/functions_historique.php");
+include_once("../functions/functions_tools.php");
 
 $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'index.php';
 
@@ -17,10 +17,9 @@ $num_view[1]=20;
 $num_view[2]=30;
 $num_view[3]=40;
 
-//Tableau pour les différents tris
+//Tableau pour les différents tri
 $method_tri[0]="date_historique";   $nom_tri[0]="Date";
 $method_tri[1]="pseudo";            $nom_tri[1]="Nom d'utilisateur";
-$method_tri[2]="text_historique";   $nom_tri[2]="Journal d'action";
 
 $method_ordre[0]="DESC";            $nom_ordre[0]="Décroissant";
 $method_ordre[1]="ASC";             $nom_ordre[1]="Croissant";
@@ -44,6 +43,7 @@ if (isset($_GET['m']))
                 $text_maintenance = "Liste toutes les actions.";
                 $restrict = NULL;
                 $fichier_originel = "index.php?i=maintenance&m=global";
+                $method_tri[2]="text_historique";   $nom_tri[2]="Journal d'action";
                 break;
             case "forum" :
                 $titre_maintenance = "Journal du forum";

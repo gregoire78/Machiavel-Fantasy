@@ -3,14 +3,13 @@ session_start();
 session_regenerate_id();
 
 //l'auto connexion
-include_once('accessoires/functions_connect.php');
+include_once('functions/functions_connect.php');
 auto_connexion('profil.php',NULL,NULL);
 
 include_once('accessoires/menu.php');
 
-require("accessoires/connect_bdd.php");
-include_once("accessoires/functions_user.php");
-include_once("accessoires/functions_historique.php");
+require("functions/connect_bdd.php");
+include_once("functions/functions_user.php");
 
 if(isset($_GET['pseudo']) && isset($_GET['key']))
 {
@@ -44,6 +43,7 @@ if(isset($_GET['pseudo']) && isset($_GET['key']))
         $data=$query->fetch(PDO::FETCH_ASSOC);
         $id_user = $data['id_user'];
 
+        include_once("functions/functions_historique.php");
         $table_historique = 5;
         create_historique($table_historique, "Activation du compte", $id_user);
     }

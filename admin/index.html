@@ -30,7 +30,7 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
         <script type="text/javascript" src="../ckeditor/ckeditor.js"></script>
-        <link   href="css/admin.css" rel="stylesheet" type="text/css"/><!--CSS personnaliser-->
+        <link   href="../css/admin.css" rel="stylesheet" type="text/css"/><!--CSS personnaliser-->
         <link rel="stylesheet" href="../css/awesome-bootstrap-checkbox.css" type="text/css"/>
         <!--<script src='js/func_verif_profil.js'></script>-->
     </head>
@@ -38,7 +38,7 @@
         <div class="page-header" style="float:left;width:100%;"><!--header du panneau de d'administration-->
             <h1>Panneau d'administration </a><small>du site de Machiavel Fantasy</small></h1>
             <p>
-                <a href="index.php">Index de l'administration</a> • <a href="../forum/">Index du forum</a> • <a href="../">Index de Machiavel Fantasy</a>
+                <a href="index.php">Index de l'administration</a> • <a href="../forum/">Index du forum</a> • <a href="../machiavel-fantasy/">Index de Machiavel Fantasy</a>
             </p>
         </div>
         <div><!--Barre de navigation-->
@@ -58,7 +58,7 @@
                     <div id="menu">
                         <p>
                             Vous êtes connecté en tant que :<br><strong><?php echo $_SESSION['pseudo']; ?></strong>
-                            [ <a href="../deconnexion.php">Déconnexion</a> ]
+                            [ <a href="../accessoires/deconnexion.php">Déconnexion</a> ]
                             <?php //var_dump($_SESSION); ?>
                         </p>
                             <?php if(isset($_GET['i']))

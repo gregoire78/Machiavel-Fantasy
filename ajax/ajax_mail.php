@@ -1,6 +1,6 @@
 <?php
 //inclure le fichier des fonctions
-include_once('../accessoires/functions_connect.php');
+include_once('../functions/functions_connect.php');
 $email_user=trim($_POST['email_user']);
 $ver = verif_existe('id_user','users','email',$email_user);
 if(isset($_POST['email_user_data']))

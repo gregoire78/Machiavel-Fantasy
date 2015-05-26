@@ -10,7 +10,7 @@ session_start();
 
 session_regenerate_id();
 
-include_once('../accessoires/functions_connect.php');
+include_once('../functions/functions_connect.php');
 //l'auto connexion
 auto_connexion(NULL,'../index.php',3);
 include_once("index.html");

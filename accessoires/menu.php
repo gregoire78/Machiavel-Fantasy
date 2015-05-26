@@ -1,7 +1,7 @@
 <?php
-include_once("functions_jeu.php");
-include_once("functions_user.php");
-include_once("functions_tools.php");
+include_once("functions/functions_jeu.php");
+include_once("functions/functions_user.php");
+include_once("functions/functions_tools.php");
 if(isset($_SESSION['id_user']))
 {
     $droits = recup_statut();

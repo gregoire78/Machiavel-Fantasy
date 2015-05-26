@@ -1,5 +1,5 @@
 <?php
-require("connect_bdd.php");
+require("functions/connect_bdd.php");
 $sql="SELECT date_event FROM event WHERE statut_event!=0 AND date_event >= SYSDATE()"; // 
 $query=$connect->prepare($sql);
 $query->execute();

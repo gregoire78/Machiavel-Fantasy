@@ -8,13 +8,12 @@ session_start();
 session_regenerate_id();
 
 //l'auto connexion
-include_once('accessoires/functions_connect.php');
+include_once('functions/functions_connect.php');
 auto_connexion('profil.php',NULL,NULL);
 
 //fonctions
 include_once('accessoires/menu.php');
-include_once("accessoires/functions_user.php");
-include_once("accessoires/functions_historique.php");
+include_once("functions/functions_user.php");
 
 //si il existe post register cad si on clique sur le bouton submit name=register
 if(isset($_POST['valider']))
@@ -150,6 +149,8 @@ if(isset($_POST["register"]))
         $data=$query->fetch(PDO::FETCH_ASSOC);
         $id_user = $data['id_user'];
 
+        //Mise à jour de la table historique
+        include_once("functions/functions_historique.php");
         $table_historique = 5;
         create_historique($table_historique, "L'utilisateur s'est inscrit", $id_user);
 

@@ -3,7 +3,7 @@ session_start();
 session_regenerate_id();
 
 //l'auto connexion
-include_once('accessoires/functions_connect.php');
+include_once('functions/functions_connect.php');
 auto_connexion('profil.php',NULL,NULL);
 
 //fonctions
@@ -18,7 +18,6 @@ if(isset($_GET['pseudo']) && isset($_GET['key']))
         $affiche_form = true;
         if(isset($_POST['modifierPassword']))
         {
-            include_once("accessoires/functions_historique.php");
             $password_new = htmlentities($_POST['NewPassword']);
             $password_new_repeat = htmlentities($_POST['ConfNewPassword']);
 
@@ -41,6 +40,8 @@ if(isset($_GET['pseudo']) && isset($_GET['key']))
                     else
                     {
                         $success=update_password($password_new,$_GET['pseudo']);
+
+                        include_once("functions/functions_historique.php");
                         $table_historique = 5;
                         create_historique($table_historique, "Modification du mot de passe (oublie du mot de passe)", $_GET['pseudo']);
 
@@ -89,7 +90,7 @@ if(isset($_POST['envoyer']))
         $data = recup_data_user(array("email" => $email_user),"newmdp");
         $id_user = $data['id_user'];
         $key = $data['key_user'];
-        include_once("accessoires/mail_newmdp.php");
+        include_once("../accessoires/mail_newmdp.php");
         $page_ok = true;
         session_unset();
         header("Refresh: 5;URL=connexion.php");

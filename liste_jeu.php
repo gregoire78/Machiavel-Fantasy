@@ -3,7 +3,7 @@ session_start();
 session_regenerate_id();
 
 //l'auto connexion
-include_once('accessoires/functions_connect.php');
+include_once('functions/functions_connect.php');
 auto_connexion(NULL,NULL,0);
 
 //fonctions

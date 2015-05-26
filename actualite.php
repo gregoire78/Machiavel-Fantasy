@@ -3,13 +3,13 @@ session_start();
 session_regenerate_id();
 
 //l'auto connexion
-include_once('accessoires/functions_connect.php');
+include_once('functions/functions_connect.php');
 auto_connexion(NULL,NULL,NULL);
 
 include_once('accessoires/menu.php');
 
-include_once("accessoires/functions_events.php");
-include_once("accessoires/functions_inscription.php");
+include_once("functions/functions_events.php");
+include_once("functions/functions_inscription.php");
 
 $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'index.php';
 
@@ -64,7 +64,7 @@ $page = page($nb_page, $referer);
 //On s'inscrit ou se désinscrit d'un événement
 if(isset($_SESSION['id_user']) && !isset($_GET['passer']) && $droits > 1 && (isset($_GET['desinscrire']) || isset($_GET['inscrire'])) )
 {
-    include_once("accessoires/functions_historique.php");
+    include_once("functions/functions_historique.php");
     if (isset($_GET['inscrire']) && $verif = verif_inscription($_GET['inscrire'], ">") && !$inscrit = recup_user_inscrit($_GET['inscrire'], $_SESSION['id_user']))
     {
         $query = recup_event_one($_GET['inscrire']);
@@ -94,7 +94,7 @@ if(isset($_SESSION['id_user']) && !isset($_GET['passer']) && $droits > 1 && (iss
 
 if(isset($_GET['supprimer']))
 {
-    include_once("accessoires/functions_historique.php");
+    include_once("functions/functions_historique.php");
    verif_mod_supp('event', $_GET['supprimer']);
 
     //Si l'utilisateur valide la suppression de l'événement

@@ -3,12 +3,11 @@ session_start();
 session_regenerate_id();
 
 //l'auto connexion
-include_once('accessoires/functions_connect.php');
+include_once('functions/functions_connect.php');
 auto_connexion(NULL,'index.php',0);
 
 //fonctions
 include_once('accessoires/menu.php');
-include_once("accessoires/functions_historique.php");
 
 //on recupere les données de l'utilisateur
 $id_user = (int)$_SESSION['id_user'];
@@ -145,6 +144,8 @@ if(isset($_POST['modifierPassword']))
                         {
                             $success=update_password($password_new,$_SESSION['id_user']);
 
+                            //Mise à jour de la table historiques
+                            include_once("functions/functions_historique.php");
                             $table_historique = 5;
                             create_historique($table_historique, "Modification du mot de passe", $_SESSION['id_user']);
 

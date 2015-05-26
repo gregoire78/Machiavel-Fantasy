@@ -4,8 +4,8 @@ Script de connexion si utilisateur déjà connecté
  ************************************************/
 
 //connection bdd
-include_once('connect_bdd.php');
-include_once('functions_connect.php');
+include_once('../functions/connect_bdd.php');
+include_once('../functions/functions_connect.php');
 //pour les cookie c'est a dire si l'utilisateur a choisi de rester connecté
 $p=1;
 //si l'utilisateur a une session

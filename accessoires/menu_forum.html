@@ -1,0 +1,68 @@
+<div class="bar_menu">
+	<div style="float:left;">
+		<div class="dropdown link_left"><!--Bouton aligné à gauche-->
+			<a id="dLabel" data-target="#" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false" style="text-decoration:none;">
+				<span class="glyphicon glyphicon-menu-hamburger"></span> Accès rapide
+			</a>
+
+			<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+				<li><a>Messages sans réponse</a></li>
+				<li><a>Sujet actif</a></li>
+			</ul>		
+		</div>
+		<?php if(isset($_SESSION['id_user']) && $_SESSION['droits']==3){ ?>
+			<a href="../admin" class="link_left"> Panneau d'administration</a>
+		<?php } ?>
+	</div>
+	
+	<div style="float:right;"><!--Boutons aligné à droite-->
+		<?php if(isset($_SESSION['id_user'])) { ?>
+			<div class="dropdown link_left">
+				<a id="dLabel" data-target="#" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
+					<span class="glyphicon glyphicon-bell"></span> Notification [<b>0</b>]
+				</a>
+
+				<ul class="dropdown-menu " role="menu" aria-labelledby="dLabel">
+					<li><a>Messages sans réponse</a></li>
+					<li><a>Sujet actif</a></li>
+				</ul>
+			</div>
+			
+			<a class="link_left" ><span class="glyphicon glyphicon-envelope"></span> Messages privés [<b>0</b>]</a>
+			
+			<div class="dropdown" style="float:left;">
+				<a id="dLabel" data-target="#" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
+					<?php echo $_SESSION['pseudo']; ?> <span class="caret"></span>
+				</a>
+
+				<ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dLabel">
+					<li><a><span class="glyphicon glyphicon-cog"></span> Panneau de l'utilisateur</a></li>
+					<li><a><span class="glyphicon glyphicon-user"></span> Profil</a></li>
+					<li><a href="../deconnexion.php"><span class="glyphicon glyphicon-off"></span> Déconnexion</a></li>
+				</ul>
+			</div>
+		<?php }else{ ?>
+			<a class="link_left" ><span class="glyphicon glyphicon-ok"></span> M'enregistrer</a>
+			<a style="float:left;"><span class="glyphicon glyphicon-off"></span> Connexion</a>
+		<?php } ?>
+	</div>
+	
+	<ul class="bar_nav"><!--Barre de navigation-->
+		<li>
+			<span class="glyphicon glyphicon-home" style="color: #FFF;text-shadow: #337ab7 1px 1px 1px;"></span>
+			<a href="index.php">
+				<b> Index du forum</b>
+			</a>
+		</li>
+		<?php $i=0; while($i<5) { ?>
+			<li>
+				<span class="glyphicon glyphicon-menu-left" style="font-size:10px;"></span>
+				<a href="#">
+					<b>Forum <?php echo $i; ?></b>
+				</a>
+			</li>
+		<?php $i++; } ?>
+
+		<li class="active"><span class="glyphicon glyphicon-menu-left" style="font-size:10px;"></span> Topic</li>
+	</ul>
+</div>

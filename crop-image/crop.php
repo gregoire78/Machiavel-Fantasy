@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once('../accessoires/functions_connect.php');
+include_once('../functions/functions_connect.php');
 
   class CropAvatar {
     private $src;

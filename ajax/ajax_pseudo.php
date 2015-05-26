@@ -1,6 +1,6 @@
 <?php
 //inclure le fichier des fonctions
-include_once('../accessoires/functions_connect.php');
+include_once('../functions/functions_connect.php');
 $pseudo_user=trim($_POST['pseudo_user']);
 
 if(isset($_POST['pseudo_user_data']))

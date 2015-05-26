@@ -1,5 +1,5 @@
 <?php
-include_once('../accessoires/functions_connect.php');
+include_once('../functions/functions_connect.php');
 $title_jeu=trim($_POST['title_jeu']);
 
 if(isset($_POST['title_jeu_data']))
