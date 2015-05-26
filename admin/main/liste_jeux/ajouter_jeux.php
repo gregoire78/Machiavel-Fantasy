@@ -8,9 +8,16 @@
 
 //fonctions
 include_once('../functions/functions_jeu.php');
-include_once('../functions/functions_file.php');/*
-include_once('../accessoires/menu.php');*/
+include_once('../functions/functions_file.php');
 
+//recuperation des types de jeu
+$query = recup_type_jeu();
+$i=0;
+while ($data=$query->fetch(PDO::FETCH_ASSOC)){
+    $id_jeu_menu[$i]= $data['id_type_jeu'];
+    $libelle_jeu_menu[$i]= $data['libelle_type_jeu'];
+    $i++;
+}
 
 //Si on veut éditer un jeu, on récupère les données
 if(isset($_GET['jeu'])){
@@ -22,6 +29,7 @@ if(isset($_GET['jeu'])){
     $id_user_jeu=$data['id_user'];
     $id_type_jeu=$data['id_type_jeu'];
     $image_jeu=$data['image_jeu'];
+
     /*if($statut_menu>3 && $id_user_article!=$id){
         header("Location:index.php");
     }*/
