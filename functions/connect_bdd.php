@@ -7,7 +7,7 @@ $pdo_conn 	= array();
 $pdo_conn['hostname'] = 'localhost';
 $pdo_conn['database'] = 'machiavel_fantasy';
 $pdo_conn['username'] = 'root';
-$pdo_conn['password'] = '';
+$pdo_conn['password'] = 'root';
 // --------------------------------------------------------------
 try {
     // chaine de connexion (DSN)
