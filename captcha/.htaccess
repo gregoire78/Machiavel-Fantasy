@@ -1,0 +1,4 @@
+#interdire les png
+<Files "*.png" >
+deny from all
+</Files>
