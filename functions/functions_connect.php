@@ -157,7 +157,7 @@ function recup_data_user($pram,$action)
         $query->bindParam(':email',$pram["email"],PDO::PARAM_STR,320);
         $query->bindParam(':password',$pram["password"],PDO::PARAM_STR,60);
     }
-    if($action == 'profil')
+    else if($action == 'profil')
     {
         $sql = "SELECT civility,lastname,firstname,email,date_register,date_lastco FROM users WHERE id_user= :id_user";
         $query=$connect->prepare($sql);
@@ -165,13 +165,13 @@ function recup_data_user($pram,$action)
     }
     else if($action == 'newmdp')
     {
-        $sql="SELECT id_user,key_user FROM users WHERE email= :email AND activation=1";
+        $sql="SELECT id_user,key_user FROM users WHERE email= :email AND activation=1 AND droits!=0";
         $query=$connect->prepare($sql);
         $query->bindParam(':email',$pram["email"],PDO::PARAM_STR,320);
     }
     else if($action == 'newmdverif')
     {
-        $sql="SELECT count(id_user) FROM users WHERE key_user= :key_user AND id_user= :id_user  AND activation=1";
+        $sql="SELECT count(id_user) FROM users WHERE key_user= :key_user AND id_user= :id_user  AND activation=1 AND droits!=0";
         $query=$connect->prepare($sql);
         $query->bindParam(':key_user',$pram["key_user"],PDO::PARAM_STR);
         $query->bindParam(':id_user',$pram["id_user"],PDO::PARAM_INT);

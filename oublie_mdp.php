@@ -40,7 +40,6 @@ if(isset($_GET['pseudo']) && isset($_GET['key']))
                     else
                     {
                         $success=update_password($password_new,$_GET['pseudo']);
-
                         include_once("functions/functions_historique.php");
                         $table_historique = 5;
                         create_historique($table_historique, "Modification du mot de passe (oublie du mot de passe)", $_GET['pseudo']);
@@ -84,16 +83,23 @@ if(isset($_POST['envoyer']))
     {
         $errors[3] = "Cette adresse n'éxiste pas";
     }
-
-    if(empty($errors))
+    else
     {
+        //verifions l'activation ou les droits
         $data = recup_data_user(array("email" => $email_user),"newmdp");
-        $id_user = $data['id_user'];
-        $key = $data['key_user'];
-        include_once("../accessoires/mail_newmdp.php");
-        $page_ok = true;
-        session_unset();
-        header("Refresh: 5;URL=connexion.php");
+        if($data==false)
+        {
+            $errors[3] = "Vous n'êtes pas autorisé à changer de mot de passe";
+        }
+        if(empty($errors))
+        {
+            $id_user = $data['id_user'];
+            $key = $data['key_user'];
+            include_once("accessoires/mail_newmdp.php");
+            $page_ok = true;
+            session_unset();
+            header("Refresh: 5;URL=connexion.php");
+        }
     }
 }
 

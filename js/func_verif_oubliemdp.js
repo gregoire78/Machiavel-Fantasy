@@ -24,10 +24,22 @@ $(document).ready(function(){
             }
             else if(data=='1')
             {
-                $('#error_email_user').hide();
-                $('#form_email_user').addClass('has-success').removeClass('has-error');
-                $('#input5Status').addClass('glyphicon-ok').removeClass('glyphicon-remove');
-                result = true;
+                $.post('ajax/ajax_newmdp.php',{email_user:email_user},function(data1){
+                    if(data1=='1')
+                    {
+                        $('#error_email_user').hide();
+                        $('#form_email_user').addClass('has-success').removeClass('has-error');
+                        $('#input5Status').addClass('glyphicon-ok').removeClass('glyphicon-remove');
+                        result = true;
+                    }
+                    else
+                    {
+                        $('#error_email_user').html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times; </span><span class="sr-only">Close</span></button><strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> </strong> Vous n\'êtes pas autorisé à changer votre mot de passe</div>').show();
+                        $('#form_email_user').addClass('has-error').removeClass('has-success');
+                        $('#input5Status').addClass('glyphicon-remove').removeClass('glyphicon-ok');
+                        result = false;
+                    }
+                });
             }
             else
             {
@@ -37,6 +49,7 @@ $(document).ready(function(){
                 result = false;
             }
         });
+
     });
 
     $('#captcha').bind("keyup focusout", function (){
