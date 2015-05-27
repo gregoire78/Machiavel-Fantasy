@@ -1,9 +1,9 @@
 <?php
 if(isset($_POST['ajax']))
 {
-    include_once('accessoires/calendar.php');
+    include_once('../accessoires/calendar.php');
 
-    include_once('functions/connect_bdd.php');
+    include_once('../functions/connect_bdd.php');
     $sql="SELECT date_event, title_event FROM event WHERE statut_event!=0 AND date_event >= SYSDATE()";//
     $query=$connect->prepare($sql);
     $query->execute();
