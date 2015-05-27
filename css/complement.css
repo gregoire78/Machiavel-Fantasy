@@ -234,12 +234,12 @@ h3.underline{
 /*---------------------------------------- police de Machiavel Fantasy -----------------------------------*/
 @font-face {
     font-family: 'machiavel';
-    src: url('deutsch-webfont.eot');
-    src: url('deutsch-webfont.eot?#iefix') format('embedded-opentype'),
-    url('deutsch-webfont.woff2') format('woff2'),
-    url('deutsch-webfont.woff') format('woff'),
-    url('deutsch-webfont.ttf') format('truetype'),
-    url('deutsch-webfont.svg#deutsch_gothicnormal') format('svg');
+    src: url('fonts/deutsch-webfont.eot');
+    src: url('fonts/deutsch-webfont.eot?#iefix') format('embedded-opentype'),
+    url('fonts/deutsch-webfont.woff2') format('woff2'),
+    url('fonts/deutsch-webfont.woff') format('woff'),
+    url('fonts/deutsch-webfont.ttf') format('truetype'),
+    url('fonts/deutsch-webfont.svg#deutsch_gothicnormal') format('svg');
     font-weight: normal;
     font-style: normal;
 }
