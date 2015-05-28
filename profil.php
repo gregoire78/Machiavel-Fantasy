@@ -94,7 +94,7 @@ if(isset($_POST['modifier_data']))
     if(empty($error_data))
     {
         update_data_user($pseudo_user_new,$lastname_user_new,$firstname_user_new,$civility_user_new,$email_user_new,$id_user);
-
+        include_once("functions/functions_historique.php");
         $table_historique = 5;
         create_historique($table_historique, "Modification des informations utilisateur", $_SESSION['id_user']);
 

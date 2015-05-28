@@ -255,14 +255,10 @@ h3.underline{
 /*---------------------------------------- barre de menu ------------------------------------------------*/
 nav.navbar.navbar-inverse
 {
-    margin-bottom: 0px;
-    border-radius: 0px;
-    border-left:0px;
-    border-right:0px;
-}
-.menu
-{
-    padding:0px;
+    margin-bottom: 0;
+    border-radius: 0;
+    border-left:0;
+    border-right:0;
 }
 
 
