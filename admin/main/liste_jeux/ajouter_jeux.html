@@ -44,7 +44,7 @@
                     </select>
                 </div>
                 <label for="inputGameFile" class="control-label">Image du jeu</label>
-                <div class="form-group">
+                <div class="form-group has-feedback" id="form_image_jeu">
                     <script>
                         var defaut = '<?= $image_jeu ?>'; // image par defaut
                     </script>
@@ -64,6 +64,10 @@
                             removeIcon: '<i class="glyphicon glyphicon-trash"></i>'
                         });
                     </script>
+
+                    <!--message erreur--><span id="error_image_jeu"></span>
+                    <!--icon--><span id="input1Status" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+
                     <div id="inputError" class="alert alert-danger" style="display:none"></div>
                     <?php if(isset($crop)) { ?>
                     <div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom: 0">

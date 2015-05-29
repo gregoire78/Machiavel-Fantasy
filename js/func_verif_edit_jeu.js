@@ -9,6 +9,10 @@ $(document).ready(function(){
     var id_error_title_jeu = $('#error_title_jeu');
     var id_form_title_jeu = $('#form_title_jeu');
     var id_icon_title_jeu = $('#input0Status');
+
+    var id_error_image_jeu = $('#error_image_jeu');
+    var id_form_image_jeu = $('#form_image_jeu');
+    var id_icon_image_jeu = $('#input1Status');
     $('#inputArticleTitle').bind("keyup focusout", function () {
         var title_jeu = $(this).val();
         title_jeu = $.trim(title_jeu);
@@ -73,12 +77,19 @@ $(document).ready(function(){
         });
     }
 
+    $('#inputGameFile').change(function () {
+        id_error_image_jeu.hide();
+        id_form_image_jeu.removeClass('has-error');
+        id_icon_image_jeu.removeClass('glyphicon-remove');
+    });
+
     // si on clique sur le bouton ajouter/modifier
     $('form').submit(function() {
 
         var title_jeu1 = $('#inputArticleTitle').val();
         title_jeu1 = $.trim(title_jeu1);
-        if (title_jeu1 == "") {
+        if (title_jeu1 == "")
+        {
             id_error_title_jeu.hide();
             id_form_title_jeu.addClass('has-error').removeClass('has-success');
             id_icon_title_jeu.addClass('glyphicon-remove').removeClass('glyphicon-ok');
@@ -87,17 +98,25 @@ $(document).ready(function(){
 
         var text_jeu1 = $('#editor1').val();
         text_jeu1 = $.trim(text_jeu1);
-        if (text_jeu1 == "") {
+        if (text_jeu1 == "")
+        {
             $('#error_text_jeu').hide();
             var result_trois = false;
         }
 
-        /*var id_input_image = $('inputGameFile');
-        if(id_input_image.val() == null)
+        var id_input_image = $('#inputGameFile').val();
+        id_input_image = $.trim(id_input_image);
+        if(id_input_image == "")
         {
-            console.log("pas image");
+            id_error_image_jeu.hide();
+            id_form_image_jeu.addClass('has-error');
+            id_icon_image_jeu.addClass('glyphicon-remove').css("left","0");
+            var result_quatre = false;
         }
 
-        return false;*/
+        if(result==false || result_un==false || result_deux==false || result_trois==false || result_quatre==false)
+        {
+            return false;
+        }
     });
 });

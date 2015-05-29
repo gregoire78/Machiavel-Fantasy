@@ -81,7 +81,7 @@ function auto_connexion($page_redirection_ok,$page_redirection_nok,$droits)
         }
         else
         {
-            header('location:deconnexion.php');
+            header('location:/deconnexion.php');
         }
 
         //si il reste connecter trop longtemps s'en s'enregistrer
@@ -93,7 +93,7 @@ function auto_connexion($page_redirection_ok,$page_redirection_nok,$droits)
             }
             else
             {
-                header('Location:deconnexion.php');
+                header('Location:/deconnexion.php');
             }
         }
 
