@@ -49,7 +49,14 @@ if(isset($_POST['valider']))
                 //on défini une session du temps
                 $_SESSION['timestamp'] = time();
             }
-            header('Location:profil.php');
+            if(isset($_POST['ajx']) && $_POST['ajx'] == true)
+            {
+                echo "validationAjax";
+            }
+            else
+            {
+                header("Location:profil.php");
+            }
         }
     }
     else if(!empty($email_user) || !empty($pw_user))
@@ -57,5 +64,15 @@ if(isset($_POST['valider']))
         $error_connexion = "Email ou mot de passe Incorrecte";
     }
 }
-
-include_once("connexion.html");
+// si la verification se fait avec ajax on retourne les messages erreurs avec echo
+if(isset($_POST['ajx']) && $_POST['ajx'] == true)
+{
+    if(isset($error_connexion))
+    {
+        echo $error_connexion;
+    }
+}
+else
+{
+   include_once("connexion.html");
+}

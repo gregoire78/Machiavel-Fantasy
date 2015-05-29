@@ -48,14 +48,16 @@
                             <h3 class="underline">S'identifier</h3>
                         </div>
                         <p>Veuillez vous identifier pour accéder à votre compte :</p>
-                        <form action="connexion.php" method="post"><!--Quand l'utilisateur aura rempli et valider ce bloc, ça le redirigera vers la page de son profil-->
-                            <div class="form-group">
+                        <form action="connexion.php" method="post" id="formajax"><!--Quand l'utilisateur aura rempli et valider ce bloc, ça le redirigera vers la page de son profil-->
+                            <div class="form-group has-feedback" id="form_user_id">
                                 <label for="email">Email</label>
                                 <input type="email" class="form-control" name="email_user" id="email" placeholder="email" value="<?php if(isset ($email)){echo $email;} ?>">
+                                <!--icon--><span id="input0Status" class="glyphicon form-control-feedback" aria-hidden="true"></span>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group has-feedback" id="form_password">
                                 <label for="password">Mot de passe</label>
                                 <input type="password" class="form-control" name="password_user" id="password" placeholder="mot de passe">
+                                <!--icon--><span id="input1Status" class="glyphicon form-control-feedback" aria-hidden="true"></span>
                             </div>
                             <div class="form-group" id="form_checkbox">
                                 <div class="checkbox">
@@ -64,16 +66,83 @@
                                     </label>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-default" name="valider">Se connecter</button><a href="oublie_mdp.php" type="button" class="btn btn-link">Mot de passe oublié ?</a>
+                            <button id="connect" type="submit" class="btn btn-default" name="valider">Se connecter</button><a href="oublie_mdp.php" type="button" class="btn btn-link">Mot de passe oublié ?</a>
                         </form>
+
+                        <!--message erreur--><span id="error"></span>
                         <?php 	if(isset($error_connexion)) { ?>
-                        <div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom:15px;">
+                        <div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom:15px;margin-top: 15px">
                             <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                             <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong> <?= $error_connexion; ?>
                         </div>
                         <?php 	} ?>
                     </div>
                 </div>
+
+                <script type="text/javascript">
+
+                    $(document).ready(function(){
+                        var stauco;
+                        $("#email").bind("keyup focusout", function () {
+                            $('#error').hide();
+                            $('#form_user_id').removeClass('has-error');
+                            $('#input0Status').removeClass('glyphicon-remove');
+                            $('#form_password').removeClass('has-error');
+                            $('#input1Status').removeClass('glyphicon-remove');
+                        });
+                        $("#password").bind("keyup focusout", function () {
+                            $('#error').hide();
+                            $('#form_password').removeClass('has-error');
+                            $('#input1Status').removeClass('glyphicon-remove');
+                            $('#form_user_id').removeClass('has-error');
+                            $('#input0Status').removeClass('glyphicon-remove');
+                        });
+
+                        $("#checkbox").change(function() {
+                            stauco = !!this.checked;
+                        });
+
+                        $("#formajax").submit(function(){
+                            var email_user = $.trim($("#email").val());
+                            var password_user = $.trim($("#password").val());
+
+                            if(email_user=="")
+                            {
+                                $('#form_user_id').addClass('has-error').removeClass('has-success');
+                                $('#input0Status').addClass('glyphicon-remove').removeClass('glyphicon-ok');
+                            }
+                            if(password_user=="")
+                            {
+                                $('#form_password').addClass('has-error').removeClass('has-success');
+                                $('#input1Status').addClass('glyphicon-remove').removeClass('glyphicon-ok');
+                            }
+
+                            if( email_user=="" || password_user=="")
+                            {
+                                $('#error').html('<div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom:15px;margin-top: 15px"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times; </span><span class="sr-only">Close</span></button><strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong>Veuillez remplir les champs !</div>').show();
+                            }
+                            else
+                            {
+                                $.post('connexion.php',{email_user:email_user,password_user:password_user,stayco:stauco,ajx:true,valider:true}, function (data) {
+                                    if(data=="validationAjax")
+                                    {
+                                        window.location.href = "profil.php";
+                                    }
+                                    else
+                                    {
+                                        $("#error").html('<div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom:15px;margin-top: 15px"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong>'+data+'</div>').show();
+                                        $('#form_user_id').addClass('has-error').removeClass('has-success');
+                                        $('#input0Status').addClass('glyphicon-remove').removeClass('glyphicon-ok');
+                                        $('#form_password').addClass('has-error').removeClass('has-success');
+                                        $('#input1Status').addClass('glyphicon-remove').removeClass('glyphicon-ok');
+                                    }
+                                },'text');
+                            }
+                            return false;
+                        });
+                    })
+                </script>
+
                 <div class="col-sm-6 col-md-6 connexion_right">
                     <div class="thumbnail membre">
                         <div>
