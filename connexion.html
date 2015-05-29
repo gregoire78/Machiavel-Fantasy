@@ -82,26 +82,28 @@
                 <script type="text/javascript">
 
                     $(document).ready(function(){
-                        var stauco;
-                        $("#email").bind("keyup focusout", function () {
-                            $('#error').hide();
-                            $('#form_user_id').removeClass('has-error');
-                            $('#input0Status').removeClass('glyphicon-remove');
-                            $('#form_password').removeClass('has-error');
-                            $('#input1Status').removeClass('glyphicon-remove');
-                        });
-                        $("#password").bind("keyup focusout", function () {
-                            $('#error').hide();
-                            $('#form_password').removeClass('has-error');
-                            $('#input1Status').removeClass('glyphicon-remove');
-                            $('#form_user_id').removeClass('has-error');
-                            $('#input0Status').removeClass('glyphicon-remove');
-                        });
+                        var stauco; // variable du boutton rester connecter
 
+                        //fonction pour reset les inputs (class errors)
+                        function reset(selector){
+                            selector.bind("keyup focusout",function(){
+                            $('#error').hide();
+                            $('#form_password').removeClass('has-error');
+                            $('#input1Status').removeClass('glyphicon-remove');
+                            $('#form_user_id').removeClass('has-error');
+                            $('#input0Status').removeClass('glyphicon-remove');
+                        })
+                        }
+                        //
+                        reset($("#email"));
+                        reset($("#password"));
+
+                        // event pour le checkbox rester co
                         $("#checkbox").change(function() {
                             stauco = !!this.checked;
                         });
 
+                        // event quand on clique sur se connecter
                         $("#formajax").submit(function(){
                             var email_user = $.trim($("#email").val());
                             var password_user = $.trim($("#password").val());
@@ -117,9 +119,16 @@
                                 $('#input1Status').addClass('glyphicon-remove').removeClass('glyphicon-ok');
                             }
 
+                            // fonction affichant les messages d'erreurs
+                            function htmlErrorMsg(data)
+                            {
+                                var msg = '<div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom:15px;margin-top: 15px"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times; </span><span class="sr-only">Close</span></button><strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong>'+data+'</div>';
+                                $('#error').html(msg).show();
+                            }
+
                             if( email_user=="" || password_user=="")
                             {
-                                $('#error').html('<div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom:15px;margin-top: 15px"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times; </span><span class="sr-only">Close</span></button><strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong>Veuillez remplir les champs !</div>').show();
+                                htmlErrorMsg('Veuillez remplir les champs !');
                             }
                             else
                             {
@@ -130,7 +139,7 @@
                                     }
                                     else
                                     {
-                                        $("#error").html('<div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom:15px;margin-top: 15px"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong>'+data+'</div>').show();
+                                        htmlErrorMsg(data);
                                         $('#form_user_id').addClass('has-error').removeClass('has-success');
                                         $('#input0Status').addClass('glyphicon-remove').removeClass('glyphicon-ok');
                                         $('#form_password').addClass('has-error').removeClass('has-success');
