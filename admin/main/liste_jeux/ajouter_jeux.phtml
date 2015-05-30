@@ -36,8 +36,9 @@
                 <label for="inputtype" class="control-label">Type de jeu</label>
                 <div class="form-group">
                     <select id="inputtype" class="form-control" name="libelle">
-                        <?php $i=0; while (isset($id_jeu_menu[$i])){ ?>
-                        <option <?php if(isset($_GET['jeu'])){ if ($libelle_jeu_menu[$i]==$id_type_jeu[$i]){ echo 'selected="selected"';} }?> >
+                        <?php
+                        $i=0; while(isset($id_jeu_menu[$i])){ ?>
+                        <option <?php if(isset($_GET['jeu'])){ if($id_jeu_menu[$i]==$id_type_jeu){ echo 'selected'; }}?> >
                         <?= $libelle_jeu_menu[$i]; ?>
                         </option>
                         <?php $i++; } ?>
@@ -94,14 +95,7 @@
                                         <div class="col-md-8" style="padding-left: 10px;padding-right: 10px">
                                             <div class="crop" style="margin:auto;height: 350px;width: 390px;padding: 0">
                                                 <img id="crop" src="" />
-                                                <!--<script>
-                                                    $('#myModal').on('shown.bs.modal', function () {
-                                                        croppy("images/avatars/defaut.png");
-                                                    })//.on('hidden.bs.modal', function () {
-                                                        croppy("images/avatars/defaut.png");
-                                                    //})
-                                                    ;
-                                                </script>-->
+
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -167,6 +161,19 @@
                 <div id="pre_form" class="preview">
                     <img src="../images/jeux/<?= $image_jeu; ?>"/>
                 </div>
+                <?php if(isset($_GET['jeu'])){ ?>
+                    <script>
+                        var mouchard = false;
+                        $('#pre_form').click(function(){
+
+                            if(mouchard == false)
+                            {
+                                croppy("/images/jeux/originales/<?php $image_jeu_original=substr($image_jeu, 0, -3); echo $image_jeu_original.'jpg'; ?>");
+                                mouchard = true;
+                            }
+                        });
+                    </script>
+                <?php } ?>
             </div>
             <input type="hidden" id="dataX" name="dataX" />
             <input type="hidden" id="dataY" name="dataY" />
