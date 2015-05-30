@@ -49,9 +49,9 @@ function config_envoie_mail($type_envoie,$from,$to,$sujet,$message){
         //Whether to use SMTP authentication
         $mail->SMTPAuth = true;
         //Username to use for SMTP authentication - use full email address for gmail
-        $mail->Username = "greg.autre@gmail.Com";
+        $mail->Username = "";
         //Password to use for SMTP authentication
-        $mail->Password = "perle oute008";
+        $mail->Password = "";
         //cherser
         $mail->CharSet = 'UTF-8';
         /*-------------------------------*/
