@@ -165,7 +165,7 @@ function recup_data_user($pram,$action)
     }
     else if($action == 'newmdp')
     {
-        $sql="SELECT id_user,key_user FROM users WHERE email= :email AND activation=1 AND droits!=0";
+        $sql="SELECT id_user,key_user,pseudo,civility,lastname FROM users WHERE email= :email AND activation=1 AND droits!=0";
         $query=$connect->prepare($sql);
         $query->bindParam(':email',$pram["email"],PDO::PARAM_STR,320);
     }
