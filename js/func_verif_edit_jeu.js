@@ -61,17 +61,29 @@ $(document).ready(function(){
         CKEDITOR.instances[i].on('change', function() {
             CKEDITOR.instances[i].updateElement();
 
-            var text_jeu = $('#editor1').val();
-            text_jeu = $.trim(text_jeu);
-            var textOnly=text_jeu.replace(/<(?:.|\s)*?>/gm,"");
-            if(textOnly.match(['^&nbsp;']) || textOnly == ' '  || textOnly == '')
+            // 1ere technique pour recupérer text ckeditor
+            /*var ii= CKEDITOR.instances[i].document.getBody().getText();
+            console.log(ii);*/
+            //console.log(text_jeu);
+
+            // 2éme technique pour récupérer text dans ckeditor
+            //getSnapshot() retrieves the "raw" HTML, without tabs, linebreaks etc
+            var html=CKEDITOR.instances[i].getSnapshot();
+            var dom=document.createElement("DIV");
+            dom.innerHTML=html;
+            var plain_text=(dom.textContent || dom.innerText);
+            //console.log(plain_text);
+            if (plain_text == false || plain_text == 'Tapez votre texte ici')
             {
                 $('#error_text_jeu').html('<div class="alert alert-danger alert-dismissible" style="margin-bottom: 0;" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times; </span><span class="sr-only">Close</span></button><strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong> Veuillez remplir ce champ </div>').show();
+                CKEDITOR.instances[i].document.getBody().setStyle('background-color', '#F3E4E4');
+
                 result_un = false;
             }
             else
             {
                 $('#error_text_jeu').hide();
+                CKEDITOR.instances[i].document.getBody().setStyle('background-color', 'white');
                 result_un = true;
             }
         });
@@ -114,7 +126,18 @@ $(document).ready(function(){
             var result_quatre = false;
         }
 
-        if(result==false || result_un==false || result_deux==false || result_trois==false || result_quatre==false)
+        var html=CKEDITOR.instances['editor1'].getSnapshot();
+        var dom=document.createElement("DIV");
+        dom.innerHTML=html;
+        var plain_text=(dom.textContent || dom.innerText);
+        if (plain_text == false || plain_text == 'Tapez votre texte ici')
+        {
+            CKEDITOR.instances['editor1'].document.getBody().setStyle('background-color', '#F3E4E4');
+
+            var result_cinq = false;
+        }
+
+        if(result==false || result_un==false || result_deux==false || result_trois==false || result_quatre==false || result_cinq==false)
         {
             return false;
         }

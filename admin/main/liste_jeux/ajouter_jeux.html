@@ -183,7 +183,7 @@
                     <strong><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>&nbsp;</strong><?= $errors_jeu[2];?>
                 </div>
                 <?php } ?>
-                <textarea id="editor1" name="text_jeu" required="required"><?php if(isset($text_jeu)) echo $text_jeu; ?></textarea>
+                <textarea placeholder="Tapez votre texte ici" id="editor1" name="text_jeu" required="required"><?php if(isset($text_jeu)) echo $text_jeu; ?></textarea>
                 <script type="text/javascript">
                     CKEDITOR.replace( 'editor1',{
                         height: '200px',
