@@ -23,6 +23,17 @@ function recup_type_jeu_one($id_type_jeu)
 	return $query;
 }
 
+//Fonction pour supprimer une catégorie de jeu
+function delete_type_jeu($id_type_jeu)
+{
+    require("connect_bdd.php");
+    $sql = "  DELETE FROM type_jeu
+              WHERE id_type_jeu =:id_type_jeu";
+    $query=$connect->prepare($sql);
+    $query->bindParam(':id_type_jeu',$id_type_jeu,PDO::PARAM_INT);
+    $query->execute();
+}
+
 //Fonction pour récupérer l'id_type_jeu correspondant au libelle_type_jeu
 function recup_id_type_jeu($libelle_type_jeu)
 {
@@ -38,32 +49,92 @@ function recup_id_type_jeu($libelle_type_jeu)
 
 /*-----------------------------TABLE JEU-----------------------------------------*/
 //Fonction pour récupérer tous les jeux d'un type (page liste_jeu)
-function recup_liste_jeu($id_type_jeu, $tri, $ordre, $page, $jeu_page)
+function recup_liste_jeu($id_type_jeu, $tri, $ordre, $page, $jeu_page, $id_jeu, $statut_jeu)
 {
-	$nb_jeu = ($page-1)*$jeu_page;
+    if((isset($tri) && isset($ordre) && isset($page) && isset($jeu_page)))
+    {
+        $nb_jeu = ($page - 1) * $jeu_page;
+    }
+
 	require("connect_bdd.php");
-	$sql="	SELECT id_jeu, title_jeu, text_jeu, image_jeu, date_update
-			FROM   jeu
-			WHERE  id_type_jeu=:id_type_jeu AND statut_jeu = 1
-			ORDER BY ".$tri." ".$ordre."
-			LIMIT   :nb_jeu, :jeu_page";
+	$sql="	SELECT id_jeu, title_jeu, text_jeu, image_jeu, date_update, statut_jeu, libelle_type_jeu, color_type_jeu
+			FROM   jeu j
+
+			JOIN type_jeu t
+			ON j.id_type_jeu = t.id_type_jeu";
+
+    if (isset($id_type_jeu))
+    {
+        $sql = $sql."
+            WHERE  j.id_type_jeu=:id_type_jeu AND statut_jeu = 1";
+    }
+    else if(isset($id_jeu))
+    {
+        $sql=$sql."
+            WHERE id_jeu = :id_jeu" ;
+    }
+
+    if(isset($statut_jeu))
+    {
+       $sql=$sql."
+            WHERE statut_jeu = :statut_jeu" ;
+    }
+
+    if((isset($tri) && isset($ordre) && isset($page) && isset($jeu_page)))
+    {
+        $sql = $sql."
+            ORDER BY ".$tri." ".$ordre."
+            LIMIT   :nb_jeu, :jeu_page";
+    }
 	$query=$connect->prepare($sql);
-	$query->bindParam(':id_type_jeu',$id_type_jeu,PDO::PARAM_INT);
-	$query->bindParam(':nb_jeu',$nb_jeu,PDO::PARAM_INT);
-	$query->bindParam(':jeu_page',$jeu_page,PDO::PARAM_INT);
-	$query->execute();
+    if (isset($id_type_jeu))
+    {
+        $query->bindParam(':id_type_jeu',$id_type_jeu,PDO::PARAM_INT);
+    }
+    else if(isset($id_jeu))
+    {
+        $query->bindParam(':id_jeu', $id_jeu, PDO::PARAM_INT);
+    }
+    if(isset($statut_jeu))
+    {
+        $query->bindParam(':statut_jeu', $statut_jeu, PDO::PARAM_INT);
+    }
+    if((isset($tri) && isset($ordre) && isset($page) && isset($jeu_page)))
+    {
+        $query->bindParam(':nb_jeu', $nb_jeu, PDO::PARAM_INT);
+        $query->bindParam(':jeu_page', $jeu_page, PDO::PARAM_INT);
+    }
+    $query->execute();
 	return $query;		
 }
 
 //Fonction pour compter le nombre total de ligne d'une table
-function recup_lign($id_type_jeu)
+function recup_lign($id_type_jeu, $statut_jeu)
 {
 	require("connect_bdd.php");
 	$sql = "SELECT COUNT(*)
-			FROM  jeu
-			WHERE id_type_jeu = :id_type_jeu AND statut_jeu = 1";
+			FROM  jeu";
+    if (isset($id_type_jeu))
+    {
+        $sql = $sql."
+			WHERE id_type_jeu = :id_type_jeu ";
+    }
+
+    if(isset($statut_jeu))
+    {
+        $sql=$sql."
+            WHERE statut_jeu = :statut_jeu" ;
+    }
+
 	$query=$connect->prepare($sql);
-	$query->bindParam(':id_type_jeu',$id_type_jeu,PDO::PARAM_INT);
+    if(isset($id_type_jeu))
+    {
+        $query->bindParam(':id_type_jeu',$id_type_jeu,PDO::PARAM_INT);
+    }
+    if(isset($statut_jeu))
+    {
+        $query->bindParam(':statut_jeu', $statut_jeu, PDO::PARAM_INT);
+    }
 	$query->execute();
 	$data=$query->fetchColumn();
 	return $data;
@@ -106,7 +177,7 @@ function recup_id_jeu($title_jeu)
 function recup_title_jeu()
 {
 	require("connect_bdd.php");
-	$sql="SELECT title_jeu
+	$sql="SELECT title_jeu, statut_jeu
           FROM jeu
           ORDER BY id_type_jeu;";
 	$query=$connect->prepare($sql);
@@ -140,4 +211,15 @@ function create_jeu($title_jeu, $text_jeu, $path_image, $id_type_jeu)
 //Fonction pour modifier un jeu (edit_jeu)
 
 //Fonction pour supprimer un jeu (page complete_jeu et liste_jeu)
+function active_jeu($statut_jeu, $id_jeu)
+{
+    require("connect_bdd.php");
+    $sql="  UPDATE jeu
+            SET  statut_jeu =:statut_jeu
+            WHERE id_jeu =:id_jeu";
+    $query=$connect->prepare($sql);
+    $query->bindParam(':statut_jeu',$statut_jeu,PDO::PARAM_INT);
+    $query->bindParam(':id_jeu',$id_jeu,PDO::PARAM_INT);
+    $query->execute();
+}
 ?>

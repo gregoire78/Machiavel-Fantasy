@@ -1,1 +1,40 @@
-Gérer les types de jeux
+<?php if(!isset($_GET['supprimer'])) { ?>
+    <h1><?php echo $titre_liste; ?></h1>
+    <p><?php echo $text_liste; ?></p>
+    <?php if(isset($id_type_jeu[0])) { ?>
+        <table class="table1">
+            <tr>
+                <th style="  width: 100px;text-align: center;">Couleur de catégorie</th>
+                <th style="  width: 100px;text-align: center;">Icone</th>
+                <th style="  width: 150px;text-align: center;">Nom</th>
+                <th style="  width: 200px;text-align: center;">Image</th>
+                <th>Description</th>
+            </tr>
+            <?php
+                $i=0;
+                while (isset($id_type_jeu[$i]))
+                { ?>
+                <tr>
+                    <td style="width:20px;background-color: <?php echo $color_type_jeu[$i]; ?>"></td>
+                    <td>
+                        <img src="..\<?php echo $icon_type_jeu[$i]; ?>" width="100" alt="icone de la catégorie de jeu"></img>
+                    </td>
+                    <td style="text-align: center;">
+                        <strong style="font-size: 1.5em;"><?php echo $libelle_type_jeu[$i]; ?></strong>
+                        </br>
+                        <a href="index.php?i=liste_jeux&j=ajouter_type_jeux&modifier=<?php echo $id_type_jeu[$i]; ?>">Modifier</a> <a href="<?php echo $fichier."&supprimer=".$id_type_jeu[$i]; ?> ">Supprimer</a>
+                    </td>
+                    <td>
+                        <img src="..\<?php echo $image_type_jeu[$i]; ?>" width="300" alt="image de la catégorie de jeu"></img>
+                    </td>
+                    <td><?php echo $description_type_jeu[$i]; ?></td>
+                </tr>
+            <?php $i++;
+                } ?>
+        </table>
+    <?php } else {
+                include_once("../accessoires/errorbox.html");
+          } ?>
+<?php } else {
+        include_once("../accessoires/confirm_GET.html");
+    } ?>

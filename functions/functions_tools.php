@@ -161,4 +161,50 @@ function page($nb_page, $referer)
     }
     return $page;
 }
+
+function affiche_active ($fichier, $text_error)
+{
+    $data['fichier'] = $fichier;
+    if(isset ($_POST['active']) || isset($_POST['desactive']) || isset($_POST['all']))
+    {
+        if(isset($_POST['active']))
+        {
+            $data['active'] = 1;
+            $data['fichier'] = $data['fichier']."&active";
+            $data['error'] = "Il y a aucun ".$text_error." activé";
+        }
+        else if (isset($_POST['desactive']))
+        {
+            $data['active'] = 0;
+            $data['fichier'] = $data['fichier']."&desactive";
+            $data['error'] = "Il y a aucun ".$text_error." désactivé";
+        }
+        else if (isset($_POST['all']))
+        {
+            $data['active'] = NULL;
+            $data['error'] = NULL;
+        }
+    }
+    else if (isset ($_GET['active']) || isset($_GET['desactive']))
+    {
+        if(isset($_GET['active']))
+        {
+            $data['active'] = 1;
+            $data['fichier'] = $data['fichier']."&active";
+            $data['error'] = "Il y a aucun ".$text_error." activé";
+        }
+        else if (isset($_GET['desactive']))
+        {
+            $data['active'] = 0;
+            $data['fichier'] = $data['fichier']."&desactive";
+            $data['error'] = "Il y a aucun ".$text_error." désactivé";
+        }
+    }
+    else
+    {
+        $data['active'] = NULL;
+        $data['error'] = NULL;
+    }
+    return $data;
+}
 ?>

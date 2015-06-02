@@ -54,7 +54,7 @@ $nb_page = recup_nb_page(recup_lign($_GET['jeu']), $view);
 $page = page($nb_page, $referer);
 
 //On récupère la liste des jeux en base de donnée			(.accessoires/functions_jeu.php)
-$query=recup_liste_jeu($_GET['jeu'], $tri, $ordre, $page, $view);
+$query=recup_liste_jeu($_GET['jeu'], $tri, $ordre, $page, $view, NULL, NULL);
 $j=0;
 
 //On parcourt les jeux de la base de donnée

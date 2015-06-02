@@ -1,1 +1,52 @@
-Gérer les jeux
+<form method="POST" action="<?php echo $fichier; ?>">
+    <h1><?php echo $titre_liste; ?></h1>
+        <p><?php echo $text_liste; ?></p>
+        <?php if(isset($id_jeu[0])) { ?>
+            <div class="pagination_top">
+                <?php
+                    if($nb_page > 1)include_once("../accessoires/page.html");
+                    include_once("../accessoires/tri.html");
+                ?>
+            </div>
+            <table class="table1">
+                <tr>
+                    <th style="  width: 22%;">Nom du jeu</th>
+                    <th style="  width: 15%;">Catégorie de jeu</th>
+                    <th>Description du jeu</th>
+                    <th style="  width: 80px;text-align: center;">Statut</th>
+                </tr>
+                <?php
+                    $i=0;
+                     while (isset($id_jeu[$i]))
+                        { ?>
+                        <tr <?php echo "id=j".$id_jeu[$i]." "; if($statut_jeu[$i]==0) echo 'style="background-color:'.$color_desactive.'"'; ?> >
+                            <td>
+                                <img src="../images/jeux/<?php echo $image_jeu[$i]; ?>" width="80" alt="image du jeu" style="margin-right:10px;" ></img>
+                                <strong>
+                                    <a href="index.php?i=liste_jeux&j=ajouter_jeux&modifier=<?php echo $id_jeu[$i]; ?>"><?php echo $title_jeu[$i]; ?></a>
+                                </strong>
+                            </td>
+                            <td><span style="background-color: <?php echo $color_type_jeu[$i]; ?>;width:30px;height:16px;float:left;margin-right:5px;"></span><?php echo $libelle_type_jeu[$i]; ?></td>
+                            <td><?php echo $text_jeu[$i]; ?></td>
+                            <td style="text-align: center;">
+                                <strong>
+                                    <a href="<?php echo $fichier."&jeu=".$id_jeu[$i]; ?>">
+                                        <?php   if($statut_jeu[$i]==1)echo 'Actif';
+                                                else echo 'Inactif'; ?>
+                                    </a>
+                                </strong>
+                            </td>
+                        </tr>
+                    <?php $i++;
+                        } ?>
+            </table>
+        <?php
+            if($nb_page > 1)include("../accessoires/page.html");
+            include_once("../accessoires/view.html");
+            include_once("../accessoires/affichage.html");
+        ?>
+
+        <?php } else {
+                include_once("../accessoires/errorbox.html");
+            } ?>
+</form>

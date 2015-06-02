@@ -252,13 +252,13 @@ div
     text-decoration: none;
     font-weight: bold;
     color: #1180B7;
-    background: transparent url("../images/arrow_right.gif") 0% 50% no-repeat;
+    background: transparent url("../images/icones_forum_admin/arrow_right.gif") 0% 50% no-repeat;
 }
 
 #menu li#activemenu a span:hover {
     text-decoration: none;
     color: #c30001;
-    background: transparent url("../images/arrow_right.gif") 1% 50% no-repeat;
+    background: transparent url("../images/icones_forum_admin/arrow_right.gif") 1% 50% no-repeat;
     background-color: #f4e4eb;
 }
 
@@ -329,7 +329,7 @@ table {
 th {
     padding: 3px 4px;
     color: #FFFFFF;
-    background: #70AED3 url("../images/gradient2b.gif") bottom left repeat-x;
+    background: #70AED3 url("../images/icones_forum_admin/gradient2b.gif") bottom left repeat-x;
     border-top: 1px solid #6DACD2;
     border-bottom: 1px solid #327AA5;
     text-align: left;
@@ -487,16 +487,17 @@ fieldset.display-options input, fieldset.display-options label {
 a.button2, input.button2 {
     border: 1px solid #666666;
 }
-input.button2 {
+input.button2, a.button2 {
     width: auto !important;
     padding: 1px 3px 0 3px;
     font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;
     color: #000;
     font-size: 0.85em;
-    background: #EFEFEF url("../images/bg_button.gif") repeat-x top;
+    background: #EFEFEF url("../images/icones_forum_admin/bg_button.gif") repeat-x top;
     cursor: pointer;
+
 }
-input.button2:hover
+input.button2:hover, a.button2:hover
 {
     color: #AA0000;
     border-color:#AA0000;
