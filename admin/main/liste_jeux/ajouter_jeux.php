@@ -139,4 +139,4 @@ if(isset($_POST['ajouter'])||isset($_POST['modifier']))
 
 }
 
-include_once("ajouter_jeux.html");
+include_once("ajouter_jeux.phtml");

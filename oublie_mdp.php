@@ -95,6 +95,9 @@ if(isset($_POST['envoyer']))
         {
             $id_user = $data['id_user'];
             $key = $data['key_user'];
+            $civility_user = $data['civility'];
+            $pseudo_user = $data['pseudo'];
+            $lastname_user = $data['lastname'];
             include_once("accessoires/mail_newmdp.php");
             $page_ok = true;
             session_unset();

@@ -85,7 +85,7 @@ function readURL(input) {
     reader.onload = function (e) {
         var url = e.target.result;
 
-        croppy(url,defaut);
+        croppy(url);
     };
     reader.readAsDataURL(input.files[0]);
 }
@@ -107,7 +107,16 @@ function croppy(uurl) {
             $("#dataY").val(data.y);
             $("#dataHeight").val(data.height);
             $("#dataWidth").val(data.width);
-            $('#dim').html("<p>x: "+Math.round(data.x)+"<br>y: "+Math.round(data.y)+"<br>hauteur: "+Math.round(data.height)+" px<br>largeur: "+Math.round(data.width)+" px<br>Taille(poid): "+size+" octets</p>");
+            if(typeof(size) != "undefined" && size !== null)
+            {
+                var strsze = "<br>Taille(poid): "+size+" octets</p>";
+            }
+            else
+            {
+                var strsze = "</p>";
+            }
+            $('#dim').html("<p>x: "+Math.round(data.x)+"<br>y: "+Math.round(data.y)+"<br>hauteur: "+Math.round(data.height)+" px<br>largeur: "+Math.round(data.width)+" px"+strsze);
+
         }
     });
 }

@@ -6,54 +6,7 @@
 $hostname = $_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'] ;
 date_default_timezone_set('Europe/Paris');
 
-require 'PHPMailer/PHPMailerAutoload.php';
-
-//Create a new PHPMailer instance
-$mail = new PHPMailer;
-//Tell PHPMailer to use SMTP
-$mail->isSMTP();
-//Enable SMTP debugging
-// 0 = off (for production use)
-// 1 = client messages
-// 2 = client and server messages
-$mail->SMTPDebug = 0;
-//Ask for HTML-friendly debug output
-$mail->Debugoutput = 'html';
-
-/*------email smtp local----*/
-//Set the hostname of the mail server
-$mail->Host = "machiavel.fr";
-//Set the SMTP port number - likely to be 25, 465 or 587
-$mail->Port = 25;
- //Whether to use SMTP authentication
-$mail->SMTPAuth = true;
-/*---------------------------*/
-
-/*--------email par gmail---------
-//Set the hostname of the mail server
-$mail->Host = 'smtp.gmail.com';
-//Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
-$mail->Port = 587;
-//Set the encryption system to use - ssl (deprecated) or tls
-$mail->SMTPSecure = 'tls';
-//Whether to use SMTP authentication
-$mail->SMTPAuth = true;
-//Username to use for SMTP authentication - use full email address for gmail
-$mail->Username = "exemple@gmail.Com";
-//Password to use for SMTP authentication
-$mail->Password = "mdp gmail";
-//cherser
-$mail->CharSet = 'UTF-8';
-/*-------------------------------*/
-
-
-//Set who the message is to be sent from
-$mail->setFrom('confirmation@machiavel.fr', 'Machiavel Fantasy');
-//Set who the message is to be sent to
-$mail->addAddress($email_user);
-//Set the subject line
-$mail->Subject = 'Bienvenue sur Machiavel Fantasy !';
-//Read an HTML message body from an external file, convert referenced images to embedded,
+include_once("mail_config.php");
 
 $message = '
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -125,13 +78,4 @@ $message = '
 </body>
 </html>
 ';
-$mail->msgHTML($message);
-//Replace the plain text body with one created manually
-$mail->AltBody = 'This is a plain-text message body';
-
-//send the message, check for errors
-if (!$mail->send()) {
-    $succesSendMail = false;
-} else {
-    $succesSendMail = true;
-}
+$succesSendMail=config_envoie_mail('gmail','confirmation@machiavel.fr',$email_user,'Bienvenue sur Machiavel Fantasy !',$message);
