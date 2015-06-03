@@ -17,7 +17,7 @@
                 <tr>
                     <td style="width:20px;background-color: <?php echo $color_type_jeu[$i]; ?>"></td>
                     <td>
-                        <img src="..\<?php echo $icon_type_jeu[$i]; ?>" width="100" alt="icone de la catégorie de jeu"></img>
+                        <img src="/images/icone_site/<?php echo $icon_type_jeu[$i]; ?>" width="100" alt="icone de la catégorie de jeu" />
                     </td>
                     <td style="text-align: center;">
                         <strong style="font-size: 1.5em;"><?php echo $libelle_type_jeu[$i]; ?></strong>
@@ -25,7 +25,7 @@
                         <a href="index.php?i=liste_jeux&j=ajouter_type_jeux&modifier=<?php echo $id_type_jeu[$i]; ?>">Modifier</a> <a href="<?php echo $fichier."&supprimer=".$id_type_jeu[$i]; ?> ">Supprimer</a>
                     </td>
                     <td>
-                        <img src="..\<?php echo $image_type_jeu[$i]; ?>" width="300" alt="image de la catégorie de jeu"></img>
+                        <img src="/images/icone_site/<?php echo $image_type_jeu[$i]; ?>" width="300" alt="image de la catégorie de jeu" />
                     </td>
                     <td><?php echo $description_type_jeu[$i]; ?></td>
                 </tr>
