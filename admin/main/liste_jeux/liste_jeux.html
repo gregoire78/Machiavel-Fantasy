@@ -21,9 +21,9 @@
                         { ?>
                         <tr <?php echo "id=j".$id_jeu[$i]." "; if($statut_jeu[$i]==0) echo 'style="background-color:'.$color_desactive.'"'; ?> >
                             <td>
-                                <img src="../images/jeux/<?php echo $image_jeu[$i]; ?>" width="80" alt="image du jeu" style="margin-right:10px;" ></img>
+                                <img src="../images/jeux/<?php echo $image_jeu[$i]; ?>" width="80" alt="image du jeu" style="margin-right:10px;" >
                                 <strong>
-                                    <a href="index.php?i=liste_jeux&j=ajouter_jeux&modifier=<?php echo $id_jeu[$i]; ?>"><?php echo $title_jeu[$i]; ?></a>
+                                    <a href="index.php?i=liste_jeux&j=ajouter_jeux&jeu=<?php echo $id_jeu[$i]; ?>"><?php echo $title_jeu[$i]; ?></a>
                                 </strong>
                             </td>
                             <td><span style="background-color: <?php echo $color_type_jeu[$i]; ?>;width:30px;height:16px;float:left;margin-right:5px;"></span><?php echo $libelle_type_jeu[$i]; ?></td>

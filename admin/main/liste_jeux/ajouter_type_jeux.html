@@ -1,1 +1,134 @@
-ajouter une catégorie de jeu
+<div class="col-md-12 contenu">
+    <h1 class="underline">
+        Ajouter une catégorie de jeu
+    </h1>
+    <p>
+        Ajouté ici une nouvelle catégorie pour les jeux.
+    </p>
+    <noscript>
+        <div class="alert alert-danger">Veuillez activer le javascript dans votre navigateur !</div>
+    </noscript>
+    <form method="post" action="#" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="form-group">
+                    <label class="control-label" for="libelleTypeJeu">Nom catégorie</label>
+                    <input class="form-control" type="text" id="libelleTypeJeu" name="libelleTypeJeu" placeholder="Libelle du type jeu" autocomplete="off"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="descriptionTypeJeu">Description catégorie</label>
+                    <textarea class="form-control" name="descriptionTypeJeu" id="descriptionTypeJeu" placeholder="Description type jeu"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="couleurTypeJeu">Couleur catégorie</label>
+                    <input onchange="console.log(this.value)" value="#408080" class="form-control" type="color" name="couleurTypeJeu" id="couleurTypeJeu" style="padding: 0;"/>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label class="control-label" for="imageTypeJeu">Image catégorie</label> <small>(taille 500x429)</small>
+                    <input onchange="//handleFiles(this.files)" class="form-control file" type="file" name="imageTypeJeu" id="imageTypeJeu" accept="image/png,image/jpeg,image/gif" data-show-upload="false"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="iconTypeJeu">Icone catégorie</label> <small>(taille 75x75)</small>
+                    <input class="form-control file-loading" type="file" name="iconTypeJeu" id="iconTypeJeu" accept="image/png,image/jpeg,image/gif" data-show-upload="false"/>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="submit" name="valider" class="btn btn-default" />
+        </div>
+    </form>
+
+<script>
+
+$("#imageTypeJeu").fileinput({
+    allowedFileExtensions : ['jpg', 'png','gif','jpeg'],
+    maxFileSize: 100000,
+    overwriteInitial:true,
+    previewFileType: "image",
+    browseClass: "btn btn-default",
+    browseLabel: "&nbsp;Parcourir",
+    browseIcon: '<i class="glyphicon glyphicon-picture"></i>',
+    removeClass: "btn btn-danger",
+    removeLabel: "",
+    removeIcon: '<i class="glyphicon glyphicon-trash"></i>'
+});
+$("#iconTypeJeu").fileinput({
+    allowedFileExtensions : ['jpg', 'png','gif','jpeg'],
+    maxFileSize: 100000,
+
+    previewFileType: "image",
+    browseClass: "btn btn-default",
+    browseLabel: "&nbsp;Parcourir",
+    browseIcon: '<i class="glyphicon glyphicon-picture"></i>',
+    removeClass: "btn btn-danger",
+    removeLabel: "",
+    removeIcon: '<i class="glyphicon glyphicon-trash"></i>'
+});
+</script>
+    <!--<div id="previewHolder"></div>
+<script>
+
+    function handleFiles(files)
+    {
+        var file = files[0];
+        var img_size=file.size;
+        var pic_div = document.getElementById("previewHolder");
+        var img = document.createElement("img");
+        img.src = window.URL.createObjectURL(file);
+        img.classList.add("obj");
+        img.file = file;
+        $("#previewHolder").html(img);
+    }
+
+    function afficheImageCanvas(input)
+    {
+        var current_file = input.files[0];
+        console.log(current_file);
+        var reader = new FileReader();
+        if (current_file.type.indexOf('image') == 0) {
+            reader.onload = function (event) {
+                var image = new Image();
+                image.src = event.target.result;
+
+                image.onload = function() {
+                    var maxWidth = 300,
+                            maxHeight = 250,
+                            imageWidth = image.width,
+                            imageHeight = image.height;
+
+
+                    if (imageWidth > imageHeight) {
+                        if (imageWidth > maxWidth) {
+                            imageHeight *= maxWidth / imageWidth;
+                            imageWidth = maxWidth;
+                        }
+                    }
+                    else {
+                        if (imageHeight > maxHeight) {
+                            imageWidth *= maxHeight / imageHeight;
+                            imageHeight = maxHeight;
+                        }
+                    }
+
+                    var canvas = document.createElement('canvas');
+                    canvas.width = imageWidth;
+                    canvas.height = imageHeight;
+                    image.width = imageWidth;
+                    image.height = imageHeight;
+                    var ctx = canvas.getContext("2d");
+                    ctx.drawImage(this, 0, 0, imageWidth, imageHeight);
+
+                    //$('#apercu').src = canvas.toDataURL(current_file.type);
+                    $('#apercu').attr('src',canvas.toDataURL(current_file.type));
+                    //$('#apercu1').attr('src',event.target.result);
+                }
+            };
+            reader.readAsDataURL(current_file);
+        }
+    }
+
+    objectURL = window.URL.createObjectURL(files);
+</script>-->
+</div>

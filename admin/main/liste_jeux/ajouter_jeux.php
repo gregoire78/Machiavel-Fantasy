@@ -1,10 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Maillard
- * Date: 27/04/2015
- * Time: 14:26
- */
+//
+// Created by Grégoire JONCOUR on 04/06/2015.
+// Copyright (c) 2015 Grégoire JONCOUR. All rights reserved.
+//
 
 //fonctions
 include_once('../functions/functions_jeu.php');
@@ -77,8 +75,8 @@ if(isset($_POST['ajouter'])||isset($_POST['modifier']))
     {
         $errors_jeu[1] = "Veuillez n'insérer que des lettres ou chiffres dans le titre.";
     }
-    //vérifions si le pseudo éxiste
-    else if(verif_existe('id_jeu','jeu','title_jeu',$title_jeu)!=0)
+    //vérifions si le titre éxiste
+    else if(verif_existe('id_jeu','jeu','title_jeu',html_entity_decode($title_jeu))!=0)
     {
         $errors_jeu[1] = "Ce titre n'est pas disponible";
     }

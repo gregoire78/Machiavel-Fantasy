@@ -222,4 +222,17 @@ function active_jeu($statut_jeu, $id_jeu)
     $query->bindParam(':id_jeu',$id_jeu,PDO::PARAM_INT);
     $query->execute();
 }
+
+//fonction pour creer un type de jeu
+function create_type_jeu($libelle_type_jeu,$description_type_jeu,$color_type_jeu)
+{
+    require("connect_bdd.php");
+    $sql = "  INSERT INTO type_jeu (  libelle_type_jeu, description_type_jeu, color_type_jeu)
+              VALUE           (:libelle_type_jeu, :description_type_jeu, :color_type_jeu )";
+    $query=$connect->prepare($sql);
+    $query->bindParam(':libelle_type_jeu',$libelle_type_jeu,PDO::PARAM_STR,50);
+    $query->bindParam(':description_type_jeu',$description_type_jeu,PDO::PARAM_STR,150);
+    $query->bindParam(':color_type_jeu',$color_type_jeu,PDO::PARAM_STR,7);
+    return $query->execute();
+}
 ?>

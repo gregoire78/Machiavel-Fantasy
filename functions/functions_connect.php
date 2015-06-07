@@ -1,11 +1,11 @@
 <?php
 //fonction qui verifie si l'entité preciser existe
-function verif_existe($id,$tab,$col,$email_user)
+function verif_existe($id,$tab,$col,$val)
 {
     require('connect_bdd.php');
-    $sql="SELECT count(".$id.") FROM ".$tab." WHERE ".$col."= :email_user";
+    $sql="SELECT count(".$id.") FROM ".$tab." WHERE ".$col."= :val";
     $query=$connect->prepare($sql);
-    $query->bindParam(':email_user',$email_user,PDO::PARAM_STR,35);
+    $query->bindParam(':val',$val,PDO::PARAM_STR,50);
     $query->execute();
     $count_entity=$query->fetchColumn();
     return $count_entity;

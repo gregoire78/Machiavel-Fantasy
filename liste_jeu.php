@@ -49,7 +49,7 @@ $view = $view_result['view'];
 $fichier = $view_result['fichier'];
 
 //On récupère le nombre de page pour afficher le nombre de jeu dans la base de donnée
-$nb_page = recup_nb_page(recup_lign($_GET['jeu']), $view);
+$nb_page = recup_nb_page(recup_lign($_GET['jeu'],NULL), $view);
 
 $page = page($nb_page, $referer);
 
